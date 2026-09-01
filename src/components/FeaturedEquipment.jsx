@@ -1,46 +1,24 @@
 import React, { useState } from 'react';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
+import { useProducts } from '../context/ProductContext';
 import { getSpecLabel } from '../i18n/translations';
 import ProductModal from './ProductModal';
 
 export default function FeaturedEquipment() {
   const { t, language } = useTranslation();
   const { theme } = useTheme();
+  const { visibleProducts, topProductIds } = useProducts();
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const isDark = theme === 'dark';
 
-  const featuredList = [
-    {
-      id: 'jt10',
-      title: { uk: 'Установка ГНБ Ditch Witch JT10', en: 'Ditch Witch JT10 Directional Drill', pl: 'Wiertnica HDB Ditch Witch JT10' },
-      tagline: { uk: 'Компактність та потужність 40 к.с.', en: 'Compact 40 HP power package', pl: 'Kompaktowa moc 40 KM' },
-      specs: { thrust: '44.5 кН', engine: 'Deutz 2.9L 40 к.с.', torque: '1490 Нм' },
-      desc: { uk: 'Найкомпактніша установка ГНБ у своєму класі з автоматичною подачею штанги.', en: 'The most compact drill in its class with auto-rod loading.', pl: 'Najbardziej kompaktowa wiertnica z automatycznym podawaniem żerdzi.' },
-      image: '/Risorse/Immagini/dirdrills_jt10.png',
-      featured: true
-    },
-    {
-      id: 'jt5',
-      title: { uk: 'Установка ГНБ Ditch Witch JT5', en: 'Ditch Witch JT5 Directional Drill', pl: 'Wiertnica HDB Ditch Witch JT5' },
-      tagline: { uk: 'Легендарна надійність для вузьких ділянок', en: 'Legendary reliability for tight residential yards', pl: 'Niezawodność w ciasnych przestrzeniach' },
-      specs: { thrust: '22.2 кН', engine: 'Kubota 24.8 к.с.', width: '91 см' },
-      desc: { uk: 'Малогабаритна установка для прокладання підземних ліній зв\'язку та електромереж.', en: 'Compact drill designed for telecom and power cable installation.', pl: 'Kompaktowa wiertnica przeznaczona do światłowodów i kabli.' },
-      image: '/Risorse/Immagini/dirdrills_jt5.png',
-      featured: true
-    },
-    {
-      id: 'c16x',
-      title: { uk: 'Траншеєкопач Ditch Witch C16X', en: 'Ditch Witch C16X Trencher', pl: 'Koparka Łańcuchowa C16X' },
-      tagline: { uk: 'Запатентна система CX Track', en: 'Patented CX Track design', pl: 'System CX Track' },
-      specs: { digDepth: 'до 910 мм', engine: 'Vanguard 16 к.с.', digWidth: '900 мм' },
-      desc: { uk: 'Надійний траншеєкопач для швидкого копання канав під кабелі та водопровід.', en: 'Heavy-duty trencher for quick utility pipe and cable trenching.', pl: 'Niezawodna koparka do szybkiego wykopu pod kable i rury.' },
-      image: '/Risorse/Immagini/c16x.png',
-      featured: true
-    }
-  ];
+  // Filter top 3 products chosen by admin or featured products fallback
+  let featuredList = visibleProducts.filter((p) => topProductIds.includes(p.id));
+  if (featuredList.length === 0) {
+    featuredList = visibleProducts.slice(0, 3);
+  }
 
   return (
     <section style={{
@@ -71,7 +49,7 @@ export default function FeaturedEquipment() {
           </h2>
         </div>
 
-        {/* 25% Transparency / Glassmorphism Cards Grid */}
+        {/* Glassmorphism Cards Grid */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
@@ -132,7 +110,7 @@ export default function FeaturedEquipment() {
                       textTransform: 'uppercase',
                       zIndex: 5
                     }}>
-                      {language === 'uk' ? 'ФЛАГМАН' : language === 'pl' ? 'POLECANE' : 'FEATURED'}
+                      {language === 'uk' ? 'ТОП 3' : language === 'pl' ? 'POLECANE' : 'TOP CHOICE'}
                     </span>
 
                     <img
@@ -179,7 +157,7 @@ export default function FeaturedEquipment() {
                       flexDirection: 'column',
                       gap: '6px'
                     }}>
-                      {Object.entries(machine.specs).map(([sKey, sVal], idx) => {
+                      {Object.entries(machine.specs).slice(0, 3).map(([sKey, sVal], idx) => {
                         const translatedLabel = getSpecLabel(sKey, language);
 
                         return (

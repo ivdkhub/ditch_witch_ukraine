@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import { Menu, X, ChevronDown, Home, ArrowRight } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
+import { useProducts } from '../context/ProductContext';
 
 export default function Navbar({ currentPage, onNavigate }) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const { theme } = useTheme();
+  const { navCategoryIds } = useProducts();
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
 
   const isDark = theme === 'dark';
 
-  const productSubmenu = [
+  const allProductSubmenu = [
     {
       id: 'hdd',
       title: t.nav.directionalDrills,
@@ -65,8 +68,19 @@ export default function Navbar({ currentPage, onNavigate }) {
       title: t.nav.recycling,
       page: 'products',
       image: '/Risorse/Immagini/category_fluidSystems.png'
+    },
+    {
+      id: 'consumables',
+      title: t.nav.consumables || (language === 'uk' ? 'Витратні матеріали' : 'Consumables'),
+      page: 'products',
+      image: '/Risorse/Immagini/category_fluidSystems.png'
     }
   ];
+
+  // Dynamically filter max 5 categories selected by Admin
+  const productSubmenu = allProductSubmenu.filter((item) =>
+    navCategoryIds.includes(item.id)
+  ).slice(0, 5);
 
   const handleNavClick = (page, categoryId = 'all') => {
     if (onNavigate) {
@@ -75,6 +89,8 @@ export default function Navbar({ currentPage, onNavigate }) {
     setMobileMenuOpen(false);
     setProductsOpen(false);
   };
+
+  const brandText = language === 'uk' ? 'ДІТЧ ВІТЧ УКРАЇНА' : 'DITCH WITCH UKRAINE';
 
   return (
     <header style={{
@@ -95,13 +111,13 @@ export default function Navbar({ currentPage, onNavigate }) {
         paddingBottom: '10px',
         width: '100%'
       }}>
-        {/* Brand Logo & Ukraine Accent Badge */}
+        {/* Brand Logo & Slanted Italic "УКРАЇНА" Badge matching Ditch Witch Logo Font */}
         <button
           onClick={() => handleNavClick('home')}
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '10px',
+            gap: '12px',
             background: 'none',
             border: 'none',
             cursor: 'pointer',
@@ -112,7 +128,7 @@ export default function Navbar({ currentPage, onNavigate }) {
         >
           <img
             src={isDark ? "/Risorse/Immagini/DW_Logotype_Rev.png" : "/Risorse/Immagini/DW_Logotype.png"}
-            alt="Ditch Witch Ukraine"
+            alt={brandText}
             style={{
               height: '42px',
               width: 'auto',
@@ -120,19 +136,23 @@ export default function Navbar({ currentPage, onNavigate }) {
             }}
           />
           <span style={{
-            fontSize: '0.75rem',
+            fontFamily: '"Impact", "Trebuchet MS", "Arial Black", sans-serif',
+            fontStyle: 'italic',
             fontWeight: 900,
+            fontSize: '1.05rem',
             color: '#FF6600',
-            backgroundColor: 'rgba(255, 102, 0, 0.1)',
-            border: '1px solid rgba(255, 102, 0, 0.3)',
+            backgroundColor: 'rgba(255, 102, 0, 0.08)',
+            border: '2px solid #FF6600',
             borderRadius: '6px',
-            padding: '3px 8px',
-            letterSpacing: '0.1em',
+            padding: '3px 10px',
+            letterSpacing: '0.04em',
             textTransform: 'uppercase',
             display: 'inline-flex',
             alignItems: 'center',
             lineHeight: 1,
-            flexShrink: 0
+            flexShrink: 0,
+            transform: 'skewX(-6deg)',
+            boxShadow: '0 2px 6px rgba(255, 102, 0, 0.2)'
           }}>
             УКРАЇНА
           </span>
@@ -140,42 +160,7 @@ export default function Navbar({ currentPage, onNavigate }) {
 
         {/* Desktop Navigation */}
         <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '0', marginLeft: 'auto', flexShrink: 0 }}>
-          {/* Home Button */}
-          <button
-            onClick={() => handleNavClick('home')}
-            style={{
-              padding: '14px 16px',
-              color: currentPage === 'home' ? '#FF6600' : isDark ? '#FFFFFF' : '#1E293B',
-              fontWeight: 800,
-              fontSize: '0.85rem',
-              letterSpacing: '0.04em',
-              textTransform: 'uppercase',
-              borderRight: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
-              borderBottom: currentPage === 'home' ? '3px solid #FF6600' : '3px solid transparent',
-              background: 'none',
-              borderTop: 'none',
-              borderLeft: 'none',
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '5px',
-              transition: 'all 0.2s ease',
-              lineHeight: 1,
-              whiteSpace: 'nowrap',
-              flexShrink: 0
-            }}
-            onMouseEnter={(e) => {
-              if (currentPage !== 'home') e.currentTarget.style.color = '#FF6600';
-            }}
-            onMouseLeave={(e) => {
-              if (currentPage !== 'home') e.currentTarget.style.color = isDark ? '#FFFFFF' : '#1E293B';
-            }}
-          >
-            <Home size={14} style={{ color: currentPage === 'home' ? '#FF6600' : 'inherit', flexShrink: 0 }} />
-            <span>HOME</span>
-          </button>
-
-          {/* Products Dropdown with Large Transparent Background Images */}
+          {/* Products Dropdown with Dynamic Selected 5 Categories */}
           <div
             style={{ position: 'relative' }}
             onMouseEnter={() => setProductsOpen(true)}
@@ -194,10 +179,10 @@ export default function Navbar({ currentPage, onNavigate }) {
                 letterSpacing: '0.04em',
                 textTransform: 'uppercase',
                 borderRight: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
+                borderLeft: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
                 borderBottom: currentPage === 'products' ? '3px solid #FF6600' : '3px solid transparent',
                 background: 'none',
                 borderTop: 'none',
-                borderLeft: 'none',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
                 lineHeight: 1,
@@ -222,8 +207,6 @@ export default function Navbar({ currentPage, onNavigate }) {
                 left: 0,
                 backgroundColor: isDark ? '#1C1C1C' : '#FFFFFF',
                 width: '380px',
-                maxHeight: '80vh',
-                overflowY: 'auto',
                 boxShadow: isDark ? '0 16px 40px rgba(0,0,0,0.8)' : '0 16px 36px rgba(0,0,0,0.14)',
                 borderTop: '3px solid #FF6600',
                 borderRadius: '0 0 12px 12px',
@@ -453,13 +436,6 @@ export default function Navbar({ currentPage, onNavigate }) {
           borderTop: '3px solid #FF6600'
         }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <button
-              onClick={() => handleNavClick('home')}
-              style={{ textAlign: 'left', background: 'none', border: 'none', color: currentPage === 'home' ? '#FF6600' : '#FFFFFF', fontWeight: 800, cursor: 'pointer', fontSize: '1rem' }}
-            >
-              HOME
-            </button>
-
             <button
               onClick={() => handleNavClick('products', 'all')}
               style={{ textAlign: 'left', background: 'none', border: 'none', color: currentPage === 'products' ? '#FF6600' : '#E2E8F0', fontWeight: 800, cursor: 'pointer', fontSize: '1rem' }}

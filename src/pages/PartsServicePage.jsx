@@ -171,11 +171,11 @@ export default function PartsServicePage() {
           }}>
             <ShieldCheck size={32} style={{ color: '#FF6600', marginBottom: '14px' }} />
             <h3 style={{ fontSize: '1.15rem', fontWeight: 800, marginBottom: '8px' }}>
-              {language === 'uk' ? 'Оригінальні Запчастини OEM' : '100% Genuine OEM Parts'}
+              {language === 'uk' ? '100% Оригінальні Запасні Частини' : language === 'pl' ? '100% Oryginalne Części Zamienne' : '100% Genuine Spare Parts'}
             </h3>
             <p style={{ fontSize: '0.88rem', color: isDark ? '#AAA' : '#666', lineHeight: 1.5, margin: 0 }}>
               {language === 'uk'
-                ? 'Прямі поставки зі заводу Ditch Witch США. Гарантія на кожну деталь та зносостійкий буровий інструмент.'
+                ? 'Прямі поставки зі заводу Дітч Вітч США. Гарантія на кожну деталь та зносостійкий буровий інструмент.'
                 : 'Direct factory imports with official warranty on every pipe, tooth, and hydraulic valve.'}
             </p>
           </div>

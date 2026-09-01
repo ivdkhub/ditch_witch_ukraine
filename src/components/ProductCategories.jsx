@@ -63,6 +63,12 @@ export default function ProductCategories({ onNavigateToProducts }) {
       name: t.categories.cat9.name,
       desc: t.categories.cat9.desc,
       image: '/Risorse/Immagini/category_fluidSystems.png'
+    },
+    {
+      id: 'consumables',
+      name: t.categories.cat10.name,
+      desc: t.categories.cat10.desc,
+      image: '/Risorse/Immagini/category_fluidSystems.png'
     }
   ];
 

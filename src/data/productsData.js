@@ -7,7 +7,7 @@ export const productsData = [
     image: '/Risorse/Immagini/dirdrills_jt10.png',
     featured: true,
     title: {
-      uk: 'Установка ГНБ Ditch Witch JT10',
+      uk: 'Установка ГНБ Дітч Вітч JT10',
       en: 'Ditch Witch JT10 Directional Drill',
       pl: 'Wiertnica HDB Ditch Witch JT10'
     },
@@ -37,7 +37,7 @@ export const productsData = [
     image: '/Risorse/Immagini/dirdrills_jt5.png',
     featured: true,
     title: {
-      uk: 'Установка ГНБ Ditch Witch JT5',
+      uk: 'Установка ГНБ Дітч Вітч JT5',
       en: 'Ditch Witch JT5 Directional Drill',
       pl: 'Wiertnica HDB Ditch Witch JT5'
     },
@@ -187,7 +187,7 @@ export const productsData = [
     image: '/Risorse/Immagini/c16x.png',
     featured: true,
     title: {
-      uk: 'Траншеєкопач Ditch Witch C16X',
+      uk: 'Траншеєкопач Дітч Вітч C16X',
       en: 'Ditch Witch C16X Walk-Behind Trencher',
       pl: 'Koparka Łańcuchowa Ditch Witch C16X'
     },
@@ -216,7 +216,7 @@ export const productsData = [
     image: '/Risorse/Immagini/c16x.png',
     featured: false,
     title: {
-      uk: 'Віброукладач Ditch Witch 100SX',
+      uk: 'Віброукладач Дітч Вітч 100SX',
       en: 'Ditch Witch 100SX Walk-Behind Vibratory Plow',
       pl: 'Pług Wibracyjny Ditch Witch 100SX'
     },
@@ -356,6 +356,36 @@ export const productsData = [
       uk: 'Професійна рециклінгова установка Dupagro R5E видаляє пісок та шлам з використаного бурового розчину, повертаючи очищений бентоніт назад у буріння та зменшуючи витрати на води і вивіз шламу на 80%.',
       en: 'Dupagro R5E mud recycler removes solids and sand from used drilling fluid, reducing water usage and mud disposal costs by up to 80%.',
       pl: 'Urządzenie do recyklingu płuczki Dupagro R5E skutecznie oczyszcza zużytą płuczkę z piasku, obniżając koszty utylizacji i zużycia wody o 80%.'
+    }
+  },
+
+  // 10. Consumable Materials (Витратні матеріали: Бентоніт, розширювачі, бурові штанги)
+  {
+    id: 'quik_gel',
+    category: 'consumables',
+    categoryKey: 'consumables',
+    image: '/Risorse/Immagini/category_fluidSystems.png',
+    featured: false,
+    title: {
+      uk: 'Високоякісний Бентоніт Baroid® QUIK-GEL®',
+      en: 'Baroid® QUIK-GEL® High-Yield Bentonite',
+      pl: 'Bentonit Baroid® QUIK-GEL®'
+    },
+    tagline: {
+      uk: 'Миттєве набрякання та висока в\'язкість для буріння в піску та гравії',
+      en: 'Instant hydration and high viscosity for sand & gravel HDD',
+      pl: 'Szybkie pęcznienie i wysoka lepkość do piasków i żwirów'
+    },
+    specs: {
+      package: '25 kg Мішок',
+      yield: '200+ bbl/ton',
+      viscosity: 'High-Shear Hydration Gel',
+      origin: 'Baroid Industrial Drilling Products USA'
+    },
+    desc: {
+      uk: 'Високоочищений бентоніт Baroid® QUIK-GEL® призначений для швидкого приготування бурового розчину з високими виносними властивостями для піщаних та нестабільних ґрунтів.',
+      en: 'Baroid® QUIK-GEL® high-yield sodium bentonite provides superior hole cleaning and fluid loss control in permeable formations.',
+      pl: 'Wysokowydajny bentonit Baroid® QUIK-GEL® zapewnia idealną lepkość i zapobiega ucieczce płuczki w gruncie piaszczystym.'
     }
   }
 ];

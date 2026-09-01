@@ -37,7 +37,7 @@ export const translations = {
   uk: {
     topbar: {
       phoneUA: '+380 50 380 66 92',
-      distributorBadge: 'ОФІЦІЙНИЙ ДИСТРИБ’ЮТОР DITCH WITCH В УКРАЇНІ',
+      distributorBadge: 'ОФІЦІЙНИЙ ДИСТРИБ’ЮТОР ДІТЧ ВІТЧ В УКРАЇНІ',
       searchPlaceholder: 'Пошук обладнання...'
     },
     nav: {
@@ -57,12 +57,13 @@ export const translations = {
       subsite: 'Електроніка та Пошук Subsite',
       americanAugers: 'Обладнання American Augers',
       bentonite: 'Бентоніт та Полімери Baroid',
-      recycling: 'Рециклінг розчину'
+      recycling: 'Рециклінг розчину',
+      consumables: 'Витратні матеріали (Бентоніт тощо)'
     },
     hero: {
       slide1: {
         badge: 'ФЛАГМАН ГНБ',
-        title: 'УСТАНОВКА ГНБ DITCH WITCH JT10',
+        title: 'УСТАНОВКА ГНБ ДІТЧ ВІТЧ JT10',
         subtitle: 'МАКСИМАЛЬНА ПОТУЖНІСТЬ ТА ТОЧНІСТЬ У КОМПАКТНОМУ КОРПУСІ.',
         btnMore: 'ОГЛЯД БУРОВИХ',
         btnQuote: 'ЗАПИТАТИ ЦІНУ'
@@ -83,22 +84,22 @@ export const translations = {
       },
       slide4: {
         badge: 'КОМПАКТНІ ТРАНШЕЄКОПАЧІ',
-        title: 'ТРАНШЕЄКОПАЧ DITCH WITCH C16X',
+        title: 'ТРАНШЕЄКОПАЧ ДІТЧ ВІТЧ C16X',
         subtitle: 'ВИСОКА ПРОДУКТИВНІСТЬ ПРОКЛАДАННЯ ТРАНШЕЙ У БУДЬ-ЯКОМУ ҐРУНТІ.',
         btnMore: 'ДЕТАЛЬНІШЕ',
         btnQuote: 'ЗАМОВИТИ'
       }
     },
     welcome: {
-      title: 'ЛАСКАВО ПРОСИМО ДО DITCH WITCH УКРАЇНА (JLM GROUP)',
-      desc1: 'Ditch Witch Україна входить до групи JLM — офіційного дистриб’ютора Ditch Witch® у Швеції, Норвегії, Фінляндії, Данії, Польщі та Україні з понад 20-річним досвідом.',
-      desc2: 'Ми є єдиним представником торгових марок Ditch Witch®, Zahn®, Subsite® Electronics, HammerHead®, American Augers® та дистриб’ютором Baroid®.',
+      title: 'ЛАСКАВО ПРОСИМО ДО ДІТЧ ВІТЧ УКРАЇНА (JLM GROUP)',
+      desc1: 'Дітч Вітч Україна входить до групи JLM — офіційного дистриб’ютора Дітч Вітч® у Швеції, Норвегії, Фінляндії, Данії, Польщі та Україні з понад 20-річним досвідом.',
+      desc2: 'Ми є єдиним представником торгових марок Дітч Вітч®, Zahn®, Subsite® Electronics, HammerHead®, American Augers® та дистриб’ютором Baroid®.',
       btnCatalog: 'ПЕРЕГЛЯНУТИ КАТАЛОГ JLM',
       btnContact: 'ЗВ’ЯЗАТИСЯ З НАМИ'
     },
     categories: {
       subtitle: 'ОФІЦІЙНИЙ КАТАЛОГ ОБЛАДНАННЯ JLM',
-      title: 'КАТЕГОРІЇ ПРОДУКЦІЇ DITCH WITCH & JLM',
+      title: 'КАТЕГОРІЇ ПРОДУКЦІЇ ДІТЧ ВІТЧ & JLM',
       cat1: { name: 'Машини ГНБ (HDD)', desc: 'Установки горизонтально-направленого буріння для прокладання комунікацій без пошкодження покриття.' },
       cat2: { name: 'Міксери бентонітові', desc: 'Професійні системи змішування бентоніту та полімерів з помпою високого тиску.' },
       cat3: { name: 'Електроніка та Локація', desc: 'Високоточні локаційні системи Subsite® TK RECON та зонди для безпомилкового ведення буріння.' },
@@ -108,29 +109,34 @@ export const translations = {
       cat7: { name: 'Навантажувачі (Компакт)', desc: 'Гусеничні міні-навантажувачі з стоячим місцем SK3000 та SK1550 для важких робіт.' },
       cat8: { name: 'American Augers®', desc: 'Важкі бурові комплекси ГНБ великої потужності для магістральних трубопроводів.' },
       cat9: { name: 'Рециклінг розчину', desc: 'Установки замкнутого циклу очищення та регенерації бурового розчину Dupagro.' },
+      cat10: { name: 'Витратні матеріали', desc: 'Оригінальні витратні матеріали Baroid®, розширювачі, бурові головки та компоненти.' },
       btnView: 'Детальніше'
     },
     featured: {
       subtitle: 'ТОП ПРОДАЖІВ В УКРАЇНІ',
-      title: 'РЕКОМЕНДОВАНА СПЕЦТЕХНІКА DITCH WITCH',
+      title: 'РЕКОМЕНДОВАНА СПЕЦТЕХНІКА ДІТЧ ВІТЧ',
       specsBtn: 'ХАРАКТЕРИСТИКИ ТА ЦІНА',
-      m1: { title: 'Установка ГНБ Ditch Witch JT10', tag: 'Компактність та потужність 40 к.с.', s1: 'Тяга: 44.5 кН', s2: 'Двигун: Deutz 2.9L 40 к.с.', s3: 'Крутний момент: 1490 Нм' },
-      m2: { title: 'Установка ГНБ Ditch Witch JT5', tag: 'Легендарна надійність для вузьких ділянок', s1: 'Тяга: 22.2 кН', s2: 'Двигун: Kubota 24.8 к.с.', s3: 'Довжина буріння: до 90 м' },
-      m3: { title: 'Траншеєкопач Ditch Witch C16X', tag: 'Запатентна система CX Track', s1: 'Глибина: до 1.2 м', s2: 'Двигун: Vanguard 16 к.с.', s3: 'Ширина: 900 мм' }
+      m1: { title: 'Установка ГНБ Дітч Вітч JT10', tag: 'Компактність та потужність 40 к.с.', s1: 'Тяга: 44.5 кН', s2: 'Двигун: Deutz 2.9L 40 к.с.', s3: 'Крутний момент: 1490 Нм' },
+      m2: { title: 'Установка ГНБ Дітч Вітч JT5', tag: 'Легендарна надійність для вузьких ділянок', s1: 'Тяга: 22.2 кН', s2: 'Двигун: Kubota 24.8 к.с.', s3: 'Довжина буріння: до 90 м' },
+      m3: { title: 'Траншеєкопач Дітч Вітч C16X', tag: 'Запатентна система CX Track', s1: 'Глибина: до 1.2 м', s2: 'Двигун: Vanguard 16 к.с.', s3: 'Ширина: 900 мм' }
+    },
+    parts: {
+      title: 'ОРИГІНАЛЬНІ ЗАПАСНІ ЧАСТИНИ ТА СЕРВІС ДІТЧ ВІТЧ',
+      badge: '100% Оригінальні Запасні Частини'
     },
     news: {
       subtitle: 'ОСТАННІ ОНОВЛЕННЯ ТА ПОРАДИ ЕКСПЕРТІВ',
-      title: 'НОВИНИ ТА ТЕХНІЧНІ СТАТТІ DITCH WITCH',
+      title: 'НОВИНИ ТА ТЕХНІЧНІ СТАТТІ ДІТЧ ВІТЧ',
       allNews: 'Всі Новини',
       readMore: 'Читати детальніше'
     },
     footer: {
-      aboutText: 'Ditch Witch Україна входить до групи JLM — офіційний представник Ditch Witch®, Subsite®, American Augers® та Baroid® в Україні.',
+      aboutText: 'Дітч Вітч Україна входить до групи JLM — офіційний представник Дітч Вітч®, Subsite®, American Augers® та Baroid® в Україні.',
       contactUA: 'Україна, м. Київ: +380 50 380 66 92',
       productsTitle: 'Продукція JLM',
-      companyTitle: 'Ditch Witch Україна',
+      companyTitle: 'Дітч Вітч Україна',
       distributorTitle: 'Офіційний Дистриб’ютор',
-      distributorDesc: 'Забезпечуємо сертифікований сервіс, оригінальні запчастини та гарантійну підтримку обладнання Ditch Witch.',
+      distributorDesc: 'Забезпечуємо сертифікований сервіс, оригінальні запчастини та гарантійну підтримку обладнання Дітч Вітч.',
       motto: 'МИ ЛІДИРУЄМО. МИ ІННОВУЄМО. МИ СЛУЖИМО.',
       privacy: 'Політика конфіденційності',
       terms: 'Умови використання',
@@ -162,7 +168,8 @@ export const translations = {
       subsite: 'Subsite Electronics',
       americanAugers: 'American Augers',
       bentonite: 'Baroid Bentonite',
-      recycling: 'Mud Recycling'
+      recycling: 'Mud Recycling',
+      consumables: 'Consumable Materials (Bentonite & Fluids)'
     },
     hero: {
       slide1: {
@@ -213,12 +220,17 @@ export const translations = {
       cat7: { name: 'Stand-on Skid Steers', desc: 'Heavy-duty SK3000 and SK1550 compact stand-on skid steers.' },
       cat8: { name: 'American Augers®', desc: 'Heavy HDD rigs and auger boring machinery for cross-country pipelines.' },
       cat9: { name: 'Mud Recycling Systems', desc: 'Closed-loop Dupagro mud cleaning and bentonite recycling units.' },
+      cat10: { name: 'Consumable Materials', desc: 'Original Baroid® bentonites, polymers, reamers, drill bits, and sondes.' },
       btnView: 'Learn More'
     },
     featured: {
       subtitle: 'TOP SALES IN UKRAINE',
       title: 'FEATURED DITCH WITCH MACHINERY',
       specsBtn: 'SPECS & QUOTE'
+    },
+    parts: {
+      title: 'GENUINE DITCH WITCH SPARE PARTS & SERVICE',
+      badge: '100% Genuine Spare Parts'
     },
     news: {
       subtitle: 'LATEST UPDATES & INDUSTRY ADVICE',
@@ -264,7 +276,8 @@ export const translations = {
       subsite: 'Elektronika Subsite',
       americanAugers: 'American Augers',
       bentonite: 'Bentonit Baroid',
-      recycling: 'Recykling Płuczki'
+      recycling: 'Recykling Płuczki',
+      consumables: 'Materiały eksploatacyjne (Bentonit itp.)'
     },
     hero: {
       slide1: {
@@ -315,12 +328,17 @@ export const translations = {
       cat7: { name: 'Ładowarki Kompaktowe', desc: 'Kompaktowe ładowarki gąsienicowe stojące SK3000 i SK1550.' },
       cat8: { name: 'American Augers®', desc: 'Ciężkie zestawy wiertnicze do magistrali rurociągowych.' },
       cat9: { name: 'Recykling Płuczki', desc: 'Systemy zamkniętego obiegu czyszczenia płuczki Dupagro.' },
+      cat10: { name: 'Materiały eksploatacyjne', desc: 'Oryginalne bentonity Baroid®, polimery, poszerzacze i korony.' },
       btnView: 'Więcej'
     },
     featured: {
       subtitle: 'TOP SPRZEDAŻ W UKRAINIE',
       title: 'POLECANY SPRZĘT DITCH WITCH',
       specsBtn: 'SPECYFIKACJA I CENA'
+    },
+    parts: {
+      title: 'ORYGINALNE CZĘŚCI ZAMIENNE I SERWIS DITCH WITCH',
+      badge: '100% Oryginalne Części Zamienne'
     },
     news: {
       subtitle: 'OSTATNIE AKTUALNOŚCI I PORADY',

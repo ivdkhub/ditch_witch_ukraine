@@ -29,7 +29,7 @@ import AddProductModal from '../components/AddProductModal';
 export default function AdminDashboardPage({ onLogout }) {
   const { language } = useTranslation();
   const { theme } = useTheme();
-  const { products, updateProductTargeting, deleteProduct, visitorCountry, setVisitorCountry } = useProducts();
+  const { products, updateProductTargeting, deleteProduct, visitorCountry, setVisitorCountry, navCategoryIds, setNavCategoryIds, topProductIds, toggleTopProduct } = useProducts();
   const { documents, addDocument, deleteDocument } = useDocuments();
 
   const [data, setData] = useState(initialAnalyticsData);
@@ -532,6 +532,80 @@ export default function AdminDashboardPage({ onLogout }) {
               </button>
             </div>
 
+            {/* ADMIN CONTROL 1: NAVBAR DROPDOWN CATEGORY SELECTION (MAX 5) */}
+            <div style={{
+              backgroundColor: isDark ? '#222222' : '#F9F9FB',
+              border: `1px solid ${isDark ? '#333333' : '#E0E0E0'}`,
+              borderRadius: '8px',
+              padding: '20px',
+              marginBottom: '24px'
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '10px' }}>
+                <div>
+                  <h4 style={{ fontSize: '1rem', fontWeight: 900, color: '#FF6600', margin: 0, textTransform: 'uppercase' }}>
+                    {language === 'uk' ? 'Налаштування Меню "Products" в Хедері (Максимум 5 категорій)' : 'Navbar "Products" Dropdown Categories (Max 5)'}
+                  </h4>
+                  <p style={{ fontSize: '0.8rem', color: isDark ? '#AAA' : '#666', margin: '4px 0 0 0' }}>
+                    {language === 'uk' ? 'Оберіть до 5 категорій, які будуть відображатися у випадаючому меню продукції вгорі сайту:' : 'Select up to 5 categories to display in the main navigation menu:'}
+                  </p>
+                </div>
+                <span style={{
+                  backgroundColor: navCategoryIds.length === 5 ? '#FF6600' : isDark ? '#333' : '#DDD',
+                  color: '#FFF',
+                  fontSize: '0.8rem',
+                  fontWeight: 800,
+                  padding: '4px 10px',
+                  borderRadius: '12px'
+                }}>
+                  {navCategoryIds.length} / 5 обрано
+                </span>
+              </div>
+
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                {[
+                  { id: 'hdd', label: 'Машини ГНБ (HDD)' },
+                  { id: 'mixers', label: 'Міксери бентонітові' },
+                  { id: 'electronics', label: 'Електроніка Subsite®' },
+                  { id: 'locators', label: 'Локатори Subsite®' },
+                  { id: 'trenchers', label: 'Віброукладачі та Траншеєкопачі' },
+                  { id: 'bentonite', label: 'Бентоніт Baroid®' },
+                  { id: 'skidsteers', label: 'Навантажувачі SK' },
+                  { id: 'american_augers', label: 'American Augers®' },
+                  { id: 'recycling', label: 'Рециклінг розчину' },
+                  { id: 'consumables', label: 'Витратні матеріали' }
+                ].map((catItem) => {
+                  const isChecked = navCategoryIds.includes(catItem.id);
+                  return (
+                    <button
+                      key={catItem.id}
+                      onClick={() => {
+                        if (isChecked) {
+                          setNavCategoryIds(navCategoryIds.filter((id) => id !== catItem.id));
+                        } else {
+                          if (navCategoryIds.length < 5) {
+                            setNavCategoryIds([...navCategoryIds, catItem.id]);
+                          }
+                        }
+                      }}
+                      style={{
+                        backgroundColor: isChecked ? '#FF6600' : isDark ? '#1A1A1A' : '#FFFFFF',
+                        color: isChecked ? '#FFFFFF' : isDark ? '#CCC' : '#333',
+                        border: `1px solid ${isChecked ? '#FF6600' : isDark ? '#333' : '#CCC'}`,
+                        borderRadius: '20px',
+                        padding: '6px 14px',
+                        fontSize: '0.82rem',
+                        fontWeight: 800,
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                    >
+                      {isChecked ? '✓ ' : '+ '}{catItem.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
               {products.map((prod) => {
                 const titleText = prod.title[language] || prod.title.uk || prod.title.en;
@@ -629,10 +703,26 @@ export default function AdminDashboardPage({ onLogout }) {
                       </div>
                     </div>
 
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: `1px solid ${isDark ? '#333' : '#E5E5E5'}`, paddingTop: '12px' }}>
-                      <span style={{ fontSize: '0.75rem', color: '#888' }}>
-                        ID: {prod.id}
-                      </span>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: `1px solid ${isDark ? '#333' : '#E5E5E5'}`, paddingTop: '12px', flexWrap: 'wrap', gap: '8px' }}>
+                      <button
+                        onClick={() => toggleTopProduct(prod.id)}
+                        style={{
+                          backgroundColor: topProductIds.includes(prod.id) ? '#FF6600' : isDark ? '#2E2E2E' : '#EFEFEF',
+                          color: topProductIds.includes(prod.id) ? '#FFFFFF' : isDark ? '#CCC' : '#555',
+                          border: 'none',
+                          borderRadius: '4px',
+                          padding: '6px 10px',
+                          fontSize: '0.78rem',
+                          fontWeight: 800,
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '4px'
+                        }}
+                      >
+                        {topProductIds.includes(prod.id) ? '★ В ТОП 3' : '☆ Додати в ТОП 3'}
+                      </button>
+
                       <button
                         onClick={() => deleteProduct(prod.id)}
                         style={{

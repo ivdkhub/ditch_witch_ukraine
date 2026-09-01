@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { productsData as initialProducts } from '../data/productsData';
 
 const ProductContext = createContext();
@@ -14,12 +14,50 @@ export function ProductProvider({ children }) {
   // Default visitor country: UA (Ukraine)
   const [visitorCountry, setVisitorCountry] = useState('UA');
 
+  // Administrator selected Navbar categories (Maximum 5 categories)
+  const [navCategoryIds, setNavCategoryIdsState] = useState([
+    'hdd',
+    'mixers',
+    'electronics',
+    'trenchers',
+    'consumables'
+  ]);
+
+  // Administrator selected Top 3 Featured Products for homepage
+  const [topProductIds, setTopProductIdsState] = useState([
+    'jt10',
+    'sk3000',
+    'c16x'
+  ]);
+
+  const setNavCategoryIds = (ids) => {
+    // Limit to max 5 categories
+    setNavCategoryIdsState(ids.slice(0, 5));
+  };
+
+  const toggleTopProduct = (productId) => {
+    setTopProductIdsState((prev) => {
+      if (prev.includes(productId)) {
+        return prev.filter((id) => id !== productId);
+      } else {
+        if (prev.length >= 3) {
+          return [...prev.slice(1), productId];
+        }
+        return [...prev, productId];
+      }
+    });
+  };
+
+  const setTopProductIds = (ids) => {
+    setTopProductIdsState(ids.slice(0, 3));
+  };
+
   // Add new product from Admin Panel
   const addProduct = (newProduct) => {
     const productToAdd = {
       id: `custom-${Date.now()}`,
-      category: newProduct.category || 'drilling',
-      categoryKey: newProduct.categoryKey || 'directionalDrills',
+      category: newProduct.category || 'hdd',
+      categoryKey: newProduct.categoryKey || 'hdd',
       image: newProduct.image || '/Risorse/Immagini/category_drilling.png',
       featured: newProduct.featured || false,
       title: {
@@ -75,6 +113,11 @@ export function ProductProvider({ children }) {
         visibleProducts: getVisibleProducts(),
         visitorCountry,
         setVisitorCountry,
+        navCategoryIds,
+        setNavCategoryIds,
+        topProductIds,
+        setTopProductIds,
+        toggleTopProduct,
         addProduct,
         updateProductTargeting,
         deleteProduct
