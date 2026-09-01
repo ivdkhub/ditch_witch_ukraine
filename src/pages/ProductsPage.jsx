@@ -216,15 +216,17 @@ export default function ProductsPage({ initialCategory = 'all' }) {
                   }}
                 >
                   <div>
-                    {/* Image Box */}
+                    {/* Dead-Centered Image Container Box */}
                     <div style={{
                       backgroundColor: isDark ? 'rgba(20, 20, 20, 0.6)' : 'rgba(242, 244, 247, 0.8)',
-                      padding: '24px',
-                      height: '220px',
+                      padding: '20px',
+                      height: '210px',
+                      width: '100%',
                       display: 'flex',
                       alignItems: 'center',
                       justify: 'center',
-                      position: 'relative'
+                      position: 'relative',
+                      overflow: 'hidden'
                     }}>
                       {prod.featured && (
                         <span style={{
@@ -237,7 +239,8 @@ export default function ProductsPage({ initialCategory = 'all' }) {
                           fontSize: '0.7rem',
                           padding: '3px 8px',
                           borderRadius: '3px',
-                          textTransform: 'uppercase'
+                          textTransform: 'uppercase',
+                          zIndex: 5
                         }}>
                           {language === 'uk' ? 'ФЛАГМАН' : language === 'pl' ? 'POLECANE' : 'FEATURED'}
                         </span>
@@ -247,9 +250,13 @@ export default function ProductsPage({ initialCategory = 'all' }) {
                         src={prod.image}
                         alt={titleText}
                         style={{
-                          maxHeight: '180px',
-                          maxWidth: '100%',
-                          objectFit: 'contain'
+                          maxHeight: '170px',
+                          maxWidth: '88%',
+                          width: 'auto',
+                          height: 'auto',
+                          objectFit: 'contain',
+                          display: 'block',
+                          margin: 'auto'
                         }}
                       />
                     </div>
