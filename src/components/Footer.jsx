@@ -1,13 +1,9 @@
 import React from 'react';
-import { Phone, ArrowUp, MapPin, Lock, ShieldCheck, Mail } from 'lucide-react';
+import { Phone, MapPin, Lock } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 
 export default function Footer({ onNavigate, onOpenAdmin }) {
   const { t } = useTranslation();
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   const handleLinkClick = (page) => {
     if (onNavigate) {
@@ -67,7 +63,7 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
                 <span>{t.footer.contactUA}</span>
               </div>
               <a
-                href="tel:+380443907575"
+                href="tel:+380503806692"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -80,7 +76,7 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
                 onMouseLeave={(e) => e.currentTarget.style.color = '#FFFFFF'}
               >
                 <Phone size={16} style={{ color: '#FF6600', flexShrink: 0 }} />
-                <span>+380 (44) 390-75-75</span>
+                <span>+380 50 380 66 92</span>
               </a>
             </div>
           </div>
@@ -100,7 +96,7 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
             }}>
               {t.footer.productsTitle}
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.88rem' }}>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.88rem', padding: 0 }}>
               <li>
                 <button
                   onClick={() => handleLinkClick('products')}
@@ -169,10 +165,10 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
             }}>
               DITCH WITCH УКРАЇНА
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.88rem' }}>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.88rem', padding: 0 }}>
               <li>
                 <button
-                  onClick={() => handleLinkClick('home')}
+                  onClick={() => handleLinkClick('about')}
                   style={{ background: 'none', border: 'none', color: '#A0A0A0', cursor: 'pointer', padding: 0, textAlign: 'left', transition: 'color 0.2s' }}
                   onMouseEnter={(e) => e.currentTarget.style.color = '#FF6600'}
                   onMouseLeave={(e) => e.currentTarget.style.color = '#A0A0A0'}
@@ -182,12 +178,22 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
               </li>
               <li>
                 <button
-                  onClick={() => handleLinkClick('home')}
+                  onClick={() => handleLinkClick('service')}
                   style={{ background: 'none', border: 'none', color: '#A0A0A0', cursor: 'pointer', padding: 0, textAlign: 'left', transition: 'color 0.2s' }}
                   onMouseEnter={(e) => e.currentTarget.style.color = '#FF6600'}
                   onMouseLeave={(e) => e.currentTarget.style.color = '#A0A0A0'}
                 >
                   {t.nav.partsService}
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleLinkClick('docs')}
+                  style={{ background: 'none', border: 'none', color: '#A0A0A0', cursor: 'pointer', padding: 0, textAlign: 'left', transition: 'color 0.2s' }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#FF6600'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#A0A0A0'}
+                >
+                  {t.nav.docs}
                 </button>
               </li>
               <li>
@@ -198,16 +204,6 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
                   onMouseLeave={(e) => e.currentTarget.style.color = '#A0A0A0'}
                 >
                   {t.nav.news}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleLinkClick('products')}
-                  style={{ background: 'none', border: 'none', color: '#A0A0A0', cursor: 'pointer', padding: 0, textAlign: 'left', transition: 'color 0.2s' }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = '#FF6600'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = '#A0A0A0'}
-                >
-                  {t.nav.offers}
                 </button>
               </li>
             </ul>
@@ -288,35 +284,6 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
               <span>Admin Dashboard</span>
             </button>
           </div>
-
-          <button
-            onClick={scrollToTop}
-            style={{
-              backgroundColor: '#1E1E1E',
-              border: '1px solid #333',
-              color: '#FFFFFF',
-              padding: '8px 14px',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              fontSize: '0.8rem',
-              fontWeight: 800,
-              transition: 'all 0.2s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#FF6600';
-              e.currentTarget.style.borderColor = '#FF6600';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#1E1E1E';
-              e.currentTarget.style.borderColor = '#333';
-            }}
-          >
-            <span>{t.footer.top}</span>
-            <ArrowUp size={14} />
-          </button>
         </div>
       </div>
     </footer>

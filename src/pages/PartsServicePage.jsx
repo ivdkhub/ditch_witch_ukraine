@@ -20,7 +20,6 @@ export default function PartsServicePage() {
   const { language } = useTranslation();
   const { theme } = useTheme();
 
-  const [partCategory, setPartCategory] = useState('hdd_tools');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -307,7 +306,7 @@ export default function PartsServicePage() {
           overflow: 'hidden'
         }}>
           <div style={{
-            padding: '32px',
+            padding: '28px 32px',
             borderBottom: `1px solid ${isDark ? '#2A2A2A' : '#EEEEEE'}`,
             backgroundColor: isDark ? '#141414' : '#F4F5F7',
             display: 'flex',
@@ -325,7 +324,11 @@ export default function PartsServicePage() {
               </h3>
             </div>
 
-            <a href="tel:+380503806692" className="btn-primary" style={{ textDecoration: 'none' }}>
+            <a
+              href="tel:+380503806692"
+              className="btn-primary"
+              style={{ textDecoration: 'none', marginLeft: 'auto', alignSelf: 'flex-start' }}
+            >
               <Phone size={16} />
               <span>ГАРЯЧА ЛІНІЯ: +380 50 380 66 92</span>
             </a>

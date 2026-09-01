@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Search, Download, FileText, CheckCircle, ShieldCheck } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
-import { documentsData } from '../data/documentsData';
+import { useDocuments } from '../context/DocumentContext';
 
 export default function DocumentsPage() {
   const { language } = useTranslation();
   const { theme } = useTheme();
+  const { documents } = useDocuments();
 
   const [query, setQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
@@ -22,14 +23,14 @@ export default function DocumentsPage() {
     { id: 'guides', label: { uk: 'Порівняльні Гайди', en: 'Comparison Guides', pl: 'Poradniki' } }
   ];
 
-  const filteredDocs = documentsData.filter((doc) => {
+  const filteredDocs = documents.filter((doc) => {
     const matchesCat = activeCategory === 'all' || doc.category === activeCategory;
 
     const q = query.toLowerCase().trim();
-    const titleText = (doc.title[language] || doc.title.uk || doc.title.en).toLowerCase();
-    const descText = (doc.description[language] || doc.description.uk || doc.description.en).toLowerCase();
+    const titleText = (typeof doc.title === 'string' ? doc.title : doc.title[language] || doc.title.uk || doc.title.en || '').toLowerCase();
+    const descText = (typeof doc.description === 'string' ? doc.description : doc.description[language] || doc.description.uk || doc.description.en || '').toLowerCase();
 
-    const matchesQuery = q === '' || titleText.includes(q) || descText.includes(q) || doc.category.includes(q);
+    const matchesQuery = q === '' || titleText.includes(q) || descText.includes(q) || (doc.category && doc.category.includes(q));
 
     return matchesCat && matchesQuery;
   });
@@ -77,9 +78,9 @@ export default function DocumentsPage() {
             lineHeight: 1.6
           }}>
             {language === 'uk'
-              ? 'Офіційні брошури, паспорти обладнання, керівництва з експлуатації та таблиці рецептур бурових розчинів у форматі Word/DOCX.'
+              ? 'Офіційні брошури, паспорти обладнання, керівництва з експлуатації та таблиці рецептур бурових розчинів у форматі Word, PDF та Excel.'
               : language === 'pl'
-              ? 'Oficjalne broszury, karty techniczne i instrukcje obsługi w formacie Word/DOCX.'
+              ? 'Oficjalne broszury, karty techniczne i instrukcje obsługi w formacie Word, PDF i Excel.'
               : 'Download official technical brochures, machine spec sheets, Subsite locating guides, and Baroid mud mix ratios.'}
           </p>
         </div>
@@ -168,13 +169,13 @@ export default function DocumentsPage() {
         ) : (
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
             gap: '24px'
           }}>
             {filteredDocs.map((doc) => {
-              const titleText = doc.title[language] || doc.title.uk || doc.title.en;
-              const descText = doc.description[language] || doc.description.uk || doc.description.en;
-              const catName = doc.categoryName[language] || doc.categoryName.uk || doc.categoryName.en;
+              const titleText = typeof doc.title === 'string' ? doc.title : doc.title[language] || doc.title.uk || doc.title.en;
+              const descText = typeof doc.description === 'string' ? doc.description : doc.description[language] || doc.description.uk || doc.description.en;
+              const catName = typeof doc.categoryName === 'string' ? doc.categoryName : (doc.categoryName && (doc.categoryName[language] || doc.categoryName.uk || doc.categoryName.en)) || doc.category;
 
               return (
                 <div
@@ -218,7 +219,7 @@ export default function DocumentsPage() {
 
                       <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
                         <span style={{
-                          backgroundColor: '#2563EB',
+                          backgroundColor: doc.format === 'PDF' ? '#E53935' : doc.format === 'XLSX' || doc.format === 'XLS' ? '#2E7D32' : '#2563EB',
                           color: '#FFFFFF',
                           fontWeight: 900,
                           fontSize: '0.7rem',

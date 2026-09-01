@@ -117,7 +117,7 @@ export default function AboutPage({ onNavigateToProducts }) {
           </div>
 
           {/* Key Advantage Cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '20px' }}>
             <div style={{
               backgroundColor: isDark ? 'rgba(28, 28, 28, 0.75)' : 'rgba(255, 255, 255, 0.75)',
               backdropFilter: 'blur(10px)',
@@ -184,7 +184,7 @@ export default function AboutPage({ onNavigateToProducts }) {
           </div>
         </div>
 
-        {/* STRATEGIC PARTNERSHIP WITH JLM SECTION */}
+        {/* STRATEGIC PARTNERSHIP WITH JLM SECTION (Centered Logo Relative to Card) */}
         <div style={{
           backgroundColor: isDark ? 'rgba(28, 28, 28, 0.75)' : 'rgba(255, 255, 255, 0.75)',
           backdropFilter: 'blur(10px)',
@@ -201,7 +201,7 @@ export default function AboutPage({ onNavigateToProducts }) {
             gap: '32px',
             alignItems: 'center'
           }}>
-            {/* JLM Logo Container */}
+            {/* Perfectly Dead-Centered JLM Logo Container */}
             <div style={{
               backgroundColor: isDark ? 'rgba(18, 18, 18, 0.85)' : '#FFFFFF',
               border: `1px solid ${isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.1)'}`,
@@ -211,15 +211,18 @@ export default function AboutPage({ onNavigateToProducts }) {
               alignItems: 'center',
               justify: 'center',
               boxShadow: isDark ? '0 6px 20px rgba(0,0,0,0.4)' : '0 6px 18px rgba(0,0,0,0.05)',
-              minHeight: '140px'
+              minHeight: '160px',
+              height: '100%'
             }}>
               <img
                 src="/Risorse/Immagini/jlm_logo.png"
                 alt="JLM Partnership Logo"
                 style={{
-                  maxHeight: '90px',
-                  maxWidth: '100%',
-                  objectFit: 'contain'
+                  maxHeight: '100px',
+                  maxWidth: '80%',
+                  objectFit: 'contain',
+                  display: 'block',
+                  margin: 'auto'
                 }}
               />
             </div>
@@ -263,7 +266,8 @@ export default function AboutPage({ onNavigateToProducts }) {
               <p style={{
                 fontSize: '0.92rem',
                 lineHeight: 1.6,
-                color: isDark ? '#AAAAAA' : '#666666'
+                color: isDark ? '#AAAAAA' : '#666666',
+                margin: 0
               }}>
                 {language === 'uk'
                   ? 'Спільна експертиза дає змогу впроваджувати ефективні інженерні проекти, розширювати номенклатуру бурового інструменту та забезпечувати найвищий рівень сервісної підтримки для наших партнерів.'
@@ -285,8 +289,9 @@ export default function AboutPage({ onNavigateToProducts }) {
           boxShadow: isDark ? '0 10px 30px rgba(0,0,0,0.5)' : '0 10px 30px rgba(0,0,0,0.06)',
           overflow: 'hidden'
         }}>
+          {/* Clean Card Header with Button Flush Top-Right */}
           <div style={{
-            padding: '32px',
+            padding: '28px 32px',
             borderBottom: `1px solid ${isDark ? '#2A2A2A' : '#EEEEEE'}`,
             display: 'flex',
             justify: 'space-between',
@@ -295,12 +300,9 @@ export default function AboutPage({ onNavigateToProducts }) {
             gap: '16px'
           }}>
             <div>
-              <span style={{ color: '#FF6600', fontWeight: 800, fontSize: '0.8rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+              <span style={{ color: '#FF6600', fontWeight: 800, fontSize: '0.82rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
                 OFFICIAL LOCATION & CONTACTS
               </span>
-              <h3 style={{ fontSize: '1.6rem', fontWeight: 900, marginTop: '4px', textTransform: 'uppercase' }}>
-                {language === 'uk' ? 'Контакти та Карта Проїзду' : 'Contact Us & Location Map'}
-              </h3>
             </div>
 
             <a
@@ -308,6 +310,7 @@ export default function AboutPage({ onNavigateToProducts }) {
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"
+              style={{ textDecoration: 'none', marginLeft: 'auto' }}
             >
               <MapPin size={16} />
               <span>{language === 'uk' ? 'ОТРИМАТИ МАРШРУТ' : 'GET DIRECTIONS'}</span>
@@ -328,7 +331,8 @@ export default function AboutPage({ onNavigateToProducts }) {
                   borderRadius: '8px',
                   display: 'flex',
                   alignItems: 'center',
-                  justify: 'center'
+                  justify: 'center',
+                  flexShrink: 0
                 }}>
                   <MapPin size={22} />
                 </div>
@@ -350,7 +354,8 @@ export default function AboutPage({ onNavigateToProducts }) {
                   borderRadius: '8px',
                   display: 'flex',
                   alignItems: 'center',
-                  justify: 'center'
+                  justify: 'center',
+                  flexShrink: 0
                 }}>
                   <Phone size={22} />
                 </div>
@@ -360,7 +365,7 @@ export default function AboutPage({ onNavigateToProducts }) {
                   </h4>
                   <a
                     href="tel:+380503806692"
-                    style={{ fontSize: '1.2rem', fontWeight: 900, marginTop: '4px', color: isDark ? '#FFF' : '#111', display: 'inline-block' }}
+                    style={{ fontSize: '1.2rem', fontWeight: 900, marginTop: '4px', color: isDark ? '#FFF' : '#111', display: 'inline-block', textDecoration: 'none' }}
                   >
                     {contactPhone}
                   </a>
@@ -375,7 +380,8 @@ export default function AboutPage({ onNavigateToProducts }) {
                   borderRadius: '8px',
                   display: 'flex',
                   alignItems: 'center',
-                  justify: 'center'
+                  justify: 'center',
+                  flexShrink: 0
                 }}>
                   <Clock size={22} />
                 </div>

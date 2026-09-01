@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { LanguageProvider } from './i18n/LanguageContext';
 import { ThemeProvider } from './theme/ThemeContext';
 import { ProductProvider } from './context/ProductContext';
+import { DocumentProvider } from './context/DocumentContext';
 import TopBar from './components/TopBar';
 import Navbar from './components/Navbar';
 import HeroCarousel from './components/HeroCarousel';
@@ -17,6 +18,7 @@ import DocumentsPage from './pages/DocumentsPage';
 import PartsServicePage from './pages/PartsServicePage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import AdminLoginModal from './components/AdminLoginModal';
+import ScrollToTopButton from './components/ScrollToTopButton';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -98,43 +100,48 @@ export default function App() {
     <ThemeProvider>
       <LanguageProvider>
         <ProductProvider>
-          <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-            <TopBar onOpenAdmin={handleOpenAdmin} />
-            <Navbar currentPage={currentPage} onNavigate={navigateTo} />
+          <DocumentProvider>
+            <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+              <TopBar onOpenAdmin={handleOpenAdmin} />
+              <Navbar currentPage={currentPage} onNavigate={navigateTo} />
 
-            <main style={{ flexGrow: 1 }}>
-              {currentPage === 'admin' && isAdminLoggedIn ? (
-                <AdminDashboardPage onLogout={handleLogout} />
-              ) : currentPage === 'products' ? (
-                <ProductsPage initialCategory={activeProductCategory} />
-              ) : currentPage === 'news' ? (
-                <NewsPage />
-              ) : currentPage === 'about' ? (
-                <AboutPage onNavigateToProducts={() => navigateTo('products')} />
-              ) : currentPage === 'docs' ? (
-                <DocumentsPage />
-              ) : currentPage === 'service' ? (
-                <PartsServicePage />
-              ) : (
-                <>
-                  <HeroCarousel />
-                  <WelcomeSection />
-                  <ProductCategories onNavigateToProducts={() => navigateTo('products')} />
-                  <FeaturedEquipment />
-                  <LatestNews onNavigateToNews={() => navigateTo('news')} />
-                </>
-              )}
-            </main>
+              <main style={{ flexGrow: 1 }}>
+                {currentPage === 'admin' && isAdminLoggedIn ? (
+                  <AdminDashboardPage onLogout={handleLogout} />
+                ) : currentPage === 'products' ? (
+                  <ProductsPage initialCategory={activeProductCategory} />
+                ) : currentPage === 'news' ? (
+                  <NewsPage />
+                ) : currentPage === 'about' ? (
+                  <AboutPage onNavigateToProducts={() => navigateTo('products')} />
+                ) : currentPage === 'docs' ? (
+                  <DocumentsPage />
+                ) : currentPage === 'service' ? (
+                  <PartsServicePage />
+                ) : (
+                  <>
+                    <HeroCarousel />
+                    <WelcomeSection />
+                    <ProductCategories onNavigateToProducts={() => navigateTo('products')} />
+                    <FeaturedEquipment />
+                    <LatestNews onNavigateToNews={() => navigateTo('news')} />
+                  </>
+                )}
+              </main>
 
-            <Footer onNavigate={navigateTo} onOpenAdmin={handleOpenAdmin} />
+              <Footer onNavigate={navigateTo} onOpenAdmin={handleOpenAdmin} />
 
-            {/* Admin Login Modal */}
-            <AdminLoginModal
-              isOpen={isLoginModalOpen}
-              onClose={() => setIsLoginModalOpen(false)}
-              onLoginSuccess={handleLoginSuccess}
-            />
-          </div>
+              {/* Floating Scroll-to-Top Button */}
+              <ScrollToTopButton />
+
+              {/* Admin Login Modal */}
+              <AdminLoginModal
+                isOpen={isLoginModalOpen}
+                onClose={() => setIsLoginModalOpen(false)}
+                onLoginSuccess={handleLoginSuccess}
+              />
+            </div>
+          </DocumentProvider>
         </ProductProvider>
       </LanguageProvider>
     </ThemeProvider>

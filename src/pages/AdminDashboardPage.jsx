@@ -14,24 +14,75 @@ import {
   PlusCircle,
   Trash2,
   Sliders,
-  Check
+  Check,
+  Upload,
+  Download,
+  FolderPlus
 } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
 import { initialAnalyticsData } from '../data/analyticsData';
 import { useProducts } from '../context/ProductContext';
+import { useDocuments } from '../context/DocumentContext';
 import AddProductModal from '../components/AddProductModal';
 
 export default function AdminDashboardPage({ onLogout }) {
   const { language } = useTranslation();
   const { theme } = useTheme();
   const { products, updateProductTargeting, deleteProduct, visitorCountry, setVisitorCountry } = useProducts();
+  const { documents, addDocument, deleteDocument } = useDocuments();
 
   const [data, setData] = useState(initialAnalyticsData);
-  const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'products' | 'inquiries'
+  const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'products' | 'documents' | 'inquiries'
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
+  // New Document Upload State
+  const [newDocTitle, setNewDocTitle] = useState('');
+  const [newDocCategory, setNewDocCategory] = useState('drilling');
+  const [newDocFormat, setNewDocFormat] = useState('DOCX');
+  const [newDocDescription, setNewDocDescription] = useState('');
+  const [selectedFile, setSelectedFile] = useState(null);
+
   const isDark = theme === 'dark';
+
+  const categoryNames = {
+    drilling: { uk: 'Бурові Установки ГНБ', en: 'HDD Directional Drills', pl: 'Wiertnice Sterowane HDB' },
+    locating: { uk: 'Локаційні Системи Subsite', en: 'Subsite Electronics Locating', pl: 'Systemy Lokalizacji Subsite' },
+    tools: { uk: 'Буровий Інструмент та Штанги', en: 'Drilling Tools & Pipes', pl: 'Narzędzia i Żerdzie' },
+    fluids: { uk: 'Бурові Розчини та Бентоніт', en: 'Drilling Fluids & Bentonite', pl: 'Płuczki i Bentonit' },
+    guides: { uk: 'Гайди та Порівняння', en: 'Guides & Comparisons', pl: 'Poradniki' }
+  };
+
+  const handleDocumentUpload = (e) => {
+    e.preventDefault();
+    if (!newDocTitle.trim()) return;
+
+    let fileUrl = '/documents/21 УкрBroszura Порівняння бурових машин укр DW HDD v.11.2015.docx';
+    let fileSize = '2.4 MB';
+
+    if (selectedFile) {
+      fileUrl = URL.createObjectURL(selectedFile);
+      fileSize = `${(selectedFile.size / (1024 * 1024)).toFixed(1)} MB`;
+      const ext = selectedFile.name.split('.').pop().toUpperCase();
+      if (ext) setNewDocFormat(ext);
+    }
+
+    const newDoc = {
+      id: `doc-custom-${Date.now()}`,
+      category: newDocCategory,
+      categoryName: categoryNames[newDocCategory] || categoryNames.drilling,
+      file: fileUrl,
+      size: fileSize,
+      format: newDocFormat,
+      title: { uk: newDocTitle, en: newDocTitle, pl: newDocTitle },
+      description: { uk: newDocDescription || newDocTitle, en: newDocDescription || newDocTitle, pl: newDocDescription || newDocTitle }
+    };
+
+    addDocument(newDoc);
+    setNewDocTitle('');
+    setNewDocDescription('');
+    setSelectedFile(null);
+  };
 
   const toggleInquiryStatus = (id) => {
     setData((prev) => ({
@@ -179,13 +230,14 @@ export default function AdminDashboardPage({ onLogout }) {
           </div>
         </div>
 
-        {/* Tabs */}
+        {/* Navigation Tabs */}
         <div style={{
           display: 'flex',
           gap: '10px',
           marginBottom: '28px',
           borderBottom: `1px solid ${isDark ? '#2C2C2C' : '#E0E0E0'}`,
-          paddingBottom: '12px'
+          paddingBottom: '12px',
+          overflowX: 'auto'
         }}>
           <button
             onClick={() => setActiveTab('overview')}
@@ -200,7 +252,8 @@ export default function AdminDashboardPage({ onLogout }) {
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '8px'
+              gap: '8px',
+              whiteSpace: 'nowrap'
             }}
           >
             <TrendingUp size={16} />
@@ -220,11 +273,12 @@ export default function AdminDashboardPage({ onLogout }) {
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '8px'
+              gap: '8px',
+              whiteSpace: 'nowrap'
             }}
           >
             <Sliders size={16} />
-            <span>{language === 'uk' ? 'Управління Товарами та Гео-Видимістю' : 'Product & Geo-Targeting Management'}</span>
+            <span>{language === 'uk' ? 'Управління Товарами' : 'Product Management'}</span>
             <span style={{
               backgroundColor: '#FFFFFF',
               color: '#FF6600',
@@ -235,6 +289,39 @@ export default function AdminDashboardPage({ onLogout }) {
               marginLeft: '4px'
             }}>
               {products.length}
+            </span>
+          </button>
+
+          {/* New Document Management Tab */}
+          <button
+            onClick={() => setActiveTab('documents')}
+            style={{
+              backgroundColor: activeTab === 'documents' ? '#FF6600' : isDark ? '#1C1C1C' : '#FFFFFF',
+              color: activeTab === 'documents' ? '#FFFFFF' : isDark ? '#CCCCCC' : '#444444',
+              border: 'none',
+              borderRadius: '6px',
+              padding: '10px 20px',
+              fontSize: '0.9rem',
+              fontWeight: 800,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            <FolderPlus size={16} />
+            <span>{language === 'uk' ? 'Завантаження Документації' : 'Upload Documents'}</span>
+            <span style={{
+              backgroundColor: '#FFFFFF',
+              color: '#FF6600',
+              borderRadius: '10px',
+              fontSize: '0.72rem',
+              fontWeight: 900,
+              padding: '1px 6px',
+              marginLeft: '4px'
+            }}>
+              {documents.length}
             </span>
           </button>
 
@@ -251,7 +338,8 @@ export default function AdminDashboardPage({ onLogout }) {
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '8px'
+              gap: '8px',
+              whiteSpace: 'nowrap'
             }}
           >
             <FileText size={16} />
@@ -273,7 +361,6 @@ export default function AdminDashboardPage({ onLogout }) {
         {/* TAB 1: OVERVIEW & TRAFFIC STATS */}
         {activeTab === 'overview' && (
           <>
-            {/* Top Stat Cards */}
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
@@ -353,7 +440,6 @@ export default function AdminDashboardPage({ onLogout }) {
               </div>
             </div>
 
-            {/* Daily Traffic & Geo Chart */}
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
@@ -486,7 +572,6 @@ export default function AdminDashboardPage({ onLogout }) {
                         </div>
                       </div>
 
-                      {/* Geo Visibility Controls */}
                       <div style={{
                         backgroundColor: isDark ? '#181818' : '#FFFFFF',
                         padding: '12px',
@@ -575,7 +660,230 @@ export default function AdminDashboardPage({ onLogout }) {
           </div>
         )}
 
-        {/* TAB 3: INQUIRIES */}
+        {/* TAB 3: DOCUMENT UPLOAD & MANAGEMENT */}
+        {activeTab === 'documents' && (
+          <div style={{
+            backgroundColor: isDark ? '#1A1A1A' : '#FFFFFF',
+            borderRadius: '10px',
+            padding: '24px',
+            border: `1px solid ${isDark ? '#2C2C2C' : '#EAEAEA'}`
+          }}>
+            <h3 style={{ fontSize: '1.2rem', fontWeight: 900, textTransform: 'uppercase', marginBottom: '8px', color: '#FF6600' }}>
+              {language === 'uk' ? 'Завантаження та Управління Документацією' : 'Document Upload & Management'}
+            </h3>
+            <p style={{ fontSize: '0.85rem', color: isDark ? '#AAA' : '#666', marginBottom: '24px' }}>
+              {language === 'uk'
+                ? 'Завантажуйте нові інструкції, брошури (Word, PDF, Excel), які відвідувачі зможуть звантажувати з розділу Документація.'
+                : 'Upload new manuals and technical brochures (Word, PDF, Excel) for customer downloads.'}
+            </p>
+
+            {/* Document Upload Form */}
+            <form onSubmit={handleDocumentUpload} style={{
+              backgroundColor: isDark ? '#222222' : '#F8F9FA',
+              padding: '24px',
+              borderRadius: '8px',
+              border: `1px solid ${isDark ? '#333' : '#E0E0E0'}`,
+              marginBottom: '32px',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '16px'
+            }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '6px' }}>
+                  {language === 'uk' ? 'Назва Документа *' : 'Document Title *'}
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder={language === 'uk' ? 'Офіційне керівництво з експлуатації...' : 'Official user manual...'}
+                  value={newDocTitle}
+                  onChange={(e) => setNewDocTitle(e.target.value)}
+                  style={{
+                    width: '100%',
+                    backgroundColor: isDark ? '#141414' : '#FFF',
+                    border: `1px solid ${isDark ? '#333' : '#CCC'}`,
+                    padding: '10px',
+                    borderRadius: '6px',
+                    color: isDark ? '#FFF' : '#000',
+                    outline: 'none'
+                  }}
+                />
+              </div>
+
+              <div>
+                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '6px' }}>
+                  {language === 'uk' ? 'Категорія *' : 'Category *'}
+                </label>
+                <select
+                  value={newDocCategory}
+                  onChange={(e) => setNewDocCategory(e.target.value)}
+                  style={{
+                    width: '100%',
+                    backgroundColor: isDark ? '#141414' : '#FFF',
+                    border: `1px solid ${isDark ? '#333' : '#CCC'}`,
+                    padding: '10px',
+                    borderRadius: '6px',
+                    color: isDark ? '#FFF' : '#000',
+                    outline: 'none'
+                  }}
+                >
+                  <option value="drilling">Бурові Установки ГНБ</option>
+                  <option value="locating">Локаційні Системи Subsite</option>
+                  <option value="tools">Буровий Інструмент та Штанги</option>
+                  <option value="fluids">Бурові Розчини та Бентоніт</option>
+                  <option value="guides">Порівняльні Гайди</option>
+                </select>
+              </div>
+
+              <div>
+                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '6px' }}>
+                  {language === 'uk' ? 'Формат Файлу' : 'File Format'}
+                </label>
+                <select
+                  value={newDocFormat}
+                  onChange={(e) => setNewDocFormat(e.target.value)}
+                  style={{
+                    width: '100%',
+                    backgroundColor: isDark ? '#141414' : '#FFF',
+                    border: `1px solid ${isDark ? '#333' : '#CCC'}`,
+                    padding: '10px',
+                    borderRadius: '6px',
+                    color: isDark ? '#FFF' : '#000',
+                    outline: 'none'
+                  }}
+                >
+                  <option value="DOCX">Word (DOCX / DOC)</option>
+                  <option value="PDF">Adobe PDF</option>
+                  <option value="XLSX">Excel (XLSX / XLS)</option>
+                </select>
+              </div>
+
+              <div>
+                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '6px' }}>
+                  {language === 'uk' ? 'Виберіть Файл (Word, PDF, Excel)' : 'Select File (Word, PDF, Excel)'}
+                </label>
+                <input
+                  type="file"
+                  accept=".docx,.doc,.pdf,.xlsx,.xls"
+                  onChange={(e) => {
+                    if (e.target.files && e.target.files[0]) {
+                      setSelectedFile(e.target.files[0]);
+                    }
+                  }}
+                  style={{
+                    width: '100%',
+                    backgroundColor: isDark ? '#141414' : '#FFF',
+                    border: `1px solid ${isDark ? '#333' : '#CCC'}`,
+                    padding: '8px',
+                    borderRadius: '6px',
+                    color: isDark ? '#FFF' : '#000',
+                    fontSize: '0.82rem'
+                  }}
+                />
+              </div>
+
+              <div style={{ gridColumn: '1 / -1' }}>
+                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '6px' }}>
+                  {language === 'uk' ? 'Короткий Опис Документа' : 'Short Description'}
+                </label>
+                <input
+                  type="text"
+                  placeholder={language === 'uk' ? 'Повні технічні характеристики та діаграми буріння...' : 'Full technical specs...'}
+                  value={newDocDescription}
+                  onChange={(e) => setNewDocDescription(e.target.value)}
+                  style={{
+                    width: '100%',
+                    backgroundColor: isDark ? '#141414' : '#FFF',
+                    border: `1px solid ${isDark ? '#333' : '#CCC'}`,
+                    padding: '10px',
+                    borderRadius: '6px',
+                    color: isDark ? '#FFF' : '#000',
+                    outline: 'none'
+                  }}
+                />
+              </div>
+
+              <div style={{ gridColumn: '1 / -1' }}>
+                <button type="submit" className="btn-primary" style={{ gap: '8px' }}>
+                  <Upload size={16} />
+                  <span>{language === 'uk' ? 'ОПУБЛІКУВАТИ ДОКУМЕНТ В КАТАЛОЗІ' : 'PUBLISH DOCUMENT IN CATALOG'}</span>
+                </button>
+              </div>
+            </form>
+
+            {/* Active Documents List Table */}
+            <h4 style={{ fontSize: '1.05rem', fontWeight: 800, marginBottom: '14px' }}>
+              {language === 'uk' ? 'Список Опублікованих Документів' : 'Published Documents List'}
+            </h4>
+
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.85rem' }}>
+                <thead>
+                  <tr style={{ backgroundColor: isDark ? '#262626' : '#F0F2F5', color: isDark ? '#FFF' : '#000', borderBottom: '2px solid #FF6600' }}>
+                    <th style={{ padding: '10px' }}>Формат / Розмір</th>
+                    <th style={{ padding: '10px' }}>Назва Документа</th>
+                    <th style={{ padding: '10px' }}>Категорія</th>
+                    <th style={{ padding: '10px' }}>Дія</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {documents.map((doc) => {
+                    const titleText = typeof doc.title === 'string' ? doc.title : doc.title[language] || doc.title.uk || doc.title.en;
+                    const catText = typeof doc.categoryName === 'string' ? doc.categoryName : (doc.categoryName && (doc.categoryName[language] || doc.categoryName.uk)) || doc.category;
+
+                    return (
+                      <tr key={doc.id} style={{ borderBottom: `1px solid ${isDark ? '#2C2C2C' : '#EEEEEE'}` }}>
+                        <td style={{ padding: '12px 10px' }}>
+                          <span style={{
+                            backgroundColor: doc.format === 'PDF' ? '#E53935' : doc.format === 'XLSX' || doc.format === 'XLS' ? '#2E7D32' : '#2563EB',
+                            color: '#FFF',
+                            fontWeight: 900,
+                            padding: '2px 6px',
+                            borderRadius: '3px',
+                            fontSize: '0.72rem',
+                            marginRight: '6px'
+                          }}>
+                            {doc.format}
+                          </span>
+                          <span style={{ color: '#888' }}>{doc.size}</span>
+                        </td>
+                        <td style={{ padding: '12px 10px', fontWeight: 700 }}>
+                          {titleText}
+                        </td>
+                        <td style={{ padding: '12px 10px', color: '#FF6600', fontWeight: 700 }}>
+                          {catText}
+                        </td>
+                        <td style={{ padding: '12px 10px' }}>
+                          <button
+                            onClick={() => deleteDocument(doc.id)}
+                            style={{
+                              backgroundColor: 'rgba(244, 67, 54, 0.15)',
+                              color: '#F44336',
+                              border: 'none',
+                              borderRadius: '4px',
+                              padding: '5px 10px',
+                              fontSize: '0.75rem',
+                              fontWeight: 700,
+                              cursor: 'pointer',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '4px'
+                            }}
+                          >
+                            <Trash2 size={12} />
+                            <span>Видалити</span>
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 4: INQUIRIES */}
         {activeTab === 'inquiries' && (
           <div style={{
             backgroundColor: isDark ? '#1A1A1A' : '#FFFFFF',
