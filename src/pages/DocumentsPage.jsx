@@ -68,7 +68,7 @@ export default function DocumentsPage() {
             marginBottom: '14px',
             textTransform: 'uppercase'
           }}>
-            {language === 'uk' ? 'Центр Завантаження Документації' : language === 'pl' ? 'Centrum Pobierania Dokumentacji' : 'Technical Documentation & Manuals'}
+            {language === 'uk' ? 'Каталог' : language === 'pl' ? 'Katalog' : 'Catalog'}
           </h1>
           <p style={{
             color: '#CED0D1',

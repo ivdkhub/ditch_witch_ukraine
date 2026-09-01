@@ -44,48 +44,137 @@ export const initialAnalyticsData = {
 
   recentInquiries: [
     {
-      id: 'INQ-1001',
-      date: '28 СЕРПНЯ 2026 15:42',
+      id: 'INQ-2026-089',
+      date: '01 Вересня 2026 14:25',
       customerName: 'Олександр Ковальчук',
       company: 'ТОВ "СпецБудСервіс"',
-      phone: '+380 67 123-45-67',
+      phone: '+380 67 123 45 67',
       email: 'o.kovalchuk@specbud.ua',
-      machine: 'Установка ГНБ JT10',
+      city: 'Київ, Україна',
+      inquiryType: 'Придбання спецтехніки ГНБ',
+      productModel: 'Установка ГНБ JT10 (Ditch Witch)',
+      budget: '€45,000 - €55,000',
       status: 'Новий',
-      notes: 'Цікавить наявність техніки в Києві та умови лізингу.'
+      notes: 'Цікавить наявність бурового комплексу в Києві, умови лізингу та терміни гарантійного обслуговування.'
     },
     {
-      id: 'INQ-1002',
-      date: '28 СЕРПНЯ 2026 14:15',
+      id: 'INQ-2026-088',
+      date: '31 Серпня 2026 16:10',
       customerName: 'Андрій Мельник',
       company: 'ПП "КиївКомунМережі"',
-      phone: '+380 50 987-65-43',
+      phone: '+380 50 987 65 43',
       email: 'a.melnyk@kievkomun.com.ua',
-      machine: 'Вакуумний Екскаватор HXT75-800',
+      city: 'Вишгород, Київська обл.',
+      inquiryType: 'Замовлення комплектів ТО',
+      productModel: 'Комплект ТО 500 мотогодин JT10 (KIT-JT10-500H)',
+      budget: 'За прайсом',
       status: 'В обробці',
-      notes: 'Потрібна демонстрація роботи на об’єкті.'
+      notes: 'Потрібна виїзна заміна мастил та фільтрів сервісною бригадою Олег Липкин.'
     },
     {
-      id: 'INQ-1003',
-      date: '27 СЕРПНЯ 2026 18:30',
+      id: 'INQ-2026-087',
+      date: '30 Серпня 2026 11:45',
       customerName: 'Piotr Wiśniewski',
       company: 'Infrastruktura Podziemna Sp. z o.o.',
       phone: '+48 601 234 567',
       email: 'p.wisniewski@infrastruktura.pl',
-      machine: 'Траншеєкопач C16X',
-      status: 'Завершено',
-      notes: 'Комерційну пропозицію надіслано.'
+      city: 'Краків, Польща (PL)',
+      inquiryType: 'Придбання спецтехніки',
+      productModel: 'Траншеєкопач C16X Walk-Behind',
+      budget: '€18,500',
+      status: 'Узгоджено',
+      notes: 'Офіційну комерційну пропозицію надіслано на email. Очікується підписання договору.'
     },
     {
-      id: 'INQ-1004',
-      date: '27 СЕРПНЯ 2026 11:10',
+      id: 'INQ-2026-086',
+      date: '29 Серпня 2026 09:30',
       customerName: 'Дмитро Шевченко',
       company: 'ПрАТ "УкрТелеКомПроект"',
-      phone: '+380 63 555-12-34',
+      phone: '+380 63 555 12 34',
       email: 'd.shevchenko@utkproject.ua',
-      machine: 'Установка ГНБ JT5',
+      city: 'Дніпро, Україна',
+      inquiryType: 'Придбання спецтехніки ГНБ',
+      productModel: 'Компактна Установка ГНБ JT5',
+      budget: '€32,000',
+      status: 'Завершено',
+      notes: 'Техніка відвантажена зі складу. Гарантійні документи передано клієнту.'
+    },
+    {
+      id: 'INQ-2026-085',
+      date: '28 Серпня 2026 17:15',
+      customerName: 'Віктор Кравченко',
+      company: 'ТОВ "БудКомплектСервіс"',
+      phone: '+380 50 444 88 99',
+      email: 'v.kravchenko@budkomplekt.ua',
+      city: 'Львів, Україна',
+      inquiryType: 'Діагностика та Сервіс Subsite',
+      productModel: 'Локаційна система Subsite TK RECON',
+      budget: 'За калькуляцією',
       status: 'Новий',
-      notes: 'Термінова покупка під тендерний проект.'
+      notes: 'Діагностика електронних систем локації, калібрування зонду та оновлення ПЗ.'
     }
   ]
 };
+
+export const initialCustomerDossiers = [
+  {
+    id: 'CLI-001',
+    name: 'Олександр Ковальчук',
+    company: 'ТОВ "СпецБудСервіс"',
+    taxId: '38472910',
+    phone: '+380 67 123 45 67',
+    email: 'o.kovalchuk@specbud.ua',
+    city: 'Київ',
+    region: 'Київська обл.',
+    clientType: 'V.I.P. Постійний Клієнт',
+    fleet: 'Ditch Witch JT10, FM13V Mixer, Subsite TK Recon',
+    totalDealsValue: '€112,000',
+    notes: 'Провідний підрядник з прокладання кабельних мереж та газопроводів у Київській області. Відповідальний платник.',
+    createdAt: '2024-03-15'
+  },
+  {
+    id: 'CLI-002',
+    name: 'Андрій Мельник',
+    company: 'ПП "КиївКомунМережі"',
+    taxId: '41205938',
+    phone: '+380 50 987 65 43',
+    email: 'a.melnyk@kievkomun.com.ua',
+    city: 'Вишгород',
+    region: 'Київська обл.',
+    clientType: 'Комунальне Підприємство',
+    fleet: 'Ditch Witch RT45, C16X Trencher',
+    totalDealsValue: '€48,500',
+    notes: 'Комунальні роботи, риття траншей під водопровід. Замовляє оригінальне ТО та ремкомплекти ланцюгів DuraTooth.',
+    createdAt: '2024-06-20'
+  },
+  {
+    id: 'CLI-003',
+    name: 'Piotr Wiśniewski',
+    company: 'Infrastruktura Podziemna Sp. z o.o.',
+    taxId: 'PL6762491029',
+    phone: '+48 601 234 567',
+    email: 'p.wisniewski@infrastruktura.pl',
+    city: 'Краків',
+    region: 'Малопольське воєводство (PL)',
+    clientType: 'Міжнародний Партнер (PL)',
+    fleet: 'Ditch Witch C16X, JT2020 Mach 1',
+    totalDealsValue: '€85,000',
+    notes: 'Польський підрядник infrastructure HDD projects. Закуповує техніку через офіційний офіс JLM Group Scandinavia.',
+    createdAt: '2025-01-10'
+  },
+  {
+    id: 'CLI-004',
+    name: 'Дмитро Шевченко',
+    company: 'ПрАТ "УкрТелеКомПроект"',
+    taxId: '29384019',
+    phone: '+380 63 555 12 34',
+    email: 'd.shevchenko@utkproject.ua',
+    city: 'Дніпро',
+    region: 'Дніпропетровська обл.',
+    clientType: 'Підрядник ГНБ',
+    fleet: 'Ditch Witch JT5 Compact Rig',
+    totalDealsValue: '€32,000',
+    notes: 'Будівництво ВОЛЗ (волоконно-оптичних ліній зв’язку). Придбав бурову JT5.',
+    createdAt: '2025-05-18'
+  }
+];

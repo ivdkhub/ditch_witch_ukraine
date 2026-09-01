@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Search, Calendar, Clock, ArrowRight, BookOpen } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
-import { newsData } from '../data/newsData';
+import { useNews } from '../context/NewsContext';
 import ArticleModal from '../components/ArticleModal';
 
 export default function NewsPage() {
   const { language } = useTranslation();
   const { theme } = useTheme();
+  const { newsList } = useNews();
 
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -17,21 +18,23 @@ export default function NewsPage() {
 
   const categoryFilterTabs = [
     { id: 'all', label: { uk: 'Всі Статті', en: 'All Articles', pl: 'Wszystkie Artykuły' } },
-    { id: 'guides', label: { uk: 'Поради та Гайди', en: 'Guides & Advice', pl: 'Poradniki' } },
+    { id: 'guides', label: { uk: 'Поради та Гайди', en: 'Guides & Advice', pl: 'Poradniki i Wskazówki' } },
     { id: 'maintenance', label: { uk: 'Сервіс та ТО', en: 'Service & Maintenance', pl: 'Serwis i Konserwacja' } },
-    { id: 'spotlights', label: { uk: 'Огляди Техніки', en: 'Equipment Spotlights', pl: 'Prezentacje Sprzętu' } }
+    { id: 'spotlights', label: { uk: 'Огляди Техніки', en: 'Equipment Spotlights', pl: 'Prezentacje Sprzętu' } },
+    { id: 'releases', label: { uk: 'Прес-релізи та Новини', en: 'Press Releases & News', pl: 'Komunikaty Prasowe' } },
+    { id: 'other', label: { uk: 'Інше', en: 'Other', pl: 'Inne' } }
   ];
 
-  const filteredArticles = newsData.filter((article) => {
-    const matchesCat = activeCategory === 'all' || article.category === activeCategory;
-    const titleText = (article.title[language] || article.title.en).toLowerCase();
-    const summaryText = (article.summary[language] || article.summary.en).toLowerCase();
+  const filteredArticles = newsList.filter((article) => {
+    const matchesCat = activeCategory === 'all' || article.category === activeCategory || article.categoryKey === activeCategory;
+    const titleText = (typeof article.title === 'string' ? article.title : article.title[language] || article.title.uk || article.title.en || '').toLowerCase();
+    const summaryText = (typeof article.summary === 'string' ? article.summary : article.summary[language] || article.summary.uk || article.summary.en || '').toLowerCase();
     const matchesSearch = titleText.includes(searchQuery.toLowerCase()) || summaryText.includes(searchQuery.toLowerCase());
 
     return matchesCat && matchesSearch;
   });
 
-  const featuredArticle = newsData.find((a) => a.featured) || newsData[0];
+  const featuredArticle = newsList.find((a) => a.featured) || newsList[0];
 
   return (
     <div style={{

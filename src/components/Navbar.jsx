@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, ExternalLink } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
 import { useProducts } from '../context/ProductContext';
@@ -60,7 +60,7 @@ export default function Navbar({ currentPage, onNavigate }) {
     {
       id: 'american_augers',
       title: t.nav.americanAugers,
-      page: 'products',
+      isExternal: true,
       image: '/Risorse/Immagini/dirdrills_jt5.png'
     },
     {
@@ -83,6 +83,12 @@ export default function Navbar({ currentPage, onNavigate }) {
   ).slice(0, 5);
 
   const handleNavClick = (page, categoryId = 'all') => {
+    if (categoryId === 'american_augers') {
+      window.open('https://www.americanaugers.com/', '_blank', 'noopener,noreferrer');
+      setMobileMenuOpen(false);
+      setProductsOpen(false);
+      return;
+    }
     if (onNavigate) {
       onNavigate(page, categoryId);
     }
@@ -111,50 +117,47 @@ export default function Navbar({ currentPage, onNavigate }) {
         paddingBottom: '10px',
         width: '100%'
       }}>
-        {/* Brand Logo & Slanted Italic "УКРАЇНА" Badge matching Ditch Witch Logo Font */}
+        {/* Brand Title: "Дітч Вітч Україна <JLM>" */}
         <button
           onClick={() => handleNavClick('home')}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: 0,
-            flexShrink: 0,
-            marginRight: '16px'
-          }}
-        >
-          <img
-            src={isDark ? "/Risorse/Immagini/DW_Logotype_Rev.png" : "/Risorse/Immagini/DW_Logotype.png"}
-            alt={brandText}
-            style={{
-              height: '42px',
-              width: 'auto',
-              objectFit: 'contain'
-            }}
-          />
-          <span style={{
-            fontFamily: '"Impact", "Trebuchet MS", "Arial Black", sans-serif',
-            fontStyle: 'italic',
-            fontWeight: 900,
-            fontSize: '1.05rem',
-            color: '#FF6600',
-            backgroundColor: 'rgba(255, 102, 0, 0.08)',
-            border: '2px solid #FF6600',
-            borderRadius: '6px',
-            padding: '3px 10px',
-            letterSpacing: '0.04em',
-            textTransform: 'uppercase',
             display: 'inline-flex',
             alignItems: 'center',
-            lineHeight: 1,
+            gap: '8px',
+            background: 'none',
+            backgroundColor: 'transparent',
+            padding: 0,
+            border: 'none',
+            outline: 'none',
+            cursor: 'pointer',
             flexShrink: 0,
-            transform: 'skewX(-6deg)',
-            boxShadow: '0 2px 6px rgba(255, 102, 0, 0.2)'
+            marginRight: '20px',
+            textDecoration: 'none',
+            boxShadow: 'none'
+          }}
+        >
+          <span style={{
+            fontFamily: "'Oswald', 'Montserrat', system-ui, sans-serif",
+            fontWeight: 700,
+            fontSize: '2.15rem',
+            color: isDark ? '#FFFFFF' : '#0F172A',
+            letterSpacing: '0.04em',
+            display: 'inline-flex',
+            alignItems: 'center',
+            lineHeight: 1
           }}>
-            УКРАЇНА
+            Дітч Вітч Україна
+          </span>
+          <span style={{
+            fontFamily: "'Oswald', 'Montserrat', system-ui, sans-serif",
+            fontWeight: 700,
+            fontSize: '1.25rem',
+            color: 'rgb(255, 102, 0)',
+            letterSpacing: '0.04em',
+            lineHeight: 1,
+            alignSelf: 'center'
+          }}>
+            &lt; JLM &gt;
           </span>
         </button>
 
@@ -172,11 +175,11 @@ export default function Navbar({ currentPage, onNavigate }) {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '5px',
-                padding: '14px 16px',
+                padding: '14px 14px',
                 color: currentPage === 'products' ? '#FF6600' : isDark ? '#FFFFFF' : '#1E293B',
                 fontWeight: 800,
-                fontSize: '0.85rem',
-                letterSpacing: '0.04em',
+                fontSize: '0.82rem',
+                letterSpacing: '0.03em',
                 textTransform: 'uppercase',
                 borderRight: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
                 borderLeft: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
@@ -206,7 +209,7 @@ export default function Navbar({ currentPage, onNavigate }) {
                 top: '100%',
                 left: 0,
                 backgroundColor: isDark ? '#1C1C1C' : '#FFFFFF',
-                width: '380px',
+                width: '400px',
                 boxShadow: isDark ? '0 16px 40px rgba(0,0,0,0.8)' : '0 16px 36px rgba(0,0,0,0.14)',
                 borderTop: '3px solid #FF6600',
                 borderRadius: '0 0 12px 12px',
@@ -229,7 +232,7 @@ export default function Navbar({ currentPage, onNavigate }) {
                       textAlign: 'left',
                       padding: '12px 20px',
                       color: isDark ? '#E2E8F0' : '#1E293B',
-                      fontSize: '0.9rem',
+                      fontSize: '0.88rem',
                       fontWeight: 800,
                       border: 'none',
                       backgroundColor: 'transparent',
@@ -249,8 +252,8 @@ export default function Navbar({ currentPage, onNavigate }) {
                     }}
                   >
                     <div style={{
-                      width: '54px',
-                      height: '42px',
+                      width: '50px',
+                      height: '40px',
                       display: 'flex',
                       alignItems: 'center',
                       justify: 'center',
@@ -261,8 +264,8 @@ export default function Navbar({ currentPage, onNavigate }) {
                         src={item.image}
                         alt={item.title}
                         style={{
-                          maxHeight: '40px',
-                          maxWidth: '54px',
+                          maxHeight: '38px',
+                          maxWidth: '50px',
                           objectFit: 'contain',
                           filter: isDark
                             ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.6))'
@@ -273,22 +276,28 @@ export default function Navbar({ currentPage, onNavigate }) {
                     </div>
 
                     <span style={{ flexGrow: 1, lineHeight: 1.25 }}>{item.title}</span>
-                    <ArrowRight size={14} style={{ color: '#FF6600', opacity: 0.8, flexShrink: 0 }} />
+                    {item.isExternal ? (
+                      <ExternalLink size={14} style={{ color: '#FF6600', flexShrink: 0 }} />
+                    ) : (
+                      <ArrowRight size={14} style={{ color: '#FF6600', opacity: 0.8, flexShrink: 0 }} />
+                    )}
                   </button>
                 ))}
               </div>
             )}
           </div>
 
+
+
           {/* Spare Parts & Service Button */}
           <button
             onClick={() => handleNavClick('service')}
             style={{
-              padding: '14px 16px',
+              padding: '14px 14px',
               color: currentPage === 'service' ? '#FF6600' : isDark ? '#FFFFFF' : '#1E293B',
               fontWeight: 800,
-              fontSize: '0.85rem',
-              letterSpacing: '0.04em',
+              fontSize: '0.82rem',
+              letterSpacing: '0.03em',
               textTransform: 'uppercase',
               borderRight: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
               borderBottom: currentPage === 'service' ? '3px solid #FF6600' : '3px solid transparent',
@@ -315,11 +324,11 @@ export default function Navbar({ currentPage, onNavigate }) {
           <button
             onClick={() => handleNavClick('docs')}
             style={{
-              padding: '14px 16px',
+              padding: '14px 14px',
               color: currentPage === 'docs' ? '#FF6600' : isDark ? '#FFFFFF' : '#1E293B',
               fontWeight: 800,
-              fontSize: '0.85rem',
-              letterSpacing: '0.04em',
+              fontSize: '0.82rem',
+              letterSpacing: '0.03em',
               textTransform: 'uppercase',
               borderRight: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
               borderBottom: currentPage === 'docs' ? '3px solid #FF6600' : '3px solid transparent',
@@ -346,11 +355,11 @@ export default function Navbar({ currentPage, onNavigate }) {
           <button
             onClick={() => handleNavClick('about')}
             style={{
-              padding: '14px 16px',
+              padding: '14px 14px',
               color: currentPage === 'about' ? '#FF6600' : isDark ? '#FFFFFF' : '#1E293B',
               fontWeight: 800,
-              fontSize: '0.85rem',
-              letterSpacing: '0.04em',
+              fontSize: '0.82rem',
+              letterSpacing: '0.03em',
               textTransform: 'uppercase',
               borderRight: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
               borderBottom: currentPage === 'about' ? '3px solid #FF6600' : '3px solid transparent',
@@ -377,11 +386,11 @@ export default function Navbar({ currentPage, onNavigate }) {
           <button
             onClick={() => handleNavClick('news')}
             style={{
-              padding: '14px 0 14px 16px',
+              padding: '14px 0 14px 14px',
               color: currentPage === 'news' ? '#FF6600' : isDark ? '#FFFFFF' : '#1E293B',
               fontWeight: 800,
-              fontSize: '0.85rem',
-              letterSpacing: '0.04em',
+              fontSize: '0.82rem',
+              letterSpacing: '0.03em',
               textTransform: 'uppercase',
               borderBottom: currentPage === 'news' ? '3px solid #FF6600' : '3px solid transparent',
               background: 'none',
@@ -443,6 +452,8 @@ export default function Navbar({ currentPage, onNavigate }) {
               {t.nav.products}
             </button>
 
+
+
             <button
               onClick={() => handleNavClick('service')}
               style={{ textAlign: 'left', background: 'none', border: 'none', color: currentPage === 'service' ? '#FF6600' : '#E2E8F0', fontWeight: 800, cursor: 'pointer', fontSize: '1rem' }}
@@ -475,7 +486,7 @@ export default function Navbar({ currentPage, onNavigate }) {
       )}
 
       <style>{`
-        @media (max-width: 1080px) {
+        @media (max-width: 1140px) {
           .desktop-nav {
             display: none !important;
           }

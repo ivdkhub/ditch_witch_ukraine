@@ -36,6 +36,36 @@ export default function ProductModal({ product, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!name.trim() || !phone.trim()) return;
+
+    const todayFormatted = new Date().toLocaleDateString('uk-UA', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    const newInquiry = {
+      id: `INQ-${new Date().getFullYear()}-${Math.floor(100 + Math.random() * 900)}`,
+      date: `${todayFormatted} ${new Date().toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' })}`,
+      customerName: name,
+      company: name,
+      phone,
+      email: email || '',
+      city: 'Україна',
+      inquiryType: `Запит Ціни (${title})`,
+      productModel: title,
+      budget: 'За прайсом',
+      status: 'Новий',
+      notes: `Автоматичний запит КП з картки товару ${title}.`
+    };
+
+    try {
+      const existing = JSON.parse(localStorage.getItem('ditchwitch_inquiries') || '[]');
+      localStorage.setItem('ditchwitch_inquiries', JSON.stringify([newInquiry, ...existing]));
+    } catch (err) {
+      console.error(err);
+    }
+
     setSubmitted(true);
   };
 
@@ -190,19 +220,19 @@ export default function ProductModal({ product, onClose }) {
 
                 return (
                   <div key={idx} style={{
-                    display: 'grid',
-                    gridTemplateColumns: '150px 1fr',
-                    alignItems: 'center',
-                    gap: '14px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '4px',
                     padding: '10px 14px',
                     backgroundColor: isDark ? '#222222' : '#F8F9FA',
-                    borderRadius: '6px',
+                    borderRadius: '8px',
+                    border: `1px solid ${isDark ? '#2E2E2E' : '#EAECEF'}`,
                     fontSize: '0.88rem'
                   }}>
-                    <span style={{ color: isDark ? '#AAA' : '#666', fontWeight: 700, whiteSpace: 'nowrap' }}>
-                      {translatedLabel}:
+                    <span style={{ color: isDark ? '#94A3B8' : '#64748B', fontWeight: 700, fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.02em' }}>
+                      {translatedLabel}
                     </span>
-                    <strong style={{ color: isDark ? '#FFF' : '#111' }}>
+                    <strong style={{ color: isDark ? '#F8FAFC' : '#0F172A', fontSize: '0.92rem', fontWeight: 800 }}>
                       {sVal}
                     </strong>
                   </div>

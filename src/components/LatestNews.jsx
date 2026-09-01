@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
-import { newsData } from '../data/newsData';
+import { useNews } from '../context/NewsContext';
 import ArticleModal from './ArticleModal';
 
 export default function LatestNews({ onNavigateToNews }) {
   const { t, language } = useTranslation();
   const { theme } = useTheme();
+  const { newsList } = useNews();
   const [selectedArticle, setSelectedArticle] = useState(null);
 
   const isDark = theme === 'dark';
@@ -63,7 +64,7 @@ export default function LatestNews({ onNavigateToNews }) {
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '24px'
         }}>
-          {newsData.slice(0, 3).map((article) => {
+          {newsList.slice(0, 3).map((article) => {
             const titleText = article.title[language] || article.title.uk || article.title.en;
             const summaryText = article.summary[language] || article.summary.uk || article.summary.en;
             const dateText = language === 'en' ? article.dateEn : language === 'pl' ? article.datePl : article.date;

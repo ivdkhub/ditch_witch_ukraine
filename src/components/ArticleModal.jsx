@@ -11,6 +11,18 @@ export default function ArticleModal({ article, onClose }) {
 
   const isDark = theme === 'dark';
 
+  const getCategoryName = (catKey, lang) => {
+    const map = {
+      guides: { uk: 'Поради та Гайди', en: 'Guides & Advice', pl: 'Poradniki i Wskazówki' },
+      maintenance: { uk: 'Сервіс та ТО', en: 'Service & Maintenance', pl: 'Serwis i Konserwacja' },
+      spotlights: { uk: 'Огляди Техніки', en: 'Equipment Spotlights', pl: 'Prezentacje Sprzętu' },
+      releases: { uk: 'Прес-релізи', en: 'Press Releases', pl: 'Komunikaty Prasowe' },
+      other: { uk: 'Інше', en: 'Other', pl: 'Inne' }
+    };
+    const cat = map[catKey] || map.other;
+    return cat[lang] || cat.uk;
+  };
+
   const title = article.title[language] || article.title.en;
   const subtitle = article.subtitle[language] || article.subtitle.en;
   const content = article.content[language] || article.content.en;
@@ -108,7 +120,7 @@ export default function ArticleModal({ article, onClose }) {
               borderRadius: '3px',
               textTransform: 'uppercase'
             }}>
-              {article.category.toUpperCase()}
+              {getCategoryName(article.categoryKey || article.category, language)}
             </span>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: isDark ? '#A0A0A0' : '#666666' }}>

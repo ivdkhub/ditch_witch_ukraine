@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, Clock, ShieldCheck, Award, ArrowRight, Handshake, CheckCircle2, Globe, Building2, Package, Sparkles } from 'lucide-react';
+import { MapPin, Phone, Clock, ShieldCheck, Award, ArrowRight, Handshake, CheckCircle2, Globe, Building2, Package, Sparkles, User, Mail } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
 import ParallaxCard from '../components/ParallaxCard';
@@ -38,7 +38,7 @@ export default function AboutPage({ onNavigateToProducts }) {
     stats: [
       { number: '20+', label: { uk: 'Років в Україні', en: 'Years in Ukraine', pl: 'Lat w Ukrainie' }, sub: { uk: 'Досвід та надійність з 2004 року', en: 'Trusted service since 2004', pl: 'Zaufanie od 2004 roku' } },
       { number: '6', label: { uk: 'Країн Європи', en: 'European Countries', pl: 'Krajów Europy' }, sub: { uk: 'Швеція, Норвегія, Фінляндія, Данія, Польща, Україна', en: 'Sweden, Norway, Finland, Denmark, Poland, Ukraine', pl: 'Szwecja, Norwegia, Finlandia, Dania, Polska, Ukraina' } },
-      { number: '100%', label: { uk: 'Оригінал & Сервіс', en: 'Genuine & Service', pl: 'Oryginał i Serwis' }, sub: { uk: 'Прямий склад в Києві та Мальме', en: 'Direct stock in Kyiv & Malmö', pl: 'Magazyn w Kijowie i Malmö' } }
+      { number: '100%', label: { uk: 'Оригінал & Сервіс', en: 'Genuine & Service', pl: 'Oryginał i Serwis' }, sub: { uk: 'Прямий склад в Києві', en: 'Direct warehouse in Kyiv', pl: 'Magazyn bezpośrednio w Kijowie' } }
     ],
     mainTextP1: {
       uk: 'Дітч Вітч Україна входить до групи JLM, яка є офіційним представником Дітч Вітч® у Швеції, Норвегії, Фінляндії, Данії, Польщі та Україні. Компанія Дітч Вітч Україна продає машини та пристрої для компаній, що спеціалізуються на будівництві підземної інфраструктури з початку сімдесятих років минулого століття. Штаб-квартира компанії знаходиться в Мальме (Швеція), де є центральний склад запасних частин та машин.',
@@ -162,7 +162,7 @@ export default function AboutPage({ onNavigateToProducts }) {
               }}>
                 <div>
                   <span style={{ color: '#FF6600', fontWeight: 800, fontSize: '0.8rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-                    JLM GROUP SCANDINAVIA & UKRAINE
+                    PART OF JLM GROUP SCANDINAVIA | UKRAINE
                   </span>
                   <h2 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', fontWeight: 900, marginTop: '4px', margin: 0 }}>
                     {language === 'uk' ? 'Дітч Вітч® в Україні та Європі' : language === 'pl' ? 'Ditch Witch® w Ukrainie i Europie' : 'Ditch Witch® in Ukraine & Europe'}
@@ -499,6 +499,292 @@ export default function AboutPage({ onNavigateToProducts }) {
                 </button>
               </div>
             </ParallaxCard>
+          </div>
+        </ParallaxCard>
+
+        {/* TEAM MEMBERS CARD (Matching Location Card dimensions & glassmorphism) */}
+        <ParallaxCard delay={0.25}>
+          <div style={{
+            backgroundColor: isDark ? 'rgba(28, 28, 28, 0.75)' : 'rgba(255, 255, 255, 0.75)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            borderRadius: '16px',
+            border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`,
+            boxShadow: isDark ? '0 12px 36px rgba(0,0,0,0.5)' : '0 12px 36px rgba(0,0,0,0.06)',
+            overflow: 'hidden',
+            marginTop: '40px',
+            marginBottom: '40px'
+          }}>
+            {/* Header Bar */}
+            <div style={{
+              padding: '24px 32px',
+              borderBottom: `1px solid ${isDark ? '#2A2A2A' : '#EEEEEE'}`,
+              display: 'flex',
+              justify: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '16px'
+            }}>
+              <div>
+                <span style={{ color: '#FF6600', fontWeight: 800, fontSize: '0.82rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                  OFFICIAL TEAM & KEY CONTACTS
+                </span>
+                <h3 style={{ fontSize: '1.4rem', fontWeight: 900, margin: 0, marginTop: '2px', color: isDark ? '#FFF' : '#111' }}>
+                  {language === 'uk' ? 'Команда Фахівців Ditch Witch® Україна' : language === 'pl' ? 'Zespół Specjalistów Ditch Witch® Ukraina' : 'Ditch Witch® Ukraine Key Team'}
+                </h3>
+              </div>
+
+              <div style={{
+                backgroundColor: 'rgba(255, 102, 0, 0.12)',
+                color: '#FF6600',
+                padding: '6px 14px',
+                borderRadius: '20px',
+                fontWeight: 800,
+                fontSize: '0.8rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}>
+                <User size={15} />
+                <span>{language === 'uk' ? '3 Керівники та Консультанти' : '3 Key Specialists'}</span>
+              </div>
+            </div>
+
+            {/* 3 Creative Team Member Cards Grid */}
+            <div style={{
+              padding: '32px',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '24px'
+            }}>
+              {/* Member 1: Маханьков Дмитро */}
+              <div style={{
+                backgroundColor: isDark ? 'rgba(18, 18, 18, 0.8)' : '#F9FAFB',
+                borderRadius: '12px',
+                padding: '24px',
+                border: `1px solid ${isDark ? '#2D2D2D' : '#E5E7EB'}`,
+                display: 'flex',
+                flexDirection: 'column',
+                justify: 'space-between',
+                gap: '16px'
+              }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <div style={{
+                      width: '60px',
+                      height: '60px',
+                      borderRadius: '50%',
+                      background: 'linear-gradient(135deg, #FF6600 0%, #D95300 100%)',
+                      color: '#FFFFFF',
+                      display: 'grid',
+                      placeItems: 'center',
+                      fontWeight: 900,
+                      fontSize: '1.4rem',
+                      lineHeight: 1,
+                      flexShrink: 0,
+                      boxShadow: '0 4px 14px rgba(255, 102, 0, 0.4)'
+                    }}>
+                      <span style={{ lineHeight: 1, margin: 0, padding: 0, display: 'block', textAlign: 'center' }}>DM</span>
+                    </div>
+                    <div>
+                      <h4 style={{ fontSize: '1.25rem', fontWeight: 900, margin: 0, color: isDark ? '#FFF' : '#111' }}>
+                        {language === 'uk' ? 'Маханьков Дмитро' : 'Dmytro Makhankov'}
+                      </h4>
+                      <a
+                        href="mailto:d.makhankov@ditchwitch.kiev.ua"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          color: '#FF6600',
+                          fontSize: '0.84rem',
+                          fontWeight: 700,
+                          textDecoration: 'none',
+                          marginTop: '4px'
+                        }}
+                      >
+                        <Mail size={14} />
+                        <span>d.makhankov@ditchwitch.kiev.ua</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <a
+                  href="tel:+380503813398"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justify: 'center',
+                    gap: '8px',
+                    backgroundColor: '#FF6600',
+                    color: '#FFFFFF',
+                    padding: '11px 16px',
+                    borderRadius: '8px',
+                    fontWeight: 800,
+                    fontSize: '0.9rem',
+                    textDecoration: 'none',
+                    boxShadow: '0 4px 12px rgba(255, 102, 0, 0.3)',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  <Phone size={16} />
+                  <span>+380 50 381 33 98</span>
+                </a>
+              </div>
+
+              {/* Member 2: Ірина Лясковська */}
+              <div style={{
+                backgroundColor: isDark ? 'rgba(18, 18, 18, 0.8)' : '#F9FAFB',
+                borderRadius: '12px',
+                padding: '24px',
+                border: `1px solid ${isDark ? '#2D2D2D' : '#E5E7EB'}`,
+                display: 'flex',
+                flexDirection: 'column',
+                justify: 'space-between',
+                gap: '16px'
+              }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <div style={{
+                      width: '60px',
+                      height: '60px',
+                      borderRadius: '50%',
+                      background: 'linear-gradient(135deg, #FF6600 0%, #E65C00 100%)',
+                      color: '#FFFFFF',
+                      display: 'grid',
+                      placeItems: 'center',
+                      fontWeight: 900,
+                      fontSize: '1.4rem',
+                      lineHeight: 1,
+                      flexShrink: 0,
+                      boxShadow: '0 4px 14px rgba(255, 102, 0, 0.4)'
+                    }}>
+                      <span style={{ lineHeight: 1, margin: 0, padding: 0, display: 'block', textAlign: 'center' }}>IL</span>
+                    </div>
+                    <div>
+                      <h4 style={{ fontSize: '1.25rem', fontWeight: 900, margin: 0, color: isDark ? '#FFF' : '#111' }}>
+                        {language === 'uk' ? 'Ірина Лясковська' : 'Iryna Liaskovska'}
+                      </h4>
+                      <a
+                        href="mailto:buh@ditchwitch.kiev.ua"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          color: '#FF6600',
+                          fontSize: '0.84rem',
+                          fontWeight: 700,
+                          textDecoration: 'none',
+                          marginTop: '4px'
+                        }}
+                      >
+                        <Mail size={14} />
+                        <span>buh@ditchwitch.kiev.ua</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <a
+                  href="tel:+380503806692"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justify: 'center',
+                    gap: '8px',
+                    backgroundColor: '#FF6600',
+                    color: '#FFFFFF',
+                    padding: '11px 16px',
+                    borderRadius: '8px',
+                    fontWeight: 800,
+                    fontSize: '0.9rem',
+                    textDecoration: 'none',
+                    boxShadow: '0 4px 12px rgba(255, 102, 0, 0.3)',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  <Phone size={16} />
+                  <span>+380 50 380 66 92</span>
+                </a>
+              </div>
+
+              {/* Member 3: Олег Липкин */}
+              <div style={{
+                backgroundColor: isDark ? 'rgba(18, 18, 18, 0.8)' : '#F9FAFB',
+                borderRadius: '12px',
+                padding: '24px',
+                border: `1px solid ${isDark ? '#2D2D2D' : '#E5E7EB'}`,
+                display: 'flex',
+                flexDirection: 'column',
+                justify: 'space-between',
+                gap: '16px'
+              }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <div style={{
+                      width: '60px',
+                      height: '60px',
+                      borderRadius: '50%',
+                      background: 'linear-gradient(135deg, #FF6600 0%, #D95300 100%)',
+                      color: '#FFFFFF',
+                      display: 'grid',
+                      placeItems: 'center',
+                      fontWeight: 900,
+                      fontSize: '1.4rem',
+                      lineHeight: 1,
+                      flexShrink: 0,
+                      boxShadow: '0 4px 14px rgba(255, 102, 0, 0.4)'
+                    }}>
+                      <span style={{ lineHeight: 1, margin: 0, padding: 0, display: 'block', textAlign: 'center' }}>OL</span>
+                    </div>
+                    <div>
+                      <h4 style={{ fontSize: '1.25rem', fontWeight: 900, margin: 0, color: isDark ? '#FFF' : '#111' }}>
+                        {language === 'uk' ? 'Олег Липкин' : 'Oleg Lypkyn'}
+                      </h4>
+                      <a
+                        href="mailto:service@ditchwitch.kiev.ua"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          color: '#FF6600',
+                          fontSize: '0.84rem',
+                          fontWeight: 700,
+                          textDecoration: 'none',
+                          marginTop: '4px'
+                        }}
+                      >
+                        <Mail size={14} />
+                        <span>service@ditchwitch.kiev.ua</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <a
+                  href="tel:+380506894621"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justify: 'center',
+                    gap: '8px',
+                    backgroundColor: '#FF6600',
+                    color: '#FFFFFF',
+                    padding: '11px 16px',
+                    borderRadius: '8px',
+                    fontWeight: 800,
+                    fontSize: '0.9rem',
+                    textDecoration: 'none',
+                    boxShadow: '0 4px 12px rgba(255, 102, 0, 0.3)',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  <Phone size={16} />
+                  <span>+380 50 689 46 21</span>
+                </a>
+              </div>
+            </div>
           </div>
         </ParallaxCard>
 

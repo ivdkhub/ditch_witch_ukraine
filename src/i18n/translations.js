@@ -1,22 +1,28 @@
 export const specLabels = {
-  thrust: { uk: 'Тяга', en: 'Thrust', pl: 'Siła ciągu' },
-  pullback: { uk: 'Зусилля протяжки', en: 'Pullback Force', pl: 'Siła uciągu' },
-  engine: { uk: 'Двигун', en: 'Engine', pl: 'Silnik' },
-  torque: { uk: 'Крутний момент', en: 'Torque', pl: 'Moment obrotowy' },
-  spindleSpeed: { uk: 'Швидкість шпинделя', en: 'Spindle Speed', pl: 'Prędkość wrzeciona' },
-  spindlespeed: { uk: 'Швидкість шпинделя', en: 'Spindle Speed', pl: 'Prędkość wrzeciona' },
-  fluidFlow: { uk: 'Потік розчину', en: 'Fluid Flow', pl: 'Przepływ płynu' },
-  width: { uk: 'Ширина', en: 'Width', pl: 'Szerokość' },
+  thrust: { uk: 'Зусилля подачі (Thrust)', en: 'Thrust Force', pl: 'Siła nacisku' },
+  pullback: { uk: 'Сила зворотної тяги (Pullback)', en: 'Pullback Force', pl: 'Siła uciągu' },
+  engine: { uk: 'Марка/Модель двигуна', en: 'Engine Model', pl: 'Silnik / Model' },
+  power: { uk: 'Потужність двигуна', en: 'Engine Power', pl: 'Moc silnika' },
+  torque: { uk: 'Крутний момент шпинделя (Max)', en: 'Max Spindle Torque', pl: 'Maks. moment obrotowy' },
+  innerTorque: { uk: 'Внутрішній крутний момент (Rock Bit)', en: 'Inner Pipe Torque (Rock)', pl: 'Wewnętrzny moment obrotowy' },
+  outerTorque: { uk: 'Зовнішній крутний момент (Outer Pipe)', en: 'Outer Pipe Torque', pl: 'Zewnętrzny moment obrotowy' },
+  spindleSpeed: { uk: 'Швидкість обертання шпинделя', en: 'Spindle Speed', pl: 'Prędkość wrzeciona' },
+  fluidFlow: { uk: 'Потік бурового насоса (Max)', en: 'Max Mud Pump Flow', pl: 'Maks. przepływ płuczki' },
+  rodLength: { uk: 'Довжина бурової штанги', en: 'Drill Pipe Length', pl: 'Długość żerdzi' },
+  bendRadius: { uk: 'Мін. радіус вигину штанг', en: 'Min Pipe Bend Radius', pl: 'Min. promień gięcia' },
+  dimensions: { uk: 'Габаритні розміри (Д x Ш x В)', en: 'Dimensions (L x W x H)', pl: 'Wymiary (Dł x Szer x Wys)' },
+  weight: { uk: 'Експлуатаційна маса комплексу', en: 'Operating Weight', pl: 'Masa eksploatacyjna' },
+  width: { uk: 'Ширина установки', en: 'Overall Width', pl: 'Szerokość całkowita' },
+  terrainType: { uk: 'Тип ґрунту / Скельна порода', en: 'Target Terrain / Rock', pl: 'Formacja skalna / Grunt' },
   digDepth: { uk: 'Глибина копання', en: 'Dig Depth', pl: 'Głębokość wykopu' },
   digWidth: { uk: 'Ширина копання', en: 'Dig Width', pl: 'Szerokość wykopu' },
   trackSystem: { uk: 'Гусеничний хід', en: 'Track System', pl: 'System gąsienicowy' },
-  weight: { uk: 'Маса комплексу', en: 'Operating Weight', pl: 'Masa robocza' },
   drive: { uk: 'Привід', en: 'Drive System', pl: 'Napęd' },
   tankCapacity: { uk: 'Бак для шламу', en: 'Spoil Tank Capacity', pl: 'Pojemność zbiornika' },
   waterTank: { uk: 'Водяний бак', en: 'Water Tank Capacity', pl: 'Zbiornik na wodę' },
   blowerCFM: { uk: 'Потік повітря', en: 'Air Blower CFM', pl: 'Przepływ powietrza' },
-  waterPressure: { uk: 'Тиск води', en: 'Water Pressure', pl: 'Ciśnienie wody' },
-  operatingCapacity: { uk: 'Грузопідйомність', en: 'Operating Capacity', pl: 'Udźwig roboczy' },
+  waterPressure: { uk: 'Тиск води', en: 'Water Pressure', pl: 'Ciśnienie води' },
+  operatingCapacity: { uk: 'Вантажопідйомність', en: 'Operating Capacity', pl: 'Udźwig roboczy' },
   hingePinHeight: { uk: 'Висота підйому', en: 'Hinge Pin Height', pl: 'Wysokość podnoszenia' },
   trackWidth: { uk: 'Ширина гусениці', en: 'Track Width', pl: 'Szerokość gąsienicy' },
   tankVolume: { uk: 'Об’єм баків', en: 'Tank Volume', pl: 'Pojemność zbiornika' },
@@ -47,6 +53,7 @@ export const translations = {
       partsService: 'ЗАПЧАСТИНИ ТА СЕРВІС',
       docs: 'ДОКУМЕНТАЦІЯ',
       news: 'НОВИНИ',
+      used: 'ВЖИВАНА ТЕХНІКА',
       offers: 'СПЕЦПРОПОЗИЦІЇ',
       menu: 'МЕНЮ',
       directionalDrills: 'Машини ГНБ (HDD)',
@@ -54,7 +61,7 @@ export const translations = {
       trenchers: 'Віброукладачі та Траншеєкопачі',
       skidSteers: 'Навантажувачі та Компакт',
       fluidSystems: 'Міксери бентонітові',
-      subsite: 'Електроніка та Пошук Subsite',
+      subsite: 'Електроніка - системи пошуку та локалізації',
       americanAugers: 'Обладнання American Augers',
       bentonite: 'Бентоніт та Полімери Baroid',
       recycling: 'Рециклінг розчину',
@@ -69,11 +76,11 @@ export const translations = {
         btnQuote: 'ЗАПИТАТИ ЦІНУ'
       },
       slide2: {
-        badge: 'ВАКУУМНА ЕКСКАВАЦІЯ',
-        title: 'БЕЗАВАРІЙНЕ РОЗКОПУВАННЯ КОМУНІКАЦІЙ',
-        subtitle: 'НАДІЙНІ ВАКУУМНІ ЕКСКАВАТОРІ СЕРІЇ HXT ТА HX.',
-        btnMore: 'КАТАЛОГ ВАКУУМІВ',
-        btnQuote: 'КОНСУЛЬТАЦІЯ'
+        badge: 'ЛОКАЦІЙНІ СИСТЕМИ',
+        title: 'СИСТЕМА ЛОКАЦІЇ SUBSITE® MARKSMAN',
+        subtitle: 'НАДТОЧНЕ ВЕДЕННЯ БУРОВОЇ ГОЛОВКИ ТА ЗАХИСТ ВІД ПЕРЕШКОД ПІД ЧАС ГНБ.',
+        btnMore: 'КАТАЛОГ ЛОКАЦІЙ',
+        btnQuote: 'ЗАПИТАТИ ЦІНУ'
       },
       slide3: {
         badge: 'БЕСТСЕЛЕР',
@@ -102,12 +109,12 @@ export const translations = {
       title: 'КАТЕГОРІЇ ПРОДУКЦІЇ ДІТЧ ВІТЧ & JLM',
       cat1: { name: 'Машини ГНБ (HDD)', desc: 'Установки горизонтально-направленого буріння для прокладання комунікацій без пошкодження покриття.' },
       cat2: { name: 'Міксери бентонітові', desc: 'Професійні системи змішування бентоніту та полімерів з помпою високого тиску.' },
-      cat3: { name: 'Електроніка та Локація', desc: 'Високоточні локаційні системи Subsite® TK RECON та зонди для безпомилкового ведення буріння.' },
+      cat3: { name: 'Електроніка - системи пошуку та локалізації', desc: 'Високоточні локаційні системи Subsite® Marksman, TK RECON та зонди для безпомилкового ведення буріння.' },
       cat4: { name: 'Локатори Subsite®', desc: 'Професійні трасошукачі UtiliGuard® 2 для точного виявлення підземних комунікацій.' },
       cat5: { name: 'Віброукладачі та Траншеєкопачі', desc: 'Ланцюгові траншеєкопачі C16X та віброукладачі 100SX для швидкого підземного копання.' },
       cat6: { name: 'Бентоніт та Полімери Baroid®', desc: 'Промислові бурові добавки, змащувачі свердловини та емульсії Baroid® EZ-MUD®.' },
       cat7: { name: 'Навантажувачі (Компакт)', desc: 'Гусеничні міні-навантажувачі з стоячим місцем SK3000 та SK1550 для важких робіт.' },
-      cat8: { name: 'American Augers®', desc: 'Важкі бурові комплекси ГНБ великої потужності для магістральних трубопроводів.' },
+      cat8: { name: 'American Augers®', desc: 'Важкі бурові комплекси ГНБ великої потужності для магістральних трубопроводів (Перейти на офіційний сайт).' },
       cat9: { name: 'Рециклінг розчину', desc: 'Установки замкнутого циклу очищення та регенерації бурового розчину Dupagro.' },
       cat10: { name: 'Витратні матеріали', desc: 'Оригінальні витратні матеріали Baroid®, розширювачі, бурові головки та компоненти.' },
       btnView: 'Детальніше'
@@ -118,55 +125,55 @@ export const translations = {
       specsBtn: 'ХАРАКТЕРИСТИКИ ТА ЦІНА',
       m1: { title: 'Установка ГНБ Дітч Вітч JT10', tag: 'Компактність та потужність 40 к.с.', s1: 'Тяга: 44.5 кН', s2: 'Двигун: Deutz 2.9L 40 к.с.', s3: 'Крутний момент: 1490 Нм' },
       m2: { title: 'Установка ГНБ Дітч Вітч JT5', tag: 'Легендарна надійність для вузьких ділянок', s1: 'Тяга: 22.2 кН', s2: 'Двигун: Kubota 24.8 к.с.', s3: 'Довжина буріння: до 90 м' },
-      m3: { title: 'Траншеєкопач Дітч Вітч C16X', tag: 'Запатентна система CX Track', s1: 'Глибина: до 1.2 м', s2: 'Двигун: Vanguard 16 к.с.', s3: 'Ширина: 900 мм' }
+      m3: { title: 'Траншеєкопач Дітч Вітч C16X', tag: 'Маневрений ланцюговий траншеєкопач', s1: 'Глибина: до 915 мм', s2: 'Двигун: Vanguard 16 к.с.', s3: 'Гусеничний хід HX' },
+      btnDetails: 'ТЕХНІЧНІ ХАРАКТЕРИСТИКИ',
+      btnViewAll: 'ПЕРЕГЛЯНУТИ ВЕСЬ КАТАЛОГ'
     },
     parts: {
-      title: 'ОРИГІНАЛЬНІ ЗАПАСНІ ЧАСТИНИ ТА СЕРВІС ДІТЧ ВІТЧ',
-      badge: '100% Оригінальні Запасні Частини'
+      title: 'ОРИГІНАЛЬНІ ЗАПЧАСТИНИ ТА СЕРВІС ДІТЧ ВІТЧ',
+      subtitle: 'ОФІЦІЙНИЙ СЕРВІСНИЙ ЦЕНТР ТА СКЛАД ЗАПЧАСТИН В УКРАЇНІ',
+      desc: 'Повний асортимент оригінальних запчастин Дітч Вітч®, бурових штанг, розширювачів, зондів Subsite® та фільтрів з оперативною доставкою по всій Україні.',
+      badge: '100% Genuine Spare Parts',
+      btnOrder: 'ЗАМОВИТИ ЗАПЧАСТИНИ',
+      btnConsult: 'КОНСУЛЬТАЦІЯ СЕРВІСУ'
     },
     news: {
       subtitle: 'ОСТАННІ ОНОВЛЕННЯ ТА ПОРАДИ ЕКСПЕРТІВ',
-      title: 'НОВИНИ ТА ТЕХНІЧНІ СТАТТІ ДІТЧ ВІТЧ',
+      title: 'НОВИНИ ТА СТАТТІ ДІТЧ ВІТЧ',
       allNews: 'Всі Новини',
-      readMore: 'Читати детальніше'
+      readMore: 'Читати повністю'
     },
     footer: {
-      aboutText: 'Дітч Вітч Україна входить до групи JLM — офіційний представник Дітч Вітч®, Subsite®, American Augers® та Baroid® в Україні.',
-      contactUA: 'Україна, м. Київ: +380 50 380 66 92',
-      productsTitle: 'Продукція JLM',
-      companyTitle: 'Дітч Вітч Україна',
-      distributorTitle: 'Офіційний Дистриб’ютор',
-      distributorDesc: 'Забезпечуємо сертифікований сервіс, оригінальні запчастини та гарантійну підтримку обладнання Дітч Вітч.',
-      motto: 'МИ ЛІДИРУЄМО. МИ ІННОВУЄМО. МИ СЛУЖИМО.',
-      privacy: 'Політика конфіденційності',
-      terms: 'Умови використання',
-      rights: 'Всі права захищені.',
-      top: 'НАГОРУ'
+      aboutText: 'Дітч Вітч Україна входить до групи JLM — офіційний дистриб’ютор Ditch Witch®, Subsite®, American Augers® та Baroid® в Україні.',
+      quickLinks: 'Швидкі Посилання',
+      contactUs: 'Контакти',
+      rights: 'Всі права захищено. JLM Group & Ditch Witch Ukraine.'
     }
   },
 
   en: {
     topbar: {
       phoneUA: '+380 50 380 66 92',
-      distributorBadge: 'OFFICIAL DITCH WITCH DISTRIBUTOR IN UKRAINE (JLM GROUP)',
+      distributorBadge: 'OFFICIAL DITCH WITCH DISTRIBUTOR IN UKRAINE',
       searchPlaceholder: 'Search equipment...'
     },
     nav: {
       home: 'HOME',
       products: 'PRODUCTS',
       about: 'ABOUT US',
-      partsService: 'PARTS & SERVICE',
+      partsService: 'SPARE PARTS & SERVICE',
       docs: 'DOCUMENTATION',
       news: 'NEWS',
-      offers: 'OFFERS',
+      used: 'USED EQUIPMENT',
+      offers: 'SPECIAL OFFERS',
       menu: 'MENU',
       directionalDrills: 'HDD Rigs',
       vacuumExcavators: 'Vacuum Excavators',
       trenchers: 'Plows & Trenchers',
       skidSteers: 'Stand-on Skid Steers',
       fluidSystems: 'Bentonite Mixers',
-      subsite: 'Subsite Electronics',
-      americanAugers: 'American Augers',
+      subsite: 'Subsite Electronics & Locating Systems',
+      americanAugers: 'American Augers Equipment',
       bentonite: 'Baroid Bentonite',
       recycling: 'Mud Recycling',
       consumables: 'Consumable Materials (Bentonite & Fluids)'
@@ -180,11 +187,11 @@ export const translations = {
         btnQuote: 'REQUEST QUOTE'
       },
       slide2: {
-        badge: 'VACUUM EXCAVATION',
-        title: 'SAFE UTILITY EXCAVATION & DAYLIGHTING',
-        subtitle: 'RELIABLE HXT AND HX SERIES VACUUM EXCAVATORS.',
-        btnMore: 'VACUUM CATALOG',
-        btnQuote: 'GET ADVICE'
+        badge: 'LOCATING SYSTEMS',
+        title: 'SUBSITE® MARKSMAN LOCATING SYSTEM',
+        subtitle: 'HIGH-PRECISION HDD TRACKING AND INTERFERENCE REJECTION.',
+        btnMore: 'LOCATOR CATALOG',
+        btnQuote: 'REQUEST QUOTE'
       },
       slide3: {
         badge: 'BESTSELLER',
@@ -213,12 +220,12 @@ export const translations = {
       title: 'DITCH WITCH & JLM PRODUCT CATEGORIES',
       cat1: { name: 'HDD Drills', desc: 'Horizontal directional drills for trenchless utility laying.' },
       cat2: { name: 'Bentonite Mixers', desc: 'High-shear mud mixing systems and high-pressure delivery pumps.' },
-      cat3: { name: 'Subsite® Electronics', desc: 'High-precision TK RECON locators and beacon sondes for accurate HDD tracking.' },
+      cat3: { name: 'Subsite® Locating Systems', desc: 'High-precision Subsite® Marksman, TK RECON locators and beacon sondes.' },
       cat4: { name: 'Subsite® Locators', desc: 'UtiliGuard® 2 advanced underground utility locators and pipe mapping.' },
       cat5: { name: 'Plows & Trenchers', desc: 'Walk-behind trenchers and vibratory plows for rapid underground installation.' },
       cat6: { name: 'Baroid® Bentonite & Polymers', desc: 'Industrial drilling fluids, borehole lubricants, and EZ-MUD® emulsions.' },
       cat7: { name: 'Stand-on Skid Steers', desc: 'Heavy-duty SK3000 and SK1550 compact stand-on skid steers.' },
-      cat8: { name: 'American Augers®', desc: 'Heavy HDD rigs and auger boring machinery for cross-country pipelines.' },
+      cat8: { name: 'American Augers®', desc: 'Heavy HDD rigs and auger boring machinery (Redirects to official site).' },
       cat9: { name: 'Mud Recycling Systems', desc: 'Closed-loop Dupagro mud cleaning and bentonite recycling units.' },
       cat10: { name: 'Consumable Materials', desc: 'Original Baroid® bentonites, polymers, reamers, drill bits, and sondes.' },
       btnView: 'Learn More'
@@ -226,11 +233,20 @@ export const translations = {
     featured: {
       subtitle: 'TOP SALES IN UKRAINE',
       title: 'FEATURED DITCH WITCH MACHINERY',
-      specsBtn: 'SPECS & QUOTE'
+      specsBtn: 'SPECS & QUOTE',
+      m1: { title: 'Ditch Witch JT10 HDD Rig', tag: 'Compact 40 hp power', s1: 'Thrust: 44.5 kN', s2: 'Engine: Deutz 2.9L 40 hp', s3: 'Torque: 1490 Nm' },
+      m2: { title: 'Ditch Witch JT5 HDD Rig', tag: 'Legendary reliability for tight sites', s1: 'Thrust: 22.2 kN', s2: 'Engine: Kubota 24.8 hp', s3: 'Drill Distance: up to 90 m' },
+      m3: { title: 'Ditch Witch C16X Trencher', tag: 'Maneuverable chain trencher', s1: 'Depth: up to 915 mm', s2: 'Engine: Vanguard 16 hp', s3: 'HX Track System' },
+      btnDetails: 'VIEW SPECIFICATIONS',
+      btnViewAll: 'VIEW FULL CATALOG'
     },
     parts: {
       title: 'GENUINE DITCH WITCH SPARE PARTS & SERVICE',
-      badge: '100% Genuine Spare Parts'
+      subtitle: 'OFFICIAL SERVICE CENTER & PARTS WAREHOUSE IN UKRAINE',
+      desc: 'Complete range of genuine Ditch Witch® spare parts, drill pipes, reamers, Subsite® sondes, and filters.',
+      badge: '100% Genuine Spare Parts',
+      btnOrder: 'ORDER SPARE PARTS',
+      btnConsult: 'SERVICE CONSULTATION'
     },
     news: {
       subtitle: 'LATEST UPDATES & INDUSTRY ADVICE',
@@ -240,41 +256,35 @@ export const translations = {
     },
     footer: {
       aboutText: 'Ditch Witch Ukraine is part of the JLM Group — official distributor of Ditch Witch®, Subsite®, American Augers®, and Baroid® in Ukraine.',
-      contactUA: 'Ukraine, Kyiv: +380 50 380 66 92',
-      productsTitle: 'JLM Products',
-      companyTitle: 'Ditch Witch Ukraine',
-      distributorTitle: 'Official Distributor',
-      distributorDesc: 'Certified service, genuine spare parts, and warranty support.',
-      motto: 'WE LEAD. WE INNOVATE. WE SERVE.',
-      privacy: 'Privacy Policy',
-      terms: 'Terms of Use',
-      rights: 'All rights reserved.',
-      top: 'TOP'
+      quickLinks: 'Quick Links',
+      contactUs: 'Contact Us',
+      rights: 'All rights reserved. JLM Group & Ditch Witch Ukraine.'
     }
   },
 
   pl: {
     topbar: {
       phoneUA: '+380 50 380 66 92',
-      distributorBadge: 'OFICJALNY DYSTRYBUTOR DITCH WITCH W UKRAINIE (GRUPA JLM)',
+      distributorBadge: 'OFICJALNY DYSTRYBUTOR DITCH WITCH W UKRAINIE',
       searchPlaceholder: 'Szukaj sprzętu...'
     },
     nav: {
       home: 'HOME',
       products: 'PRODUKTY',
       about: 'O NAS',
-      partsService: 'CZĘŚCI I SERWIS',
+      partsService: 'CZĘŚCI ZAMIENNE I SERWIS',
       docs: 'DOKUMENTACJA',
       news: 'AKTUALNOŚCI',
-      offers: 'OFERTY',
+      used: 'SPRZĘT UŻYWANY',
+      offers: 'OFERTY SPECJALNE',
       menu: 'MENU',
       directionalDrills: 'Wiertnice HDB',
       vacuumExcavators: 'Koparki Próżniowe',
       trenchers: 'Pługi i Koparki',
       skidSteers: 'Ładowarki Kompaktowe',
       fluidSystems: 'Mieszalniki Bentonitowe',
-      subsite: 'Elektronika Subsite',
-      americanAugers: 'American Augers',
+      subsite: 'Elektronika - systemy lokalizacji Subsite',
+      americanAugers: 'Sprzęt American Augers',
       bentonite: 'Bentonit Baroid',
       recycling: 'Recykling Płuczki',
       consumables: 'Materiały eksploatacyjne (Bentonit itp.)'
@@ -288,11 +298,11 @@ export const translations = {
         btnQuote: 'ZAPYTAJ O CENĘ'
       },
       slide2: {
-        badge: 'EKSKAWACJA PRÓŻNIOWA',
-        title: 'BEZPIECZNE ODSŁANIANIE SIEĆ PODZIEMNYCH',
-        subtitle: 'NIEZAWODNE KOPARKI PRÓŻNIOWE SERII HXT I HX.',
-        btnMore: 'KATALOG PRÓŻNIOWY',
-        btnQuote: 'KONSULTACJA'
+        badge: 'SYSTEMY LOKALIZACJI',
+        title: 'SYSTEM LOKALIZACJI SUBSITE® MARKSMAN',
+        subtitle: 'PRECYZYJNE PROWADZENIE GŁOWICY WIERTNICZEJ W KAŻDYCH WARUNKACH.',
+        btnMore: 'KATALOG LOKALIZATORÓW',
+        btnQuote: 'ZAPYTAJ O CENĘ'
       },
       slide3: {
         badge: 'BESTSELLER',
@@ -321,12 +331,12 @@ export const translations = {
       title: 'KATEGORIE PRODUKTÓW DITCH WITCH & JLM',
       cat1: { name: 'Wiertnice HDB', desc: 'Wiertnice horyzontalne do bezwykopowego układania rur i kabli.' },
       cat2: { name: 'Mieszalniki bentonitowe', desc: 'Systemy mieszania płuczki z głowicami Venturiego i pompami.' },
-      cat3: { name: 'Elektronika Subsite®', desc: 'Precyzyjne systemy lokalizacji TK RECON i sondy do wierceń.' },
+      cat3: { name: 'Elektronika - systemy lokalizacji Subsite', desc: 'Precyzyjne systemy lokalizacji Subsite® Marksman, TK RECON i sondy.' },
       cat4: { name: 'Lokalizatory Subsite®', desc: 'Zaawansowane wykrywacze trasowe UtiliGuard® 2.' },
       cat5: { name: 'Pługi i Koparki Łańcuchowe', desc: 'Samojezdne koparki łańcuchowe C16X i pługi wibracyjne 100SX.' },
       cat6: { name: 'Bentonit i Polimery Baroid®', desc: 'Dodatki wiertnicze, smary otworu i emulsje Baroid® EZ-MUD®.' },
       cat7: { name: 'Ładowarki Kompaktowe', desc: 'Kompaktowe ładowarki gąsienicowe stojące SK3000 i SK1550.' },
-      cat8: { name: 'American Augers®', desc: 'Ciężkie zestawy wiertnicze do magistrali rurociągowych.' },
+      cat8: { name: 'American Augers®', desc: 'Ciężkie zestawy wiertnicze (Przekierowanie do oficjalnej strony).' },
       cat9: { name: 'Recykling Płuczki', desc: 'Systemy zamkniętego obiegu czyszczenia płuczki Dupagro.' },
       cat10: { name: 'Materiały eksploatacyjne', desc: 'Oryginalne bentonity Baroid®, polimery, poszerzacze i korony.' },
       btnView: 'Więcej'
@@ -334,11 +344,20 @@ export const translations = {
     featured: {
       subtitle: 'TOP SPRZEDAŻ W UKRAINIE',
       title: 'POLECANY SPRZĘT DITCH WITCH',
-      specsBtn: 'SPECYFIKACJA I CENA'
+      specsBtn: 'SPECYFIKACJA I CENA',
+      m1: { title: 'Wiertnica Ditch Witch JT10', tag: 'Kompaktowa moc 40 KM', s1: 'Ciąg: 44.5 kN', s2: 'Silnik: Deutz 2.9L 40 KM', s3: 'Moment: 1490 Nm' },
+      m2: { title: 'Wiertnica Ditch Witch JT5', tag: 'Niezawodność w ciasnych miejscach', s1: 'Ciąg: 22.2 kN', s2: 'Silnik: Kubota 24.8 KM', s3: 'Zasięg: do 90 m' },
+      m3: { title: 'Koparka Ditch Witch C16X', tag: 'Koparka łańcuchowa gąsienicowa', s1: 'Głębokość: do 915 mm', s2: 'Silnik: Vanguard 16 KM', s3: 'Gąsienice HX' },
+      btnDetails: 'SPECYFIKACJA TECHNICZNA',
+      btnViewAll: 'ZOBACZ PEŁNY KATALOG'
     },
     parts: {
       title: 'ORYGINALNE CZĘŚCI ZAMIENNE I SERWIS DITCH WITCH',
-      badge: '100% Oryginalne Części Zamienne'
+      subtitle: 'OFICJALNY SERWIS I MAGASYNY CZĘŚCI W UKRAINIE',
+      desc: 'Pełny asortyment oryginalnych części zamiennych Ditch Witch® i Subsite®.',
+      badge: '100% Oryginalne Części Zamienne',
+      btnOrder: 'ZAMÓW CZĘŚCI',
+      btnConsult: 'KONSULTACJA SERWISU'
     },
     news: {
       subtitle: 'OSTATNIE AKTUALNOŚCI I PORADY',
@@ -348,16 +367,9 @@ export const translations = {
     },
     footer: {
       aboutText: 'Ditch Witch Ukraina wchodzi w skład grupy JLM — oficjalny dystrybutor Ditch Witch®, Subsite®, American Augers® i Baroid® w Ukrainie.',
-      contactUA: 'Ukraina, Kijów: +380 50 380 66 92',
-      productsTitle: 'Produkty JLM',
-      companyTitle: 'Ditch Witch Ukraina',
-      distributorTitle: 'Oficjalny Dystrybutor',
-      distributorDesc: 'Certyfikowany serwis, oryginalne części i wsparcie gwarancyjne.',
-      motto: 'PROWADZIMY. INNOWUJEMY. SŁUŻYMY.',
-      privacy: 'Polityka Prywatności',
-      terms: 'Warunki Użytkowania',
-      rights: 'Wszelkie prawa zastrzeżone.',
-      top: 'DO GÓRY'
+      quickLinks: 'Szybkie Linki',
+      contactUs: 'Kontakt',
+      rights: 'Wszelkie prawa zastrzeżone. JLM Group & Ditch Witch Ukraine.'
     }
   }
 };

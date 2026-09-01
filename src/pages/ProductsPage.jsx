@@ -1,77 +1,82 @@
-import React, { useState, useEffect } from 'react';
-import { Search, ArrowRight, ShieldCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { Search, ArrowRight, ExternalLink } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
 import { useProducts } from '../context/ProductContext';
-import { getSpecLabel } from '../i18n/translations';
 import ProductModal from '../components/ProductModal';
+import SmoothProductCard from '../components/SmoothProductCard';
 
 export default function ProductsPage({ initialCategory = 'all' }) {
   const { language } = useTranslation();
   const { theme } = useTheme();
-  const { visibleProducts } = useProducts();
+  const { products } = useProducts();
 
   const [activeCategory, setActiveCategory] = useState(initialCategory || 'all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [hoveredCardId, setHoveredCardId] = useState(null);
 
   const isDark = theme === 'dark';
 
-  useEffect(() => {
-    if (initialCategory) {
-      setActiveCategory(initialCategory);
-    }
-  }, [initialCategory]);
-
   const categoryFilterTabs = [
-    { id: 'all', label: { uk: 'Всі Моделі JLM', en: 'All JLM Machinery', pl: 'Wszystkie Modele JLM' } },
+    { id: 'all', label: { uk: 'Всі Моделі', en: 'All Equipment', pl: 'Wszystkie Modele' } },
     { id: 'hdd', label: { uk: 'Машини ГНБ (HDD)', en: 'HDD Drills', pl: 'Wiertnice HDB' } },
     { id: 'mixers', label: { uk: 'Міксери бентонітові', en: 'Mud Mixers', pl: 'Mieszalniki' } },
-    { id: 'electronics', label: { uk: 'Електроніка Subsite®', en: 'Subsite Electronics', pl: 'Elektronika Subsite' } },
-    { id: 'locators', label: { uk: 'Локатори Subsite®', en: 'Subsite Locators', pl: 'Lokalizatory' } },
-    { id: 'trenchers', label: { uk: 'Віброукладачі та Траншеєкопачі', en: 'Plows & Trenchers', pl: 'Pługi i Koparki' } },
-    { id: 'bentonite', label: { uk: 'Бентоніт Baroid®', en: 'Baroid Bentonite', pl: 'Bentonit Baroid' } },
-    { id: 'skidsteers', label: { uk: 'Навантажувачі SK', en: 'Skid Steers', pl: 'Ładowarki Kompaktowe' } },
-    { id: 'american_augers', label: { uk: 'American Augers®', en: 'American Augers', pl: 'American Augers' } },
-    { id: 'recycling', label: { uk: 'Рециклінг розчину', en: 'Mud Recycling', pl: 'Recykling Płuczki' } }
+    { id: 'electronics', label: { uk: 'Електроніка - системи пошуку та локалізації', en: 'Subsite® Electronics', pl: 'Elektronika Subsite®' } },
+    { id: 'locators', label: { uk: 'Локатори Subsite®', en: 'Subsite® Locators', pl: 'Lokalizatory Subsite®' } },
+    { id: 'trenchers', label: { uk: 'Траншеєкопачі & Віброукладачі', en: 'Trenchers & Plows', pl: 'Koparki Łańcuchowe' } },
+    { id: 'bentonite', label: { uk: 'Бентоніт Baroid®', en: 'Baroid® Bentonite', pl: 'Bentonit Baroid®' } },
+    { id: 'skidsteers', label: { uk: 'Навантажувачі SK', en: 'Stand-On Skid Steers', pl: 'Ładowarki SK' } },
+    { id: 'american_augers', isExternal: true, label: { uk: 'American Augers® ↗', en: 'American Augers® ↗', pl: 'American Augers® ↗' } },
+    { id: 'recycling', label: { uk: 'Рециклінг розчину', en: 'Mud Recycling', pl: 'Recykling Płuczki' } },
+    { id: 'consumables', label: { uk: 'Витратні матеріали', en: 'Consumable Materials', pl: 'Materiały Zużywalne' } },
+    { id: 'other', label: { uk: 'Інше / Інші товари', en: 'Other Equipment', pl: 'Inny Sprzęt' } }
   ];
 
-  // Filter visible products based on selected category and search query
-  const filteredProducts = visibleProducts.filter((prod) => {
-    const matchesCategory = activeCategory === 'all' || prod.category === activeCategory;
-    const titleText = (prod.title[language] || prod.title.uk || prod.title.en).toLowerCase();
-    const descText = (prod.desc[language] || prod.desc.uk || prod.desc.en).toLowerCase();
-    const matchesSearch = titleText.includes(searchQuery.toLowerCase()) || descText.includes(searchQuery.toLowerCase());
+  const handleTabClick = (tab) => {
+    if (tab.id === 'american_augers') {
+      window.open('https://www.americanaugers.com/', '_blank', 'noopener,noreferrer');
+      return;
+    }
+    setActiveCategory(tab.id);
+  };
 
-    return matchesCategory && matchesSearch;
+  const filteredProducts = products.filter((prod) => {
+    if (prod.category === 'american_augers') return false; // American Augers has no local products, redirects to official site
+    const matchesCat = activeCategory === 'all' || prod.category === activeCategory;
+    const titleText = (prod.title[language] || prod.title.uk || prod.title.en || '').toLowerCase();
+    const descText = (prod.desc[language] || prod.desc.uk || prod.desc.en || '').toLowerCase();
+    const query = searchQuery.toLowerCase().trim();
+
+    const matchesQuery = !query || titleText.includes(query) || descText.includes(query) || prod.id.includes(query);
+    return matchesCat && matchesQuery;
   });
 
   return (
     <div style={{
       backgroundColor: isDark ? '#0F0F0F' : '#F8F9FA',
       color: isDark ? '#FFFFFF' : '#111111',
-      minHeight: '80vh',
+      minHeight: '85vh',
       paddingBottom: '80px',
       transition: 'background-color 0.3s ease, color 0.3s ease'
     }}>
-      {/* Hero Header Banner */}
+      {/* Header Banner */}
       <div style={{
         backgroundColor: '#050505',
         color: '#FFFFFF',
         padding: '60px 0',
         borderBottom: '4px solid #FF6600',
-        position: 'relative',
-        overflow: 'hidden'
+        position: 'relative'
       }}>
         <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 10 }}>
           <span style={{
             color: '#FF6600',
             fontWeight: 800,
-            fontSize: '0.9rem',
+            fontSize: '0.85rem',
             letterSpacing: '0.15em',
             textTransform: 'uppercase'
           }}>
-            DITCH WITCH UKRAINE • JLM GROUP
+            {language === 'uk' ? 'ОФІЦІЙНИЙ КАТАЛОГ ДІТЧ ВІТЧ УКРАЇНА' : language === 'pl' ? 'OFICJALNY KATALOG DITCH WITCH UKRAINA' : 'OFFICIAL DITCH WITCH UKRAINE CATALOG'}
           </span>
           <h1 style={{
             fontSize: 'clamp(2.2rem, 4vw, 3.2rem)',
@@ -80,11 +85,11 @@ export default function ProductsPage({ initialCategory = 'all' }) {
             marginBottom: '14px',
             textTransform: 'uppercase'
           }}>
-            {language === 'uk' ? 'Каталог Спецтехніки Ditch Witch & JLM' : language === 'pl' ? 'Katalog Sprzętu Ditch Witch & JLM' : 'Ditch Witch & JLM Equipment Catalog'}
+            {language === 'uk' ? 'Каталог Продукції та Спеціальної Техніки' : language === 'pl' ? 'Katalog Sprzętu i Maszyn Budowlanych' : 'Product & Construction Equipment Catalog'}
           </h1>
           <p style={{
             color: '#CED0D1',
-            maxWidth: '750px',
+            maxWidth: '780px',
             margin: '0 auto',
             fontSize: '1.05rem',
             lineHeight: 1.6
@@ -125,7 +130,7 @@ export default function ProductsPage({ initialCategory = 'all' }) {
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveCategory(tab.id)}
+                  onClick={() => handleTabClick(tab)}
                   style={{
                     backgroundColor: isActive ? '#FF6600' : isDark ? 'rgba(40,40,40,0.8)' : '#F0F2F5',
                     color: isActive ? '#FFFFFF' : isDark ? '#DDDDDD' : '#333333',
@@ -135,10 +140,14 @@ export default function ProductsPage({ initialCategory = 'all' }) {
                     fontSize: '0.88rem',
                     fontWeight: 800,
                     cursor: 'pointer',
-                    transition: 'all 0.25s ease'
+                    transition: 'all 0.25s ease',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px'
                   }}
                 >
-                  {tab.label[language] || tab.label.en}
+                  <span>{tab.label[language] || tab.label.en}</span>
+                  {tab.isExternal && <ExternalLink size={14} />}
                 </button>
               );
             })}
@@ -158,24 +167,22 @@ export default function ProductsPage({ initialCategory = 'all' }) {
                 border: `1px solid ${isDark ? '#333333' : '#CCCCCC'}`,
                 borderRadius: '8px',
                 padding: '14px 20px 14px 48px',
-                color: isDark ? '#FFFFFF' : '#000000',
                 fontSize: '0.95rem',
+                color: isDark ? '#FFFFFF' : '#111111',
                 outline: 'none'
               }}
             />
           </div>
         </div>
 
-        {/* Products Grid with 25% Transparency Glassmorphism */}
+        {/* Product Cards Grid with Fast Smooth Entrance & Hover Zoom Effect */}
         {filteredProducts.length === 0 ? (
           <div style={{
             textAlign: 'center',
             padding: '60px 20px',
-            backgroundColor: isDark ? 'rgba(24, 24, 24, 0.75)' : 'rgba(255, 255, 255, 0.75)',
-            backdropFilter: 'blur(10px)',
-            WebkitBackdropFilter: 'blur(10px)',
-            borderRadius: '10px',
-            border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`
+            backgroundColor: isDark ? 'rgba(28, 28, 28, 0.5)' : '#FFFFFF',
+            borderRadius: '12px',
+            border: `1px solid ${isDark ? '#333' : '#EEE'}`
           }}>
             <h3 style={{ fontSize: '1.2rem', fontWeight: 700 }}>
               {language === 'uk' ? 'Моделей не знайдено' : language === 'pl' ? 'Nie znaleziono modeli' : 'No equipment available'}
@@ -190,156 +197,144 @@ export default function ProductsPage({ initialCategory = 'all' }) {
             gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
             gap: '30px'
           }}>
-            {filteredProducts.map((prod) => {
+            {filteredProducts.map((prod, idx) => {
               const titleText = prod.title[language] || prod.title.uk || prod.title.en;
               const taglineText = prod.tagline[language] || prod.tagline.uk || prod.tagline.en;
+              const isHovered = hoveredCardId === prod.id;
 
               return (
-                <div
-                  key={prod.id}
-                  style={{
-                    backgroundColor: isDark ? 'rgba(28, 28, 28, 0.75)' : 'rgba(255, 255, 255, 0.75)',
-                    backdropFilter: 'blur(10px)',
-                    WebkitBackdropFilter: 'blur(10px)',
-                    borderRadius: '10px',
-                    border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)'}`,
-                    overflow: 'hidden',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justify: 'space-between',
-                    boxShadow: isDark ? '0 4px 16px rgba(0,0,0,0.4)' : '0 4px 16px rgba(0,0,0,0.06)',
-                    transition: 'transform 0.3s ease, border-color 0.3s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-6px)';
-                    e.currentTarget.style.borderColor = '#FF6600';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)';
-                  }}
-                >
-                  <div>
-                    {/* Dead-Centered Image Container Box */}
-                    <div style={{
-                      backgroundColor: isDark ? 'rgba(20, 20, 20, 0.6)' : 'rgba(242, 244, 247, 0.8)',
-                      padding: '20px',
-                      height: '210px',
-                      width: '100%',
+                <SmoothProductCard key={prod.id} delay={0.06 * (idx % 6)}>
+                  <div
+                    onMouseEnter={() => setHoveredCardId(prod.id)}
+                    onMouseLeave={() => setHoveredCardId(null)}
+                    style={{
+                      backgroundColor: isDark ? 'rgba(28, 28, 28, 0.85)' : '#FFFFFF',
+                      borderRadius: '12px',
+                      border: `2px solid ${isHovered ? '#FF6600' : isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)'}`,
+                      overflow: 'hidden',
                       display: 'flex',
-                      alignItems: 'center',
-                      justify: 'center',
-                      position: 'relative',
-                      overflow: 'hidden'
-                    }}>
-                      {prod.featured && (
-                        <span style={{
-                          position: 'absolute',
-                          top: '12px',
-                          left: '12px',
-                          backgroundColor: '#FF6600',
-                          color: '#FFFFFF',
-                          fontWeight: 800,
-                          fontSize: '0.7rem',
-                          padding: '3px 8px',
-                          borderRadius: '3px',
-                          textTransform: 'uppercase',
-                          zIndex: 5
-                        }}>
-                          {language === 'uk' ? 'ФЛАГМАН' : language === 'pl' ? 'POLECANE' : 'FEATURED'}
-                        </span>
-                      )}
-
-                      <img
-                        src={prod.image}
-                        alt={titleText}
-                        style={{
-                          maxHeight: '170px',
-                          maxWidth: '88%',
-                          width: 'auto',
-                          height: 'auto',
-                          objectFit: 'contain',
-                          display: 'block',
-                          margin: 'auto'
-                        }}
-                      />
-                    </div>
-
-                    {/* Body Content */}
-                    <div style={{ padding: '24px' }}>
-                      <h3 style={{
-                        fontSize: '1.25rem',
-                        fontWeight: 800,
-                        color: isDark ? '#FFFFFF' : '#111111',
-                        marginBottom: '8px',
-                        lineHeight: 1.3
-                      }}>
-                        {titleText}
-                      </h3>
-
-                      <p style={{
-                        color: '#FF6600',
-                        fontSize: '0.88rem',
-                        fontWeight: 700,
-                        marginBottom: '16px'
-                      }}>
-                        {taglineText}
-                      </p>
-
-                      {/* Clean 2-Column Aligned Specs */}
+                      flexDirection: 'column',
+                      justify: 'space-between',
+                      boxShadow: isHovered
+                        ? isDark ? '0 12px 30px rgba(255, 102, 0, 0.3)' : '0 12px 30px rgba(255, 102, 0, 0.2)'
+                        : isDark ? '0 4px 16px rgba(0,0,0,0.4)' : '0 4px 16px rgba(0,0,0,0.06)',
+                      height: '100%',
+                      transition: 'border-color 0.28s ease, box-shadow 0.28s ease'
+                    }}
+                  >
+                    <div>
+                      {/* Image Box with Subtle Image Zoom on Hover */}
                       <div style={{
-                        borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`,
-                        paddingTop: '12px',
-                        marginBottom: '16px',
+                        backgroundColor: isDark ? 'rgba(20, 20, 20, 0.6)' : 'rgba(242, 244, 247, 0.8)',
+                        padding: '20px',
+                        height: '210px',
+                        width: '100%',
                         display: 'flex',
-                        flexDirection: 'column',
-                        gap: '6px'
+                        alignItems: 'center',
+                        justify: 'center',
+                        position: 'relative',
+                        overflow: 'hidden'
                       }}>
-                        {Object.entries(prod.specs).slice(0, 3).map(([sKey, sVal], idx) => {
-                          const translatedLabel = getSpecLabel(sKey, language);
+                        {prod.featured && (
+                          <span style={{
+                            position: 'absolute',
+                            top: '12px',
+                            left: '12px',
+                            backgroundColor: '#FF6600',
+                            color: '#FFFFFF',
+                            fontWeight: 800,
+                            fontSize: '0.7rem',
+                            padding: '3px 8px',
+                            borderRadius: '3px',
+                            textTransform: 'uppercase',
+                            zIndex: 5
+                          }}>
+                            {language === 'uk' ? 'ФЛАГМАН' : language === 'pl' ? 'POLECANE' : 'FEATURED'}
+                          </span>
+                        )}
 
-                          return (
-                            <div key={idx} style={{
-                              display: 'grid',
-                              gridTemplateColumns: '135px 1fr',
-                              alignItems: 'center',
-                              gap: '8px',
-                              fontSize: '0.82rem'
-                            }}>
-                              <span style={{ color: isDark ? '#999' : '#666', fontWeight: 700, whiteSpace: 'nowrap' }}>
-                                {translatedLabel}:
-                              </span>
-                              <strong style={{ color: isDark ? '#FFF' : '#222' }}>
-                                {sVal}
-                              </strong>
-                            </div>
-                          );
-                        })}
+                        <img
+                          src={prod.image}
+                          alt={titleText}
+                          style={{
+                            maxHeight: '170px',
+                            maxWidth: '88%',
+                            width: 'auto',
+                            height: 'auto',
+                            objectFit: 'contain',
+                            display: 'block',
+                            margin: 'auto',
+                            transform: isHovered ? 'scale(1.06)' : 'scale(1)',
+                            transition: 'transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1)'
+                          }}
+                        />
+                      </div>
+
+                      <div style={{ padding: '24px' }}>
+                        <h3 style={{
+                          fontSize: '1.25rem',
+                          fontWeight: 800,
+                          color: isHovered ? '#FF6600' : isDark ? '#FFFFFF' : '#111111',
+                          marginBottom: '8px',
+                          lineHeight: 1.3,
+                          transition: 'color 0.25s ease'
+                        }}>
+                          {titleText}
+                        </h3>
+
+                        <p style={{
+                          fontSize: '0.88rem',
+                          color: isDark ? '#A0A0A0' : '#666666',
+                          marginBottom: '20px',
+                          lineHeight: 1.5,
+                          minHeight: '42px'
+                        }}>
+                          {taglineText}
+                        </p>
+
+                        {/* Fast Specs Overview */}
+                        {prod.specs && (
+                          <div style={{
+                            backgroundColor: isDark ? 'rgba(18, 18, 18, 0.6)' : '#F8F9FA',
+                            borderRadius: '6px',
+                            padding: '12px 14px',
+                            marginBottom: '20px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '6px',
+                            fontSize: '0.8rem',
+                            border: `1px solid ${isDark ? '#2B2B2B' : '#EAEAEA'}`
+                          }}>
+                            {Object.entries(prod.specs).slice(0, 3).map(([key, val]) => (
+                              <div key={key} style={{ display: 'flex', justifyContent: 'space-between', color: isDark ? '#CCC' : '#555' }}>
+                                <span style={{ textTransform: 'capitalize', fontWeight: 600 }}>{key}:</span>
+                                <span style={{ fontWeight: 800, color: '#FF6600' }}>{val}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
-                  </div>
 
-                  {/* Footer Action Button */}
-                  <div style={{ padding: '0 24px 24px 24px' }}>
-                    <button
-                      onClick={() => setSelectedProduct(prod)}
-                      className="btn-primary"
-                      style={{ width: '100%', justifyContent: 'center' }}
-                    >
-                      <span>
-                        {language === 'uk' ? 'ХАРАКТЕРИСТИКИ ТА ЦІНА' : language === 'pl' ? 'SPECYFIKACJA I CENA' : 'SPECS & QUOTE'}
-                      </span>
-                      <ArrowRight size={16} />
-                    </button>
+                    <div style={{ padding: '0 24px 24px 24px' }}>
+                      <button
+                        onClick={() => setSelectedProduct(prod)}
+                        className="btn-primary"
+                        style={{ width: '100%', justifyContent: 'center' }}
+                      >
+                        <span>{language === 'uk' ? 'ТЕХНІЧНІ ХАРАКТЕРИСТИКИ' : language === 'pl' ? 'SPECYFIKACJA TECHNICZNA' : 'VIEW SPECIFICATIONS'}</span>
+                        <ArrowRight size={16} />
+                      </button>
+                    </div>
                   </div>
-                </div>
+                </SmoothProductCard>
               );
             })}
           </div>
         )}
       </div>
 
-      {/* Detailed Spec Modal */}
+      {/* Product Detail Modal */}
       {selectedProduct && (
         <ProductModal
           product={selectedProduct}

@@ -1,11 +1,14 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
+import SmoothProductCard from './SmoothProductCard';
 
 export default function ProductCategories({ onNavigateToProducts }) {
   const { t } = useTranslation();
   const { theme } = useTheme();
+
+  const [hoveredCatId, setHoveredCatId] = useState(null);
 
   const isDark = theme === 'dark';
 
@@ -56,6 +59,7 @@ export default function ProductCategories({ onNavigateToProducts }) {
       id: 'american_augers',
       name: t.categories.cat8.name,
       desc: t.categories.cat8.desc,
+      isExternal: true,
       image: '/Risorse/Immagini/dirdrills_jt5.png'
     },
     {
@@ -71,6 +75,16 @@ export default function ProductCategories({ onNavigateToProducts }) {
       image: '/Risorse/Immagini/category_fluidSystems.png'
     }
   ];
+
+  const handleCategoryClick = (catId) => {
+    if (catId === 'american_augers') {
+      window.open('https://www.americanaugers.com/', '_blank', 'noopener,noreferrer');
+      return;
+    }
+    if (onNavigateToProducts) {
+      onNavigateToProducts('products', catId);
+    }
+  };
 
   return (
     <section style={{
@@ -101,90 +115,102 @@ export default function ProductCategories({ onNavigateToProducts }) {
           </h2>
         </div>
 
-        {/* 25% Transparency / Glassmorphism Grid */}
+        {/* Glassmorphism Category Cards Grid with Smooth Fast Entrance & Hover Zoom */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '24px'
         }}>
-          {categories.map((cat) => (
-            <div
-              key={cat.id}
-              onClick={() => onNavigateToProducts && onNavigateToProducts('products', cat.id)}
-              style={{
-                backgroundColor: isDark ? 'rgba(26, 26, 26, 0.75)' : 'rgba(244, 246, 249, 0.75)',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
-                borderRadius: '10px',
-                border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)'}`,
-                padding: '24px',
-                display: 'flex',
-                flexDirection: 'column',
-                justify: 'space-between',
-                cursor: 'pointer',
-                boxShadow: isDark ? '0 4px 16px rgba(0,0,0,0.4)' : '0 4px 16px rgba(0,0,0,0.06)',
-                transition: 'transform 0.3s ease, border-color 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-6px)';
-                e.currentTarget.style.borderColor = '#FF6600';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)';
-              }}
-            >
-              <div>
-                <div style={{
-                  height: '160px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justify: 'center',
-                  marginBottom: '20px'
-                }}>
-                  <img
-                    src={cat.image}
-                    alt={cat.name}
-                    style={{
-                      maxHeight: '140px',
-                      maxWidth: '100%',
-                      objectFit: 'contain'
-                    }}
-                  />
+          {categories.map((cat, idx) => {
+            const isHovered = hoveredCatId === cat.id;
+
+            return (
+              <SmoothProductCard key={cat.id} delay={0.05 * (idx % 5)}>
+                <div
+                  onClick={() => handleCategoryClick(cat.id)}
+                  onMouseEnter={() => setHoveredCatId(cat.id)}
+                  onMouseLeave={() => setHoveredCatId(null)}
+                  style={{
+                    backgroundColor: isDark ? 'rgba(26, 26, 26, 0.85)' : '#FFFFFF',
+                    backdropFilter: 'blur(10px)',
+                    WebkitBackdropFilter: 'blur(10px)',
+                    borderRadius: '12px',
+                    border: `2px solid ${isHovered ? '#FF6600' : isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)'}`,
+                    padding: '24px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justify: 'space-between',
+                    cursor: 'pointer',
+                    boxShadow: isHovered
+                      ? isDark ? '0 12px 30px rgba(255, 102, 0, 0.3)' : '0 12px 30px rgba(255, 102, 0, 0.2)'
+                      : isDark ? '0 4px 16px rgba(0,0,0,0.4)' : '0 4px 16px rgba(0,0,0,0.06)',
+                    height: '100%',
+                    transition: 'border-color 0.28s ease, box-shadow 0.28s ease'
+                  }}
+                >
+                  <div>
+                    <div style={{
+                      height: '160px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justify: 'center',
+                      marginBottom: '20px',
+                      overflow: 'hidden'
+                    }}>
+                      <img
+                        src={cat.image}
+                        alt={cat.name}
+                        style={{
+                          maxHeight: '140px',
+                          maxWidth: '100%',
+                          objectFit: 'contain',
+                          display: 'block',
+                          margin: 'auto',
+                          transform: isHovered ? 'scale(1.08)' : 'scale(1)',
+                          transition: 'transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1)'
+                        }}
+                      />
+                    </div>
+
+                    <h3 style={{
+                      fontSize: '1.2rem',
+                      fontWeight: 800,
+                      color: isHovered ? '#FF6600' : isDark ? '#FFFFFF' : '#111111',
+                      marginBottom: '8px',
+                      transition: 'color 0.25s ease'
+                    }}>
+                      {cat.name}
+                    </h3>
+
+                    <p style={{
+                      fontSize: '0.88rem',
+                      color: isDark ? '#A0A0A0' : '#666666',
+                      lineHeight: 1.5,
+                      marginBottom: '20px'
+                    }}>
+                      {cat.desc}
+                    </p>
+                  </div>
+
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    color: '#FF6600',
+                    fontWeight: 700,
+                    fontSize: '0.88rem'
+                  }}>
+                    <span>{cat.isExternal ? 'americanaugers.com' : t.categories.btnView}</span>
+                    {cat.isExternal ? (
+                      <ExternalLink size={16} />
+                    ) : (
+                      <ArrowRight size={16} style={{ transform: isHovered ? 'translateX(4px)' : 'translateX(0)', transition: 'transform 0.25s ease' }} />
+                    )}
+                  </div>
                 </div>
-
-                <h3 style={{
-                  fontSize: '1.2rem',
-                  fontWeight: 800,
-                  color: isDark ? '#FFFFFF' : '#111111',
-                  marginBottom: '8px'
-                }}>
-                  {cat.name}
-                </h3>
-
-                <p style={{
-                  fontSize: '0.88rem',
-                  color: isDark ? '#A0A0A0' : '#666666',
-                  lineHeight: 1.5,
-                  marginBottom: '20px'
-                }}>
-                  {cat.desc}
-                </p>
-              </div>
-
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                color: '#FF6600',
-                fontWeight: 700,
-                fontSize: '0.88rem'
-              }}>
-                <span>{t.categories.btnView}</span>
-                <ArrowRight size={16} />
-              </div>
-            </div>
-          ))}
+              </SmoothProductCard>
+            );
+          })}
         </div>
       </div>
     </section>

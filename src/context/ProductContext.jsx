@@ -1,16 +1,49 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { productsData as initialProducts } from '../data/productsData';
 
 const ProductContext = createContext();
 
 export function ProductProvider({ children }) {
-  // Ensure initial products have allowedCountries = ['ALL'] if omitted
   const formattedInitialProducts = initialProducts.map((p) => ({
     ...p,
     allowedCountries: p.allowedCountries || ['ALL']
   }));
 
-  const [products, setProducts] = useState(formattedInitialProducts);
+  const [products, setProducts] = useState(() => {
+    const saved = localStorage.getItem('ditchwitch_products');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        // Sync updated image URLs and merge missing initial products
+        const initialMap = new Map(formattedInitialProducts.map((p) => [p.id, p]));
+        const updated = parsed.map((p) => {
+          const init = initialMap.get(p.id);
+          if (init) {
+            return {
+              ...p,
+              image: (init.image || p.image || '').replace(/\.jpg$/, '.png'),
+              specs: init.specs || p.specs
+            };
+          }
+          return p;
+        });
+
+        const parsedIds = new Set(updated.map((p) => p.id));
+        const missingInitial = formattedInitialProducts.filter((p) => !parsedIds.has(p.id));
+        const finalProducts = [...updated, ...missingInitial];
+        localStorage.setItem('ditchwitch_products', JSON.stringify(finalProducts));
+        return finalProducts;
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    return formattedInitialProducts;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('ditchwitch_products', JSON.stringify(products));
+  }, [products]);
+
   // Default visitor country: UA (Ukraine)
   const [visitorCountry, setVisitorCountry] = useState('UA');
 
@@ -20,7 +53,7 @@ export function ProductProvider({ children }) {
     'mixers',
     'electronics',
     'trenchers',
-    'consumables'
+    'other'
   ]);
 
   // Administrator selected Top 3 Featured Products for homepage
@@ -31,7 +64,6 @@ export function ProductProvider({ children }) {
   ]);
 
   const setNavCategoryIds = (ids) => {
-    // Limit to max 5 categories
     setNavCategoryIdsState(ids.slice(0, 5));
   };
 
@@ -55,26 +87,26 @@ export function ProductProvider({ children }) {
   // Add new product from Admin Panel
   const addProduct = (newProduct) => {
     const productToAdd = {
-      id: `custom-${Date.now()}`,
-      category: newProduct.category || 'hdd',
-      categoryKey: newProduct.categoryKey || 'hdd',
-      image: newProduct.image || '/Risorse/Immagini/category_drilling.png',
+      id: newProduct.id || `custom-prod-${Date.now()}`,
+      category: newProduct.category || 'other',
+      categoryKey: newProduct.category || 'other',
+      image: newProduct.image || '',
       featured: newProduct.featured || false,
-      title: {
-        uk: newProduct.titleUk || newProduct.titleEn,
-        en: newProduct.titleEn || newProduct.titleUk,
-        pl: newProduct.titlePl || newProduct.titleUk
+      title: typeof newProduct.title === 'object' ? newProduct.title : {
+        uk: newProduct.titleUk || newProduct.title || 'Новий Товар',
+        en: newProduct.titleEn || newProduct.title || 'New Product',
+        pl: newProduct.titlePl || newProduct.title || 'Nowy Produkt'
       },
-      tagline: {
-        uk: newProduct.taglineUk || newProduct.taglineEn,
-        en: newProduct.taglineEn || newProduct.taglineUk,
-        pl: newProduct.taglinePl || newProduct.taglineUk
+      tagline: typeof newProduct.tagline === 'object' ? newProduct.tagline : {
+        uk: newProduct.taglineUk || 'Офіційна техніка Ditch Witch',
+        en: newProduct.taglineEn || 'Official Ditch Witch Machinery',
+        pl: newProduct.taglinePl || 'Oficjalny sprzęt Ditch Witch'
       },
-      specs: newProduct.specs || { engine: 'Diesel 50 HP', weight: '1500 kg' },
-      desc: {
-        uk: newProduct.descUk || newProduct.descEn,
-        en: newProduct.descEn || newProduct.descUk,
-        pl: newProduct.descPl || newProduct.descUk
+      specs: newProduct.specs || { engine: 'OEM Spec', weight: '-' },
+      desc: typeof newProduct.desc === 'object' ? newProduct.desc : {
+        uk: newProduct.descUk || 'Офіційне обладнання Ditch Witch Ukraine.',
+        en: newProduct.descEn || 'Official Ditch Witch Ukraine equipment.',
+        pl: newProduct.descPl || 'Oficjalny sprzęt Ditch Witch Ukraina.'
       },
       allowedCountries: newProduct.allowedCountries && newProduct.allowedCountries.length > 0
         ? newProduct.allowedCountries
@@ -82,6 +114,13 @@ export function ProductProvider({ children }) {
     };
 
     setProducts((prev) => [productToAdd, ...prev]);
+  };
+
+  // Update existing product
+  const updateProduct = (updatedProduct) => {
+    setProducts((prev) =>
+      prev.map((p) => (p.id === updatedProduct.id ? { ...p, ...updatedProduct } : p))
+    );
   };
 
   // Update existing product country targeting
@@ -96,8 +135,13 @@ export function ProductProvider({ children }) {
     setProducts((prev) => prev.filter((p) => p.id !== productId));
   };
 
+  // Reset to default products
+  const resetToDefaultProducts = () => {
+    setProducts(formattedInitialProducts);
+    localStorage.removeItem('ditchwitch_products');
+  };
+
   // Strict geo-access control:
-  // If visitor is in PL (Poland), products enabled ONLY for UA (Ukraine) are COMPLETELY HIDDEN everywhere on the site!
   const getVisibleProducts = () => {
     if (visitorCountry === 'ALL') return products;
     return products.filter((p) => {
@@ -119,8 +163,10 @@ export function ProductProvider({ children }) {
         setTopProductIds,
         toggleTopProduct,
         addProduct,
+        updateProduct,
         updateProductTargeting,
-        deleteProduct
+        deleteProduct,
+        resetToDefaultProducts
       }}
     >
       {children}

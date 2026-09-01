@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 
-export default function HeroCarousel() {
+export default function HeroCarousel({ onNavigate, onRequestQuote }) {
   const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
     {
       id: 1,
+      productId: 'jt10',
       badge: t.hero.slide1.badge,
       title: t.hero.slide1.title,
       subtitle: t.hero.slide1.subtitle,
@@ -18,6 +19,7 @@ export default function HeroCarousel() {
     },
     {
       id: 2,
+      productId: 'hxt75',
       badge: t.hero.slide2.badge,
       title: t.hero.slide2.title,
       subtitle: t.hero.slide2.subtitle,
@@ -27,6 +29,7 @@ export default function HeroCarousel() {
     },
     {
       id: 3,
+      productId: 'jt5',
       badge: t.hero.slide3.badge,
       title: t.hero.slide3.title,
       subtitle: t.hero.slide3.subtitle,
@@ -36,6 +39,7 @@ export default function HeroCarousel() {
     },
     {
       id: 4,
+      productId: 'c16x',
       badge: t.hero.slide4.badge,
       title: t.hero.slide4.title,
       subtitle: t.hero.slide4.subtitle,
@@ -61,6 +65,26 @@ export default function HeroCarousel() {
   };
 
   const slide = slides[currentSlide];
+
+  const handleMoreClick = (e) => {
+    e.preventDefault();
+    if (onNavigate) {
+      onNavigate('products');
+    } else {
+      window.location.hash = '#products';
+    }
+  };
+
+  const handleQuoteClick = (e) => {
+    e.preventDefault();
+    if (onRequestQuote) {
+      onRequestQuote(slide.productId);
+    } else if (onNavigate) {
+      onNavigate('service');
+    } else {
+      window.location.hash = '#service';
+    }
+  };
 
   return (
     <section style={{
@@ -135,13 +159,22 @@ export default function HeroCarousel() {
             </p>
 
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-              <a href="#products" className="btn-primary">
+              <button
+                onClick={handleMoreClick}
+                className="btn-primary"
+                style={{ border: 'none', cursor: 'pointer' }}
+              >
                 <span>{slide.btnMore}</span>
                 <ArrowRight size={16} />
-              </a>
-              <a href="#contact" className="btn-outline">
+              </button>
+
+              <button
+                onClick={handleQuoteClick}
+                className="btn-outline"
+                style={{ cursor: 'pointer' }}
+              >
                 {slide.btnQuote}
-              </a>
+              </button>
             </div>
           </div>
 
@@ -198,18 +231,10 @@ export default function HeroCarousel() {
           zIndex: 20,
           boxShadow: '0 4px 14px rgba(255, 102, 0, 0.4)',
           transition: 'all 0.2s ease',
-          padding: 0
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-          e.currentTarget.style.backgroundColor = '#E65C00';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-          e.currentTarget.style.backgroundColor = '#FF6600';
+          outline: 'none'
         }}
       >
-        <ChevronLeft size={24} style={{ display: 'block', margin: 'auto', flexShrink: 0 }} />
+        <ChevronLeft size={24} style={{ color: '#FFFFFF', display: 'block', margin: 'auto' }} />
       </button>
 
       <button
@@ -233,39 +258,32 @@ export default function HeroCarousel() {
           zIndex: 20,
           boxShadow: '0 4px 14px rgba(255, 102, 0, 0.4)',
           transition: 'all 0.2s ease',
-          padding: 0
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-          e.currentTarget.style.backgroundColor = '#E65C00';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-          e.currentTarget.style.backgroundColor = '#FF6600';
+          outline: 'none'
         }}
       >
-        <ChevronRight size={24} style={{ display: 'block', margin: 'auto', flexShrink: 0 }} />
+        <ChevronRight size={24} style={{ color: '#FFFFFF', display: 'block', margin: 'auto' }} />
       </button>
 
-      {/* Dots */}
+      {/* Dots Indicator */}
       <div style={{
         position: 'absolute',
         bottom: '20px',
         left: '50%',
         transform: 'translateX(-50%)',
         display: 'flex',
-        gap: '10px',
+        gap: '8px',
         zIndex: 20
       }}>
-        {slides.map((_, index) => (
+        {slides.map((_, idx) => (
           <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
+            key={idx}
+            onClick={() => setCurrentSlide(idx)}
+            aria-label={`Go to slide ${idx + 1}`}
             style={{
-              width: index === currentSlide ? '28px' : '10px',
+              width: currentSlide === idx ? '24px' : '10px',
               height: '10px',
               borderRadius: '5px',
-              backgroundColor: index === currentSlide ? '#FF6600' : 'rgba(255,255,255,0.4)',
+              backgroundColor: currentSlide === idx ? '#FF6600' : 'rgba(255, 255, 255, 0.4)',
               border: 'none',
               cursor: 'pointer',
               transition: 'all 0.3s ease'

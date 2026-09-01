@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { LanguageProvider } from './i18n/LanguageContext';
 import { ThemeProvider } from './theme/ThemeContext';
-import { ProductProvider } from './context/ProductContext';
+import { ProductProvider, useProducts } from './context/ProductContext';
 import { DocumentProvider } from './context/DocumentContext';
+import { PartsProvider } from './context/PartsContext';
+import { NewsProvider } from './context/NewsContext';
 import TopBar from './components/TopBar';
 import Navbar from './components/Navbar';
 import HeroCarousel from './components/HeroCarousel';
@@ -16,27 +18,36 @@ import NewsPage from './pages/NewsPage';
 import AboutPage from './pages/AboutPage';
 import DocumentsPage from './pages/DocumentsPage';
 import PartsServicePage from './pages/PartsServicePage';
+import UsedEquipmentPage from './pages/UsedEquipmentPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import AdminLoginModal from './components/AdminLoginModal';
+import ProductModal from './components/ProductModal';
 import ScrollToTopButton from './components/ScrollToTopButton';
 
-export default function App() {
+function MainAppContent() {
+  const { products } = useProducts();
   const [currentPage, setCurrentPage] = useState('home');
   const [activeProductCategory, setActiveProductCategory] = useState('all');
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [quoteProduct, setQuoteProduct] = useState(null);
 
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
       if (hash.startsWith('#admin')) {
-        if (!isAdminLoggedIn) {
-          setIsLoginModalOpen(true);
-        } else {
+        if (isAdminLoggedIn) {
           setCurrentPage('admin');
+        } else {
+          setCurrentPage('home');
+          if (window.location.hash === '#admin') {
+            window.location.hash = '#home';
+          }
         }
       } else if (hash.startsWith('#products')) {
         setCurrentPage('products');
+      } else if (hash.startsWith('#used')) {
+        setCurrentPage('service');
       } else if (hash.startsWith('#news')) {
         setCurrentPage('news');
       } else if (hash.startsWith('#about')) {
@@ -45,7 +56,9 @@ export default function App() {
         setCurrentPage('docs');
       } else if (hash.startsWith('#service')) {
         setCurrentPage('service');
-      } else if (hash === '#home' || hash === '' || hash === '#') {
+      } else if (hash.startsWith('#contact')) {
+        setCurrentPage('service');
+      } else {
         setCurrentPage('home');
       }
     };
@@ -58,10 +71,14 @@ export default function App() {
 
   const navigateTo = (page, categoryId = 'all') => {
     if (page === 'admin') {
-      if (!isAdminLoggedIn) {
+      if (isAdminLoggedIn) {
+        setCurrentPage('admin');
+        window.location.hash = '#admin';
+      } else {
         setIsLoginModalOpen(true);
-        return;
       }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
     }
     if (page === 'products') {
       setActiveProductCategory(categoryId || 'all');
@@ -71,14 +88,24 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleOpenProductQuote = (productIdOrObj) => {
+    let target = null;
+    if (typeof productIdOrObj === 'string') {
+      target = products.find((p) => p.id === productIdOrObj) || products[0];
+    } else {
+      target = productIdOrObj;
+    }
+    setQuoteProduct(target);
+  };
+
   const handleOpenAdmin = () => {
     if (isAdminLoggedIn) {
       setCurrentPage('admin');
       window.location.hash = '#admin';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       setIsLoginModalOpen(true);
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleLoginSuccess = () => {
@@ -97,50 +124,66 @@ export default function App() {
   };
 
   return (
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+      <TopBar onOpenAdmin={handleOpenAdmin} />
+      <Navbar currentPage={currentPage} onNavigate={navigateTo} />
+
+      <main style={{ flexGrow: 1 }}>
+        {currentPage === 'admin' && isAdminLoggedIn ? (
+          <AdminDashboardPage onLogout={handleLogout} />
+        ) : currentPage === 'products' ? (
+          <ProductsPage initialCategory={activeProductCategory} />
+        ) : currentPage === 'used' ? (
+          <UsedEquipmentPage />
+        ) : currentPage === 'news' ? (
+          <NewsPage />
+        ) : currentPage === 'about' ? (
+          <AboutPage onNavigateToProducts={() => navigateTo('products')} />
+        ) : currentPage === 'docs' ? (
+          <DocumentsPage />
+        ) : currentPage === 'service' ? (
+          <PartsServicePage />
+        ) : (
+          <>
+            <HeroCarousel onNavigate={navigateTo} onRequestQuote={handleOpenProductQuote} />
+            <WelcomeSection />
+            <ProductCategories onNavigateToProducts={navigateTo} />
+            <FeaturedEquipment onNavigateToProducts={navigateTo} />
+            <LatestNews onNavigateToNews={() => navigateTo('news')} />
+          </>
+        )}
+      </main>
+
+      <Footer onNavigate={navigateTo} onOpenAdmin={handleOpenAdmin} />
+      <ScrollToTopButton />
+
+      {/* Admin Login Modal */}
+      <AdminLoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onLoginSuccess={handleLoginSuccess}
+      />
+
+      {/* Relative Product Quote Request Modal */}
+      <ProductModal
+        product={quoteProduct}
+        onClose={() => setQuoteProduct(null)}
+      />
+    </div>
+  );
+}
+
+export default function App() {
+  return (
     <ThemeProvider>
       <LanguageProvider>
         <ProductProvider>
           <DocumentProvider>
-            <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative' }}>
-              <TopBar onOpenAdmin={handleOpenAdmin} />
-              <Navbar currentPage={currentPage} onNavigate={navigateTo} />
-
-              <main style={{ flexGrow: 1 }}>
-                {currentPage === 'admin' && isAdminLoggedIn ? (
-                  <AdminDashboardPage onLogout={handleLogout} />
-                ) : currentPage === 'products' ? (
-                  <ProductsPage initialCategory={activeProductCategory} />
-                ) : currentPage === 'news' ? (
-                  <NewsPage />
-                ) : currentPage === 'about' ? (
-                  <AboutPage onNavigateToProducts={() => navigateTo('products')} />
-                ) : currentPage === 'docs' ? (
-                  <DocumentsPage />
-                ) : currentPage === 'service' ? (
-                  <PartsServicePage />
-                ) : (
-                  <>
-                    <HeroCarousel />
-                    <WelcomeSection />
-                    <ProductCategories onNavigateToProducts={() => navigateTo('products')} />
-                    <FeaturedEquipment />
-                    <LatestNews onNavigateToNews={() => navigateTo('news')} />
-                  </>
-                )}
-              </main>
-
-              <Footer onNavigate={navigateTo} onOpenAdmin={handleOpenAdmin} />
-
-              {/* Floating Scroll-to-Top Button */}
-              <ScrollToTopButton />
-
-              {/* Admin Login Modal */}
-              <AdminLoginModal
-                isOpen={isLoginModalOpen}
-                onClose={() => setIsLoginModalOpen(false)}
-                onLoginSuccess={handleLoginSuccess}
-              />
-            </div>
+            <PartsProvider>
+              <NewsProvider>
+                <MainAppContent />
+              </NewsProvider>
+            </PartsProvider>
           </DocumentProvider>
         </ProductProvider>
       </LanguageProvider>

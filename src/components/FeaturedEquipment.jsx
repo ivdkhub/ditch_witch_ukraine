@@ -3,27 +3,29 @@ import { ArrowRight } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
 import { useProducts } from '../context/ProductContext';
-import { getSpecLabel } from '../i18n/translations';
 import ProductModal from './ProductModal';
+import SmoothProductCard from './SmoothProductCard';
 
-export default function FeaturedEquipment() {
+export default function FeaturedEquipment({ onNavigateToProducts }) {
   const { t, language } = useTranslation();
   const { theme } = useTheme();
-  const { visibleProducts, topProductIds } = useProducts();
+  const { products } = useProducts();
+
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [hoveredCardId, setHoveredCardId] = useState(null);
 
   const isDark = theme === 'dark';
 
-  // Filter top 3 products chosen by admin or featured products fallback
-  let featuredList = visibleProducts.filter((p) => topProductIds.includes(p.id));
-  if (featuredList.length === 0) {
-    featuredList = visibleProducts.slice(0, 3);
-  }
+  // Always show ONLY the 3 specified HDD machines: JT5, JT10, JT20
+  const targetIds = ['jt5', 'jt10', 'jt20'];
+  const featuredList = targetIds
+    .map((id) => products.find((p) => p.id === id))
+    .filter(Boolean);
 
   return (
     <section style={{
       padding: '80px 0',
-      backgroundColor: isDark ? '#0A0A0A' : '#F8F9FA',
+      backgroundColor: isDark ? '#0A0A0A' : '#F4F5F7',
       color: isDark ? '#FFFFFF' : '#000000',
       transition: 'background-color 0.3s ease, color 0.3s ease'
     }}>
@@ -49,151 +51,155 @@ export default function FeaturedEquipment() {
           </h2>
         </div>
 
-        {/* Glassmorphism Cards Grid */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
           gap: '30px'
         }}>
-          {featuredList.map((machine) => {
+          {featuredList.map((machine, idx) => {
             const titleText = machine.title[language] || machine.title.uk || machine.title.en;
             const taglineText = machine.tagline[language] || machine.tagline.uk || machine.tagline.en;
+            const isHovered = hoveredCardId === machine.id;
 
             return (
-              <div
-                key={machine.id}
-                style={{
-                  backgroundColor: isDark ? 'rgba(24, 24, 24, 0.75)' : 'rgba(255, 255, 255, 0.75)',
-                  backdropFilter: 'blur(10px)',
-                  WebkitBackdropFilter: 'blur(10px)',
-                  borderRadius: '10px',
-                  border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)'}`,
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justify: 'space-between',
-                  boxShadow: isDark ? '0 4px 16px rgba(0,0,0,0.4)' : '0 4px 16px rgba(0,0,0,0.06)',
-                  transition: 'transform 0.3s ease, border-color 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-6px)';
-                  e.currentTarget.style.borderColor = '#FF6600';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)';
-                }}
-              >
-                <div>
-                  {/* Dead-Centered Image Container Box */}
-                  <div style={{
-                    backgroundColor: isDark ? 'rgba(18, 18, 18, 0.6)' : 'rgba(242, 244, 247, 0.8)',
-                    padding: '20px',
-                    height: '210px',
-                    width: '100%',
+              <SmoothProductCard key={machine.id} delay={0.08 * (idx + 1)}>
+                <div
+                  onMouseEnter={() => setHoveredCardId(machine.id)}
+                  onMouseLeave={() => setHoveredCardId(null)}
+                  style={{
+                    backgroundColor: isDark ? 'rgba(24, 24, 24, 0.85)' : '#FFFFFF',
+                    borderRadius: '12px',
+                    border: `2px solid ${isHovered ? '#FF6600' : isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)'}`,
+                    overflow: 'hidden',
                     display: 'flex',
-                    alignItems: 'center',
-                    justify: 'center',
-                    position: 'relative',
-                    overflow: 'hidden'
-                  }}>
-                    <span style={{
-                      position: 'absolute',
-                      top: '12px',
-                      left: '12px',
-                      backgroundColor: '#FF6600',
-                      color: '#FFFFFF',
-                      fontWeight: 800,
-                      fontSize: '0.7rem',
-                      padding: '3px 8px',
-                      borderRadius: '3px',
-                      textTransform: 'uppercase',
-                      zIndex: 5
-                    }}>
-                      {language === 'uk' ? 'ТОП 3' : language === 'pl' ? 'POLECANE' : 'TOP CHOICE'}
-                    </span>
-
-                    <img
-                      src={machine.image}
-                      alt={titleText}
-                      style={{
-                        maxHeight: '170px',
-                        maxWidth: '88%',
-                        width: 'auto',
-                        height: 'auto',
-                        objectFit: 'contain',
-                        display: 'block',
-                        margin: 'auto'
-                      }}
-                    />
-                  </div>
-
-                  <div style={{ padding: '24px' }}>
-                    <h3 style={{
-                      fontSize: '1.25rem',
-                      fontWeight: 800,
-                      color: isDark ? '#FFFFFF' : '#111111',
-                      marginBottom: '8px',
-                      lineHeight: 1.3
-                    }}>
-                      {titleText}
-                    </h3>
-
-                    <p style={{
-                      color: '#FF6600',
-                      fontSize: '0.88rem',
-                      fontWeight: 700,
-                      marginBottom: '16px'
-                    }}>
-                      {taglineText}
-                    </p>
-
-                    {/* Aligned Specs Grid */}
+                    flexDirection: 'column',
+                    justify: 'space-between',
+                    boxShadow: isHovered
+                      ? isDark ? '0 12px 30px rgba(255, 102, 0, 0.3)' : '0 12px 30px rgba(255, 102, 0, 0.2)'
+                      : isDark ? '0 4px 16px rgba(0,0,0,0.4)' : '0 4px 16px rgba(0,0,0,0.06)',
+                    height: '100%',
+                    transition: 'border-color 0.28s ease, box-shadow 0.28s ease'
+                  }}
+                >
+                  <div>
+                    {/* Dead-Centered Image Container Box */}
                     <div style={{
-                      borderTop: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)'}`,
-                      paddingTop: '12px',
-                      marginBottom: '16px',
+                      backgroundColor: isDark ? 'rgba(18, 18, 18, 0.6)' : 'rgba(242, 244, 247, 0.8)',
+                      padding: '20px',
+                      height: '210px',
+                      width: '100%',
                       display: 'flex',
-                      flexDirection: 'column',
-                      gap: '6px'
+                      alignItems: 'center',
+                      justify: 'center',
+                      position: 'relative',
+                      overflow: 'hidden'
                     }}>
-                      {Object.entries(machine.specs).slice(0, 3).map(([sKey, sVal], idx) => {
-                        const translatedLabel = getSpecLabel(sKey, language);
+                      <span style={{
+                        position: 'absolute',
+                        top: '12px',
+                        left: '12px',
+                        backgroundColor: '#FF6600',
+                        color: '#FFFFFF',
+                        fontWeight: 800,
+                        fontSize: '0.7rem',
+                        padding: '3px 8px',
+                        borderRadius: '3px',
+                        textTransform: 'uppercase',
+                        zIndex: 5
+                      }}>
+                        {language === 'uk' ? 'ТОП ГНБ' : language === 'pl' ? 'POLECANE' : 'TOP HDD'}
+                      </span>
 
-                        return (
-                          <div key={idx} style={{
-                            display: 'grid',
-                            gridTemplateColumns: '135px 1fr',
-                            alignItems: 'center',
-                            gap: '8px',
-                            fontSize: '0.82rem'
-                          }}>
-                            <span style={{ color: isDark ? '#999' : '#666', fontWeight: 700, whiteSpace: 'nowrap' }}>
-                              {translatedLabel}:
-                            </span>
-                            <strong style={{ color: isDark ? '#FFF' : '#222' }}>
-                              {sVal}
-                            </strong>
-                          </div>
-                        );
-                      })}
+                      <img
+                        src={machine.image}
+                        alt={titleText}
+                        style={{
+                          maxHeight: '170px',
+                          maxWidth: '88%',
+                          width: 'auto',
+                          height: 'auto',
+                          objectFit: 'contain',
+                          display: 'block',
+                          margin: 'auto',
+                          transform: isHovered ? 'scale(1.06)' : 'scale(1)',
+                          transition: 'transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1)'
+                        }}
+                      />
+                    </div>
+
+                    <div style={{ padding: '24px' }}>
+                      <h3 style={{
+                        fontSize: '1.25rem',
+                        fontWeight: 800,
+                        color: isHovered ? '#FF6600' : isDark ? '#FFFFFF' : '#111111',
+                        marginBottom: '8px',
+                        lineHeight: 1.3,
+                        transition: 'color 0.25s ease'
+                      }}>
+                        {titleText}
+                      </h3>
+
+                      <p style={{
+                        fontSize: '0.88rem',
+                        color: isDark ? '#A0A0A0' : '#666666',
+                        marginBottom: '20px',
+                        lineHeight: 1.5,
+                        minHeight: '42px'
+                      }}>
+                        {taglineText}
+                      </p>
+
+                      {machine.specs && (
+                        <div style={{
+                          backgroundColor: isDark ? 'rgba(16, 16, 16, 0.6)' : '#F8F9FA',
+                          borderRadius: '6px',
+                          padding: '12px 14px',
+                          marginBottom: '20px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '6px',
+                          fontSize: '0.8rem',
+                          border: `1px solid ${isDark ? '#2A2A2A' : '#EAEAEA'}`
+                        }}>
+                          {Object.entries(machine.specs).slice(0, 3).map(([key, val]) => (
+                            <div key={key} style={{ display: 'flex', justifyContent: 'space-between', color: isDark ? '#CCC' : '#555' }}>
+                              <span style={{ textTransform: 'capitalize', fontWeight: 600 }}>{key}:</span>
+                              <span style={{ fontWeight: 800, color: '#FF6600' }}>{val}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
 
-                <div style={{ padding: '0 24px 24px 24px' }}>
-                  <button
-                    onClick={() => setSelectedProduct(machine)}
-                    className="btn-primary"
-                    style={{ width: '100%', justifyContent: 'center' }}
-                  >
-                    <span>{t.featured.specsBtn}</span>
-                    <ArrowRight size={16} />
-                  </button>
+                  <div style={{ padding: '0 24px 24px 24px' }}>
+                    <button
+                      onClick={() => setSelectedProduct(machine)}
+                      className="btn-primary"
+                      style={{ width: '100%', justifyContent: 'center' }}
+                    >
+                      <span>{t.featured.btnDetails}</span>
+                      <ArrowRight size={16} />
+                    </button>
+                  </div>
                 </div>
-              </div>
+              </SmoothProductCard>
             );
           })}
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+          <button
+            onClick={() => onNavigateToProducts && onNavigateToProducts('products')}
+            className="btn-outline"
+            style={{
+              borderColor: '#FF6600',
+              color: isDark ? '#FFFFFF' : '#111111'
+            }}
+          >
+            <span>{t.featured.btnViewAll}</span>
+            <ArrowRight size={16} />
+          </button>
         </div>
       </div>
 

@@ -1,15 +1,21 @@
 import React from 'react';
-import { Phone, MapPin, Lock } from 'lucide-react';
+import { Phone, Mail, MapPin, Lock, User } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 
 export default function Footer({ onNavigate, onOpenAdmin }) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
 
   const handleLinkClick = (page) => {
     if (onNavigate) {
       onNavigate(page);
     }
   };
+
+  const contact1Name = language === 'uk' ? 'Ірина Лясковська' : 'Iryna Liaskovska';
+  const contact1Role = language === 'uk' ? 'Бухгалтерія / Адміністрація' : language === 'pl' ? 'Księgowość / Administracja' : 'Accounting & Administration';
+
+  const contact2Name = language === 'uk' ? 'Олег Липкин' : 'Oleg Lypkyn';
+  const contact2Role = language === 'uk' ? 'Сервіс та Вживана техніка' : language === 'pl' ? 'Serwis i Sprzęt Używany' : 'Service & Pre-Owned Machinery';
 
   return (
     <footer style={{
@@ -21,7 +27,7 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
       overflow: 'hidden'
     }}>
       <div className="container">
-        {/* Main 4-Column Responsive Grid with Gap & Bounds */}
+        {/* Main 4-Column Responsive Grid */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
@@ -60,28 +66,12 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#E2E8F0' }}>
                 <MapPin size={16} style={{ color: '#FF6600', flexShrink: 0 }} />
-                <span>{t.footer.contactUA}</span>
+                <span>м. Київ, Україна (Офіційне представництво JLM Group)</span>
               </div>
-              <a
-                href="tel:+380503806692"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                  color: '#FFFFFF',
-                  fontWeight: 700,
-                  transition: 'color 0.2s'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#FF6600'}
-                onMouseLeave={(e) => e.currentTarget.style.color = '#FFFFFF'}
-              >
-                <Phone size={16} style={{ color: '#FF6600', flexShrink: 0 }} />
-                <span>+380 50 380 66 92</span>
-              </a>
             </div>
           </div>
 
-          {/* Column 2: Equipment Catalog */}
+          {/* Column 2: Quick Links */}
           <div style={{ maxWidth: '100%' }}>
             <h4 style={{
               color: '#FFFFFF',
@@ -94,7 +84,7 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
               paddingBottom: '6px',
               display: 'inline-block'
             }}>
-              {t.footer.productsTitle}
+              {t.footer.quickLinks}
             </h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.88rem', padding: 0 }}>
               <li>
@@ -104,76 +94,17 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
                   onMouseEnter={(e) => e.currentTarget.style.color = '#FF6600'}
                   onMouseLeave={(e) => e.currentTarget.style.color = '#A0A0A0'}
                 >
-                  {t.nav.directionalDrills}
+                  {t.nav.products}
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleLinkClick('products')}
+                  onClick={() => handleLinkClick('used')}
                   style={{ background: 'none', border: 'none', color: '#A0A0A0', cursor: 'pointer', padding: 0, textAlign: 'left', transition: 'color 0.2s' }}
                   onMouseEnter={(e) => e.currentTarget.style.color = '#FF6600'}
                   onMouseLeave={(e) => e.currentTarget.style.color = '#A0A0A0'}
                 >
-                  {t.nav.vacuumExcavators}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleLinkClick('products')}
-                  style={{ background: 'none', border: 'none', color: '#A0A0A0', cursor: 'pointer', padding: 0, textAlign: 'left', transition: 'color 0.2s' }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = '#FF6600'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = '#A0A0A0'}
-                >
-                  {t.nav.trenchers}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleLinkClick('products')}
-                  style={{ background: 'none', border: 'none', color: '#A0A0A0', cursor: 'pointer', padding: 0, textAlign: 'left', transition: 'color 0.2s' }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = '#FF6600'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = '#A0A0A0'}
-                >
-                  {t.nav.skidSteers}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleLinkClick('products')}
-                  style={{ background: 'none', border: 'none', color: '#A0A0A0', cursor: 'pointer', padding: 0, textAlign: 'left', transition: 'color 0.2s' }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = '#FF6600'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = '#A0A0A0'}
-                >
-                  {t.nav.fluidSystems}
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: Ditch Witch Ukraine Links */}
-          <div style={{ maxWidth: '100%' }}>
-            <h4 style={{
-              color: '#FFFFFF',
-              fontWeight: 800,
-              fontSize: '0.98rem',
-              letterSpacing: '0.06em',
-              textTransform: 'uppercase',
-              marginBottom: '20px',
-              borderBottom: '2px solid #FF6600',
-              paddingBottom: '6px',
-              display: 'inline-block'
-            }}>
-              DITCH WITCH УКРАЇНА
-            </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.88rem', padding: 0 }}>
-              <li>
-                <button
-                  onClick={() => handleLinkClick('about')}
-                  style={{ background: 'none', border: 'none', color: '#A0A0A0', cursor: 'pointer', padding: 0, textAlign: 'left', transition: 'color 0.2s' }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = '#FF6600'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = '#A0A0A0'}
-                >
-                  {t.nav.about}
+                  {t.nav.used}
                 </button>
               </li>
               <li>
@@ -198,18 +129,18 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
               </li>
               <li>
                 <button
-                  onClick={() => handleLinkClick('news')}
+                  onClick={() => handleLinkClick('about')}
                   style={{ background: 'none', border: 'none', color: '#A0A0A0', cursor: 'pointer', padding: 0, textAlign: 'left', transition: 'color 0.2s' }}
                   onMouseEnter={(e) => e.currentTarget.style.color = '#FF6600'}
                   onMouseLeave={(e) => e.currentTarget.style.color = '#A0A0A0'}
                 >
-                  {t.nav.news}
+                  {t.nav.about}
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: Official Distributor Badge & Motto */}
+          {/* Column 3: Contact Person 1 - Ірина Лясковська / Iryna Liaskovska */}
           <div style={{ maxWidth: '100%' }}>
             <h4 style={{
               color: '#FFFFFF',
@@ -222,23 +153,92 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
               paddingBottom: '6px',
               display: 'inline-block'
             }}>
-              {t.footer.distributorTitle}
+              {contact1Name}
             </h4>
-            <p style={{ fontSize: '0.85rem', color: '#A0A0A0', lineHeight: 1.6, marginBottom: '20px' }}>
-              {t.footer.distributorDesc}
-            </p>
+
             <div style={{
               backgroundColor: '#161616',
-              padding: '14px 18px',
-              borderRadius: '6px',
-              borderLeft: '4px solid #FF6600',
-              fontSize: '0.82rem',
-              color: '#CED0D1',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
+              padding: '16px',
+              borderRadius: '8px',
+              borderLeft: '3px solid #FF6600',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
+              fontSize: '0.85rem'
             }}>
-              <strong style={{ color: '#FFFFFF', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                {t.footer.motto}
-              </strong>
+              <div style={{ fontWeight: 800, color: '#FFFFFF', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <User size={15} style={{ color: '#FF6600' }} />
+                <span>{contact1Role}</span>
+              </div>
+              <a
+                href="tel:+380503806692"
+                style={{ color: '#E2E8F0', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#FF6600'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#E2E8F0'}
+              >
+                <Phone size={14} style={{ color: '#FF6600' }} />
+                <span>+380 50 380 66 92</span>
+              </a>
+              <a
+                href="mailto:buh@ditchwitch.kiev.ua"
+                style={{ color: '#FF6600', textDecoration: 'none', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}
+                onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
+                onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
+              >
+                <Mail size={14} />
+                <span>buh@ditchwitch.kiev.ua</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Column 4: Contact Person 2 - Олег Липкин / Oleg Lypkyn */}
+          <div style={{ maxWidth: '100%' }}>
+            <h4 style={{
+              color: '#FFFFFF',
+              fontWeight: 800,
+              fontSize: '0.98rem',
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
+              marginBottom: '20px',
+              borderBottom: '2px solid #FF6600',
+              paddingBottom: '6px',
+              display: 'inline-block'
+            }}>
+              {contact2Name}
+            </h4>
+
+            <div style={{
+              backgroundColor: '#161616',
+              padding: '16px',
+              borderRadius: '8px',
+              borderLeft: '3px solid #FF6600',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
+              fontSize: '0.85rem'
+            }}>
+              <div style={{ fontWeight: 800, color: '#FFFFFF', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <User size={15} style={{ color: '#FF6600' }} />
+                <span>{contact2Role}</span>
+              </div>
+              <a
+                href="tel:+380506894621"
+                style={{ color: '#E2E8F0', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#FF6600'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#E2E8F0'}
+              >
+                <Phone size={14} style={{ color: '#FF6600' }} />
+                <span>+380 50 689 46 21</span>
+              </a>
+              <a
+                href="mailto:service@ditchwitch.kiev.ua"
+                style={{ color: '#FF6600', textDecoration: 'none', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}
+                onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
+                onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
+              >
+                <Mail size={14} />
+                <span>service@ditchwitch.kiev.ua</span>
+              </a>
             </div>
           </div>
         </div>
@@ -260,14 +260,11 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
           </div>
 
           <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-            <a href="#" style={{ color: '#777777', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FFF'} onMouseLeave={(e) => e.currentTarget.style.color = '#777777'}>
-              {t.footer.privacy}
-            </a>
-            <a href="#" style={{ color: '#777777', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FFF'} onMouseLeave={(e) => e.currentTarget.style.color = '#777777'}>
-              {t.footer.terms}
-            </a>
             <button
-              onClick={onOpenAdmin}
+              onClick={() => {
+                if (onOpenAdmin) onOpenAdmin();
+                else if (onNavigate) onNavigate('admin');
+              }}
               style={{
                 background: 'none',
                 border: 'none',

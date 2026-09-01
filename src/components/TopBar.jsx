@@ -216,29 +216,37 @@ export default function TopBar({ onOpenAdmin, onSearch }) {
                 position: 'absolute',
                 top: 'calc(100% + 8px)',
                 right: 0,
-                width: 'min(340px, 90vw)',
+                width: 'min(540px, 92vw)',
                 backgroundColor: isDark ? '#1C1C1C' : '#FFFFFF',
                 border: `1px solid ${isDark ? '#333333' : '#E2E8F0'}`,
                 borderRadius: '12px',
-                boxShadow: isDark ? '0 12px 40px rgba(0,0,0,0.8)' : '0 12px 30px rgba(0,0,0,0.15)',
+                boxShadow: isDark ? '0 14px 45px rgba(0,0,0,0.85)' : '0 14px 35px rgba(0,0,0,0.18)',
                 zIndex: 2000,
                 overflow: 'hidden',
                 animation: 'fadeIn 0.2s ease'
               }}>
                 <div style={{
-                  padding: '10px 16px',
+                  padding: '12px 18px',
                   backgroundColor: isDark ? '#141414' : '#F8FAFC',
                   borderBottom: `1px solid ${isDark ? '#2B2B2B' : '#E2E8F0'}`,
-                  fontSize: '0.78rem',
+                  fontSize: '0.82rem',
                   fontWeight: 800,
                   color: '#FF6600',
                   textTransform: 'uppercase',
                   display: 'flex',
                   justify: 'space-between',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  gap: '12px'
                 }}>
                   <span>{language === 'uk' ? 'Результати пошуку' : 'Matching Equipment'}</span>
-                  <span>{matchingProducts.length} {language === 'uk' ? 'знайдено' : 'found'}</span>
+                  <span style={{
+                    backgroundColor: 'rgba(255, 102, 0, 0.15)',
+                    padding: '2px 8px',
+                    borderRadius: '12px',
+                    fontSize: '0.78rem'
+                  }}>
+                    {matchingProducts.length} {language === 'uk' ? 'знайдено' : 'found'}
+                  </span>
                 </div>
 
                 {matchingProducts.length === 0 ? (
