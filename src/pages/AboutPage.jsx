@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Clock, ShieldCheck, Award, Wrench, Users, ArrowRight, Handshake } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ShieldCheck, Award, Wrench, Users, ArrowRight, Handshake, CheckCircle2 } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
 
@@ -16,6 +16,67 @@ export default function AboutPage({ onNavigateToProducts }) {
     : 'Kaunaska Street 13, Kyiv, Ukraine';
 
   const contactPhone = '+380 50 380 66 92';
+
+  // Multi-language text exact from official JLM Scandinavia AB (JLM Ukraine)
+  const contentData = {
+    badge: {
+      uk: 'DITCH WITCH УКРАЇНА • ГРУПА JLM',
+      en: 'DITCH WITCH UKRAINE • JLM GROUP',
+      pl: 'DITCH WITCH UKRAINA • GRUPA JLM'
+    },
+    title: {
+      uk: 'Про Компанію Ditch Witch Україна',
+      en: 'About Ditch Witch Ukraine',
+      pl: 'O Firmie Ditch Witch Ukraina'
+    },
+    subtitle: {
+      uk: 'Офіційне представництво групи JLM — ексклюзивного дистриб’ютора Ditch Witch® в Україні та Північній Європі.',
+      en: 'Official representation of JLM Group — exclusive distributor of Ditch Witch® in Ukraine and Northern Europe.',
+      pl: 'Oficjalny przedstawiciel grupy JLM — wyłącznego dystrybutora Ditch Witch® w Ukrainie i Europie Północnej.'
+    },
+    mainTextP1: {
+      uk: 'Ditch Witch Ukraine входить до групи JLM, яка є офіційним представником Ditch Witch® у Швеції, Норвегії, Фінляндії, Данії, Польщі та Україні. Компанія Дітч Вітч Україна продає машини та пристрої для компаній, що спеціалізуються на будівництві підземної інфраструктури з початку сімдесятих років минулого століття. Штаб-квартира компанії знаходиться в Мальме (Швеція), де є центральний склад запасних частин та машин.',
+      en: 'Ditch Witch Ukraine is part of the JLM Group, which is the official distributor of Ditch Witch® in Sweden, Norway, Finland, Denmark, Poland, and Ukraine. Ditch Witch Ukraine supplies machinery and equipment for companies specializing in underground infrastructure construction since the early 1970s. The company headquarters are located in Malmö (Sweden), housing the central spare parts and machinery warehouse.',
+      pl: 'Ditch Witch Ukraina wchodzi w skład grupy JLM, która jest oficjalnym przedstawicielem Ditch Witch® w Szwecji, Norwegii, Finlandii, Danii, Polsce oraz w Ukrainie. Firma Ditch Witch Ukraina dostarcza maszyny i urządzenia dla przedsiębiorstw specjalizujących się w budownictwie infrastruktury podziemnej od początku lat siedemdziesiątych ubiegłego wieku. Siedziba główna firmy znajduje się w Malmö (Szwecja), gdzie mieści się centralny magazyn części zamiennych i maszyn.'
+    },
+    yearsHighlight: {
+      uk: 'Ми працюємо на українському ринку вже 20 років.',
+      en: 'We have been operating in the Ukrainian market for 20 years.',
+      pl: 'Działamy na rynku ukraińskim już od 20 lat.'
+    },
+    brandsHighlight: {
+      uk: 'Ми є єдиним представником торгових марок Ditch Witch®, Zahn®, Subsite® Electronics, HammerHead®, HammerHead Mole®, American Augers® – TRENCOR®, Häny, а також дистриб’ютором торгової марки Baroid®. В нас великий склад запасних частин.',
+      en: 'We are the exclusive representative of Ditch Witch®, Zahn®, Subsite® Electronics, HammerHead®, HammerHead Mole®, American Augers® – TRENCOR®, Häny, and authorized distributor of Baroid®. We maintain an extensive spare parts warehouse in Kyiv.',
+      pl: 'Jesteśmy wyłącznym przedstawicielem marek Ditch Witch®, Zahn®, Subsite® Electronics, HammerHead®, HammerHead Mole®, American Augers® – TRENCOR®, Häny, a także dystrybutorem marki Baroid®. Posiadamy duży magazyn części zamiennych.'
+    },
+    prioritiesTitle: {
+      uk: 'Нашим пріоритетом є:',
+      en: 'Our key priorities are:',
+      pl: 'Naszym priorytetem jest:'
+    },
+    prioritiesList: [
+      {
+        uk: 'бути надійним партнером для клієнтів',
+        en: 'being a reliable long-term partner for our clients',
+        pl: 'bycie niezawodnym partnerem dla naszych klientów'
+      },
+      {
+        uk: 'бути лідером у консалтинговій та технічній службі',
+        en: 'leading in technical consulting and engineering service support',
+        pl: 'liderstwo w usłudze doradczej i technicznej'
+      },
+      {
+        uk: 'проявляти творчість та відкритість до загальних потреб клієнта',
+        en: 'demonstrating creativity and openness to our clients overall needs',
+        pl: 'wykazywanie kreatywności i otwartości na ogólne potrzeby klienta'
+      },
+      {
+        uk: 'забезпечувати комплексне обслуговування машин та пристроїв торгової марки Ditch Witch® та продуктів пов’язаних компаній',
+        en: 'providing complete lifecycle maintenance for Ditch Witch® machinery and partner products',
+        pl: 'zapewnienie kompleksowej obsługi serwisowej maszyn i urządzeń marki Ditch Witch® oraz produktów firm powiązanych'
+      }
+    ]
+  };
 
   return (
     <div style={{
@@ -41,7 +102,7 @@ export default function AboutPage({ onNavigateToProducts }) {
             letterSpacing: '0.15em',
             textTransform: 'uppercase'
           }}>
-            DITCH WITCH UKRAINE
+            {contentData.badge[language] || contentData.badge.uk}
           </span>
           <h1 style={{
             fontSize: 'clamp(2.2rem, 4vw, 3.2rem)',
@@ -50,141 +111,22 @@ export default function AboutPage({ onNavigateToProducts }) {
             marginBottom: '14px',
             textTransform: 'uppercase'
           }}>
-            {language === 'uk' ? 'Про Компанію Ditch Witch Україна' : language === 'pl' ? 'O Firmie Ditch Witch Ukraina' : 'About Ditch Witch Ukraine'}
+            {contentData.title[language] || contentData.title.uk}
           </h1>
           <p style={{
             color: '#CED0D1',
-            maxWidth: '750px',
+            maxWidth: '780px',
             margin: '0 auto',
             fontSize: '1.05rem',
             lineHeight: 1.6
           }}>
-            {language === 'uk'
-              ? 'Офіційний дистриб’ютор спеціалізованої будівельної техніки для підземного прокладання комунікацій з власною сервісною службою та складом оригінальних запчастин.'
-              : language === 'pl'
-              ? 'Oficjalny dystrybutor maszyn budowlanych do bezwykopowej budowy podziemnej w Ukrainie z serwisem i magazynem części.'
-              : 'Official distributor of underground construction machinery, HDD rigs, trenchers, and vacuum excavators in Ukraine.'}
+            {contentData.subtitle[language] || contentData.subtitle.uk}
           </p>
         </div>
       </div>
 
       <div className="container" style={{ marginTop: '50px' }}>
-        {/* Company Overview & Guarantees Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '40px',
-          alignItems: 'center',
-          marginBottom: '60px'
-        }}>
-          <div>
-            <span style={{
-              color: '#FF6600',
-              fontWeight: 800,
-              fontSize: '0.85rem',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase'
-            }}>
-              {language === 'uk' ? 'НАШІ ПЕРЕВАГИ' : 'WHY CHOOSE US'}
-            </span>
-            <h2 style={{
-              fontSize: 'clamp(1.8rem, 3vw, 2.4rem)',
-              fontWeight: 900,
-              marginTop: '6px',
-              marginBottom: '20px',
-              lineHeight: 1.2
-            }}>
-              {language === 'uk' ? 'Лідер у галузі безаварійного підземного будівництва' : 'Leading the Underground Utility Construction Industry'}
-            </h2>
-            <p style={{ fontSize: '1rem', lineHeight: 1.7, color: isDark ? '#CCCCCC' : '#444444', marginBottom: '16px' }}>
-              {language === 'uk'
-                ? 'Ditch Witch Україна постачає передову техніку для прокладання кабелів, газопроводів, водопроводів та зв’язку. Ми допомагаємо підрядникам вирішувати найскладніші завдання у міських та польових умовах.'
-                : 'Ditch Witch Ukraine delivers advanced machinery for underground utility installation, power grid maintenance, and telecom expansion.'}
-            </p>
-            <p style={{ fontSize: '1rem', lineHeight: 1.7, color: isDark ? '#CCCCCC' : '#444444', marginBottom: '28px' }}>
-              {language === 'uk'
-                ? 'Всі машини проходять передпродажну підготовку та супроводжуються офіційною гарантією виробника The Charles Machine Works.'
-                : 'All equipment is backed by manufacturer warranties, certified technical inspections, and full operator training.'}
-            </p>
-
-            <button
-              onClick={onNavigateToProducts}
-              className="btn-primary"
-            >
-              <span>{language === 'uk' ? 'ПЕРЕГЛЯНУТИ КАТАЛОГ ТЕХНІКИ' : 'VIEW EQUIPMENT CATALOG'}</span>
-              <ArrowRight size={16} />
-            </button>
-          </div>
-
-          {/* Key Advantage Cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '20px' }}>
-            <div style={{
-              backgroundColor: isDark ? 'rgba(28, 28, 28, 0.75)' : 'rgba(255, 255, 255, 0.75)',
-              backdropFilter: 'blur(10px)',
-              padding: '24px',
-              borderRadius: '10px',
-              border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`
-            }}>
-              <ShieldCheck size={28} style={{ color: '#FF6600', marginBottom: '12px' }} />
-              <h4 style={{ fontSize: '1.05rem', fontWeight: 800, marginBottom: '6px' }}>
-                {language === 'uk' ? 'Гарантія Якості' : 'Official Warranty'}
-              </h4>
-              <p style={{ fontSize: '0.85rem', color: isDark ? '#AAA' : '#666', margin: 0 }}>
-                Сертифікована підтримка виробника.
-              </p>
-            </div>
-
-            <div style={{
-              backgroundColor: isDark ? 'rgba(28, 28, 28, 0.75)' : 'rgba(255, 255, 255, 0.75)',
-              backdropFilter: 'blur(10px)',
-              padding: '24px',
-              borderRadius: '10px',
-              border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`
-            }}>
-              <Wrench size={28} style={{ color: '#FF6600', marginBottom: '12px' }} />
-              <h4 style={{ fontSize: '1.05rem', fontWeight: 800, marginBottom: '6px' }}>
-                {language === 'uk' ? 'Власний Сервіс' : 'Certified Service'}
-              </h4>
-              <p style={{ fontSize: '0.85rem', color: isDark ? '#AAA' : '#666', margin: 0 }}>
-                Мобільні сервісні бригади 24/7.
-              </p>
-            </div>
-
-            <div style={{
-              backgroundColor: isDark ? 'rgba(28, 28, 28, 0.75)' : 'rgba(255, 255, 255, 0.75)',
-              backdropFilter: 'blur(10px)',
-              padding: '24px',
-              borderRadius: '10px',
-              border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`
-            }}>
-              <Award size={28} style={{ color: '#FF6600', marginBottom: '12px' }} />
-              <h4 style={{ fontSize: '1.05rem', fontWeight: 800, marginBottom: '6px' }}>
-                {language === 'uk' ? 'Оригінальні Запчастини' : 'Genuine Parts'}
-              </h4>
-              <p style={{ fontSize: '0.85rem', color: isDark ? '#AAA' : '#666', margin: 0 }}>
-                Великий склад інструменту в Києві.
-              </p>
-            </div>
-
-            <div style={{
-              backgroundColor: isDark ? 'rgba(28, 28, 28, 0.75)' : 'rgba(255, 255, 255, 0.75)',
-              backdropFilter: 'blur(10px)',
-              padding: '24px',
-              borderRadius: '10px',
-              border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`
-            }}>
-              <Users size={28} style={{ color: '#FF6600', marginBottom: '12px' }} />
-              <h4 style={{ fontSize: '1.05rem', fontWeight: 800, marginBottom: '6px' }}>
-                {language === 'uk' ? 'Навчання Операторів' : 'Operator Training'}
-              </h4>
-              <p style={{ fontSize: '0.85rem', color: isDark ? '#AAA' : '#666', margin: 0 }}>
-                Навчання ефективному бурінню.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* STRATEGIC PARTNERSHIP WITH JLM SECTION (Centered Logo Relative to Card) */}
+        {/* Main Official JLM About Us Narrative Section */}
         <div style={{
           backgroundColor: isDark ? 'rgba(28, 28, 28, 0.75)' : 'rgba(255, 255, 255, 0.75)',
           backdropFilter: 'blur(10px)',
@@ -192,90 +134,142 @@ export default function AboutPage({ onNavigateToProducts }) {
           borderRadius: '14px',
           border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)'}`,
           boxShadow: isDark ? '0 10px 30px rgba(0,0,0,0.5)' : '0 10px 30px rgba(0,0,0,0.06)',
-          padding: '36px',
-          marginBottom: '60px'
+          padding: '40px',
+          marginBottom: '50px'
         }}>
+          {/* Top JLM Group Partnership Banner */}
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '32px',
-            alignItems: 'center'
+            display: 'flex',
+            alignItems: 'center',
+            justify: 'space-between',
+            flexWrap: 'wrap',
+            gap: '24px',
+            paddingBottom: '30px',
+            marginBottom: '30px',
+            borderBottom: `1px solid ${isDark ? '#2B2B2B' : '#EAEAEA'}`
           }}>
-            {/* Perfectly Dead-Centered JLM Logo Container */}
+            <div>
+              <span style={{ color: '#FF6600', fontWeight: 800, fontSize: '0.8rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                JLM GROUP SCANDINAVIA & UKRAINE
+              </span>
+              <h2 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', fontWeight: 900, marginTop: '4px' }}>
+                {language === 'uk' ? 'Ditch Witch® в Україні та Європі' : language === 'pl' ? 'Ditch Witch® w Ukrainie i Europie' : 'Ditch Witch® in Ukraine & Europe'}
+              </h2>
+            </div>
+
             <div style={{
-              backgroundColor: isDark ? 'rgba(18, 18, 18, 0.85)' : '#FFFFFF',
-              border: `1px solid ${isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.1)'}`,
-              borderRadius: '12px',
-              padding: '24px',
+              backgroundColor: isDark ? '#141414' : '#FFFFFF',
+              border: `1px solid ${isDark ? '#333' : '#DDD'}`,
+              borderRadius: '10px',
+              padding: '12px 24px',
               display: 'flex',
               alignItems: 'center',
-              justify: 'center',
-              boxShadow: isDark ? '0 6px 20px rgba(0,0,0,0.4)' : '0 6px 18px rgba(0,0,0,0.05)',
-              minHeight: '160px',
-              height: '100%'
+              justify: 'center'
             }}>
               <img
                 src="/Risorse/Immagini/jlm_logo.png"
-                alt="JLM Partnership Logo"
-                style={{
-                  maxHeight: '100px',
-                  maxWidth: '80%',
-                  objectFit: 'contain',
-                  display: 'block',
-                  margin: 'auto'
-                }}
+                alt="JLM Group Logo"
+                style={{ maxHeight: '55px', objectFit: 'contain' }}
               />
             </div>
+          </div>
 
-            {/* JLM Partnership Description */}
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#FF6600', fontWeight: 800, fontSize: '0.8rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-                <Handshake size={18} />
-                <span>
-                  {language === 'uk' ? 'Стратегічне Співробітництво' : language === 'pl' ? 'Strategiczne Partnerstwo' : 'Strategic Partnership'}
-                </span>
-              </div>
+          {/* Detailed Narrative Paragraphs */}
+          <p style={{
+            fontSize: '1.05rem',
+            lineHeight: 1.75,
+            color: isDark ? '#DDDDDD' : '#333333',
+            marginBottom: '24px'
+          }}>
+            {contentData.mainTextP1[language] || contentData.mainTextP1.uk}
+          </p>
 
-              <h3 style={{
-                fontSize: 'clamp(1.5rem, 2.8vw, 2rem)',
-                fontWeight: 900,
-                marginTop: '6px',
-                marginBottom: '14px',
-                lineHeight: 1.2
-              }}>
-                {language === 'uk'
-                  ? 'Партнерство з компанією JLM'
-                  : language === 'pl'
-                  ? 'Współpraca z firmą JLM'
-                  : 'Collaboration with JLM'}
+          {/* Highlight Badge Boxes */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '20px',
+            marginBottom: '32px'
+          }}>
+            <div style={{
+              backgroundColor: '#FF6600',
+              color: '#FFFFFF',
+              borderRadius: '10px',
+              padding: '24px',
+              boxShadow: '0 6px 20px rgba(255, 102, 0, 0.3)'
+            }}>
+              <Award size={32} style={{ marginBottom: '12px' }} />
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 900, marginBottom: '6px' }}>
+                {contentData.yearsHighlight[language] || contentData.yearsHighlight.uk}
               </h3>
-
-              <p style={{
-                fontSize: '0.98rem',
-                lineHeight: 1.65,
-                color: isDark ? '#CCCCCC' : '#444444',
-                marginBottom: '12px'
-              }}>
+              <p style={{ fontSize: '0.88rem', opacity: 0.9, margin: 0 }}>
                 {language === 'uk'
-                  ? 'Ditch Witch Україна плідно співпрацює з компанією JLM для забезпечення клієнтів найсучаснішими рішеннями у галузі безаварійного підземного будівництва, сервісного обслуговування та постачання високотехнологічного обладнання.'
-                  : language === 'pl'
-                  ? 'Ditch Witch Ukraina ściśle współpracuje z firmą JLM, dostarczając klientom najnowocześniejsze rozwiązania w zakresie bezwykopowej budowy podziemnej, serwisu oraz technologii.'
-                  : 'Ditch Witch Ukraine maintains a strong strategic collaboration with JLM to provide customers with state-of-the-art trenchless utility installation solutions, expert field service support, and high-reliability machinery.'}
-              </p>
-
-              <p style={{
-                fontSize: '0.92rem',
-                lineHeight: 1.6,
-                color: isDark ? '#AAAAAA' : '#666666',
-                margin: 0
-              }}>
-                {language === 'uk'
-                  ? 'Спільна експертиза дає змогу впроваджувати ефективні інженерні проекти, розширювати номенклатуру бурового інструменту та забезпечувати найвищий рівень сервісної підтримки для наших партнерів.'
-                  : language === 'pl'
-                  ? 'Wspólna wiedza inżynieryjna pozwala na realizację skomplikowanych projektów i rozwój zaplecza serwisowego.'
-                  : 'Our joint expertise enables seamless implementation of complex engineering projects and expands certified technical service coverage across Ukraine.'}
+                  ? '20 років бездоганного сервісу та технічної підтримки спецтехніки в Україні.'
+                  : '20 years of trusted machinery supply and engineering support across Ukraine.'}
               </p>
             </div>
+
+            <div style={{
+              backgroundColor: isDark ? '#181818' : '#F4F6F9',
+              border: `1px solid ${isDark ? '#333' : '#E0E0E0'}`,
+              borderRadius: '10px',
+              padding: '24px'
+            }}>
+              <ShieldCheck size={32} style={{ color: '#FF6600', marginBottom: '12px' }} />
+              <h4 style={{ fontSize: '1rem', fontWeight: 800, marginBottom: '8px', color: isDark ? '#FFF' : '#111' }}>
+                {language === 'uk' ? 'Офіційний Дистриб’ютор ТМ' : 'Exclusive Brand Distribution'}
+              </h4>
+              <p style={{ fontSize: '0.88rem', color: isDark ? '#BBB' : '#555', lineHeight: 1.6, margin: 0 }}>
+                {contentData.brandsHighlight[language] || contentData.brandsHighlight.uk}
+              </p>
+            </div>
+          </div>
+
+          {/* Company Priorities Checklist */}
+          <div style={{
+            backgroundColor: isDark ? '#161616' : '#FFFFFF',
+            border: `1px solid ${isDark ? '#2C2C2C' : '#E2E8F0'}`,
+            borderRadius: '10px',
+            padding: '28px'
+          }}>
+            <h3 style={{
+              fontSize: '1.2rem',
+              fontWeight: 900,
+              color: '#FF6600',
+              textTransform: 'uppercase',
+              marginBottom: '18px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px'
+            }}>
+              <Handshake size={22} />
+              <span>{contentData.prioritiesTitle[language] || contentData.prioritiesTitle.uk}</span>
+            </h3>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '16px'
+            }}>
+              {contentData.prioritiesList.map((item, idx) => {
+                const text = item[language] || item.uk;
+                return (
+                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <CheckCircle2 size={20} style={{ color: '#FF6600', flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ fontSize: '0.95rem', fontWeight: 700, color: isDark ? '#EEE' : '#222', lineHeight: 1.5 }}>
+                      {text}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div style={{ marginTop: '32px', textAlign: 'center' }}>
+            <button onClick={onNavigateToProducts} className="btn-primary">
+              <span>{language === 'uk' ? 'ПЕРЕГЛЯНУТИ КАТАЛОГ ТЕХНІКИ JLM' : 'VIEW JLM EQUIPMENT CATALOG'}</span>
+              <ArrowRight size={16} />
+            </button>
           </div>
         </div>
 
@@ -291,7 +285,7 @@ export default function AboutPage({ onNavigateToProducts }) {
         }}>
           {/* Clean Card Header with Button Flush Top-Right */}
           <div style={{
-            padding: '28px 32px',
+            padding: '24px 32px',
             borderBottom: `1px solid ${isDark ? '#2A2A2A' : '#EEEEEE'}`,
             display: 'flex',
             justify: 'space-between',

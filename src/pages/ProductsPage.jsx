@@ -24,12 +24,16 @@ export default function ProductsPage({ initialCategory = 'all' }) {
   }, [initialCategory]);
 
   const categoryFilterTabs = [
-    { id: 'all', label: { uk: 'Всі Моделі', en: 'All Equipment', pl: 'Wszystkie Modele' } },
-    { id: 'drilling', label: { uk: 'Установки ГНБ', en: 'Directional Drills', pl: 'Wiertnice HDB' } },
-    { id: 'trenchers', label: { uk: 'Траншеєкопачі', en: 'Trenchers', pl: 'Koparki Łańcuchowe' } },
-    { id: 'skidsteers', label: { uk: 'Міні-навантажувачі', en: 'Skid Steers', pl: 'Ładowarki Kompaktowe' } },
-    { id: 'vacuums', label: { uk: 'Вакуумні Екскаватори', en: 'Vacuum Excavators', pl: 'Koparki Próżniowe' } },
-    { id: 'fluids', label: { uk: 'Приготування Розчину', en: 'Fluid Systems', pl: 'Systemy Płuczkowe' } }
+    { id: 'all', label: { uk: 'Всі Моделі JLM', en: 'All JLM Machinery', pl: 'Wszystkie Modele JLM' } },
+    { id: 'hdd', label: { uk: 'Машини ГНБ (HDD)', en: 'HDD Drills', pl: 'Wiertnice HDB' } },
+    { id: 'mixers', label: { uk: 'Міксери бентонітові', en: 'Mud Mixers', pl: 'Mieszalniki' } },
+    { id: 'electronics', label: { uk: 'Електроніка Subsite®', en: 'Subsite Electronics', pl: 'Elektronika Subsite' } },
+    { id: 'locators', label: { uk: 'Локатори Subsite®', en: 'Subsite Locators', pl: 'Lokalizatory' } },
+    { id: 'trenchers', label: { uk: 'Віброукладачі та Траншеєкопачі', en: 'Plows & Trenchers', pl: 'Pługi i Koparki' } },
+    { id: 'bentonite', label: { uk: 'Бентоніт Baroid®', en: 'Baroid Bentonite', pl: 'Bentonit Baroid' } },
+    { id: 'skidsteers', label: { uk: 'Навантажувачі SK', en: 'Skid Steers', pl: 'Ładowarki Kompaktowe' } },
+    { id: 'american_augers', label: { uk: 'American Augers®', en: 'American Augers', pl: 'American Augers' } },
+    { id: 'recycling', label: { uk: 'Рециклінг розчину', en: 'Mud Recycling', pl: 'Recykling Płuczki' } }
   ];
 
   // Filter visible products based on selected category and search query
@@ -67,7 +71,7 @@ export default function ProductsPage({ initialCategory = 'all' }) {
             letterSpacing: '0.15em',
             textTransform: 'uppercase'
           }}>
-            DITCH WITCH UKRAINE
+            DITCH WITCH UKRAINE • JLM GROUP
           </span>
           <h1 style={{
             fontSize: 'clamp(2.2rem, 4vw, 3.2rem)',
@@ -76,7 +80,7 @@ export default function ProductsPage({ initialCategory = 'all' }) {
             marginBottom: '14px',
             textTransform: 'uppercase'
           }}>
-            {language === 'uk' ? 'Каталог Спецтехніки Ditch Witch' : language === 'pl' ? 'Katalog Sprzętu Ditch Witch' : 'Ditch Witch Equipment Catalog'}
+            {language === 'uk' ? 'Каталог Спецтехніки Ditch Witch & JLM' : language === 'pl' ? 'Katalog Sprzętu Ditch Witch & JLM' : 'Ditch Witch & JLM Equipment Catalog'}
           </h1>
           <p style={{
             color: '#CED0D1',
@@ -86,10 +90,10 @@ export default function ProductsPage({ initialCategory = 'all' }) {
             lineHeight: 1.6
           }}>
             {language === 'uk'
-              ? 'Найповніша лінійка бурових установок ГНБ, траншеєкопачів, вакуумних екскаваторів та навантажувачів від офіційного дистриб’ютора з гарантією та сервісом.'
+              ? 'Найповніша лінійка бурових установок ГНБ, міксерів, локаційних систем Subsite®, навантажувачів та продукції Baroid® від офіційного дистриб’ютора JLM Group.'
               : language === 'pl'
-              ? 'Pełna oferta wiertnic sterowanych HDB, koparek łańcuchowych, koparek próżniowych i ładowarek od oficjalnego dystrybutora z gwarancją.'
-              : 'Complete range of directional drills, trenchers, vacuum excavators, and skid steers with official warranty and certified service.'}
+              ? 'Pełna oferta wiertnic sterowanych HDB, mieszalników, elektroniki Subsite® i produktów Baroid® od oficjalnego dystrybutora Grupy JLM.'
+              : 'Complete range of HDD drills, mud mixers, Subsite® locating systems, skid steers, and Baroid® products from official distributor JLM Group.'}
           </p>
         </div>
       </div>
@@ -114,7 +118,7 @@ export default function ProductsPage({ initialCategory = 'all' }) {
           <div style={{
             display: 'flex',
             flexWrap: 'wrap',
-            gap: '12px'
+            gap: '10px'
           }}>
             {categoryFilterTabs.map((tab) => {
               const isActive = activeCategory === tab.id;
@@ -127,8 +131,8 @@ export default function ProductsPage({ initialCategory = 'all' }) {
                     color: isActive ? '#FFFFFF' : isDark ? '#DDDDDD' : '#333333',
                     border: 'none',
                     borderRadius: '8px',
-                    padding: '12px 24px',
-                    fontSize: '0.92rem',
+                    padding: '10px 18px',
+                    fontSize: '0.88rem',
                     fontWeight: 800,
                     cursor: 'pointer',
                     transition: 'all 0.25s ease'
@@ -145,7 +149,7 @@ export default function ProductsPage({ initialCategory = 'all' }) {
             <Search size={20} style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: '#888' }} />
             <input
               type="text"
-              placeholder={language === 'uk' ? 'Пошук моделі (напр. JT10, C16X, Вакуум)...' : language === 'pl' ? 'Szukaj modelu (np. JT10, C16X)...' : 'Search machine model (e.g. JT10, C16X)...'}
+              placeholder={language === 'uk' ? 'Пошук моделі (напр. JT10, Subsite, Baroid, C16X)...' : language === 'pl' ? 'Szukaj modelu (np. JT10, Subsite, Baroid)...' : 'Search machine model (e.g. JT10, Subsite, Baroid)...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{

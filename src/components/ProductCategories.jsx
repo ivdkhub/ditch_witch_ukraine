@@ -11,33 +11,57 @@ export default function ProductCategories({ onNavigateToProducts }) {
 
   const categories = [
     {
-      id: 1,
+      id: 'hdd',
       name: t.categories.cat1.name,
       desc: t.categories.cat1.desc,
       image: '/Risorse/Immagini/category_drilling.png'
     },
     {
-      id: 2,
+      id: 'mixers',
       name: t.categories.cat2.name,
       desc: t.categories.cat2.desc,
+      image: '/Risorse/Immagini/category_fluidSystems.png'
+    },
+    {
+      id: 'electronics',
+      name: t.categories.cat3.name,
+      desc: t.categories.cat3.desc,
+      image: '/Risorse/Immagini/dirdrills_jt10.png'
+    },
+    {
+      id: 'locators',
+      name: t.categories.cat4.name,
+      desc: t.categories.cat4.desc,
       image: '/Risorse/Immagini/category_vacumexcavator.png'
     },
     {
-      id: 3,
-      name: t.categories.cat3.name,
-      desc: t.categories.cat3.desc,
-      image: '/Risorse/Immagini/category_trenchers.png'
+      id: 'trenchers',
+      name: t.categories.cat5.name,
+      desc: t.categories.cat5.desc,
+      image: '/Risorse/Immagini/c16x.png'
     },
     {
-      id: 4,
-      name: t.categories.cat4.name,
-      desc: t.categories.cat4.desc,
+      id: 'bentonite',
+      name: t.categories.cat6.name,
+      desc: t.categories.cat6.desc,
+      image: '/Risorse/Immagini/category_fluidSystems.png'
+    },
+    {
+      id: 'skidsteers',
+      name: t.categories.cat7.name,
+      desc: t.categories.cat7.desc,
       image: '/Risorse/Immagini/category_skidsteers.png'
     },
     {
-      id: 5,
-      name: t.categories.cat5.name,
-      desc: t.categories.cat5.desc,
+      id: 'american_augers',
+      name: t.categories.cat8.name,
+      desc: t.categories.cat8.desc,
+      image: '/Risorse/Immagini/dirdrills_jt5.png'
+    },
+    {
+      id: 'recycling',
+      name: t.categories.cat9.name,
+      desc: t.categories.cat9.desc,
       image: '/Risorse/Immagini/category_fluidSystems.png'
     }
   ];
@@ -80,7 +104,7 @@ export default function ProductCategories({ onNavigateToProducts }) {
           {categories.map((cat) => (
             <div
               key={cat.id}
-              onClick={onNavigateToProducts}
+              onClick={() => onNavigateToProducts && onNavigateToProducts('products', cat.id)}
               style={{
                 backgroundColor: isDark ? 'rgba(26, 26, 26, 0.75)' : 'rgba(244, 246, 249, 0.75)',
                 backdropFilter: 'blur(10px)',

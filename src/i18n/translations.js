@@ -30,7 +30,6 @@ export const getSpecLabel = (key, lang = 'uk') => {
   if (specLabels[normalizedKey] && specLabels[normalizedKey][lang]) {
     return specLabels[normalizedKey][lang];
   }
-  // Fallback formatting for custom keys
   return normalizedKey.charAt(0).toUpperCase() + normalizedKey.slice(1);
 };
 
@@ -50,13 +49,15 @@ export const translations = {
       news: 'НОВИНИ',
       offers: 'СПЕЦПРОПОЗИЦІЇ',
       menu: 'МЕНЮ',
-      directionalDrills: 'Установки ГНБ',
+      directionalDrills: 'Машини ГНБ (HDD)',
       vacuumExcavators: 'Вакуумні екскаватори',
-      trenchers: 'Траншеєкопачі',
-      skidSteers: 'Міні-навантажувачі',
-      fluidSystems: 'Системи приготування бурового розчину',
-      subsite: 'Локаційні системи Subsite',
-      americanAugers: 'Обладнання American Augers'
+      trenchers: 'Віброукладачі та Траншеєкопачі',
+      skidSteers: 'Навантажувачі та Компакт',
+      fluidSystems: 'Міксери бентонітові',
+      subsite: 'Електроніка та Пошук Subsite',
+      americanAugers: 'Обладнання American Augers',
+      bentonite: 'Бентоніт та Полімери Baroid',
+      recycling: 'Рециклінг розчину'
     },
     hero: {
       slide1: {
@@ -89,20 +90,24 @@ export const translations = {
       }
     },
     welcome: {
-      title: 'ЛАСКАВО ПРОСИМО ДО DITCH WITCH УКРАЇНА',
-      desc1: 'Ditch Witch Україна надає найповнішу лінійку установок горизонтально-направленого буріння (ГНБ), бурового інструменту, вакуумних екскаваторів, траншеєкопачів, бурових систем та міні-навантажувачів.',
-      desc2: 'Будучи офіційним дистриб’ютором Ditch Witch в Україні, ми забезпечуємо не лише постачання надійного спецобладнання, а й сертифікований сервіс, оригінальні запчастини та кваліфіковане навчання операторів.',
-      btnCatalog: 'ПЕРЕГЛЯНУТИ КАТАЛОГ',
+      title: 'ЛАСКАВО ПРОСИМО ДО DITCH WITCH УКРАЇНА (JLM GROUP)',
+      desc1: 'Ditch Witch Україна входить до групи JLM — офіційного дистриб’ютора Ditch Witch® у Швеції, Норвегії, Фінляндії, Данії, Польщі та Україні з понад 20-річним досвідом.',
+      desc2: 'Ми є єдиним представником торгових марок Ditch Witch®, Zahn®, Subsite® Electronics, HammerHead®, American Augers® та дистриб’ютором Baroid®.',
+      btnCatalog: 'ПЕРЕГЛЯНУТИ КАТАЛОГ JLM',
       btnContact: 'ЗВ’ЯЗАТИСЯ З НАМИ'
     },
     categories: {
-      subtitle: 'СПЕЦІАЛІЗОВАНА БУДІВЕЛЬНА ТЕХНІКА',
-      title: 'КАТЕГОРІЇ ОБЛАДНАННЯ DITCH WITCH',
-      cat1: { name: 'Установки ГНБ', desc: 'Установки горизонтально-направленого буріння для прокладання комунікацій без пошкодження покриття.' },
-      cat2: { name: 'Вакуумні екскаватори', desc: 'Ефективна вакуумна екскавація для безпечного розкопування та пошуку підземних мереж.' },
-      cat3: { name: 'Траншеєкопачі', desc: 'Компактні та потужні ланцюгові траншеєкопачі для швидкого прокладання траншей.' },
-      cat4: { name: 'Міні-навантажувачі', desc: 'Універсальні гусеничні та колісні міні-навантажувачі для широкого спектра завдань.' },
-      cat5: { name: 'Приготування розчину', desc: 'Професійні бурові системи для швидкого замішування бентонітового розчину.' },
+      subtitle: 'ОФІЦІЙНИЙ КАТАЛОГ ОБЛАДНАННЯ JLM',
+      title: 'КАТЕГОРІЇ ПРОДУКЦІЇ DITCH WITCH & JLM',
+      cat1: { name: 'Машини ГНБ (HDD)', desc: 'Установки горизонтально-направленого буріння для прокладання комунікацій без пошкодження покриття.' },
+      cat2: { name: 'Міксери бентонітові', desc: 'Професійні системи змішування бентоніту та полімерів з помпою високого тиску.' },
+      cat3: { name: 'Електроніка та Локація', desc: 'Високоточні локаційні системи Subsite® TK RECON та зонди для безпомилкового ведення буріння.' },
+      cat4: { name: 'Локатори Subsite®', desc: 'Професійні трасошукачі UtiliGuard® 2 для точного виявлення підземних комунікацій.' },
+      cat5: { name: 'Віброукладачі та Траншеєкопачі', desc: 'Ланцюгові траншеєкопачі C16X та віброукладачі 100SX для швидкого підземного копання.' },
+      cat6: { name: 'Бентоніт та Полімери Baroid®', desc: 'Промислові бурові добавки, змащувачі свердловини та емульсії Baroid® EZ-MUD®.' },
+      cat7: { name: 'Навантажувачі (Компакт)', desc: 'Гусеничні міні-навантажувачі з стоячим місцем SK3000 та SK1550 для важких робіт.' },
+      cat8: { name: 'American Augers®', desc: 'Важкі бурові комплекси ГНБ великої потужності для магістральних трубопроводів.' },
+      cat9: { name: 'Рециклінг розчину', desc: 'Установки замкнутого циклу очищення та регенерації бурового розчину Dupagro.' },
       btnView: 'Детальніше'
     },
     featured: {
@@ -117,15 +122,12 @@ export const translations = {
       subtitle: 'ОСТАННІ ОНОВЛЕННЯ ТА ПОРАДИ ЕКСПЕРТІВ',
       title: 'НОВИНИ ТА ТЕХНІЧНІ СТАТТІ DITCH WITCH',
       allNews: 'Всі Новини',
-      readMore: 'Читати детальніше',
-      a1: { cat: 'ПОРАДИ ТА ГАЙДИ', date: '14 СЕРПНЯ 2026', title: 'Який вакуумний екскаватор обрати для вашого об’єкта?', desc: 'Порівняльний аналіз гідравлічних (Hydro) та повітряних (Air) систем виймання ґрунту.' },
-      a2: { cat: 'ОГЛЯД ТЕХНІКИ', date: '28 ЛИПНЯ 2026', title: 'Покрокове керівництво з обслуговування траншеєкопачів', desc: 'Як щоденний огляд ланцюга та зірочок подовжує ресурс техніки на 40%.' },
-      a3: { cat: 'ПОРАДИ ТА ГАЙДИ', date: '10 ЛИПНЯ 2026', title: 'Висока продуктивність та точність: Ditch Witch HX20G', desc: 'Новий рівень ефективності з потужним бензиновим двигуном на компактному причепі.' }
+      readMore: 'Читати детальніше'
     },
     footer: {
-      aboutText: 'Ditch Witch Україна — офіційний дистриб’ютор спеціалізованої будівельної техніки для підземного прокладання комунікацій в Україні.',
+      aboutText: 'Ditch Witch Україна входить до групи JLM — офіційний представник Ditch Witch®, Subsite®, American Augers® та Baroid® в Україні.',
       contactUA: 'Україна, м. Київ: +380 50 380 66 92',
-      productsTitle: 'Продукція',
+      productsTitle: 'Продукція JLM',
       companyTitle: 'Ditch Witch Україна',
       distributorTitle: 'Офіційний Дистриб’ютор',
       distributorDesc: 'Забезпечуємо сертифікований сервіс, оригінальні запчастини та гарантійну підтримку обладнання Ditch Witch.',
@@ -133,14 +135,14 @@ export const translations = {
       privacy: 'Політика конфіденційності',
       terms: 'Умови використання',
       rights: 'Всі права захищені.',
-      top: 'НАГОРА'
+      top: 'НАГОРУ'
     }
   },
 
   en: {
     topbar: {
       phoneUA: '+380 50 380 66 92',
-      distributorBadge: 'OFFICIAL DITCH WITCH DISTRIBUTOR IN UKRAINE',
+      distributorBadge: 'OFFICIAL DITCH WITCH DISTRIBUTOR IN UKRAINE (JLM GROUP)',
       searchPlaceholder: 'Search equipment...'
     },
     nav: {
@@ -152,13 +154,15 @@ export const translations = {
       news: 'NEWS',
       offers: 'OFFERS',
       menu: 'MENU',
-      directionalDrills: 'Directional Drills',
+      directionalDrills: 'HDD Rigs',
       vacuumExcavators: 'Vacuum Excavators',
-      trenchers: 'Trenchers',
-      skidSteers: 'Skid Steers',
-      fluidSystems: 'Fluid Management Systems',
+      trenchers: 'Plows & Trenchers',
+      skidSteers: 'Stand-on Skid Steers',
+      fluidSystems: 'Bentonite Mixers',
       subsite: 'Subsite Electronics',
-      americanAugers: 'American Augers Equipment'
+      americanAugers: 'American Augers',
+      bentonite: 'Baroid Bentonite',
+      recycling: 'Mud Recycling'
     },
     hero: {
       slide1: {
@@ -191,46 +195,44 @@ export const translations = {
       }
     },
     welcome: {
-      title: 'WELCOME TO DITCH WITCH UKRAINE',
-      desc1: 'Ditch Witch Ukraine provides the complete line of horizontal directional drills, trenchers, vacuum excavators, fluid systems, and mini skid steers.',
-      desc2: 'As the official Ditch Witch distributor in Ukraine, we provide certified service, genuine replacement parts, and operator training.',
-      btnCatalog: 'VIEW CATALOG',
+      title: 'WELCOME TO DITCH WITCH UKRAINE (JLM GROUP)',
+      desc1: 'Ditch Witch Ukraine is part of the JLM Group, the official representative of Ditch Witch® in Sweden, Norway, Finland, Denmark, Poland, and Ukraine.',
+      desc2: 'We are the exclusive distributor of Ditch Witch®, Zahn®, Subsite® Electronics, HammerHead®, American Augers®, and Baroid®.',
+      btnCatalog: 'VIEW JLM CATALOG',
       btnContact: 'CONTACT US'
     },
     categories: {
-      subtitle: 'UNDERGROUND CONSTRUCTION EQUIPMENT',
-      title: 'DITCH WITCH EQUIPMENT CATEGORIES',
-      cat1: { name: 'Directional Drills', desc: 'HDD rigs for trenchless underground utility installation.' },
-      cat2: { name: 'Vacuum Excavators', desc: 'High-performance non-destructive potholing and utility daylighting.' },
-      cat3: { name: 'Trenchers', desc: 'Heavy-duty chain trenchers for rapid utility trenching.' },
-      cat4: { name: 'Skid Steers', desc: 'Versatile compact tool carriers for demanding jobsites.' },
-      cat5: { name: 'Fluid Systems', desc: 'High-yield mud mixing systems for HDD drilling fluid preparation.' },
-      btnView: 'View Range'
+      subtitle: 'OFFICIAL JLM EQUIPMENT CATALOG',
+      title: 'DITCH WITCH & JLM PRODUCT CATEGORIES',
+      cat1: { name: 'HDD Drills', desc: 'Horizontal directional drills for trenchless utility laying.' },
+      cat2: { name: 'Bentonite Mixers', desc: 'High-shear mud mixing systems and high-pressure delivery pumps.' },
+      cat3: { name: 'Subsite® Electronics', desc: 'High-precision TK RECON locators and beacon sondes for accurate HDD tracking.' },
+      cat4: { name: 'Subsite® Locators', desc: 'UtiliGuard® 2 advanced underground utility locators and pipe mapping.' },
+      cat5: { name: 'Plows & Trenchers', desc: 'Walk-behind trenchers and vibratory plows for rapid underground installation.' },
+      cat6: { name: 'Baroid® Bentonite & Polymers', desc: 'Industrial drilling fluids, borehole lubricants, and EZ-MUD® emulsions.' },
+      cat7: { name: 'Stand-on Skid Steers', desc: 'Heavy-duty SK3000 and SK1550 compact stand-on skid steers.' },
+      cat8: { name: 'American Augers®', desc: 'Heavy HDD rigs and auger boring machinery for cross-country pipelines.' },
+      cat9: { name: 'Mud Recycling Systems', desc: 'Closed-loop Dupagro mud cleaning and bentonite recycling units.' },
+      btnView: 'Learn More'
     },
     featured: {
-      subtitle: 'TOP SELLING MACHINERY IN UKRAINE',
-      title: 'FEATURED DITCH WITCH EQUIPMENT',
-      specsBtn: 'SPECS & QUOTE',
-      m1: { title: 'Ditch Witch JT10 Directional Drill', tag: 'Compact 40 HP power package', s1: 'Thrust: 44.5 kN', s2: 'Engine: Deutz 2.9L 40 HP', s3: 'Torque: 1490 Nm' },
-      m2: { title: 'Ditch Witch JT5 Directional Drill', tag: 'Legendary reliability for tight residential yards', s1: 'Thrust: 22.2 kN', s2: 'Engine: Kubota 24.8 HP', s3: 'Drill Distance: up to 90 m' },
-      m3: { title: 'Ditch Witch C16X Trencher', tag: 'Patented CX Track design for maximum traction', s1: 'Depth: up to 1.2 m', s2: 'Engine: Vanguard 16 HP', s3: 'Width: 900 mm' }
+      subtitle: 'TOP SALES IN UKRAINE',
+      title: 'FEATURED DITCH WITCH MACHINERY',
+      specsBtn: 'SPECS & QUOTE'
     },
     news: {
       subtitle: 'LATEST UPDATES & INDUSTRY ADVICE',
       title: 'DITCH WITCH NEWS & ARTICLES',
       allNews: 'All News',
-      readMore: 'Read full story',
-      a1: { cat: 'GUIDES & ADVICE', date: '14 AUGUST 2026', title: 'Which Vacuum Excavator Is Right for Your Jobsite?', desc: 'A comprehensive comparison between Hydro and Air vacuum excavation technology.' },
-      a2: { cat: 'EQUIPMENT SPOTLIGHT', date: '28 JULY 2026', title: 'Step-by-Step Guide to Trencher Maintenance', desc: 'How daily chain and sprocket inspections extend equipment life by 40%.' },
-      a3: { cat: 'GUIDES & ADVICE', date: '10 JULY 2026', title: 'Performance and Precision: Ditch Witch HX20G', desc: 'Next-level gas-powered vacuum excavation power on a trailer chassis.' }
+      readMore: 'Read full story'
     },
     footer: {
-      aboutText: 'Ditch Witch Ukraine is the official distributor of underground construction and utility installation equipment in Ukraine.',
-      contactUA: 'Kyiv, Ukraine: +380 50 380 66 92',
-      productsTitle: 'Products',
+      aboutText: 'Ditch Witch Ukraine is part of the JLM Group — official distributor of Ditch Witch®, Subsite®, American Augers®, and Baroid® in Ukraine.',
+      contactUA: 'Ukraine, Kyiv: +380 50 380 66 92',
+      productsTitle: 'JLM Products',
       companyTitle: 'Ditch Witch Ukraine',
       distributorTitle: 'Official Distributor',
-      distributorDesc: 'Providing certified service, genuine parts, and warranty support for Ditch Witch machinery.',
+      distributorDesc: 'Certified service, genuine spare parts, and warranty support.',
       motto: 'WE LEAD. WE INNOVATE. WE SERVE.',
       privacy: 'Privacy Policy',
       terms: 'Terms of Use',
@@ -242,7 +244,7 @@ export const translations = {
   pl: {
     topbar: {
       phoneUA: '+380 50 380 66 92',
-      distributorBadge: 'OFICJALNY DYSTRYBUTOR DITCH WITCH W UKRAINIE',
+      distributorBadge: 'OFICJALNY DYSTRYBUTOR DITCH WITCH W UKRAINIE (GRUPA JLM)',
       searchPlaceholder: 'Szukaj sprzętu...'
     },
     nav: {
@@ -255,87 +257,87 @@ export const translations = {
       offers: 'OFERTY',
       menu: 'MENU',
       directionalDrills: 'Wiertnice HDB',
-      vacuumExcavators: 'Koparki próżniowe',
-      trenchers: 'Koparki łańcuchowe',
-      skidSteers: 'Ładowarki kompaktowe',
-      fluidSystems: 'Systemy płuczkowe',
-      subsite: 'Systemy lokalizacji Subsite',
-      americanAugers: 'Sprzęt American Augers'
+      vacuumExcavators: 'Koparki Próżniowe',
+      trenchers: 'Pługi i Koparki',
+      skidSteers: 'Ładowarki Kompaktowe',
+      fluidSystems: 'Mieszalniki Bentonitowe',
+      subsite: 'Elektronika Subsite',
+      americanAugers: 'American Augers',
+      bentonite: 'Bentonit Baroid',
+      recycling: 'Recykling Płuczki'
     },
     hero: {
       slide1: {
-        badge: 'FLAGOWIEC HDB',
-        title: 'WIERTNICA STEROWANA DITCH WITCH JT10',
+        badge: 'FLAGOWA WIERTNICA HDB',
+        title: 'WIERTNICA DITCH WITCH JT10',
         subtitle: 'MAKSYMALNA MOC I PRECYZJA W KOMPAKTOWEJ OBUDOWIE.',
-        btnMore: 'PRZEGLĄD WIERTNIC',
+        btnMore: 'PRZEGLĄDAJ WIERTNICE',
         btnQuote: 'ZAPYTAJ O CENĘ'
       },
       slide2: {
-        badge: 'WYKOPY PRÓŻNIOWE',
-        title: 'BEZPIECZNE ODSŁANIANIE SIECI PODZIEMNYCH',
+        badge: 'EKSKAWACJA PRÓŻNIOWA',
+        title: 'BEZPIECZNE ODSŁANIANIE SIEĆ PODZIEMNYCH',
         subtitle: 'NIEZAWODNE KOPARKI PRÓŻNIOWE SERII HXT I HX.',
         btnMore: 'KATALOG PRÓŻNIOWY',
         btnQuote: 'KONSULTACJA'
       },
       slide3: {
         badge: 'BESTSELLER',
-        title: 'WIERTNICA STEROWANA JT5',
-        subtitle: 'OPTYMALNA WYDAJNOŚĆ W WARUNKACH MIEJSKICH.',
-        btnMore: 'PRZEGLĄD WIERTNIC',
+        title: 'WIERTNICA DITCH WITCH JT5',
+        subtitle: 'MAKSYMALNA WYDAJNOŚĆ W MIEJSKICH PRZESTRZENIACH.',
+        btnMore: 'PRZEGLĄDAJ WIERTNICE',
         btnQuote: 'ZAPYTAJ O CENĘ'
       },
       slide4: {
         badge: 'KOPARKI ŁAŃCUCHOWE',
-        title: 'KOPARKA ŁAŃCUCHOWA DITCH WITCH C16X',
+        title: 'KOPARKA DITCH WITCH C16X',
         subtitle: 'WYSOKA WYDAJNOŚĆ W KAŻDYM TERENIE.',
         btnMore: 'SZCZEGÓŁY',
-        btnQuote: 'ZAMÓW'
+        btnQuote: 'ZAMÓW TERAZ'
       }
     },
     welcome: {
-      title: 'WITAMY W DITCH WITCH UKRAINA',
-      desc1: 'Ditch Witch Ukraina oferuje pełną gamę wiertnic sterowanych HDB, koparek łańcuchowych, koparek próżniowych i ładowarek.',
-      desc2: 'Jako oficjalny dystrybutor Ditch Witch w Ukrainie zapewniamy certyfikowany serwis, oryginalne części oraz szkolenia.',
-      btnCatalog: 'ZOBACZ KATALOG',
-      btnContact: 'SKONTAKTUJ SIĘ'
+      title: 'WITAMY W DITCH WITCH UKRAINA (GRUPA JLM)',
+      desc1: 'Ditch Witch Ukraina wchodzi w skład grupy JLM, oficjalnego przedstawiciela Ditch Witch® w Szwecji, Norwegii, Finlandii, Danii, Polsce i Ukrainie.',
+      desc2: 'Jesteśmy wyłącznym przedstawicielem marek Ditch Witch®, Zahn®, Subsite® Electronics, HammerHead®, American Augers® oraz dystrybutorem Baroid®.',
+      btnCatalog: 'ZOBACZ KATALOG JLM',
+      btnContact: 'SKONTAKTUJ SIĘ Z NAMI'
     },
     categories: {
-      subtitle: 'SPECJALISTYCZNY SPRZĘT BUDOWLANY',
-      title: 'KATEGORIE SPRZĘTU DITCH WITCH',
-      cat1: { name: 'Wiertnice HDB', desc: 'Wiertnice sterowane do bezwykopowej instalacji podziemnej.' },
-      cat2: { name: 'Koparki próżniowe', desc: 'Wydajny wykop próżniowy do bezpiecznego odsłaniania sieci.' },
-      cat3: { name: 'Koparki łańcuchowe', desc: 'Kompaktowe i silne koparki łańcuchowe do szybkiego wykopu.' },
-      cat4: { name: 'Ładowarki kompaktowe', desc: 'Uniwersalne ładowarki gąsienicowe do ciężkich prac.' },
-      cat5: { name: 'Systemy płuczkowe', desc: 'Profesjonalne systemy do mieszania płuczki wiertniczej.' },
-      btnView: 'Szczegóły'
+      subtitle: 'OFICJALNY KATALOG SPRZĘTU JLM',
+      title: 'KATEGORIE PRODUKTÓW DITCH WITCH & JLM',
+      cat1: { name: 'Wiertnice HDB', desc: 'Wiertnice horyzontalne do bezwykopowego układania rur i kabli.' },
+      cat2: { name: 'Mieszalniki bentonitowe', desc: 'Systemy mieszania płuczki z głowicami Venturiego i pompami.' },
+      cat3: { name: 'Elektronika Subsite®', desc: 'Precyzyjne systemy lokalizacji TK RECON i sondy do wierceń.' },
+      cat4: { name: 'Lokalizatory Subsite®', desc: 'Zaawansowane wykrywacze trasowe UtiliGuard® 2.' },
+      cat5: { name: 'Pługi i Koparki Łańcuchowe', desc: 'Samojezdne koparki łańcuchowe C16X i pługi wibracyjne 100SX.' },
+      cat6: { name: 'Bentonit i Polimery Baroid®', desc: 'Dodatki wiertnicze, smary otworu i emulsje Baroid® EZ-MUD®.' },
+      cat7: { name: 'Ładowarki Kompaktowe', desc: 'Kompaktowe ładowarki gąsienicowe stojące SK3000 i SK1550.' },
+      cat8: { name: 'American Augers®', desc: 'Ciężkie zestawy wiertnicze do magistrali rurociągowych.' },
+      cat9: { name: 'Recykling Płuczki', desc: 'Systemy zamkniętego obiegu czyszczenia płuczki Dupagro.' },
+      btnView: 'Więcej'
     },
     featured: {
-      subtitle: 'NAJPOPULARNIEJSZY SPRZĘT W UKRAINIE',
+      subtitle: 'TOP SPRZEDAŻ W UKRAINIE',
       title: 'POLECANY SPRZĘT DITCH WITCH',
-      specsBtn: 'SPECYFIKACJA I CENA',
-      m1: { title: 'Wiertnica HDB Ditch Witch JT10', tag: 'Kompaktowa moc 40 KM', s1: 'Ciąg: 44.5 kN', s2: 'Silnik: Deutz 2.9L 40 KM', s3: 'Moment: 1490 Nm' },
-      m2: { title: 'Wiertnica HDB Ditch Witch JT5', tag: 'Niezawodność w ciasnych przestrzeniach', s1: 'Ciąg: 22.2 kN', s2: 'Silnik: Kubota 24.8 KM', s3: 'Długość wiertnicza: do 90 m' },
-      m3: { title: 'Koparka Łańcuchowa Ditch Witch C16X', tag: 'System CX Track dla maksymalnej przyczepności', s1: 'Głębokość: do 1.2 m', s2: 'Silnik: Vanguard 16 KM', s3: 'Szerokość: 900 mm' }
+      specsBtn: 'SPECYFIKACJA I CENA'
     },
     news: {
-      subtitle: 'NAJNOWSZE AKTUALNOŚCI I PORADY',
-      title: 'AKTUALNOŚCI DITCH WITCH',
+      subtitle: 'OSTATNIE AKTUALNOŚCI I PORADY',
+      title: 'AKTUALNOŚCI I ARTYKUŁY DITCH WITCH',
       allNews: 'Wszystkie Artykuły',
-      readMore: 'Czytaj więcej',
-      a1: { cat: 'PORADNIKI', date: '14 SIERPNIA 2026', title: 'Jaką koparkę próżniową wybrać do swojego projektu?', desc: 'Kompleksowe porównanie technologii wykopu próżniowego hydro i powietrznego.' },
-      a2: { cat: 'PREZENTACJA SPRZĘTU', date: '28 LIPCA 2026', title: 'Przewodnik po konserwacji koparek łańcuchowych', desc: 'Jak codzienna kontrola łańcucha wydłuża żywotność maszyny o 40%.' },
-      a3: { cat: 'PORADNIKI', date: '10 LIPCA 2026', title: 'Wydajność i precyzja: Ditch Witch HX20G', desc: 'Nowy poziom wydajności z silnikiem benzynowym na przyczepie.' }
+      readMore: 'Czytaj więcej'
     },
     footer: {
-      aboutText: 'Ditch Witch Ukraina jest oficjalnym dystrybutorem maszyn budownictwa podziemnego w Ukrainie.',
-      contactUA: 'Kijów, Ukraina: +380 50 380 66 92',
-      productsTitle: 'Produkty',
+      aboutText: 'Ditch Witch Ukraina wchodzi w skład grupy JLM — oficjalny dystrybutor Ditch Witch®, Subsite®, American Augers® i Baroid® w Ukrainie.',
+      contactUA: 'Ukraina, Kijów: +380 50 380 66 92',
+      productsTitle: 'Produkty JLM',
       companyTitle: 'Ditch Witch Ukraina',
       distributorTitle: 'Oficjalny Dystrybutor',
-      distributorDesc: 'Zapewniamy certyfikowany serwis, oryginalne części i wsparcie gwarancyjne.',
+      distributorDesc: 'Certyfikowany serwis, oryginalne części i wsparcie gwarancyjne.',
       motto: 'PROWADZIMY. INNOWUJEMY. SŁUŻYMY.',
-      privacy: 'Polityka prywatności',
-      terms: 'Warunki użytkowania',
+      privacy: 'Polityka Prywatności',
+      terms: 'Warunki Użytkowania',
       rights: 'Wszelkie prawa zastrzeżone.',
       top: 'DO GÓRY'
     }

@@ -13,16 +13,40 @@ export default function Navbar({ currentPage, onNavigate }) {
 
   const productSubmenu = [
     {
-      id: 'drilling',
+      id: 'hdd',
       title: t.nav.directionalDrills,
       page: 'products',
       image: '/Risorse/Immagini/category_drilling.png'
     },
     {
+      id: 'mixers',
+      title: t.nav.fluidSystems,
+      page: 'products',
+      image: '/Risorse/Immagini/category_fluidSystems.png'
+    },
+    {
+      id: 'electronics',
+      title: t.nav.subsite,
+      page: 'products',
+      image: '/Risorse/Immagini/dirdrills_jt10.png'
+    },
+    {
+      id: 'locators',
+      title: t.categories.cat4.name,
+      page: 'products',
+      image: '/Risorse/Immagini/category_vacumexcavator.png'
+    },
+    {
       id: 'trenchers',
       title: t.nav.trenchers,
       page: 'products',
-      image: '/Risorse/Immagini/category_trenchers.png'
+      image: '/Risorse/Immagini/c16x.png'
+    },
+    {
+      id: 'bentonite',
+      title: t.nav.bentonite,
+      page: 'products',
+      image: '/Risorse/Immagini/category_fluidSystems.png'
     },
     {
       id: 'skidsteers',
@@ -31,28 +55,16 @@ export default function Navbar({ currentPage, onNavigate }) {
       image: '/Risorse/Immagini/category_skidsteers.png'
     },
     {
-      id: 'vacuums',
-      title: t.nav.vacuumExcavators,
-      page: 'products',
-      image: '/Risorse/Immagini/category_vacumexcavator.png'
-    },
-    {
-      id: 'fluids',
-      title: t.nav.fluidSystems,
-      page: 'products',
-      image: '/Risorse/Immagini/category_fluidSystems.png'
-    },
-    {
-      id: 'subsite',
-      title: t.nav.subsite,
-      page: 'products',
-      image: '/Risorse/Immagini/dirdrills_jt10.png'
-    },
-    {
-      id: 'americanAugers',
+      id: 'american_augers',
       title: t.nav.americanAugers,
       page: 'products',
       image: '/Risorse/Immagini/dirdrills_jt5.png'
+    },
+    {
+      id: 'recycling',
+      title: t.nav.recycling,
+      page: 'products',
+      image: '/Risorse/Immagini/category_fluidSystems.png'
     }
   ];
 
@@ -209,7 +221,9 @@ export default function Navbar({ currentPage, onNavigate }) {
                 top: '100%',
                 left: 0,
                 backgroundColor: isDark ? '#1C1C1C' : '#FFFFFF',
-                width: '360px',
+                width: '380px',
+                maxHeight: '80vh',
+                overflowY: 'auto',
                 boxShadow: isDark ? '0 16px 40px rgba(0,0,0,0.8)' : '0 16px 36px rgba(0,0,0,0.14)',
                 borderTop: '3px solid #FF6600',
                 borderRadius: '0 0 12px 12px',
@@ -232,7 +246,7 @@ export default function Navbar({ currentPage, onNavigate }) {
                       textAlign: 'left',
                       padding: '12px 20px',
                       color: isDark ? '#E2E8F0' : '#1E293B',
-                      fontSize: '0.92rem',
+                      fontSize: '0.9rem',
                       fontWeight: 800,
                       border: 'none',
                       backgroundColor: 'transparent',
@@ -252,8 +266,8 @@ export default function Navbar({ currentPage, onNavigate }) {
                     }}
                   >
                     <div style={{
-                      width: '64px',
-                      height: '48px',
+                      width: '54px',
+                      height: '42px',
                       display: 'flex',
                       alignItems: 'center',
                       justify: 'center',
@@ -264,8 +278,8 @@ export default function Navbar({ currentPage, onNavigate }) {
                         src={item.image}
                         alt={item.title}
                         style={{
-                          maxHeight: '46px',
-                          maxWidth: '64px',
+                          maxHeight: '40px',
+                          maxWidth: '54px',
                           objectFit: 'contain',
                           filter: isDark
                             ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.6))'
@@ -276,7 +290,7 @@ export default function Navbar({ currentPage, onNavigate }) {
                     </div>
 
                     <span style={{ flexGrow: 1, lineHeight: 1.25 }}>{item.title}</span>
-                    <ArrowRight size={15} style={{ color: '#FF6600', opacity: 0.8, flexShrink: 0 }} />
+                    <ArrowRight size={14} style={{ color: '#FF6600', opacity: 0.8, flexShrink: 0 }} />
                   </button>
                 ))}
               </div>

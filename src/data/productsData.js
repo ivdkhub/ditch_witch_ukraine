@@ -1,9 +1,9 @@
 export const productsData = [
-  // Directional Drills (ГНБ / HDB)
+  // 1. HDD Drills (Машини горизонтально направленого буріння HDD)
   {
     id: 'jt10',
-    category: 'drilling',
-    categoryKey: 'directionalDrills',
+    category: 'hdd',
+    categoryKey: 'hdd',
     image: '/Risorse/Immagini/dirdrills_jt10.png',
     featured: true,
     title: {
@@ -32,8 +32,8 @@ export const productsData = [
   },
   {
     id: 'jt5',
-    category: 'drilling',
-    categoryKey: 'directionalDrills',
+    category: 'hdd',
+    categoryKey: 'hdd',
     image: '/Risorse/Immagini/dirdrills_jt5.png',
     featured: true,
     title: {
@@ -61,7 +61,125 @@ export const productsData = [
     }
   },
 
-  // Trenchers (Траншеєкопачі / Koparki łańcuchowe)
+  // 2. Bentonite Mud Mixers (Міксери бентонітові)
+  {
+    id: 'fm13v',
+    category: 'mixers',
+    categoryKey: 'mixers',
+    image: '/Risorse/Immagini/category_fluidSystems.png',
+    featured: false,
+    title: {
+      uk: 'Змішувальна система FM13V',
+      en: 'Ditch Witch FM13V Fluid Management System',
+      pl: 'System Mieszania Płuczki FM13V'
+    },
+    tagline: {
+      uk: 'Швидке та якісне приготування бентонітового розчину',
+      en: 'Fast high-yield bentonite mud mixing and delivery',
+      pl: 'Szybkie i wydajne mieszanie płuczki bentonitowej'
+    },
+    specs: {
+      tankVolume: '1,890 L (500 gal) / 3,785 L (1,000 gal)',
+      engine: 'Vanguard 13 HP',
+      pumpFlow: '757 L/min (200 gpm)',
+      venturiHopper: 'High-Shear Venturi Design'
+    },
+    desc: {
+      uk: 'Спеціально розроблена система швидкого змішування бентоніту та полімерів з високопродуктивною помпою для безперервної подачі бурового розчину.',
+      en: 'High-shear Venturi mixing system designed for rapid hydration of bentonite and polymer additives for HDD operations.',
+      pl: 'System z głowicą Venturiego do szybkiego mieszania bentonitu i polimerów, zapewniający ciągłe zasilanie wiertnicy płuczką.'
+    }
+  },
+  {
+    id: 'fm25x',
+    category: 'mixers',
+    categoryKey: 'mixers',
+    image: '/Risorse/Immagini/category_fluidSystems.png',
+    featured: false,
+    title: {
+      uk: 'Змішувальна система FM25x',
+      en: 'Ditch Witch FM25x High-Cap Fluid System',
+      pl: 'System Mieszania Płuczki FM25x'
+    },
+    tagline: {
+      uk: 'Професійна система для великих об’ємів буріння',
+      en: 'High-capacity mud mixing unit for large HDD rigs',
+      pl: 'Wysokowydajny system mieszania do dużych wiertnic'
+    },
+    specs: {
+      tankVolume: '3,785 L (1,000 gal)',
+      engine: 'Kubota 25 HP Diesel',
+      pumpFlow: '1,135 L/min (300 gpm)',
+      mixingTime: '8 - 10 min'
+    },
+    desc: {
+      uk: 'Потужна бентонітова система з дизельним двигуном Kubota 25 к.с. для швидкої підготовки великих об’ємів розчину при бурінні великих діаметрів.',
+      en: 'Heavy-duty bentonite mixing unit with a 25 HP Kubota diesel engine designed for rapid hydration on large-diameter HDD projects.',
+      pl: 'Wydajny system mieszania z silnikiem diesla Kubota 25 KM do szybkiego przygotowywania płuczki przy wykopach o dużej średnicy.'
+    }
+  },
+
+  // 3. Subsite Electronics (Електроніка: системи пошуку та локалізації)
+  {
+    id: 'tk_recon',
+    category: 'electronics',
+    categoryKey: 'electronics',
+    image: '/Risorse/Immagini/dirdrills_jt10.png',
+    featured: true,
+    title: {
+      uk: 'Локаційна система Subsite® TK RECON',
+      en: 'Subsite® TK RECON HDD Locating System',
+      pl: 'System Lokalizacji Subsite® TK RECON'
+    },
+    tagline: {
+      uk: 'Неймовірна точність та захист від перешкод',
+      en: 'Advanced noise filtering and deep signal tracking',
+      pl: 'Niezwykła precyzja i odporność na zakłócenia'
+    },
+    specs: {
+      depthRange: 'До 33.5 м (110 ft)',
+      frequencies: 'Dual Frequency Tracking',
+      batteryLife: 'До 50 годин роботи',
+      telemetryRange: '610 м (2,000 ft)'
+    },
+    desc: {
+      uk: 'Флагманська серія локаційних систем Subsite® TK RECON гарантує найвищу точність визначення глибини та кута нахилу бурової головки в умовах міських електромагнітних завад.',
+      en: 'Subsite® TK RECON locating systems provide industry-leading depth accuracy and pitch tracking in high-EMI urban environments.',
+      pl: 'Flagowy system lokalizacji Subsite® TK RECON zapewnia najwyższą precyzję pomiaru głębokości i kąta nachylenia głowicy w warunkach zakłóceń miejskich.'
+    }
+  },
+
+  // 4. Subsite Locators (Локатори Subsite)
+  {
+    id: 'utiliguard2',
+    category: 'locators',
+    categoryKey: 'locators',
+    image: '/Risorse/Immagini/category_vacumexcavator.png',
+    featured: false,
+    title: {
+      uk: 'Трасошукач Subsite® UtiliGuard® 2',
+      en: 'Subsite® UtiliGuard® 2 Utility Locator',
+      pl: 'Lokalizator Trasowy Subsite® UtiliGuard® 2'
+    },
+    tagline: {
+      uk: 'Точне знаходження підземних комунікацій та кабелів',
+      en: 'Next-generation underground utility locating',
+      pl: 'Precyzyjne lokalizowanie podziemnych kabli i rur'
+    },
+    specs: {
+      frequencies: 'Понад 70 активних частот',
+      display: 'Кольоровий ЖК з Ambient Interference Measurement',
+      bluetooth: 'Integrated GPS & Bluetooth Logs',
+      weight: '2.2 kg'
+    },
+    desc: {
+      uk: 'Професійний трасошукач UtiliGuard® 2 автоматично аналізує рівень завад навколишнього середовища та вибирає оптимальну частоту для пошуку підземних мереж.',
+      en: 'UtiliGuard® 2 utility locator automatically scans ambient noise and selects the best active frequency for precise utility mapping.',
+      pl: 'Profesjonalny lokalizator UtiliGuard® 2 automatycznie analizuje zakłócenia i dobiera optymalną częstotliwość do wykrywania instalacji podziemnych.'
+    }
+  },
+
+  // 5. Vibratory Plows & Trenchers (Віброукладачі та Траншеєкопачі)
   {
     id: 'c16x',
     category: 'trenchers',
@@ -92,67 +210,65 @@ export const productsData = [
     }
   },
   {
-    id: 'rt45',
+    id: '100sx',
     category: 'trenchers',
     categoryKey: 'trenchers',
-    image: '/Risorse/Immagini/category_trenchers.png',
+    image: '/Risorse/Immagini/c16x.png',
     featured: false,
     title: {
-      uk: 'Самохідний траншеєкопач RT45',
-      en: 'Ditch Witch RT45 Ride-On Trencher',
-      pl: 'Koparka Samojezdna RT45'
+      uk: 'Віброукладач Ditch Witch 100SX',
+      en: 'Ditch Witch 100SX Walk-Behind Vibratory Plow',
+      pl: 'Pług Wibracyjny Ditch Witch 100SX'
     },
     tagline: {
-      uk: 'Легендарна надійність для важких будівельних робіт',
-      en: 'Legendary reliability for heavy construction utility trenching',
-      pl: 'Legendarna niezawodność do ciężkich prac wykopowych'
+      uk: 'Безаварійне прокладання кабелю без розкопування траншей',
+      en: 'Trenchless cable and pipe burial with zero surface damage',
+      pl: 'Bezwykopowe układanie kabli i rur bez naruszania trawników'
     },
     specs: {
-      digDepth: 'До 1,500 мм (60 in)',
-      digWidth: '150 - 300 мм (6 - 12 in)',
-      engine: 'Deutz 49 HP Diesel',
-      drive: '4-Wheel Drive / 4-Wheel Steering',
-      weight: '1,900 kg'
+      plowDepth: 'До 305 мм (12 in)',
+      engine: 'Honda 13 HP Gasoline',
+      drive: 'Hydrostatic All-Wheel Drive',
+      weight: '410 kg'
     },
     desc: {
-      uk: 'Колісна самохідна установка для викопування глибоких траншей під магістральні газопроводи, водопроводи та силові кабелі з можливістю встановлення фрези або плуга.',
-      en: 'Ride-on tractor utility trencher designed for deep pipe and cable installations with optional backhoe, vibratory plow, or rock saw attachments.',
-      pl: 'Kołowa koparka samojezdna przeznaczona do głębokich wykopów pod rurociągi i kable z możliwością montażу frezu lub pługa.'
+      uk: 'Компактний віброукладач для швидкого та безаварійного підземного прокладання оптоволокна, електричних кабелів та труб зрошення без пошкодження газонів.',
+      en: 'Compact vibratory plow engineered to pull cable and pipe underground smoothly without tearing up lawns or paved paths.',
+      pl: 'Kompaktowy pług wibracyjny przeznaczony do szybkiego układania światłowodów i kabli pod ziemią bez niszczenia nawierzchni.'
     }
   },
 
-  // Vacuum Excavators (Вакуумні Екскаватори / Koparki Próżniowe)
+  // 6. Baroid Bentonite & Polymers (Бентоніт та полімери Baroid®)
   {
-    id: 'hxt75',
-    category: 'vacuums',
-    categoryKey: 'vacuumExcavators',
-    image: '/Risorse/Immagini/category_vacumexcavator.png',
-    featured: true,
+    id: 'ez_mud',
+    category: 'bentonite',
+    categoryKey: 'bentonite',
+    image: '/Risorse/Immagini/category_fluidSystems.png',
+    featured: false,
     title: {
-      uk: 'Вакуумний Екскаватор HXT75-800',
-      en: 'Ditch Witch HXT75-800 Vacuum Excavator',
-      pl: 'Koparka Próżniowa HXT75-800'
+      uk: 'Рідкий полімер Baroid® EZ-MUD®',
+      en: 'Baroid® EZ-MUD® Liquid Polymer Additive',
+      pl: 'Polimer Płynny Baroid® EZ-MUD®'
     },
     tagline: {
-      uk: 'Потужність безаварійного гідравлічного та сухого виймання ґрунту',
-      en: 'High-volume non-destructive hydro and air vacuum excavation',
-      pl: 'Wysokowydajny bezpieczny wykop hydro i pneumatyczny'
+      uk: 'Максимальне змащення та стабілізація стінок свердловини',
+      en: 'High-performance shale inhibitor and borehole lubricant',
+      pl: 'Maksymalny poślizg i stabilizacja ścian otworu'
     },
     specs: {
-      tankCapacity: '3,028 L (800 gal)',
-      waterTank: '1,514 L (400 gal)',
-      engine: 'Kubota 74 HP Turbo Diesel',
-      blowerCFM: '1,000 CFM (28.3 m³/min)',
-      waterPressure: '3,000 psi (207 bar)'
+      package: '25 L Каністра',
+      consumption: '0.5 - 1.5 L / 1000 L води',
+      solubility: 'Instant Hydration in Water',
+      viscosityBoost: 'High Yield Polymer'
     },
     desc: {
-      uk: 'Причіпний або автомобільний вакуумний екскаватор високої потужності для швидкого та безпечного точкового розкопування комунікацій без ризику їх пошкодження.',
-      en: 'High-power truck or trailer-mounted vacuum excavator engineered for fast, non-destructive potholing and utility daylighting.',
-      pl: 'Przyczepiana lub ciężarowa koparka próżniowa przeznaczona do szybkiego i bezpiecznego odsłaniania podziemnych sieci.'
+      uk: 'Офіційні бурові добавки Baroid® EZ-MUD® забезпечують ідеальну змащуваність бурового інструменту, запобігають налипанню глини та стабілізують свердловину.',
+      en: 'Official Baroid® EZ-MUD® liquid polymer improves borehole stability, reduces torque, and prevents reactive clay swelling in HDD drilling.',
+      pl: 'Oficjalny dodatek polimerowy Baroid® EZ-MUD® zapewnia doskonały poślizg, zapobiega oklejaniu się świdra i stabilizuje otwór wiertniczy.'
     }
   },
 
-  // Skid Steers (Міні-навантажувачі / Ładowarki Kompaktowe)
+  // 7. Stand-on Skid Steers (Навантажувачі компактне обладнання)
   {
     id: 'sk3000',
     category: 'skidsteers',
@@ -183,33 +299,63 @@ export const productsData = [
     }
   },
 
-  // Fluid Management Systems (Приготування Розчину / Systemy Płuczkowe)
+  // 8. American Augers Equipment (Обладнання American Augers)
   {
-    id: 'fm13v',
-    category: 'fluids',
-    categoryKey: 'fluidSystems',
+    id: 'dd110',
+    category: 'american_augers',
+    categoryKey: 'american_augers',
+    image: '/Risorse/Immagini/dirdrills_jt10.png',
+    featured: true,
+    title: {
+      uk: 'Установка ГНБ American Augers® DD-110',
+      en: 'American Augers® DD-110 Heavy HDD Rig',
+      pl: 'Wiertnica HDB American Augers® DD-110'
+    },
+    tagline: {
+      uk: 'Важкий клас буріння для магістральних трубопроводів',
+      en: 'Heavy-class directional drilling rig for cross-country pipelines',
+      pl: 'Ciężka wiertnica horyzontalna do magistrali rurociągowych'
+    },
+    specs: {
+      thrust: '490 kN (110,000 lbs)',
+      pullback: '490 kN (110,000 lbs)',
+      engine: 'Cummins QSB6.7 (260 HP / 194 kW)',
+      torque: '19,000 N·m (14,000 ft-lb)'
+    },
+    desc: {
+      uk: 'Потужний буровий комплекс American Augers® DD-110 призначений для будівництва магістральних газо- та нафтопроводів під річками та автошляхами.',
+      en: 'American Augers® DD-110 heavy HDD system engineered for large-diameter pipeline crossings under rivers and major highways.',
+      pl: 'Potężny zespół wiertniczy American Augers® DD-110 przeznaczony do budowy magistrali gazowych pod rzekami i drogami.'
+    }
+  },
+
+  // 9. Mud Recycling Equipment (Обладнання для рециклінгу бурового розчину)
+  {
+    id: 'dupagro_r5e',
+    category: 'recycling',
+    categoryKey: 'recycling',
     image: '/Risorse/Immagini/category_fluidSystems.png',
     featured: false,
     title: {
-      uk: 'Змішувальна система FM13V',
-      en: 'Ditch Witch FM13V Fluid Management System',
-      pl: 'System Mieszania Płuczki FM13V'
+      uk: 'Система рециклінгу Dupagro R5E',
+      en: 'Dupagro R5E Mud Recycling System',
+      pl: 'System Recyklingu Płuczki Dupagro R5E'
     },
     tagline: {
-      uk: 'Швидке та якісне приготування бентонітового розчину',
-      en: 'Fast high-yield bentonite mud mixing and delivery',
-      pl: 'Szybkie i wydajne mieszanie płuczki bentonitowej'
+      uk: 'Замкнутий цикл очищення та повторного використання бентоніту',
+      en: 'Closed-loop mud cleaning and bentonite recycling',
+      pl: 'Zamknięty obieg czyszczenia i ponownego użycia bentonitu'
     },
     specs: {
-      tankVolume: '1,890 L (500 gal) / 3,785 L (1,000 gal)',
-      engine: 'Vanguard 13 HP',
-      pumpFlow: '757 L/min (200 gpm)',
-      venturiHopper: 'High-Shear Venturi Design'
+      capacity: '500 L/min (132 gpm)',
+      shakerScreen: 'Double Deck Vibrating Screen',
+      hydrocyclones: '2 x 5" Desander Cones',
+      generator: 'Integrated Silent Diesel Gen'
     },
     desc: {
-      uk: 'Спеціально розроблена система швидкого змішування бентоніту та полімерів з високопродуктивною помпою для безперервної подачі бурового розчину.',
-      en: 'High-shear Venturi mixing system designed for rapid hydration of bentonite and polymer additives for HDD operations.',
-      pl: 'System z głowicą Venturiego do szybkiego mieszania bentonitu i polimerów, zapewniający ciągłe zasilanie wiertnicy płuczką.'
+      uk: 'Професійна рециклінгова установка Dupagro R5E видаляє пісок та шлам з використаного бурового розчину, повертаючи очищений бентоніт назад у буріння та зменшуючи витрати на води і вивіз шламу на 80%.',
+      en: 'Dupagro R5E mud recycler removes solids and sand from used drilling fluid, reducing water usage and mud disposal costs by up to 80%.',
+      pl: 'Urządzenie do recyklingu płuczki Dupagro R5E skutecznie oczyszcza zużytą płuczkę z piasku, obniżając koszty utylizacji i zużycia wody o 80%.'
     }
   }
 ];
