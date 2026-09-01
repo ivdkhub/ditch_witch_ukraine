@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, PlusCircle, Globe, Check } from 'lucide-react';
+import { X, PlusCircle, Globe, Check, Upload, Image as ImageIcon } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
 import { useProducts } from '../context/ProductContext';
@@ -40,6 +40,14 @@ export default function AddProductModal({ isOpen, onClose }) {
     { label: 'Vacuum Excavator Category', url: '/Risorse/Immagini/category_vacumexcavator.png' },
     { label: 'Fluid Systems Category', url: '/Risorse/Immagini/category_fluidSystems.png' }
   ];
+
+  const handleFileUpload = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const url = URL.createObjectURL(file);
+      setImage(url);
+    }
+  };
 
   const toggleCountry = (countryCode) => {
     if (countryCode === 'ALL') {
@@ -110,7 +118,7 @@ export default function AddProductModal({ isOpen, onClose }) {
           backgroundColor: isDark ? '#1C1C1C' : '#FFFFFF',
           color: isDark ? '#FFFFFF' : '#111111',
           width: '100%',
-          maxWidth: '750px',
+          maxWidth: '780px',
           maxHeight: '90vh',
           borderRadius: '12px',
           padding: '32px',
@@ -286,47 +294,123 @@ export default function AddProductModal({ isOpen, onClose }) {
             />
           </div>
 
-          {/* Image Selection */}
-          <div style={{ gridColumn: '1 / -1' }}>
-            <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, color: '#FF6600', marginBottom: '6px', textTransform: 'uppercase' }}>
-              Оберіть Фотографію Техніки
+          {/* ENHANCED IMAGE SELECTION & UPLOAD SECTION */}
+          <div style={{
+            gridColumn: '1 / -1',
+            backgroundColor: isDark ? '#141414' : '#F4F6F9',
+            padding: '20px',
+            borderRadius: '10px',
+            border: `1px solid ${isDark ? '#2C2C2C' : '#E0E0E0'}`
+          }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', fontWeight: 900, color: '#FF6600', marginBottom: '12px', textTransform: 'uppercase' }}>
+              <ImageIcon size={18} />
+              <span>Оберіть Фотографію Техніки або Завантажте Нову</span>
             </label>
-            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '10px' }}>
-              {availableImages.map((imgItem, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => setImage(imgItem.url)}
-                  style={{
-                    backgroundColor: image === imgItem.url ? '#FF6600' : isDark ? '#262626' : '#E8E8E8',
-                    color: image === imgItem.url ? '#FFF' : isDark ? '#CCC' : '#333',
-                    border: 'none',
-                    borderRadius: '6px',
-                    padding: '6px 12px',
-                    fontSize: '0.78rem',
-                    fontWeight: 700,
-                    cursor: 'pointer'
-                  }}
-                >
-                  {imgItem.label}
-                </button>
-              ))}
+
+            {/* Visual Thumbnail Picker */}
+            <div style={{ fontSize: '0.8rem', fontWeight: 700, color: isDark ? '#CCC' : '#555', marginBottom: '10px' }}>
+              1. Наявні фотографії техніки в системі:
             </div>
-            <input
-              type="text"
-              placeholder="або вкажіть власний шлях/URL до фото"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-              style={{
-                width: '100%',
-                backgroundColor: isDark ? '#141414' : '#F9F9FB',
-                border: `1px solid ${isDark ? '#333' : '#CCC'}`,
-                padding: '8px 12px',
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(110px, 1fr))',
+              gap: '12px',
+              marginBottom: '20px'
+            }}>
+              {availableImages.map((imgItem, idx) => {
+                const isSelected = image === imgItem.url;
+                return (
+                  <div
+                    key={idx}
+                    onClick={() => setImage(imgItem.url)}
+                    style={{
+                      backgroundColor: isDark ? '#222' : '#FFF',
+                      border: `2px solid ${isSelected ? '#FF6600' : isDark ? '#333' : '#DDD'}`,
+                      borderRadius: '8px',
+                      padding: '8px',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      position: 'relative',
+                      boxShadow: isSelected ? '0 0 10px rgba(255,102,0,0.4)' : 'none',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    {isSelected && (
+                      <span style={{
+                        position: 'absolute',
+                        top: '4px',
+                        right: '4px',
+                        backgroundColor: '#FF6600',
+                        color: '#FFF',
+                        borderRadius: '50%',
+                        width: '18px',
+                        height: '18px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justify: 'center'
+                      }}>
+                        <Check size={12} />
+                      </span>
+                    )}
+                    <img
+                      src={imgItem.url}
+                      alt={imgItem.label}
+                      style={{ height: '55px', maxWidth: '100%', objectFit: 'contain', marginBottom: '6px' }}
+                    />
+                    <span style={{ fontSize: '0.68rem', fontWeight: 700, textAlign: 'center', color: isSelected ? '#FF6600' : isDark ? '#AAA' : '#666' }}>
+                      {imgItem.label}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Direct File Upload Option */}
+            <div style={{ fontSize: '0.8rem', fontWeight: 700, color: isDark ? '#CCC' : '#555', marginBottom: '8px' }}>
+              2. Завантажити нову фотографію з пристрою (Upload New Image):
+            </div>
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+              <label style={{
+                backgroundColor: '#FF6600',
+                color: '#FFFFFF',
+                padding: '10px 18px',
                 borderRadius: '6px',
-                color: isDark ? '#FFF' : '#000',
-                fontSize: '0.85rem'
-              }}
-            />
+                fontWeight: 800,
+                fontSize: '0.85rem',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}>
+                <Upload size={16} />
+                <span>ВИБРАТИ ФАЙЛ СТОРОННЬОГО ФОТО</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                  style={{ display: 'none' }}
+                />
+              </label>
+
+              <input
+                type="text"
+                placeholder="URL або шлях (/Risorse/Immagini/...)"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+                style={{
+                  flex: 1,
+                  minWidth: '220px',
+                  backgroundColor: isDark ? '#181818' : '#FFF',
+                  border: `1px solid ${isDark ? '#333' : '#CCC'}`,
+                  padding: '9px 12px',
+                  borderRadius: '6px',
+                  color: isDark ? '#FFF' : '#000',
+                  fontSize: '0.82rem'
+                }}
+              />
+            </div>
           </div>
 
           {/* Specs */}

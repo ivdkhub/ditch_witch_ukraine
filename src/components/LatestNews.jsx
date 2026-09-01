@@ -1,40 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
+import { newsData } from '../data/newsData';
+import ArticleModal from './ArticleModal';
 
 export default function LatestNews({ onNavigateToNews }) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const { theme } = useTheme();
+  const [selectedArticle, setSelectedArticle] = useState(null);
 
   const isDark = theme === 'dark';
-
-  const newsArticles = [
-    {
-      id: 1,
-      title: t.news.a1.title,
-      category: t.news.a1.cat,
-      date: t.news.a1.date,
-      desc: t.news.a1.desc,
-      image: '/Risorse/Immagini/category_vacumexcavator.png'
-    },
-    {
-      id: 2,
-      title: t.news.a2.title,
-      category: t.news.a2.cat,
-      date: t.news.a2.date,
-      desc: t.news.a2.desc,
-      image: '/Risorse/Immagini/category_trenchers.png'
-    },
-    {
-      id: 3,
-      title: t.news.a3.title,
-      category: t.news.a3.cat,
-      date: t.news.a3.date,
-      desc: t.news.a3.desc,
-      image: '/Risorse/Immagini/category_drilling.png'
-    }
-  ];
 
   return (
     <section id="news" style={{
@@ -87,100 +63,114 @@ export default function LatestNews({ onNavigateToNews }) {
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '24px'
         }}>
-          {newsArticles.map((article) => (
-            <div
-              key={article.id}
-              onClick={onNavigateToNews}
-              style={{
-                backgroundColor: isDark ? '#141414' : '#FFFFFF',
-                borderRadius: '8px',
-                border: `1px solid ${isDark ? '#262626' : '#E0E0E0'}`,
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-                cursor: 'pointer',
-                transition: 'transform 0.3s ease, border-color 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-6px)';
-                e.currentTarget.style.borderColor = '#FF6600';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = isDark ? '#262626' : '#E0E0E0';
-              }}
-            >
-              <div style={{
-                height: '180px',
-                backgroundColor: isDark ? '#1E1E1E' : '#F9F9F9',
-                display: 'flex',
-                alignItems: 'center',
-                justify: 'center',
-                padding: '20px'
-              }}>
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  style={{
-                    maxHeight: '140px',
-                    maxWidth: '100%',
-                    objectFit: 'contain'
-                  }}
-                />
-              </div>
+          {newsData.slice(0, 3).map((article) => {
+            const titleText = article.title[language] || article.title.uk || article.title.en;
+            const summaryText = article.summary[language] || article.summary.uk || article.summary.en;
+            const dateText = language === 'en' ? article.dateEn : language === 'pl' ? article.datePl : article.date;
 
-              <div style={{ padding: '24px', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div>
+            return (
+              <div
+                key={article.id}
+                onClick={() => setSelectedArticle(article)}
+                style={{
+                  backgroundColor: isDark ? '#141414' : '#FFFFFF',
+                  borderRadius: '8px',
+                  border: `1px solid ${isDark ? '#262626' : '#E0E0E0'}`,
+                  overflow: 'hidden',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  cursor: 'pointer',
+                  transition: 'transform 0.3s ease, border-color 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-6px)';
+                  e.currentTarget.style.borderColor = '#FF6600';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.borderColor = isDark ? '#262626' : '#E0E0E0';
+                }}
+              >
+                <div style={{
+                  height: '180px',
+                  backgroundColor: isDark ? '#1E1E1E' : '#F9F9F9',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justify: 'center',
+                  padding: '20px'
+                }}>
+                  <img
+                    src={article.image}
+                    alt={titleText}
+                    style={{
+                      maxHeight: '140px',
+                      maxWidth: '100%',
+                      objectFit: 'contain'
+                    }}
+                  />
+                </div>
+
+                <div style={{ padding: '24px', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      fontSize: '0.78rem',
+                      color: '#FF6600',
+                      fontWeight: 700,
+                      marginBottom: '10px'
+                    }}>
+                      <span>{article.category.toUpperCase()}</span>
+                      <span style={{ color: '#888' }}>•</span>
+                      <span style={{ color: isDark ? '#888888' : '#666666' }}>{dateText}</span>
+                    </div>
+
+                    <h3 style={{
+                      fontSize: '1.15rem',
+                      fontWeight: 800,
+                      color: isDark ? '#FFFFFF' : '#111111',
+                      lineHeight: 1.35,
+                      marginBottom: '12px'
+                    }}>
+                      {titleText}
+                    </h3>
+
+                    <p style={{
+                      fontSize: '0.88rem',
+                      color: isDark ? '#A0A0A0' : '#555555',
+                      lineHeight: 1.5,
+                      marginBottom: '20px'
+                    }}>
+                      {summaryText}
+                    </p>
+                  </div>
+
                   <div style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '12px',
-                    fontSize: '0.78rem',
+                    gap: '6px',
                     color: '#FF6600',
                     fontWeight: 700,
-                    marginBottom: '10px'
+                    fontSize: '0.85rem'
                   }}>
-                    <span>{article.category}</span>
-                    <span style={{ color: '#888' }}>•</span>
-                    <span style={{ color: isDark ? '#888888' : '#666666' }}>{article.date}</span>
+                    <span>{t.news.readMore}</span>
+                    <ArrowRight size={15} />
                   </div>
-
-                  <h3 style={{
-                    fontSize: '1.15rem',
-                    fontWeight: 800,
-                    color: isDark ? '#FFFFFF' : '#111111',
-                    lineHeight: 1.35,
-                    marginBottom: '12px'
-                  }}>
-                    {article.title}
-                  </h3>
-
-                  <p style={{
-                    fontSize: '0.88rem',
-                    color: isDark ? '#A0A0A0' : '#555555',
-                    lineHeight: 1.5,
-                    marginBottom: '20px'
-                  }}>
-                    {article.desc}
-                  </p>
-                </div>
-
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  color: '#FF6600',
-                  fontWeight: 700,
-                  fontSize: '0.85rem'
-                }}>
-                  <span>{t.news.readMore}</span>
-                  <ArrowRight size={15} />
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
+
+      {/* Direct Article Full Reader Modal */}
+      {selectedArticle && (
+        <ArticleModal
+          article={selectedArticle}
+          onClose={() => setSelectedArticle(null)}
+        />
+      )}
     </section>
   );
 }

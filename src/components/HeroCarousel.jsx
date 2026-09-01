@@ -90,7 +90,7 @@ export default function HeroCarousel() {
       }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '40px',
           alignItems: 'center'
         }}>
@@ -113,7 +113,7 @@ export default function HeroCarousel() {
             )}
 
             <h1 style={{
-              fontSize: 'clamp(2rem, 4vw, 3.2rem)',
+              fontSize: 'clamp(1.8rem, 4vw, 3.2rem)',
               fontWeight: 900,
               lineHeight: 1.1,
               letterSpacing: '-0.02em',
@@ -124,7 +124,7 @@ export default function HeroCarousel() {
             </h1>
 
             <p style={{
-              fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+              fontSize: 'clamp(0.95rem, 2vw, 1.2rem)',
               fontWeight: 600,
               color: '#CED0D1',
               marginBottom: '32px',
@@ -176,57 +176,75 @@ export default function HeroCarousel() {
         </div>
       </div>
 
-      {/* Controls */}
+      {/* Controls with Dead-Centered Icons inside Orange Circles */}
       <button
         onClick={prevSlide}
+        aria-label="Previous Slide"
         style={{
           position: 'absolute',
           left: '16px',
           top: '50%',
           transform: 'translateY(-50%)',
-          backgroundColor: 'rgba(0,0,0,0.6)',
-          border: '1px solid #333',
+          backgroundColor: '#FF6600',
+          border: 'none',
           color: '#FFFFFF',
-          width: '44px',
-          height: '44px',
+          width: '46px',
+          height: '46px',
           borderRadius: '50%',
           display: 'flex',
           alignItems: 'center',
           justify: 'center',
           cursor: 'pointer',
           zIndex: 20,
-          transition: 'background-color 0.2s'
+          boxShadow: '0 4px 14px rgba(255, 102, 0, 0.4)',
+          transition: 'all 0.2s ease',
+          padding: 0
         }}
-        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF6600'}
-        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.6)'}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+          e.currentTarget.style.backgroundColor = '#E65C00';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+          e.currentTarget.style.backgroundColor = '#FF6600';
+        }}
       >
-        <ChevronLeft size={24} />
+        <ChevronLeft size={24} style={{ display: 'block', margin: 'auto', flexShrink: 0 }} />
       </button>
 
       <button
         onClick={nextSlide}
+        aria-label="Next Slide"
         style={{
           position: 'absolute',
           right: '16px',
           top: '50%',
           transform: 'translateY(-50%)',
-          backgroundColor: 'rgba(0,0,0,0.6)',
-          border: '1px solid #333',
+          backgroundColor: '#FF6600',
+          border: 'none',
           color: '#FFFFFF',
-          width: '44px',
-          height: '44px',
+          width: '46px',
+          height: '46px',
           borderRadius: '50%',
           display: 'flex',
           alignItems: 'center',
           justify: 'center',
           cursor: 'pointer',
           zIndex: 20,
-          transition: 'background-color 0.2s'
+          boxShadow: '0 4px 14px rgba(255, 102, 0, 0.4)',
+          transition: 'all 0.2s ease',
+          padding: 0
         }}
-        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF6600'}
-        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.6)'}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+          e.currentTarget.style.backgroundColor = '#E65C00';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+          e.currentTarget.style.backgroundColor = '#FF6600';
+        }}
       >
-        <ChevronRight size={24} />
+        <ChevronRight size={24} style={{ display: 'block', margin: 'auto', flexShrink: 0 }} />
       </button>
 
       {/* Dots */}
