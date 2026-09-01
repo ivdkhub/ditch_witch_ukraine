@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, ChevronDown, Home, ArrowRight, Wrench } from 'lucide-react';
+import { Menu, X, ChevronDown, Home, ArrowRight } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
 
@@ -89,50 +89,53 @@ export default function Navbar({ currentPage, onNavigate }) {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '14px',
+            gap: '10px',
             background: 'none',
             border: 'none',
             cursor: 'pointer',
-            padding: 0
+            padding: 0,
+            flexShrink: 0,
+            marginRight: '16px'
           }}
         >
           <img
             src={isDark ? "/Risorse/Immagini/DW_Logotype_Rev.png" : "/Risorse/Immagini/DW_Logotype.png"}
             alt="Ditch Witch Ukraine"
             style={{
-              height: '48px',
+              height: '42px',
               width: 'auto',
               objectFit: 'contain'
             }}
           />
           <span style={{
-            fontSize: '0.8rem',
+            fontSize: '0.75rem',
             fontWeight: 900,
             color: '#FF6600',
             backgroundColor: 'rgba(255, 102, 0, 0.1)',
             border: '1px solid rgba(255, 102, 0, 0.3)',
             borderRadius: '6px',
-            padding: '4px 10px',
-            letterSpacing: '0.12em',
+            padding: '3px 8px',
+            letterSpacing: '0.1em',
             textTransform: 'uppercase',
             display: 'inline-flex',
             alignItems: 'center',
-            lineHeight: 1
+            lineHeight: 1,
+            flexShrink: 0
           }}>
             УКРАЇНА
           </span>
         </button>
 
         {/* Desktop Navigation */}
-        <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '0', marginLeft: 'auto' }}>
+        <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '0', marginLeft: 'auto', flexShrink: 0 }}>
           {/* Home Button */}
           <button
             onClick={() => handleNavClick('home')}
             style={{
-              padding: '14px 18px',
+              padding: '14px 16px',
               color: currentPage === 'home' ? '#FF6600' : isDark ? '#FFFFFF' : '#1E293B',
               fontWeight: 800,
-              fontSize: '0.88rem',
+              fontSize: '0.85rem',
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
               borderRight: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
@@ -145,7 +148,9 @@ export default function Navbar({ currentPage, onNavigate }) {
               alignItems: 'center',
               gap: '5px',
               transition: 'all 0.2s ease',
-              lineHeight: 1
+              lineHeight: 1,
+              whiteSpace: 'nowrap',
+              flexShrink: 0
             }}
             onMouseEnter={(e) => {
               if (currentPage !== 'home') e.currentTarget.style.color = '#FF6600';
@@ -154,7 +159,7 @@ export default function Navbar({ currentPage, onNavigate }) {
               if (currentPage !== 'home') e.currentTarget.style.color = isDark ? '#FFFFFF' : '#1E293B';
             }}
           >
-            <Home size={15} style={{ color: currentPage === 'home' ? '#FF6600' : 'inherit', flexShrink: 0 }} />
+            <Home size={14} style={{ color: currentPage === 'home' ? '#FF6600' : 'inherit', flexShrink: 0 }} />
             <span>HOME</span>
           </button>
 
@@ -170,10 +175,10 @@ export default function Navbar({ currentPage, onNavigate }) {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '5px',
-                padding: '14px 18px',
+                padding: '14px 16px',
                 color: currentPage === 'products' ? '#FF6600' : isDark ? '#FFFFFF' : '#1E293B',
                 fontWeight: 800,
-                fontSize: '0.88rem',
+                fontSize: '0.85rem',
                 letterSpacing: '0.04em',
                 textTransform: 'uppercase',
                 borderRight: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
@@ -183,7 +188,9 @@ export default function Navbar({ currentPage, onNavigate }) {
                 borderLeft: 'none',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
-                lineHeight: 1
+                lineHeight: 1,
+                whiteSpace: 'nowrap',
+                flexShrink: 0
               }}
               onMouseEnter={(e) => {
                 if (currentPage !== 'products') e.currentTarget.style.color = '#FF6600';
@@ -276,14 +283,14 @@ export default function Navbar({ currentPage, onNavigate }) {
             )}
           </div>
 
-          {/* Spare Parts & Service Button (replaces Offers) */}
+          {/* Spare Parts & Service Button */}
           <button
             onClick={() => handleNavClick('service')}
             style={{
-              padding: '14px 18px',
+              padding: '14px 16px',
               color: currentPage === 'service' ? '#FF6600' : isDark ? '#FFFFFF' : '#1E293B',
               fontWeight: 800,
-              fontSize: '0.88rem',
+              fontSize: '0.85rem',
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
               borderRight: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
@@ -293,7 +300,9 @@ export default function Navbar({ currentPage, onNavigate }) {
               borderLeft: 'none',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
-              lineHeight: 1
+              lineHeight: 1,
+              whiteSpace: 'nowrap',
+              flexShrink: 0
             }}
             onMouseEnter={(e) => {
               if (currentPage !== 'service') e.currentTarget.style.color = '#FF6600';
@@ -309,10 +318,10 @@ export default function Navbar({ currentPage, onNavigate }) {
           <button
             onClick={() => handleNavClick('docs')}
             style={{
-              padding: '14px 18px',
+              padding: '14px 16px',
               color: currentPage === 'docs' ? '#FF6600' : isDark ? '#FFFFFF' : '#1E293B',
               fontWeight: 800,
-              fontSize: '0.88rem',
+              fontSize: '0.85rem',
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
               borderRight: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
@@ -322,7 +331,9 @@ export default function Navbar({ currentPage, onNavigate }) {
               borderLeft: 'none',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
-              lineHeight: 1
+              lineHeight: 1,
+              whiteSpace: 'nowrap',
+              flexShrink: 0
             }}
             onMouseEnter={(e) => {
               if (currentPage !== 'docs') e.currentTarget.style.color = '#FF6600';
@@ -338,10 +349,10 @@ export default function Navbar({ currentPage, onNavigate }) {
           <button
             onClick={() => handleNavClick('about')}
             style={{
-              padding: '14px 18px',
+              padding: '14px 16px',
               color: currentPage === 'about' ? '#FF6600' : isDark ? '#FFFFFF' : '#1E293B',
               fontWeight: 800,
-              fontSize: '0.88rem',
+              fontSize: '0.85rem',
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
               borderRight: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
@@ -351,7 +362,9 @@ export default function Navbar({ currentPage, onNavigate }) {
               borderLeft: 'none',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
-              lineHeight: 1
+              lineHeight: 1,
+              whiteSpace: 'nowrap',
+              flexShrink: 0
             }}
             onMouseEnter={(e) => {
               if (currentPage !== 'about') e.currentTarget.style.color = '#FF6600';
@@ -363,14 +376,14 @@ export default function Navbar({ currentPage, onNavigate }) {
             {t.nav.about}
           </button>
 
-          {/* News Button (Rightmost menu item flush) */}
+          {/* News Button */}
           <button
             onClick={() => handleNavClick('news')}
             style={{
-              padding: '14px 0 14px 18px',
+              padding: '14px 0 14px 16px',
               color: currentPage === 'news' ? '#FF6600' : isDark ? '#FFFFFF' : '#1E293B',
               fontWeight: 800,
-              fontSize: '0.88rem',
+              fontSize: '0.85rem',
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
               borderBottom: currentPage === 'news' ? '3px solid #FF6600' : '3px solid transparent',
@@ -378,7 +391,9 @@ export default function Navbar({ currentPage, onNavigate }) {
               border: 'none',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
-              lineHeight: 1
+              lineHeight: 1,
+              whiteSpace: 'nowrap',
+              flexShrink: 0
             }}
             onMouseEnter={(e) => {
               if (currentPage !== 'news') e.currentTarget.style.color = '#FF6600';
@@ -405,7 +420,8 @@ export default function Navbar({ currentPage, onNavigate }) {
             alignItems: 'center',
             gap: '6px',
             fontWeight: 800,
-            fontSize: '0.85rem'
+            fontSize: '0.85rem',
+            flexShrink: 0
           }}
           className="mobile-menu-btn"
         >
@@ -414,7 +430,7 @@ export default function Navbar({ currentPage, onNavigate }) {
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu Dropdown Drawer */}
       {mobileMenuOpen && (
         <div style={{
           backgroundColor: isDark ? '#111111' : '#0F172A',
@@ -425,42 +441,42 @@ export default function Navbar({ currentPage, onNavigate }) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             <button
               onClick={() => handleNavClick('home')}
-              style={{ textAlign: 'left', background: 'none', border: 'none', color: '#FFFFFF', fontWeight: 800, cursor: 'pointer', fontSize: '1rem' }}
+              style={{ textAlign: 'left', background: 'none', border: 'none', color: currentPage === 'home' ? '#FF6600' : '#FFFFFF', fontWeight: 800, cursor: 'pointer', fontSize: '1rem' }}
             >
               HOME
             </button>
 
             <button
               onClick={() => handleNavClick('products', 'all')}
-              style={{ textAlign: 'left', background: 'none', border: 'none', color: '#FF6600', fontWeight: 800, cursor: 'pointer', fontSize: '1rem' }}
+              style={{ textAlign: 'left', background: 'none', border: 'none', color: currentPage === 'products' ? '#FF6600' : '#E2E8F0', fontWeight: 800, cursor: 'pointer', fontSize: '1rem' }}
             >
               {t.nav.products}
             </button>
 
             <button
               onClick={() => handleNavClick('service')}
-              style={{ textAlign: 'left', background: 'none', border: 'none', color: '#E2E8F0', fontWeight: 800, cursor: 'pointer', fontSize: '1rem' }}
+              style={{ textAlign: 'left', background: 'none', border: 'none', color: currentPage === 'service' ? '#FF6600' : '#E2E8F0', fontWeight: 800, cursor: 'pointer', fontSize: '1rem' }}
             >
               {t.nav.partsService}
             </button>
 
             <button
               onClick={() => handleNavClick('docs')}
-              style={{ textAlign: 'left', background: 'none', border: 'none', color: '#E2E8F0', fontWeight: 800, cursor: 'pointer', fontSize: '1rem' }}
+              style={{ textAlign: 'left', background: 'none', border: 'none', color: currentPage === 'docs' ? '#FF6600' : '#E2E8F0', fontWeight: 800, cursor: 'pointer', fontSize: '1rem' }}
             >
               {t.nav.docs}
             </button>
 
             <button
               onClick={() => handleNavClick('about')}
-              style={{ textAlign: 'left', background: 'none', border: 'none', color: '#E2E8F0', fontWeight: 800, cursor: 'pointer', fontSize: '1rem' }}
+              style={{ textAlign: 'left', background: 'none', border: 'none', color: currentPage === 'about' ? '#FF6600' : '#E2E8F0', fontWeight: 800, cursor: 'pointer', fontSize: '1rem' }}
             >
               {t.nav.about}
             </button>
 
             <button
               onClick={() => handleNavClick('news')}
-              style={{ textAlign: 'left', background: 'none', border: 'none', color: '#E2E8F0', fontWeight: 800, cursor: 'pointer', fontSize: '1rem' }}
+              style={{ textAlign: 'left', background: 'none', border: 'none', color: currentPage === 'news' ? '#FF6600' : '#E2E8F0', fontWeight: 800, cursor: 'pointer', fontSize: '1rem' }}
             >
               {t.nav.news}
             </button>
@@ -469,7 +485,7 @@ export default function Navbar({ currentPage, onNavigate }) {
       )}
 
       <style>{`
-        @media (max-width: 992px) {
+        @media (max-width: 1080px) {
           .desktop-nav {
             display: none !important;
           }

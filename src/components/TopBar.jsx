@@ -69,7 +69,7 @@ export default function TopBar({ onOpenAdmin, onSearch }) {
       color: isDark ? '#FFFFFF' : '#1E293B',
       fontSize: '0.85rem',
       borderBottom: `1px solid ${isDark ? '#262626' : '#E2E8F0'}`,
-      padding: '10px 0',
+      padding: '8px 0',
       transition: 'background-color 0.3s ease, color 0.3s ease',
       position: 'relative',
       zIndex: 1200
@@ -79,18 +79,19 @@ export default function TopBar({ onOpenAdmin, onSearch }) {
         alignItems: 'center',
         justify: 'space-between',
         width: '100%',
-        gap: '16px'
+        gap: '12px',
+        flexWrap: 'wrap'
       }}>
         {/* Left Side: Phone (+380 50 380 66 92) & Official Distributor Badge */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
           <a
             href="tel:+380503806692"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '8px',
+              gap: '6px',
               color: isDark ? '#E2E8F0' : '#1E293B',
-              fontSize: '0.9rem',
+              fontSize: '0.88rem',
               fontWeight: 700,
               textDecoration: 'none',
               transition: 'color 0.2s',
@@ -99,22 +100,25 @@ export default function TopBar({ onOpenAdmin, onSearch }) {
             onMouseEnter={(e) => e.currentTarget.style.color = '#FF6600'}
             onMouseLeave={(e) => e.currentTarget.style.color = isDark ? '#E2E8F0' : '#1E293B'}
           >
-            <Phone size={16} style={{ color: '#FF6600', flexShrink: 0 }} />
+            <Phone size={15} style={{ color: '#FF6600', flexShrink: 0 }} />
             <span style={{ lineHeight: 1 }}>+380 50 380 66 92</span>
           </a>
 
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            color: isDark ? '#94A3B8' : '#64748B',
-            fontSize: '0.8rem',
-            fontWeight: 800,
-            letterSpacing: '0.04em',
-            textTransform: 'uppercase',
-            whiteSpace: 'nowrap'
-          }}>
-            <ShieldCheck size={16} style={{ color: '#FF6600', flexShrink: 0 }} />
+          <div
+            className="topbar-distributor-badge"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              color: isDark ? '#94A3B8' : '#64748B',
+              fontSize: '0.78rem',
+              fontWeight: 800,
+              letterSpacing: '0.04em',
+              textTransform: 'uppercase',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            <ShieldCheck size={15} style={{ color: '#FF6600', flexShrink: 0 }} />
             <span style={{ lineHeight: 1 }}>{t.topbar.distributorBadge}</span>
           </div>
         </div>
@@ -123,8 +127,9 @@ export default function TopBar({ onOpenAdmin, onSearch }) {
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '12px',
-          marginLeft: 'auto'
+          gap: '10px',
+          marginLeft: 'auto',
+          flexWrap: 'wrap'
         }}>
           <ThemeToggle />
           <LanguageSelector />
@@ -137,9 +142,10 @@ export default function TopBar({ onOpenAdmin, onSearch }) {
               backgroundColor: isDark ? '#222222' : '#FFFFFF',
               border: `1px solid ${isDark ? '#383838' : '#CBD5E1'}`,
               borderRadius: '30px',
-              padding: '3px 3px 3px 14px',
+              padding: '3px 3px 3px 12px',
               boxShadow: isDark ? '0 2px 8px rgba(0,0,0,0.3)' : '0 2px 6px rgba(0,0,0,0.04)',
-              width: '270px',
+              width: '230px',
+              maxWidth: '100%',
               transition: 'all 0.25s ease',
               boxSizing: 'border-box'
             }}>
@@ -153,7 +159,7 @@ export default function TopBar({ onOpenAdmin, onSearch }) {
                   backgroundColor: 'transparent',
                   border: 'none',
                   color: isDark ? '#FFFFFF' : '#0F172A',
-                  fontSize: '0.85rem',
+                  fontSize: '0.82rem',
                   outline: 'none',
                   width: '100%',
                   fontWeight: 500,
@@ -184,9 +190,9 @@ export default function TopBar({ onOpenAdmin, onSearch }) {
                   backgroundColor: '#FF6600',
                   border: 'none',
                   borderRadius: '50%',
-                  width: '32px',
-                  height: '32px',
-                  minWidth: '32px',
+                  width: '30px',
+                  height: '30px',
+                  minWidth: '30px',
                   padding: 0,
                   margin: 0,
                   color: '#FFFFFF',
@@ -200,7 +206,7 @@ export default function TopBar({ onOpenAdmin, onSearch }) {
                 }}
                 title="Search"
               >
-                <Search size={15} style={{ display: 'block', margin: 'auto' }} />
+                <Search size={14} style={{ display: 'block', margin: 'auto' }} />
               </button>
             </form>
 
@@ -210,7 +216,7 @@ export default function TopBar({ onOpenAdmin, onSearch }) {
                 position: 'absolute',
                 top: 'calc(100% + 8px)',
                 right: 0,
-                width: '380px',
+                width: 'min(340px, 90vw)',
                 backgroundColor: isDark ? '#1C1C1C' : '#FFFFFF',
                 border: `1px solid ${isDark ? '#333333' : '#E2E8F0'}`,
                 borderRadius: '12px',
@@ -240,7 +246,7 @@ export default function TopBar({ onOpenAdmin, onSearch }) {
                     {language === 'uk' ? 'Моделей не знайдено' : 'No matching equipment'}
                   </div>
                 ) : (
-                  <div style={{ maxHeight: '360px', overflowY: 'auto' }}>
+                  <div style={{ maxHeight: '340px', overflowY: 'auto' }}>
                     {matchingProducts.map((product) => {
                       const titleText = product.title[language] || product.title.uk || product.title.en;
                       const taglineText = product.tagline[language] || product.tagline.uk || product.tagline.en;
@@ -305,6 +311,14 @@ export default function TopBar({ onOpenAdmin, onSearch }) {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .topbar-distributor-badge {
+            display: none !important;
+          }
+        }
+      `}</style>
 
       {/* Product Specification Modal */}
       {selectedProduct && (
