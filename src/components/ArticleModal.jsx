@@ -13,7 +13,7 @@ export default function ArticleModal({ article, onClose }) {
 
   const getCategoryName = (catKey, lang) => {
     const map = {
-      guides: { uk: 'Поради та Гайди', en: 'Guides & Advice', pl: 'Poradniki i Wskazówki' },
+      guides: { uk: 'Поради та Рекомендації', en: 'Advice & Recommendations', pl: 'Poradniki i Rekomendacje' },
       maintenance: { uk: 'Сервіс та ТО', en: 'Service & Maintenance', pl: 'Serwis i Konserwacja' },
       spotlights: { uk: 'Огляди Техніки', en: 'Equipment Spotlights', pl: 'Prezentacje Sprzętu' },
       releases: { uk: 'Прес-релізи', en: 'Press Releases', pl: 'Komunikaty Prasowe' },
@@ -57,27 +57,34 @@ export default function ArticleModal({ article, onClose }) {
           animation: 'fadeIn 0.25s ease forwards'
         }}
       >
-        {/* Close Button */}
+        {/* Close Button - Perfectly Centered */}
         <button
           onClick={onClose}
+          className="touch-target"
           style={{
             position: 'absolute',
             top: '16px',
             right: '16px',
-            backgroundColor: isDark ? '#2C2C2C' : '#F0F0F0',
+            backgroundColor: isDark ? 'rgba(44, 44, 44, 0.95)' : 'rgba(240, 240, 240, 0.95)',
             color: isDark ? '#FFFFFF' : '#000000',
             border: 'none',
             borderRadius: '50%',
-            width: '36px',
-            height: '36px',
-            display: 'flex',
-            alignItems: 'center',
-            justify: 'center',
+            width: '38px',
+            height: '38px',
+            minWidth: '38px',
+            minHeight: '38px',
+            padding: 0,
+            margin: 0,
+            display: 'grid',
+            placeItems: 'center',
             cursor: 'pointer',
-            zIndex: 10
+            zIndex: 10,
+            boxShadow: '0 2px 10px rgba(0,0,0,0.3)',
+            transition: 'all 0.2s ease'
           }}
+          aria-label="Close article"
         >
-          <X size={20} />
+          <X size={20} style={{ display: 'block', margin: 'auto' }} />
         </button>
 
         {/* Article Image Banner */}

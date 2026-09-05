@@ -51,11 +51,7 @@ export default function FeaturedEquipment({ onNavigateToProducts }) {
           </h2>
         </div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '30px'
-        }}>
+        <div className="responsive-card-grid">
           {featuredList.map((machine, idx) => {
             const titleText = machine.title[language] || machine.title.uk || machine.title.en;
             const taglineText = machine.tagline[language] || machine.tagline.uk || machine.tagline.en;
@@ -73,26 +69,30 @@ export default function FeaturedEquipment({ onNavigateToProducts }) {
                     overflow: 'hidden',
                     display: 'flex',
                     flexDirection: 'column',
-                    justify: 'space-between',
+                    justifyContent: 'space-between',
                     boxShadow: isHovered
                       ? isDark ? '0 12px 30px rgba(255, 102, 0, 0.3)' : '0 12px 30px rgba(255, 102, 0, 0.2)'
                       : isDark ? '0 4px 16px rgba(0,0,0,0.4)' : '0 4px 16px rgba(0,0,0,0.06)',
                     height: '100%',
+                    boxSizing: 'border-box',
                     transition: 'border-color 0.28s ease, box-shadow 0.28s ease'
                   }}
                 >
-                  <div>
-                    {/* Dead-Centered Image Container Box */}
+                  <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                    {/* Dead-Centered Image Container Box with Explicit Aspect Ratio */}
                     <div style={{
                       backgroundColor: isDark ? 'rgba(18, 18, 18, 0.6)' : 'rgba(242, 244, 247, 0.8)',
-                      padding: '20px',
-                      height: '210px',
+                      padding: '16px',
+                      height: '200px',
+                      maxHeight: '200px',
                       width: '100%',
+                      aspectRatio: '16 / 10',
                       display: 'flex',
                       alignItems: 'center',
-                      justify: 'center',
+                      justifyContent: 'center',
                       position: 'relative',
-                      overflow: 'hidden'
+                      overflow: 'hidden',
+                      boxSizing: 'border-box'
                     }}>
                       <span style={{
                         position: 'absolute',
@@ -114,8 +114,8 @@ export default function FeaturedEquipment({ onNavigateToProducts }) {
                         src={machine.image}
                         alt={titleText}
                         style={{
-                          maxHeight: '170px',
-                          maxWidth: '88%',
+                          maxHeight: '160px',
+                          maxWidth: '90%',
                           width: 'auto',
                           height: 'auto',
                           objectFit: 'contain',
@@ -127,25 +127,33 @@ export default function FeaturedEquipment({ onNavigateToProducts }) {
                       />
                     </div>
 
-                    <div style={{ padding: '24px' }}>
-                      <h3 style={{
-                        fontSize: '1.25rem',
-                        fontWeight: 800,
-                        color: isHovered ? '#FF6600' : isDark ? '#FFFFFF' : '#111111',
-                        marginBottom: '8px',
-                        lineHeight: 1.3,
-                        transition: 'color 0.25s ease'
-                      }}>
+                    <div style={{ padding: '20px clamp(14px, 3.5vw, 22px)', display: 'flex', flexDirection: 'column', flexGrow: 1, minWidth: 0, boxSizing: 'border-box' }}>
+                      <h3
+                        className="line-clamp-2"
+                        style={{
+                          fontSize: '1.2rem',
+                          fontWeight: 800,
+                          color: isHovered ? '#FF6600' : isDark ? '#FFFFFF' : '#111111',
+                          marginBottom: '6px',
+                          lineHeight: 1.3,
+                          minHeight: '2.6em',
+                          transition: 'color 0.25s ease'
+                        }}
+                        title={titleText}
+                      >
                         {titleText}
                       </h3>
 
-                      <p style={{
-                        fontSize: '0.88rem',
-                        color: isDark ? '#A0A0A0' : '#666666',
-                        marginBottom: '20px',
-                        lineHeight: 1.5,
-                        minHeight: '42px'
-                      }}>
+                      <p
+                        className="line-clamp-2"
+                        style={{
+                          fontSize: '0.86rem',
+                          color: isDark ? '#A0A0A0' : '#666666',
+                          marginBottom: '16px',
+                          lineHeight: 1.5,
+                          minHeight: '2.8em'
+                        }}
+                      >
                         {taglineText}
                       </p>
 
@@ -153,18 +161,24 @@ export default function FeaturedEquipment({ onNavigateToProducts }) {
                         <div style={{
                           backgroundColor: isDark ? 'rgba(16, 16, 16, 0.6)' : '#F8F9FA',
                           borderRadius: '6px',
-                          padding: '12px 14px',
-                          marginBottom: '20px',
+                          padding: '10px 12px',
+                          marginBottom: '16px',
                           display: 'flex',
                           flexDirection: 'column',
-                          gap: '6px',
-                          fontSize: '0.8rem',
-                          border: `1px solid ${isDark ? '#2A2A2A' : '#EAEAEA'}`
+                          gap: '5px',
+                          fontSize: '0.78rem',
+                          border: `1px solid ${isDark ? '#2A2A2A' : '#EAEAEA'}`,
+                          minWidth: 0,
+                          boxSizing: 'border-box'
                         }}>
                           {Object.entries(machine.specs).slice(0, 3).map(([key, val]) => (
-                            <div key={key} style={{ display: 'flex', justifyContent: 'space-between', color: isDark ? '#CCC' : '#555' }}>
-                              <span style={{ textTransform: 'capitalize', fontWeight: 600 }}>{key}:</span>
-                              <span style={{ fontWeight: 800, color: '#FF6600' }}>{val}</span>
+                            <div key={key} style={{ display: 'flex', justifyContent: 'space-between', color: isDark ? '#CCC' : '#555', gap: '8px', minWidth: 0, alignItems: 'center' }}>
+                              <span style={{ textTransform: 'capitalize', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0, flexShrink: 1 }}>
+                                {key}:
+                              </span>
+                              <span style={{ fontWeight: 800, color: '#FF6600', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right' }}>
+                                {val}
+                              </span>
                             </div>
                           ))}
                         </div>
@@ -172,11 +186,11 @@ export default function FeaturedEquipment({ onNavigateToProducts }) {
                     </div>
                   </div>
 
-                  <div style={{ padding: '0 24px 24px 24px' }}>
+                  <div style={{ padding: '0 clamp(14px, 3.5vw, 22px) 20px clamp(14px, 3.5vw, 22px)', marginTop: 'auto', boxSizing: 'border-box' }}>
                     <button
                       onClick={() => setSelectedProduct(machine)}
                       className="btn-primary"
-                      style={{ width: '100%', justifyContent: 'center' }}
+                      style={{ width: '100%', justifyContent: 'center', minHeight: '44px' }}
                     >
                       <span>{t.featured.btnDetails}</span>
                       <ArrowRight size={16} />
@@ -188,13 +202,14 @@ export default function FeaturedEquipment({ onNavigateToProducts }) {
           })}
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+        <div style={{ textAlign: 'center', marginTop: '40px' }}>
           <button
             onClick={() => onNavigateToProducts && onNavigateToProducts('products')}
             className="btn-outline"
             style={{
               borderColor: '#FF6600',
-              color: isDark ? '#FFFFFF' : '#111111'
+              color: isDark ? '#FFFFFF' : '#111111',
+              minHeight: '44px'
             }}
           >
             <span>{t.featured.btnViewAll}</span>

@@ -43,7 +43,8 @@ export const translations = {
   uk: {
     topbar: {
       phoneUA: '+380 50 380 66 92',
-      distributorBadge: 'ОФІЦІЙНИЙ ДИСТРИБ’ЮТОР ДІТЧ ВІТЧ В УКРАЇНІ',
+      phoneUA2: '+380 50 689 46 21',
+      distributorBadge: 'ОФІЦІЙНИЙ ДИЛЕР ДІТЧ ВІТЧ В УКРАЇНІ',
       searchPlaceholder: 'Пошук обладнання...'
     },
     nav: {
@@ -51,7 +52,7 @@ export const translations = {
       products: 'ПРОДУКЦІЯ',
       about: 'ПРО НАС',
       partsService: 'ЗАПЧАСТИНИ ТА СЕРВІС',
-      docs: 'ДОКУМЕНТАЦІЯ',
+      docs: 'ТЕХНІЧНА ДОКУМЕНТАЦІЯ',
       news: 'НОВИНИ',
       used: 'ВЖИВАНА ТЕХНІКА',
       offers: 'СПЕЦПРОПОЗИЦІЇ',
@@ -61,11 +62,12 @@ export const translations = {
       trenchers: 'Віброукладачі та Траншеєкопачі',
       skidSteers: 'Навантажувачі та Компакт',
       fluidSystems: 'Міксери бентонітові',
-      subsite: 'Електроніка - системи пошуку та локалізації',
+      subsite: 'Електронні системи локацій',
       americanAugers: 'Обладнання American Augers',
-      bentonite: 'Бентоніт та Полімери Baroid',
+      bentonite: 'Бентоніт та полімери',
       recycling: 'Рециклінг розчину',
-      consumables: 'Витратні матеріали (Бентоніт тощо)'
+      consumables: 'Витратні матеріали (Бентоніт тощо)',
+      other: 'Інше'
     },
     hero: {
       slide1: {
@@ -109,14 +111,15 @@ export const translations = {
       title: 'КАТЕГОРІЇ ПРОДУКЦІЇ ДІТЧ ВІТЧ & JLM',
       cat1: { name: 'Машини ГНБ (HDD)', desc: 'Установки горизонтально-направленого буріння для прокладання комунікацій без пошкодження покриття.' },
       cat2: { name: 'Міксери бентонітові', desc: 'Професійні системи змішування бентоніту та полімерів з помпою високого тиску.' },
-      cat3: { name: 'Електроніка - системи пошуку та локалізації', desc: 'Високоточні локаційні системи Subsite® Marksman, TK RECON та зонди для безпомилкового ведення буріння.' },
+      cat3: { name: 'Електронні системи локацій', desc: 'Високоточні локаційні системи Subsite® Marksman, TK RECON та зонди для безпомилкового ведення буріння.' },
       cat4: { name: 'Локатори Subsite®', desc: 'Професійні трасошукачі UtiliGuard® 2 для точного виявлення підземних комунікацій.' },
       cat5: { name: 'Віброукладачі та Траншеєкопачі', desc: 'Ланцюгові траншеєкопачі C16X та віброукладачі 100SX для швидкого підземного копання.' },
-      cat6: { name: 'Бентоніт та Полімери Baroid®', desc: 'Промислові бурові добавки, змащувачі свердловини та емульсії Baroid® EZ-MUD®.' },
+      cat6: { name: 'Бентоніт та полімери', desc: 'Промислові бурові добавки, змащувачі свердловини та емульсії Baroid® EZ-MUD®.' },
       cat7: { name: 'Навантажувачі (Компакт)', desc: 'Гусеничні міні-навантажувачі з стоячим місцем SK3000 та SK1550 для важких робіт.' },
       cat8: { name: 'American Augers®', desc: 'Важкі бурові комплекси ГНБ великої потужності для магістральних трубопроводів (Перейти на офіційний сайт).' },
       cat9: { name: 'Рециклінг розчину', desc: 'Установки замкнутого циклу очищення та регенерації бурового розчину Dupagro.' },
       cat10: { name: 'Витратні матеріали', desc: 'Оригінальні витратні матеріали Baroid®, розширювачі, бурові головки та компоненти.' },
+      cat11: { name: 'Інше / Інші товари', desc: 'Інше спецобладнання, аксесуари та супутні матеріали для буріння.' },
       btnView: 'Детальніше'
     },
     featured: {
@@ -154,6 +157,7 @@ export const translations = {
   en: {
     topbar: {
       phoneUA: '+380 50 380 66 92',
+      phoneUA2: '+380 50 689 46 21',
       distributorBadge: 'OFFICIAL DITCH WITCH DISTRIBUTOR IN UKRAINE',
       searchPlaceholder: 'Search equipment...'
     },
@@ -176,7 +180,8 @@ export const translations = {
       americanAugers: 'American Augers Equipment',
       bentonite: 'Baroid Bentonite',
       recycling: 'Mud Recycling',
-      consumables: 'Consumable Materials (Bentonite & Fluids)'
+      consumables: 'Consumable Materials (Bentonite & Fluids)',
+      other: 'Other Equipment'
     },
     hero: {
       slide1: {
@@ -228,6 +233,7 @@ export const translations = {
       cat8: { name: 'American Augers®', desc: 'Heavy HDD rigs and auger boring machinery (Redirects to official site).' },
       cat9: { name: 'Mud Recycling Systems', desc: 'Closed-loop Dupagro mud cleaning and bentonite recycling units.' },
       cat10: { name: 'Consumable Materials', desc: 'Original Baroid® bentonites, polymers, reamers, drill bits, and sondes.' },
+      cat11: { name: 'Other Equipment', desc: 'Other specialized equipment, accessories, and auxiliary materials.' },
       btnView: 'Learn More'
     },
     featured: {
@@ -265,6 +271,7 @@ export const translations = {
   pl: {
     topbar: {
       phoneUA: '+380 50 380 66 92',
+      phoneUA2: '+380 50 689 46 21',
       distributorBadge: 'OFICJALNY DYSTRYBUTOR DITCH WITCH W UKRAINIE',
       searchPlaceholder: 'Szukaj sprzętu...'
     },
@@ -287,7 +294,8 @@ export const translations = {
       americanAugers: 'Sprzęt American Augers',
       bentonite: 'Bentonit Baroid',
       recycling: 'Recykling Płuczki',
-      consumables: 'Materiały eksploatacyjne (Bentonit itp.)'
+      consumables: 'Materiały eksploatacyjne (Bentonit itp.)',
+      other: 'Inne'
     },
     hero: {
       slide1: {
@@ -339,6 +347,7 @@ export const translations = {
       cat8: { name: 'American Augers®', desc: 'Ciężkie zestawy wiertnicze (Przekierowanie do oficjalnej strony).' },
       cat9: { name: 'Recykling Płuczki', desc: 'Systemy zamkniętego obiegu czyszczenia płuczki Dupagro.' },
       cat10: { name: 'Materiały eksploatacyjne', desc: 'Oryginalne bentonity Baroid®, polimery, poszerzacze i korony.' },
+      cat11: { name: 'Inne', desc: 'Inny sprzęt specjalistyczny, akcesoria i materiały towarzyszące.' },
       btnView: 'Więcej'
     },
     featured: {

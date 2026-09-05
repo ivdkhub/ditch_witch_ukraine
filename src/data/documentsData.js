@@ -1,5 +1,23 @@
 export const documentsData = [
   {
+    id: 'doc-umag-mag-x-cor',
+    category: 'locating',
+    categoryName: { uk: 'Локаційні Системи ГНБ', en: 'HDD Locating Systems', pl: 'Systemy Lokalizacji HDB' },
+    file: '/documents/Underground_Magnetics_Mag_X_COR_Brochure_UA.pdf',
+    size: '306 KB',
+    format: 'PDF',
+    title: {
+      uk: 'Локаційна система Underground Magnetics Mag X COR (Специфікація)',
+      en: 'Underground Magnetics Mag X COR Locating System (Official Specs PDF)',
+      pl: 'System Lokalizacji Underground Magnetics Mag X COR (Specyfikacja PDF)'
+    },
+    description: {
+      uk: 'Офіційний каталог-специфікація Underground Magnetics Mag X COR: 16 частот (325kHz-41kHz), 7" сенсорний екран Android, зонди Echo 50/50XF до 50м та реєстрація даних UMmaps.',
+      en: 'Official Underground Magnetics Mag X COR specifications: 16 frequencies (325kHz-41kHz), 7" Android touchscreen, Echo 50/50XF transmitters up to 50m, and UMmaps data logging.',
+      pl: 'Oficjalna specyfikacja Underground Magnetics Mag X COR: 16 częstotliwości (325kHz-41kHz), 7-calowy ekran dotykowy Android i transmisja danych UMmaps.'
+    }
+  },
+  {
     id: 'doc-jt5',
     category: 'drilling',
     categoryName: { uk: 'Бурові Установки ГНБ', en: 'HDD Directional Drills', pl: 'Wiertnice Sterowane HDB' },

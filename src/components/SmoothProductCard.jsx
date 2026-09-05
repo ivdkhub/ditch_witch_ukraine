@@ -25,7 +25,15 @@ export default function SmoothProductCard({
       className={className}
       style={{
         opacity: 1,
-        transform: isHovered ? 'translateY(-6px) scale(1.025)' : 'translateY(0px) scale(1)',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        width: '100%',
+        minWidth: 0,
+        maxWidth: '100%',
+        boxSizing: 'border-box',
+        overflow: 'hidden',
+        transform: isHovered ? 'translateY(-4px)' : 'translateY(0px)',
         transition: 'transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease, border-color 0.28s ease',
         willChange: 'transform',
         ...style

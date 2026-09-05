@@ -71,16 +71,20 @@ export default function LanguageSelector() {
             key={lang.code}
             onClick={() => handleSelectLanguage(lang.code)}
             title={lang.title}
+            aria-label={lang.title}
             type="button"
+            className="touch-target"
             style={{
               display: 'flex',
               alignItems: 'center',
-              justify: 'center',
+              justifyContent: 'center',
               backgroundColor: isActive ? '#FF6600' : 'transparent',
               color: isActive ? '#FFFFFF' : isDark ? '#B0B0B0' : '#334155',
               border: 'none',
               borderRadius: '24px',
-              padding: '6px 10px',
+              minWidth: '44px',
+              minHeight: '40px',
+              padding: '6px 12px',
               cursor: 'pointer',
               transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
               boxShadow: isActive ? '0 2px 10px rgba(255, 102, 0, 0.4)' : 'none'

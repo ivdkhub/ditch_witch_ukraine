@@ -12,10 +12,10 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
   };
 
   const contact1Name = language === 'uk' ? 'Ірина Лясковська' : 'Iryna Liaskovska';
-  const contact1Role = language === 'uk' ? 'Бухгалтерія / Адміністрація' : language === 'pl' ? 'Księgowość / Administracja' : 'Accounting & Administration';
+  const contact1Role = language === 'uk' ? 'Директор' : language === 'pl' ? 'Dyrektor' : 'Director';
 
   const contact2Name = language === 'uk' ? 'Олег Липкин' : 'Oleg Lypkyn';
-  const contact2Role = language === 'uk' ? 'Сервіс та Вживана техніка' : language === 'pl' ? 'Serwis i Sprzęt Używany' : 'Service & Pre-Owned Machinery';
+  const contact2Role = language === 'uk' ? 'Головний інженер' : language === 'pl' ? 'Główny Inżynier' : 'Chief Engineer';
 
   return (
     <footer style={{

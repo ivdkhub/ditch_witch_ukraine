@@ -59,11 +59,7 @@ export default function LatestNews({ onNavigateToNews }) {
           </button>
         </div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '24px'
-        }}>
+        <div className="responsive-card-grid">
           {newsList.slice(0, 3).map((article) => {
             const titleText = article.title[language] || article.title.uk || article.title.en;
             const summaryText = article.summary[language] || article.summary.uk || article.summary.en;
@@ -80,6 +76,9 @@ export default function LatestNews({ onNavigateToNews }) {
                   overflow: 'hidden',
                   display: 'flex',
                   flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  height: '100%',
+                  boxSizing: 'border-box',
                   cursor: 'pointer',
                   transition: 'transform 0.3s ease, border-color 0.3s ease'
                 }}
@@ -92,27 +91,30 @@ export default function LatestNews({ onNavigateToNews }) {
                   e.currentTarget.style.borderColor = isDark ? '#262626' : '#E0E0E0';
                 }}
               >
-                <div style={{
-                  height: '180px',
-                  backgroundColor: isDark ? '#1E1E1E' : '#F9F9F9',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justify: 'center',
-                  padding: '20px'
-                }}>
-                  <img
-                    src={article.image}
-                    alt={titleText}
-                    style={{
-                      maxHeight: '140px',
-                      maxWidth: '100%',
-                      objectFit: 'contain'
-                    }}
-                  />
-                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                  <div style={{
+                    aspectRatio: '16 / 10',
+                    width: '100%',
+                    backgroundColor: isDark ? '#1E1E1E' : '#F9F9F9',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '20px',
+                    boxSizing: 'border-box',
+                    overflow: 'hidden'
+                  }}>
+                    <img
+                      src={article.image}
+                      alt={titleText}
+                      style={{
+                        maxHeight: '100%',
+                        maxWidth: '100%',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
 
-                <div style={{ padding: '24px', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <div>
+                  <div style={{ padding: '24px', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                     <div style={{
                       display: 'flex',
                       alignItems: 'center',
@@ -127,7 +129,7 @@ export default function LatestNews({ onNavigateToNews }) {
                       <span style={{ color: isDark ? '#888888' : '#666666' }}>{dateText}</span>
                     </div>
 
-                    <h3 style={{
+                    <h3 className="line-clamp-2" style={{
                       fontSize: '1.15rem',
                       fontWeight: 800,
                       color: isDark ? '#FFFFFF' : '#111111',
@@ -137,7 +139,7 @@ export default function LatestNews({ onNavigateToNews }) {
                       {titleText}
                     </h3>
 
-                    <p style={{
+                    <p className="line-clamp-3" style={{
                       fontSize: '0.88rem',
                       color: isDark ? '#A0A0A0' : '#555555',
                       lineHeight: 1.5,
@@ -146,18 +148,20 @@ export default function LatestNews({ onNavigateToNews }) {
                       {summaryText}
                     </p>
                   </div>
+                </div>
 
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    color: '#FF6600',
-                    fontWeight: 700,
-                    fontSize: '0.85rem'
-                  }}>
-                    <span>{t.news.readMore}</span>
-                    <ArrowRight size={15} />
-                  </div>
+                <div style={{
+                  padding: '0 24px 24px 24px',
+                  marginTop: 'auto',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  color: '#FF6600',
+                  fontWeight: 700,
+                  fontSize: '0.85rem'
+                }}>
+                  <span>{t.news.readMore}</span>
+                  <ArrowRight size={15} />
                 </div>
               </div>
             );

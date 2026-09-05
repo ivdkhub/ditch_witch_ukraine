@@ -73,6 +73,12 @@ export default function ProductCategories({ onNavigateToProducts }) {
       name: t.categories.cat10.name,
       desc: t.categories.cat10.desc,
       image: '/Risorse/Immagini/category_fluidSystems.png'
+    },
+    {
+      id: 'other',
+      name: t.categories.cat11?.name || 'Інше / Інші товари',
+      desc: t.categories.cat11?.desc || 'Інше спецобладнання, аксесуари та супутні матеріали.',
+      image: '/Risorse/Immagini/category_drilling.png'
     }
   ];
 
@@ -115,17 +121,13 @@ export default function ProductCategories({ onNavigateToProducts }) {
           </h2>
         </div>
 
-        {/* Glassmorphism Category Cards Grid with Smooth Fast Entrance & Hover Zoom */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '24px'
-        }}>
+        {/* Glassmorphism Category Cards Grid with Responsive Fluid Grid */}
+        <div className="responsive-category-grid">
           {categories.map((cat, idx) => {
             const isHovered = hoveredCatId === cat.id;
 
             return (
-              <SmoothProductCard key={cat.id} delay={0.05 * (idx % 5)}>
+              <SmoothProductCard key={cat.id} delay={0.04 * (idx % 5)}>
                 <div
                   onClick={() => handleCategoryClick(cat.id)}
                   onMouseEnter={() => setHoveredCatId(cat.id)}
@@ -136,33 +138,37 @@ export default function ProductCategories({ onNavigateToProducts }) {
                     WebkitBackdropFilter: 'blur(10px)',
                     borderRadius: '12px',
                     border: `2px solid ${isHovered ? '#FF6600' : isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)'}`,
-                    padding: '24px',
+                    padding: '20px',
                     display: 'flex',
                     flexDirection: 'column',
-                    justify: 'space-between',
+                    justifyContent: 'space-between',
                     cursor: 'pointer',
                     boxShadow: isHovered
                       ? isDark ? '0 12px 30px rgba(255, 102, 0, 0.3)' : '0 12px 30px rgba(255, 102, 0, 0.2)'
                       : isDark ? '0 4px 16px rgba(0,0,0,0.4)' : '0 4px 16px rgba(0,0,0,0.06)',
                     height: '100%',
+                    boxSizing: 'border-box',
                     transition: 'border-color 0.28s ease, box-shadow 0.28s ease'
                   }}
                 >
-                  <div>
+                  <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
                     <div style={{
-                      height: '160px',
+                      height: '140px',
+                      maxHeight: '140px',
+                      aspectRatio: '16 / 10',
                       display: 'flex',
                       alignItems: 'center',
-                      justify: 'center',
-                      marginBottom: '20px',
-                      overflow: 'hidden'
+                      justifyContent: 'center',
+                      marginBottom: '16px',
+                      overflow: 'hidden',
+                      boxSizing: 'border-box'
                     }}>
                       <img
                         src={cat.image}
                         alt={cat.name}
                         style={{
-                          maxHeight: '140px',
-                          maxWidth: '100%',
+                          maxHeight: '130px',
+                          maxWidth: '90%',
                           objectFit: 'contain',
                           display: 'block',
                           margin: 'auto',
@@ -172,22 +178,32 @@ export default function ProductCategories({ onNavigateToProducts }) {
                       />
                     </div>
 
-                    <h3 style={{
-                      fontSize: '1.2rem',
-                      fontWeight: 800,
-                      color: isHovered ? '#FF6600' : isDark ? '#FFFFFF' : '#111111',
-                      marginBottom: '8px',
-                      transition: 'color 0.25s ease'
-                    }}>
+                    <h3
+                      className="line-clamp-2"
+                      style={{
+                        fontSize: '1.15rem',
+                        fontWeight: 800,
+                        color: isHovered ? '#FF6600' : isDark ? '#FFFFFF' : '#111111',
+                        marginBottom: '6px',
+                        lineHeight: 1.3,
+                        minHeight: '2.6em',
+                        transition: 'color 0.25s ease'
+                      }}
+                      title={cat.name}
+                    >
                       {cat.name}
                     </h3>
 
-                    <p style={{
-                      fontSize: '0.88rem',
-                      color: isDark ? '#A0A0A0' : '#666666',
-                      lineHeight: 1.5,
-                      marginBottom: '20px'
-                    }}>
+                    <p
+                      className="line-clamp-2"
+                      style={{
+                        fontSize: '0.86rem',
+                        color: isDark ? '#A0A0A0' : '#666666',
+                        lineHeight: 1.5,
+                        marginBottom: '16px',
+                        minHeight: '2.8em'
+                      }}
+                    >
                       {cat.desc}
                     </p>
                   </div>
@@ -198,7 +214,10 @@ export default function ProductCategories({ onNavigateToProducts }) {
                     gap: '6px',
                     color: '#FF6600',
                     fontWeight: 700,
-                    fontSize: '0.88rem'
+                    fontSize: '0.88rem',
+                    minHeight: '44px',
+                    marginTop: 'auto',
+                    paddingTop: '6px'
                   }}>
                     <span>{cat.isExternal ? 'americanaugers.com' : t.categories.btnView}</span>
                     {cat.isExternal ? (

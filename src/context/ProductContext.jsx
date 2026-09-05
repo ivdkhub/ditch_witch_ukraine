@@ -21,7 +21,7 @@ export function ProductProvider({ children }) {
           if (init) {
             return {
               ...p,
-              image: (init.image || p.image || '').replace(/\.jpg$/, '.png'),
+              image: init.image || p.image || '',
               specs: init.specs || p.specs
             };
           }

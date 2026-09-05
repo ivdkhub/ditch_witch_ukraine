@@ -4,7 +4,7 @@ export const productsData = [
     id: 'jt5',
     category: 'hdd',
     categoryKey: 'hdd',
-    image: '/Risorse/Immagini/hdd/jt5.png',
+    image: '/Risorse/Immagini/dirdrills_jt5.png',
     featured: true,
     title: {
       uk: 'Установка ГНБ Дітч Вітч JT5',
@@ -39,7 +39,7 @@ export const productsData = [
     id: 'jt10',
     category: 'hdd',
     categoryKey: 'hdd',
-    image: '/Risorse/Immagini/hdd/jt10.png',
+    image: '/Risorse/Immagini/dirdrills_jt10.png',
     featured: true,
     title: {
       uk: 'Установка ГНБ Дітч Вітч JT10',
@@ -144,7 +144,7 @@ export const productsData = [
     id: 'jt24',
     category: 'hdd',
     categoryKey: 'hdd',
-    image: '/Risorse/Immagini/hdd/jt24.png',
+    image: '/Risorse/Immagini/hdd/jt24.jpg',
     featured: false,
     title: {
       uk: 'Установка ГНБ Дітч Вітч JT24',
@@ -797,6 +797,70 @@ export const productsData = [
       uk: 'Оригінальний натрієвий бентоніт Baroid® QUIK-GEL® швидко створює в’язкість бурового розчину та формує міцний вивідний шар.',
       en: 'Baroid® QUIK-GEL® is a high-yield sodium bentonite engineered to rapidly build viscosity and seal borehole walls.',
       pl: 'Oryginalny bentonit Baroid® QUIK-GEL® szybko buduje lepkość płuczki i uszczelnia ściany otworu.'
+    }
+  },
+
+  // 9. Other / Auxiliaries (Інше / Інші товари)
+  {
+    id: 'hammerhead_mole',
+    category: 'other',
+    categoryKey: 'other',
+    image: '/Risorse/Immagini/category_drilling.png',
+    featured: false,
+    title: {
+      uk: 'Пневмопробійник HammerHead® Mole',
+      en: 'HammerHead® Pneumatic Piercing Tool',
+      pl: 'Kret Pneumatyczny HammerHead® Mole'
+    },
+    tagline: {
+      uk: 'Пневматичний пробійник для безтраншейного прокладання комунікацій',
+      en: 'Pneumatic soil displacement tool for trenchless pipe installation',
+      pl: 'Pneumatyczny przebijak do bezwykopowej instalacji rur'
+    },
+    specs: {
+      diameter: '75 мм - 130 мм (3.0" - 5.12")',
+      airFlow: '0.85 - 1.4 m³/min (30 - 50 cfm)',
+      pressure: '7 bar (110 psi)',
+      impactRate: '420 - 500 blow/min'
+    },
+    desc: {
+      uk: 'Професійний пневматичний пробійник (кріт) HammerHead® Mole для точного горизонтального прокладання футлярів під автошляхами та залізницями.',
+      en: 'HammerHead® Mole pneumatic piercing tools deliver reliable horizontal soil displacement under roads and driveways.',
+      pl: 'Pneumatyczny kret HammerHead® Mole zapewnia precyzyjne drążenie pod drogami i chodnikami.'
+    }
+  },
+  {
+    id: 'umag_mag_x_cor',
+    category: 'other',
+    categoryKey: 'other',
+    image: '/Risorse/Immagini/mag_x_cor.png',
+    brochureUrl: '/documents/Underground_Magnetics_Mag_X_COR_Brochure_UA.pdf',
+    featured: false,
+    title: {
+      uk: 'Локаційна система Underground Magnetics Mag X COR',
+      en: 'Underground Magnetics Mag X COR HDD Locating System',
+      pl: 'System Lokalizacji Underground Magnetics Mag X COR'
+    },
+    tagline: {
+      uk: 'Простий. Потужний. Доступний. Преміальна система локації ГНБ нового покоління',
+      en: 'Simple. Powerful. Affordable. Next-Generation Premium HDD Locating System',
+      pl: 'Prosty. Wydajny. Dostępny. System lokalizacji HDB nowej generacji'
+    },
+    specs: {
+      receiver: 'Mag X COR (16 частот, 325kHz - 41kHz)',
+      display: '7" Кольоровий сенсорний екран (ОС Android)',
+      transmitters: 'Echo X-Mini / Echo 50 / Echo 50XF',
+      telemetry: '4 радіоканали (радіус дії до 900 м)',
+      depth: 'до 40-50 м (Echo 50 / 50XF) / 18 м (X-Mini)',
+      battery: 'Літієва батарея 12.5V (Автономність до 50 годин)',
+      protection: 'IP65 (Робоча температура -20°C до +60°C)',
+      dimensions: '73.5 x 23 x 33 см (Маса: 3.85 кг)',
+      dataLogging: 'Вбудований журнал даних одним дотиком, UMmaps хмара'
+    },
+    desc: {
+      uk: 'Локаційна система Underground Magnetics Mag X COR поєднує надточне ведення бурової головки та максимальну потужність із простотою використання. Стоячий приймач з 4" світловідбиваючим РК-дисплеєм, дистанційний 7" планшет на базі Android, відстеження на льоту, 16 частот (325kHz - 41kHz) та миттєва синхронізація з хмарою UMmaps.',
+      en: 'Underground Magnetics Mag X COR locating system combines premium HDD tracking precision with exceptional ease of use. Features a stand-up receiver with 4" sunlight-readable LCD, remote 7" Android touchscreen, on-the-fly tracking, 16 frequencies, and seamless UMmaps cloud integration.',
+      pl: 'System lokalizacji Underground Magnetics Mag X COR łączy precyzję z intuicyjną obsługą. Wyposażony w odbiornik z 4" wyświetlaczem, 7-calowy tablet Android i zaawansowaną chmurę UMmaps.'
     }
   }
 ];

@@ -9,15 +9,19 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
+      type="button"
+      aria-label={isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
       style={{
         display: 'inline-flex',
         alignItems: 'center',
+        justifyContent: 'center',
         gap: '8px',
         backgroundColor: isDark ? '#222222' : '#E2E8F0',
         border: `1px solid ${isDark ? '#383838' : '#CBD5E1'}`,
         color: isDark ? '#FFFFFF' : '#334155',
         borderRadius: '30px',
-        padding: '6px 16px',
+        padding: '8px 16px',
+        minHeight: '40px',
         fontSize: '0.82rem',
         fontWeight: 800,
         cursor: 'pointer',

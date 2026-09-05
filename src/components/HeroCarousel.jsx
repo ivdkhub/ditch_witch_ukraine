@@ -66,36 +66,55 @@ export default function HeroCarousel({ onNavigate, onRequestQuote }) {
 
   const slide = slides[currentSlide];
 
+  const [touchStartX, setTouchStartX] = useState(0);
+
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+  };
+
   const handleMoreClick = (e) => {
     e.preventDefault();
     if (onNavigate) {
-      onNavigate('products');
-    } else {
-      window.location.hash = '#products';
+      onNavigate('products', slide.productId || 'all');
     }
   };
 
   const handleQuoteClick = (e) => {
     e.preventDefault();
-    if (onRequestQuote) {
-      onRequestQuote(slide.productId);
+    const contactSection = document.getElementById('contact-us');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
     } else if (onNavigate) {
-      onNavigate('service');
-    } else {
-      window.location.hash = '#service';
+      onNavigate('about');
     }
   };
 
   return (
-    <section style={{
-      position: 'relative',
-      backgroundColor: '#0A0A0A',
-      color: '#FFFFFF',
-      minHeight: '480px',
-      overflow: 'hidden',
-      display: 'flex',
-      alignItems: 'center'
-    }}>
+    <section
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      style={{
+        position: 'relative',
+        backgroundColor: '#0F0F0F',
+        color: '#FFFFFF',
+        overflow: 'hidden',
+        minHeight: '480px',
+        display: 'flex',
+        alignItems: 'center'
+      }}
+    >
       {/* Pattern Overlay */}
       <div style={{
         position: 'absolute',
@@ -209,13 +228,14 @@ export default function HeroCarousel({ onNavigate, onRequestQuote }) {
         </div>
       </div>
 
-      {/* Controls with Dead-Centered Icons inside Orange Circles */}
+      {/* Controls with Dead-Centered Icons inside Orange Circles (hidden on mobile to prevent overlapping buttons) */}
       <button
         onClick={prevSlide}
         aria-label="Previous Slide"
+        className="hero-carousel-arrow hero-arrow-prev"
         style={{
           position: 'absolute',
-          left: '16px',
+          left: '20px',
           top: '50%',
           transform: 'translateY(-50%)',
           backgroundColor: '#FF6600',
@@ -226,7 +246,7 @@ export default function HeroCarousel({ onNavigate, onRequestQuote }) {
           borderRadius: '50%',
           display: 'flex',
           alignItems: 'center',
-          justify: 'center',
+          justifyContent: 'center',
           cursor: 'pointer',
           zIndex: 20,
           boxShadow: '0 4px 14px rgba(255, 102, 0, 0.4)',
@@ -240,9 +260,10 @@ export default function HeroCarousel({ onNavigate, onRequestQuote }) {
       <button
         onClick={nextSlide}
         aria-label="Next Slide"
+        className="hero-carousel-arrow hero-arrow-next"
         style={{
           position: 'absolute',
-          right: '16px',
+          right: '20px',
           top: '50%',
           transform: 'translateY(-50%)',
           backgroundColor: '#FF6600',
@@ -253,7 +274,7 @@ export default function HeroCarousel({ onNavigate, onRequestQuote }) {
           borderRadius: '50%',
           display: 'flex',
           alignItems: 'center',
-          justify: 'center',
+          justifyContent: 'center',
           cursor: 'pointer',
           zIndex: 20,
           boxShadow: '0 4px 14px rgba(255, 102, 0, 0.4)',
@@ -280,7 +301,7 @@ export default function HeroCarousel({ onNavigate, onRequestQuote }) {
             onClick={() => setCurrentSlide(idx)}
             aria-label={`Go to slide ${idx + 1}`}
             style={{
-              width: currentSlide === idx ? '24px' : '10px',
+              width: currentSlide === idx ? '28px' : '10px',
               height: '10px',
               borderRadius: '5px',
               backgroundColor: currentSlide === idx ? '#FF6600' : 'rgba(255, 255, 255, 0.4)',
@@ -291,6 +312,14 @@ export default function HeroCarousel({ onNavigate, onRequestQuote }) {
           />
         ))}
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .hero-carousel-arrow {
+            display: none !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

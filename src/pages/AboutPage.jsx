@@ -30,8 +30,13 @@ export default function AboutPage({ onNavigateToProducts }) {
       en: 'About Ditch Witch Ukraine',
       pl: 'O Firmie Ditch Witch Ukraina'
     },
+    tagline: {
+      uk: 'Лідер у галузі безтраншейного підземного будівництва',
+      en: 'Leader in Trenchless Underground Construction',
+      pl: 'Lider w Dziedzinie Bezwykopowej Budowy Podziemnej'
+    },
     subtitle: {
-      uk: 'Офіційне представництво групи JLM — ексклюзивного дистриб’ютора Дітч Вітч® в Україні та Північній Європі.',
+      uk: 'Офіційне представництво групи JLM — ексклюзивного дилера Дітч Вітч® в Україні та Північній Європі.',
       en: 'Official representation of JLM Group — exclusive distributor of Ditch Witch® in Ukraine and Northern Europe.',
       pl: 'Oficjalny przedstawiciel grupy JLM — wyłącznego dystrybutora Ditch Witch® w Ukrainie i Europie Północnej.'
     },
@@ -115,11 +120,21 @@ export default function AboutPage({ onNavigateToProducts }) {
               fontSize: 'clamp(2.2rem, 4vw, 3.2rem)',
               fontWeight: 900,
               marginTop: '8px',
-              marginBottom: '14px',
+              marginBottom: '6px',
               textTransform: 'uppercase'
             }}>
               {contentData.title[language] || contentData.title.uk}
             </h1>
+            <p style={{
+              color: '#FF6600',
+              fontWeight: 800,
+              fontSize: '1.15rem',
+              marginTop: 0,
+              marginBottom: '16px',
+              letterSpacing: '0.02em'
+            }}>
+              {contentData.tagline[language] || contentData.tagline.uk}
+            </p>
           </ParallaxCard>
 
           <ParallaxCard delay={0.5}>
@@ -552,135 +567,65 @@ export default function AboutPage({ onNavigateToProducts }) {
 
             {/* 3 Creative Team Member Cards Grid */}
             <div style={{
-              padding: '32px',
+              padding: 'clamp(16px, 3vw, 32px)',
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '24px'
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '20px'
             }}>
-              {/* Member 1: Маханьков Дмитро */}
+              {/* Member 1: Ірина Лясковська — Директор */}
               <div style={{
                 backgroundColor: isDark ? 'rgba(18, 18, 18, 0.8)' : '#F9FAFB',
                 borderRadius: '12px',
-                padding: '24px',
+                padding: 'clamp(16px, 3vw, 24px)',
                 border: `1px solid ${isDark ? '#2D2D2D' : '#E5E7EB'}`,
                 display: 'flex',
                 flexDirection: 'column',
-                justify: 'space-between',
-                gap: '16px'
+                justifyContent: 'space-between',
+                gap: '16px',
+                boxSizing: 'border-box',
+                minWidth: 0
               }}>
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px', minWidth: 0 }}>
                     <div style={{
-                      width: '60px',
-                      height: '60px',
-                      borderRadius: '50%',
-                      background: 'linear-gradient(135deg, #FF6600 0%, #D95300 100%)',
-                      color: '#FFFFFF',
-                      display: 'grid',
-                      placeItems: 'center',
-                      fontWeight: 900,
-                      fontSize: '1.4rem',
-                      lineHeight: 1,
-                      flexShrink: 0,
-                      boxShadow: '0 4px 14px rgba(255, 102, 0, 0.4)'
-                    }}>
-                      <span style={{ lineHeight: 1, margin: 0, padding: 0, display: 'block', textAlign: 'center' }}>DM</span>
-                    </div>
-                    <div>
-                      <h4 style={{ fontSize: '1.25rem', fontWeight: 900, margin: 0, color: isDark ? '#FFF' : '#111' }}>
-                        {language === 'uk' ? 'Маханьков Дмитро' : 'Dmytro Makhankov'}
-                      </h4>
-                      <a
-                        href="mailto:d.makhankov@ditchwitch.kiev.ua"
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '6px',
-                          color: '#FF6600',
-                          fontSize: '0.84rem',
-                          fontWeight: 700,
-                          textDecoration: 'none',
-                          marginTop: '4px'
-                        }}
-                      >
-                        <Mail size={14} />
-                        <span>d.makhankov@ditchwitch.kiev.ua</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <a
-                  href="tel:+380503813398"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justify: 'center',
-                    gap: '8px',
-                    backgroundColor: '#FF6600',
-                    color: '#FFFFFF',
-                    padding: '11px 16px',
-                    borderRadius: '8px',
-                    fontWeight: 800,
-                    fontSize: '0.9rem',
-                    textDecoration: 'none',
-                    boxShadow: '0 4px 12px rgba(255, 102, 0, 0.3)',
-                    transition: 'all 0.2s ease'
-                  }}
-                >
-                  <Phone size={16} />
-                  <span>+380 50 381 33 98</span>
-                </a>
-              </div>
-
-              {/* Member 2: Ірина Лясковська */}
-              <div style={{
-                backgroundColor: isDark ? 'rgba(18, 18, 18, 0.8)' : '#F9FAFB',
-                borderRadius: '12px',
-                padding: '24px',
-                border: `1px solid ${isDark ? '#2D2D2D' : '#E5E7EB'}`,
-                display: 'flex',
-                flexDirection: 'column',
-                justify: 'space-between',
-                gap: '16px'
-              }}>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                    <div style={{
-                      width: '60px',
-                      height: '60px',
+                      width: '52px',
+                      height: '52px',
                       borderRadius: '50%',
                       background: 'linear-gradient(135deg, #FF6600 0%, #E65C00 100%)',
                       color: '#FFFFFF',
                       display: 'grid',
                       placeItems: 'center',
                       fontWeight: 900,
-                      fontSize: '1.4rem',
+                      fontSize: '1.25rem',
                       lineHeight: 1,
                       flexShrink: 0,
                       boxShadow: '0 4px 14px rgba(255, 102, 0, 0.4)'
                     }}>
                       <span style={{ lineHeight: 1, margin: 0, padding: 0, display: 'block', textAlign: 'center' }}>IL</span>
                     </div>
-                    <div>
-                      <h4 style={{ fontSize: '1.25rem', fontWeight: 900, margin: 0, color: isDark ? '#FFF' : '#111' }}>
+                    <div style={{ flexGrow: 1, minWidth: 0 }}>
+                      <h4 style={{ fontSize: '1.15rem', fontWeight: 900, margin: 0, color: isDark ? '#FFF' : '#111', wordBreak: 'break-word' }}>
                         {language === 'uk' ? 'Ірина Лясковська' : 'Iryna Liaskovska'}
                       </h4>
+                      <p style={{ color: '#FF6600', fontWeight: 800, fontSize: '0.8rem', margin: '2px 0 4px 0', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                        {language === 'uk' ? 'Директор' : language === 'pl' ? 'Dyrektor' : 'Director'}
+                      </p>
                       <a
                         href="mailto:buh@ditchwitch.kiev.ua"
                         style={{
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: '6px',
-                          color: '#FF6600',
-                          fontSize: '0.84rem',
+                          color: isDark ? '#CCC' : '#555',
+                          fontSize: '0.8rem',
                           fontWeight: 700,
                           textDecoration: 'none',
-                          marginTop: '4px'
+                          wordBreak: 'break-all',
+                          maxWidth: '100%'
                         }}
                       >
-                        <Mail size={14} />
-                        <span>buh@ditchwitch.kiev.ua</span>
+                        <Mail size={13} style={{ color: '#FF6600', flexShrink: 0 }} />
+                        <span style={{ wordBreak: 'break-all' }}>buh@ditchwitch.kiev.ua</span>
                       </a>
                     </div>
                   </div>
@@ -688,10 +633,11 @@ export default function AboutPage({ onNavigateToProducts }) {
 
                 <a
                   href="tel:+380503806692"
+                  className="touch-target"
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    justify: 'center',
+                    justifyContent: 'center',
                     gap: '8px',
                     backgroundColor: '#FF6600',
                     color: '#FFFFFF',
@@ -701,7 +647,9 @@ export default function AboutPage({ onNavigateToProducts }) {
                     fontSize: '0.9rem',
                     textDecoration: 'none',
                     boxShadow: '0 4px 12px rgba(255, 102, 0, 0.3)',
-                    transition: 'all 0.2s ease'
+                    transition: 'all 0.2s ease',
+                    width: '100%',
+                    boxSizing: 'border-box'
                   }}
                 >
                   <Phone size={16} />
@@ -709,54 +657,60 @@ export default function AboutPage({ onNavigateToProducts }) {
                 </a>
               </div>
 
-              {/* Member 3: Олег Липкин */}
+              {/* Member 2: Олег Лясковський — Головний інженер */}
               <div style={{
                 backgroundColor: isDark ? 'rgba(18, 18, 18, 0.8)' : '#F9FAFB',
                 borderRadius: '12px',
-                padding: '24px',
+                padding: 'clamp(16px, 3vw, 24px)',
                 border: `1px solid ${isDark ? '#2D2D2D' : '#E5E7EB'}`,
                 display: 'flex',
                 flexDirection: 'column',
-                justify: 'space-between',
-                gap: '16px'
+                justifyContent: 'space-between',
+                gap: '16px',
+                boxSizing: 'border-box',
+                minWidth: 0
               }}>
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px', minWidth: 0 }}>
                     <div style={{
-                      width: '60px',
-                      height: '60px',
+                      width: '52px',
+                      height: '52px',
                       borderRadius: '50%',
                       background: 'linear-gradient(135deg, #FF6600 0%, #D95300 100%)',
                       color: '#FFFFFF',
                       display: 'grid',
                       placeItems: 'center',
                       fontWeight: 900,
-                      fontSize: '1.4rem',
+                      fontSize: '1.25rem',
                       lineHeight: 1,
                       flexShrink: 0,
                       boxShadow: '0 4px 14px rgba(255, 102, 0, 0.4)'
                     }}>
                       <span style={{ lineHeight: 1, margin: 0, padding: 0, display: 'block', textAlign: 'center' }}>OL</span>
                     </div>
-                    <div>
-                      <h4 style={{ fontSize: '1.25rem', fontWeight: 900, margin: 0, color: isDark ? '#FFF' : '#111' }}>
+                    <div style={{ flexGrow: 1, minWidth: 0 }}>
+                      <h4 style={{ fontSize: '1.15rem', fontWeight: 900, margin: 0, color: isDark ? '#FFF' : '#111', wordBreak: 'break-word' }}>
                         {language === 'uk' ? 'Олег Липкин' : 'Oleg Lypkyn'}
                       </h4>
+                      <p style={{ color: '#FF6600', fontWeight: 800, fontSize: '0.8rem', margin: '2px 0 4px 0', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                        {language === 'uk' ? 'Головний інженер' : language === 'pl' ? 'Główny Inżynier' : 'Chief Engineer'}
+                      </p>
                       <a
                         href="mailto:service@ditchwitch.kiev.ua"
                         style={{
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: '6px',
-                          color: '#FF6600',
-                          fontSize: '0.84rem',
+                          color: isDark ? '#CCC' : '#555',
+                          fontSize: '0.8rem',
                           fontWeight: 700,
                           textDecoration: 'none',
-                          marginTop: '4px'
+                          wordBreak: 'break-all',
+                          maxWidth: '100%'
                         }}
                       >
-                        <Mail size={14} />
-                        <span>service@ditchwitch.kiev.ua</span>
+                        <Mail size={13} style={{ color: '#FF6600', flexShrink: 0 }} />
+                        <span style={{ wordBreak: 'break-all' }}>service@ditchwitch.kiev.ua</span>
                       </a>
                     </div>
                   </div>
@@ -764,10 +718,11 @@ export default function AboutPage({ onNavigateToProducts }) {
 
                 <a
                   href="tel:+380506894621"
+                  className="touch-target"
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    justify: 'center',
+                    justifyContent: 'center',
                     gap: '8px',
                     backgroundColor: '#FF6600',
                     color: '#FFFFFF',
@@ -777,11 +732,81 @@ export default function AboutPage({ onNavigateToProducts }) {
                     fontSize: '0.9rem',
                     textDecoration: 'none',
                     boxShadow: '0 4px 12px rgba(255, 102, 0, 0.3)',
-                    transition: 'all 0.2s ease'
+                    transition: 'all 0.2s ease',
+                    width: '100%',
+                    boxSizing: 'border-box'
                   }}
                 >
                   <Phone size={16} />
                   <span>+380 50 689 46 21</span>
+                </a>
+              </div>
+
+              {/* Member 3: Дмитро Маханьков — Механік */}
+              <div style={{
+                backgroundColor: isDark ? 'rgba(18, 18, 18, 0.8)' : '#F9FAFB',
+                borderRadius: '12px',
+                padding: 'clamp(16px, 3vw, 24px)',
+                border: `1px solid ${isDark ? '#2D2D2D' : '#E5E7EB'}`,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                gap: '16px',
+                boxSizing: 'border-box',
+                minWidth: 0
+              }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px', minWidth: 0 }}>
+                    <div style={{
+                      width: '52px',
+                      height: '52px',
+                      borderRadius: '50%',
+                      background: 'linear-gradient(135deg, #FF6600 0%, #D95300 100%)',
+                      color: '#FFFFFF',
+                      display: 'grid',
+                      placeItems: 'center',
+                      fontWeight: 900,
+                      fontSize: '1.25rem',
+                      lineHeight: 1,
+                      flexShrink: 0,
+                      boxShadow: '0 4px 14px rgba(255, 102, 0, 0.4)'
+                    }}>
+                      <span style={{ lineHeight: 1, margin: 0, padding: 0, display: 'block', textAlign: 'center' }}>DM</span>
+                    </div>
+                    <div style={{ flexGrow: 1, minWidth: 0 }}>
+                      <h4 style={{ fontSize: '1.15rem', fontWeight: 900, margin: 0, color: isDark ? '#FFF' : '#111', wordBreak: 'break-word' }}>
+                        {language === 'uk' ? 'Дмитро Маханьков' : 'Dmytro Makhankov'}
+                      </h4>
+                      <p style={{ color: '#FF6600', fontWeight: 800, fontSize: '0.8rem', margin: '2px 0 0 0', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                        {language === 'uk' ? 'Механік' : language === 'pl' ? 'Mechanik' : 'Mechanic'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <a
+                  href="tel:+380503813398"
+                  className="touch-target"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    backgroundColor: '#FF6600',
+                    color: '#FFFFFF',
+                    padding: '11px 16px',
+                    borderRadius: '8px',
+                    fontWeight: 800,
+                    fontSize: '0.9rem',
+                    textDecoration: 'none',
+                    boxShadow: '0 4px 12px rgba(255, 102, 0, 0.3)',
+                    transition: 'all 0.2s ease',
+                    width: '100%',
+                    boxSizing: 'border-box'
+                  }}
+                >
+                  <Phone size={16} />
+                  <span>+380 50 381 33 98</span>
                 </a>
               </div>
             </div>
@@ -822,7 +847,7 @@ export default function AboutPage({ onNavigateToProducts }) {
                 href="https://maps.google.com/?q=Kaunaska+street+13,+Kyiv,+Ukraine"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary"
+                className="btn-primary touch-target"
                 style={{ textDecoration: 'none', marginLeft: 'auto' }}
               >
                 <MapPin size={16} style={{ display: 'block' }} />

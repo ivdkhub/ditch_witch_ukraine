@@ -18,7 +18,7 @@ export default function NewsPage() {
 
   const categoryFilterTabs = [
     { id: 'all', label: { uk: 'Всі Статті', en: 'All Articles', pl: 'Wszystkie Artykuły' } },
-    { id: 'guides', label: { uk: 'Поради та Гайди', en: 'Guides & Advice', pl: 'Poradniki i Wskazówki' } },
+    { id: 'guides', label: { uk: 'Поради та Рекомендації', en: 'Advice & Recommendations', pl: 'Poradniki i Rekomendacje' } },
     { id: 'maintenance', label: { uk: 'Сервіс та ТО', en: 'Service & Maintenance', pl: 'Serwis i Konserwacja' } },
     { id: 'spotlights', label: { uk: 'Огляди Техніки', en: 'Equipment Spotlights', pl: 'Prezentacje Sprzętu' } },
     { id: 'releases', label: { uk: 'Прес-релізи та Новини', en: 'Press Releases & News', pl: 'Komunikaty Prasowe' } },
@@ -184,6 +184,7 @@ export default function NewsPage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveCategory(tab.id)}
+                  className="touch-target"
                   style={{
                     backgroundColor: isActive ? '#FF6600' : isDark ? '#282828' : '#F0F2F5',
                     color: isActive ? '#FFFFFF' : isDark ? '#DDDDDD' : '#333333',
@@ -211,10 +212,12 @@ export default function NewsPage() {
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
                 width: '100%',
+                minHeight: '44px',
+                boxSizing: 'border-box',
                 backgroundColor: isDark ? '#141414' : '#F9F9FB',
                 border: `1px solid ${isDark ? '#333333' : '#CCCCCC'}`,
                 borderRadius: '8px',
-                padding: '14px 20px 14px 48px',
+                padding: '12px 20px 12px 48px',
                 color: isDark ? '#FFFFFF' : '#000000',
                 fontSize: '0.95rem',
                 outline: 'none'
@@ -224,11 +227,7 @@ export default function NewsPage() {
         </div>
 
         {/* Articles Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-          gap: '30px'
-        }}>
+        <div className="responsive-card-grid">
           {filteredArticles.map((art) => (
             <div
               key={art.id}
@@ -239,7 +238,9 @@ export default function NewsPage() {
                 overflow: 'hidden',
                 display: 'flex',
                 flexDirection: 'column',
-                justify: 'space-between',
+                justifyContent: 'space-between',
+                height: '100%',
+                boxSizing: 'border-box',
                 boxShadow: isDark ? '0 4px 16px rgba(0,0,0,0.4)' : '0 4px 16px rgba(0,0,0,0.06)',
                 transition: 'transform 0.3s ease, border-color 0.3s ease'
               }}
@@ -252,27 +253,30 @@ export default function NewsPage() {
                 e.currentTarget.style.borderColor = isDark ? '#2C2C2C' : '#EAEAEA';
               }}
             >
-              <div>
+              <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
                 <div style={{
                   backgroundColor: isDark ? '#141414' : '#F2F4F7',
-                  padding: '24px',
-                  height: '200px',
+                  aspectRatio: '16 / 10',
+                  width: '100%',
+                  padding: '20px',
+                  boxSizing: 'border-box',
                   display: 'flex',
                   alignItems: 'center',
-                  justify: 'center'
+                  justifyContent: 'center',
+                  overflow: 'hidden'
                 }}>
                   <img
                     src={art.image}
                     alt={art.title[language] || art.title.en}
                     style={{
-                      maxHeight: '160px',
+                      maxHeight: '100%',
                       maxWidth: '100%',
                       objectFit: 'contain'
                     }}
                   />
                 </div>
 
-                <div style={{ padding: '24px' }}>
+                <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
                   <div style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -289,7 +293,7 @@ export default function NewsPage() {
                     </span>
                   </div>
 
-                  <h3 style={{
+                  <h3 className="line-clamp-2" style={{
                     fontSize: '1.2rem',
                     fontWeight: 800,
                     color: isDark ? '#FFFFFF' : '#111111',
@@ -299,7 +303,7 @@ export default function NewsPage() {
                     {art.title[language] || art.title.en}
                   </h3>
 
-                  <p style={{
+                  <p className="line-clamp-3" style={{
                     fontSize: '0.88rem',
                     color: isDark ? '#A0A0A0' : '#555555',
                     lineHeight: 1.5,
@@ -310,10 +314,10 @@ export default function NewsPage() {
                 </div>
               </div>
 
-              <div style={{ padding: '0 24px 24px 24px' }}>
+              <div style={{ padding: '0 24px 24px 24px', marginTop: 'auto' }}>
                 <button
                   onClick={() => setSelectedArticle(art)}
-                  className="btn-primary"
+                  className="btn-primary touch-target"
                   style={{ width: '100%', justifyContent: 'center' }}
                 >
                   <span>{language === 'uk' ? 'ЧИТАТИ СТАТТЮ' : language === 'pl' ? 'CZYTAJ ARTYKUŁ' : 'READ STORY'}</span>

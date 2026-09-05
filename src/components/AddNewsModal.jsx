@@ -11,7 +11,7 @@ export const STOCK_NEWS_IMAGES = [
 ];
 
 export const NEWS_CATEGORIES = [
-  { id: 'guides', uk: 'Поради та Гайди', en: 'Guides & Advice', pl: 'Poradniki i Wskazówki' },
+  { id: 'guides', uk: 'Поради та Рекомендації', en: 'Advice & Recommendations', pl: 'Poradniki i Rekomendacje' },
   { id: 'maintenance', uk: 'Сервіс та ТО', en: 'Service & Maintenance', pl: 'Serwis i Konserwacja' },
   { id: 'spotlights', uk: 'Огляди Техніки', en: 'Equipment Spotlights', pl: 'Prezentacje Sprzętu' },
   { id: 'releases', uk: 'Прес-релізи та Новини', en: 'Press Releases & News', pl: 'Komunikaty Prasowe i Wiadomości' },

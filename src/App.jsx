@@ -47,7 +47,7 @@ function MainAppContent() {
       } else if (hash.startsWith('#products')) {
         setCurrentPage('products');
       } else if (hash.startsWith('#used')) {
-        setCurrentPage('service');
+        setCurrentPage('used');
       } else if (hash.startsWith('#news')) {
         setCurrentPage('news');
       } else if (hash.startsWith('#about')) {

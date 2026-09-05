@@ -42,10 +42,10 @@ export default function PartsServicePage() {
 
   const olegName = language === 'uk' ? 'Олег Липкин' : 'Oleg Lypkyn';
   const olegRole = language === 'uk'
-    ? 'Сервісний інженер та спеціаліст із запчастин Ditch Witch®'
+    ? 'Головний інженер та спеціаліст із запчастин Ditch Witch®'
     : language === 'pl'
-    ? 'Inżynier Serwisu i Specjalista ds. Części Zamiennych'
-    : 'Certified Service Engineer & Parts Specialist';
+    ? 'Główny Inżynier i Specjalista ds. Części Zamiennych'
+    : 'Chief Engineer & Parts Specialist';
 
   const filteredParts = parts.filter((p) => {
     if (activeFilter === 'all') return true;
@@ -319,6 +319,7 @@ export default function PartsServicePage() {
           <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '32px', flexWrap: 'wrap' }}>
             <button
               onClick={() => setActiveFilter('all')}
+              className="touch-target"
               style={{
                 backgroundColor: activeFilter === 'all' ? '#FF6600' : isDark ? '#222' : '#E2E8F0',
                 color: activeFilter === 'all' ? '#FFF' : isDark ? '#CCC' : '#333',
@@ -336,6 +337,7 @@ export default function PartsServicePage() {
 
             <button
               onClick={() => setActiveFilter('kit')}
+              className="touch-target"
               style={{
                 backgroundColor: activeFilter === 'kit' ? '#FF6600' : isDark ? '#222' : '#E2E8F0',
                 color: activeFilter === 'kit' ? '#FFF' : isDark ? '#CCC' : '#333',
@@ -357,6 +359,7 @@ export default function PartsServicePage() {
 
             <button
               onClick={() => setActiveFilter('single')}
+              className="touch-target"
               style={{
                 backgroundColor: activeFilter === 'single' ? '#FF6600' : isDark ? '#222' : '#E2E8F0',
                 color: activeFilter === 'single' ? '#FFF' : isDark ? '#CCC' : '#333',
@@ -378,6 +381,7 @@ export default function PartsServicePage() {
 
             <button
               onClick={() => setActiveFilter('used')}
+              className="touch-target"
               style={{
                 backgroundColor: activeFilter === 'used' ? '#FF6600' : isDark ? '#222' : '#E2E8F0',
                 color: activeFilter === 'used' ? '#FFF' : isDark ? '#CCC' : '#333',
@@ -399,11 +403,7 @@ export default function PartsServicePage() {
           </div>
 
           {/* Parts Grid (NO PRICES SHOWN) */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '28px'
-          }}>
+          <div className="responsive-card-grid">
             {filteredParts.map((part) => {
               const titleText = part.title[language] || part.title.uk || part.title.en;
               const descText = part.desc[language] || part.desc.uk || part.desc.en;
@@ -418,14 +418,16 @@ export default function PartsServicePage() {
                     padding: '24px',
                     display: 'flex',
                     flexDirection: 'column',
-                    justify: 'space-between',
+                    justifyContent: 'space-between',
+                    height: '100%',
+                    boxSizing: 'border-box',
                     boxShadow: part.type === 'kit' || part.type === 'used'
                       ? isDark ? '0 8px 24px rgba(255, 102, 0, 0.2)' : '0 8px 24px rgba(255, 102, 0, 0.12)'
                       : isDark ? '0 4px 16px rgba(0,0,0,0.4)' : '0 4px 16px rgba(0,0,0,0.06)',
                     position: 'relative'
                   }}
                 >
-                  <div>
+                  <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
                     {/* Badge */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                       <span style={{
@@ -447,23 +449,26 @@ export default function PartsServicePage() {
                     </div>
 
                     <div style={{
-                      height: '140px',
+                      aspectRatio: '16 / 10',
+                      width: '100%',
                       display: 'flex',
                       alignItems: 'center',
-                      justify: 'center',
+                      justifyContent: 'center',
                       marginBottom: '16px',
                       backgroundColor: isDark ? 'rgba(18,18,18,0.5)' : '#F8F9FA',
                       borderRadius: '8px',
-                      padding: '12px'
+                      padding: '12px',
+                      boxSizing: 'border-box',
+                      overflow: 'hidden'
                     }}>
                       <img
                         src={part.image || '/Risorse/Immagini/dirdrills_jt10.png'}
                         alt={titleText}
-                        style={{ maxHeight: '110px', maxWidth: '100%', objectFit: 'contain' }}
+                        style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }}
                       />
                     </div>
 
-                    <h3 style={{ fontSize: '1.15rem', fontWeight: 800, marginBottom: '6px', color: isDark ? '#FFF' : '#111', lineHeight: 1.3 }}>
+                    <h3 className="line-clamp-2" style={{ fontSize: '1.15rem', fontWeight: 800, marginBottom: '6px', color: isDark ? '#FFF' : '#111', lineHeight: 1.3 }}>
                       {titleText}
                     </h3>
 
@@ -473,7 +478,7 @@ export default function PartsServicePage() {
                       {part.models && <div><strong>{language === 'uk' ? 'Специфікація:' : 'Specs:'}</strong> <span style={{ color: '#FF6600' }}>{part.models}</span></div>}
                     </div>
 
-                    <p style={{ fontSize: '0.86rem', color: isDark ? '#AAA' : '#666', lineHeight: 1.5, marginBottom: '16px' }}>
+                    <p className="line-clamp-3" style={{ fontSize: '0.86rem', color: isDark ? '#AAA' : '#666', lineHeight: 1.5, marginBottom: '16px' }}>
                       {descText}
                     </p>
 
@@ -501,11 +506,11 @@ export default function PartsServicePage() {
                   </div>
 
                   {/* Order Button */}
-                  <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                  <div style={{ display: 'flex', gap: '10px', marginTop: 'auto', paddingTop: '16px' }}>
                     <button
                       onClick={() => handleOrderPart(part)}
-                      className="btn-primary"
-                      style={{ flexGrow: 1, justifyContent: 'center', padding: '12px 14px', fontSize: '0.9rem' }}
+                      className="btn-primary touch-target"
+                      style={{ width: '100%', justifyContent: 'center', padding: '12px 14px', fontSize: '0.9rem' }}
                     >
                       <Send size={16} />
                       <span>
