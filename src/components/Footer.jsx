@@ -38,7 +38,7 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
           {/* Column 1: Brand Info & Logo */}
           <div style={{ maxWidth: '100%' }}>
             <img
-              src="/Risorse/Immagini/DW_Logotype_Rev.png"
+              src="/Risorse/Immagini/DW_Ukraine_White.png"
               alt="Ditch Witch Ukraine"
               style={{
                 maxHeight: '44px',
@@ -64,9 +64,9 @@ export default function Footer({ onNavigate, onOpenAdmin }) {
               gap: '10px',
               fontSize: '0.88rem'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#E2E8F0' }}>
-                <MapPin size={16} style={{ color: '#FF6600', flexShrink: 0 }} />
-                <span>м. Київ, Україна (Офіційне представництво JLM Group)</span>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', color: '#E2E8F0', lineHeight: 1.5 }}>
+                <MapPin size={16} style={{ color: '#FF6600', flexShrink: 0, marginTop: '2px' }} />
+                <span>вул.Каунаська, 13, м.Київ, 02155, Україна Офіційне представництво JLM Group</span>
               </div>
             </div>
           </div>

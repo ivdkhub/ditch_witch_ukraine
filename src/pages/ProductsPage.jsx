@@ -23,14 +23,13 @@ export default function ProductsPage({ initialCategory = 'all' }) {
     { id: 'all', label: { uk: 'Всі Моделі', en: 'All Equipment', pl: 'Wszystkie Modele' } },
     { id: 'hdd', label: { uk: 'Машини ГНБ (HDD)', en: 'HDD Drills', pl: 'Wiertnice HDB' } },
     { id: 'mixers', label: { uk: 'Міксери бентонітові', en: 'Mud Mixers', pl: 'Mieszalniki' } },
-    { id: 'electronics', label: { uk: 'Електронні системи локацій', en: 'Subsite® Electronics', pl: 'Elektronika Subsite®' } },
+    { id: 'electronics', label: { uk: 'Електронні системи локацій', en: 'Locating Systems (Subsite® & Magnetics)', pl: 'Systemy lokalizacji (Subsite® & Magnetics)' } },
     { id: 'locators', label: { uk: 'Локатори Subsite®', en: 'Subsite® Locators', pl: 'Lokalizatory Subsite®' } },
     { id: 'trenchers', label: { uk: 'Траншеєкопачі & Віброукладачі', en: 'Trenchers & Plows', pl: 'Koparki Łańcuchowe' } },
     { id: 'bentonite', label: { uk: 'Бентоніт та полімери', en: 'Bentonite & Polymers', pl: 'Bentonit i Polimery' } },
-    { id: 'skidsteers', label: { uk: 'Навантажувачі SK', en: 'Stand-On Skid Steers', pl: 'Ładowarki SK' } },
+    { id: 'skidsteers', label: { uk: 'Модульна техніка', en: 'Stand-On Modular', pl: 'Technika Modułowa' } },
     { id: 'american_augers', isExternal: true, label: { uk: 'American Augers® ↗', en: 'American Augers® ↗', pl: 'American Augers® ↗' } },
-    { id: 'recycling', label: { uk: 'Рециклінг розчину', en: 'Mud Recycling', pl: 'Recykling Płuczki' } },
-    { id: 'consumables', label: { uk: 'Витратні матеріали', en: 'Consumable Materials', pl: 'Materiały Zużywalne' } },
+    { id: 'consumables', label: { uk: 'Буровий інструмент', en: 'Drill Tools & Consumables', pl: 'Narzędzia Wiertnicze' } },
     { id: 'other', label: { uk: 'Інше / Інші товари', en: 'Other Equipment', pl: 'Inny Sprzęt' } }
   ];
 
@@ -103,7 +102,7 @@ export default function ProductsPage({ initialCategory = 'all' }) {
             lineHeight: 1.6
           }}>
             {language === 'uk'
-              ? 'Найповніша лінійка бурових установок ГНБ, міксерів, локаційних систем Subsite®, навантажувачів та продукції Baroid® від офіційного дистриб’ютора JLM Group.'
+              ? 'Найповніша лінійка бурових установок ГНБ, міксерів, локаційних систем Subsite®, модульної техніки та продукції Baroid® від офіційного дистриб’ютора JLM Group.'
               : language === 'pl'
               ? 'Pełna oferta wiertnic sterowanych HDB, mieszalników, elektroniki Subsite® i produktów Baroid® od oficjalnego dystrybutora Grupy JLM.'
               : 'Complete range of HDD drills, mud mixers, Subsite® locating systems, skid steers, and Baroid® products from official distributor JLM Group.'}

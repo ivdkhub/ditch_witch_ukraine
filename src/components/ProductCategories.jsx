@@ -29,7 +29,7 @@ export default function ProductCategories({ onNavigateToProducts }) {
       id: 'electronics',
       name: t.categories.cat3.name,
       desc: t.categories.cat3.desc,
-      image: '/Risorse/Immagini/dirdrills_jt10.png'
+      image: '/Risorse/Immagini/mag_x_cor.png'
     },
     {
       id: 'locators',
@@ -47,7 +47,7 @@ export default function ProductCategories({ onNavigateToProducts }) {
       id: 'bentonite',
       name: t.categories.cat6.name,
       desc: t.categories.cat6.desc,
-      image: '/Risorse/Immagini/category_fluidSystems.png'
+      image: '/Risorse/Immagini/bentonite_bag.png'
     },
     {
       id: 'skidsteers',
@@ -60,13 +60,7 @@ export default function ProductCategories({ onNavigateToProducts }) {
       name: t.categories.cat8.name,
       desc: t.categories.cat8.desc,
       isExternal: true,
-      image: '/Risorse/Immagini/dirdrills_jt5.png'
-    },
-    {
-      id: 'recycling',
-      name: t.categories.cat9.name,
-      desc: t.categories.cat9.desc,
-      image: '/Risorse/Immagini/category_fluidSystems.png'
+      image: '/Risorse/Immagini/american_augers.png'
     },
     {
       id: 'consumables',

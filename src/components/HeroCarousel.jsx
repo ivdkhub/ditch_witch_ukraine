@@ -19,26 +19,6 @@ export default function HeroCarousel({ onNavigate, onRequestQuote }) {
     },
     {
       id: 2,
-      productId: 'hxt75',
-      badge: t.hero.slide2.badge,
-      title: t.hero.slide2.title,
-      subtitle: t.hero.slide2.subtitle,
-      btnMore: t.hero.slide2.btnMore,
-      btnQuote: t.hero.slide2.btnQuote,
-      image: '/Risorse/Immagini/category_vacumexcavator.png'
-    },
-    {
-      id: 3,
-      productId: 'jt5',
-      badge: t.hero.slide3.badge,
-      title: t.hero.slide3.title,
-      subtitle: t.hero.slide3.subtitle,
-      btnMore: t.hero.slide3.btnMore,
-      btnQuote: t.hero.slide3.btnQuote,
-      image: '/Risorse/Immagini/dirdrills_jt5.png'
-    },
-    {
-      id: 4,
       productId: 'c16x',
       badge: t.hero.slide4.badge,
       title: t.hero.slide4.title,

@@ -548,21 +548,6 @@ export default function AboutPage({ onNavigateToProducts }) {
                   {language === 'uk' ? 'Команда Фахівців Ditch Witch® Україна' : language === 'pl' ? 'Zespół Specjalistów Ditch Witch® Ukraina' : 'Ditch Witch® Ukraine Key Team'}
                 </h3>
               </div>
-
-              <div style={{
-                backgroundColor: 'rgba(255, 102, 0, 0.12)',
-                color: '#FF6600',
-                padding: '6px 14px',
-                borderRadius: '20px',
-                fontWeight: 800,
-                fontSize: '0.8rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px'
-              }}>
-                <User size={15} />
-                <span>{language === 'uk' ? '3 Керівники та Консультанти' : '3 Key Specialists'}</span>
-              </div>
             </div>
 
             {/* 3 Creative Team Member Cards Grid */}

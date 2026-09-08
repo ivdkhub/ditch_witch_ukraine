@@ -100,9 +100,13 @@ export default function ArticleModal({ article, onClose }) {
             src={article.image}
             alt={title}
             style={{
-              maxHeight: '220px',
+              maxHeight: '260px',
               maxWidth: '100%',
-              objectFit: 'contain'
+              width: 'auto',
+              height: 'auto',
+              objectFit: 'contain',
+              display: 'block',
+              margin: 'auto'
             }}
           />
         </div>

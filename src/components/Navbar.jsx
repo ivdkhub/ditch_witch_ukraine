@@ -59,7 +59,7 @@ export default function Navbar({ currentPage, onNavigate }) {
       id: 'electronics',
       title: t.nav.subsite,
       page: 'products',
-      image: '/Risorse/Immagini/dirdrills_jt10.png'
+      image: '/Risorse/Immagini/mag_x_cor.png'
     },
     {
       id: 'locators',
@@ -77,11 +77,11 @@ export default function Navbar({ currentPage, onNavigate }) {
       id: 'bentonite',
       title: t.nav.bentonite,
       page: 'products',
-      image: '/Risorse/Immagini/category_fluidSystems.png'
+      image: '/Risorse/Immagini/bentonite_bag.png'
     },
     {
       id: 'skidsteers',
-      title: t.nav.skidSteers,
+      title: t.nav.skidSteers || (language === 'uk' ? 'Модульна техніка' : 'Modular Equipment'),
       page: 'products',
       image: '/Risorse/Immagini/category_skidsteers.png'
     },
@@ -89,17 +89,11 @@ export default function Navbar({ currentPage, onNavigate }) {
       id: 'american_augers',
       title: t.nav.americanAugers,
       isExternal: true,
-      image: '/Risorse/Immagini/dirdrills_jt5.png'
-    },
-    {
-      id: 'recycling',
-      title: t.nav.recycling,
-      page: 'products',
-      image: '/Risorse/Immagini/category_fluidSystems.png'
+      image: '/Risorse/Immagini/american_augers.png'
     },
     {
       id: 'consumables',
-      title: t.nav.consumables || (language === 'uk' ? 'Витратні матеріали' : 'Consumables'),
+      title: t.nav.consumables || (language === 'uk' ? 'Буровий інструмент' : 'Drill Tools'),
       page: 'products',
       image: '/Risorse/Immagini/category_fluidSystems.png'
     },
@@ -230,6 +224,31 @@ export default function Navbar({ currentPage, onNavigate }) {
         </button>
 
         <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '0', marginLeft: 'auto', flexShrink: 0, whiteSpace: 'nowrap' }}>
+          <button
+            onClick={() => handleNavClick('about')}
+            className={`desktop-nav-item ${currentPage === 'about' ? 'active' : ''}`}
+            style={{
+              padding: '14px 14px',
+              minHeight: '44px',
+              color: currentPage === 'about' ? '#FF6600' : isDark ? '#FFFFFF' : '#1E293B',
+              fontWeight: 800,
+              fontSize: '0.82rem',
+              letterSpacing: '0.03em',
+              textTransform: 'uppercase',
+              borderLeft: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
+              borderRight: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
+              borderBottom: currentPage === 'about' ? '3px solid #FF6600' : '3px solid transparent',
+              background: 'none',
+              borderTop: 'none',
+              cursor: 'pointer',
+              lineHeight: 1,
+              whiteSpace: 'nowrap',
+              flexShrink: 0
+            }}
+          >
+            <span className="nav-text-inner">{t.nav.about}</span>
+          </button>
+
           <div
             style={{ position: 'relative' }}
             onMouseEnter={() => setProductsOpen(true)}
@@ -237,7 +256,7 @@ export default function Navbar({ currentPage, onNavigate }) {
           >
             <button
               onClick={() => handleNavClick('products', 'all')}
-              className="desktop-nav-btn"
+              className={`desktop-nav-btn desktop-nav-item ${currentPage === 'products' ? 'active' : ''}`}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -250,19 +269,18 @@ export default function Navbar({ currentPage, onNavigate }) {
                 letterSpacing: '0.03em',
                 textTransform: 'uppercase',
                 borderRight: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
-                borderLeft: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
+                borderLeft: 'none',
                 borderBottom: currentPage === 'products' ? '3px solid #FF6600' : '3px solid transparent',
                 background: 'none',
                 borderTop: 'none',
                 cursor: 'pointer',
-                transition: 'all 0.2s ease',
                 lineHeight: 1,
                 whiteSpace: 'nowrap',
                 flexShrink: 0
               }}
             >
-              <span>{t.nav.products}</span>
-              <ChevronDown size={14} style={{ color: '#FF6600', transform: productsOpen ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s', flexShrink: 0 }} />
+              <span className="nav-text-inner">{t.nav.products}</span>
+              <ChevronDown size={14} className="nav-chevron" style={{ color: '#FF6600', transform: productsOpen ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.25s ease', flexShrink: 0 }} />
             </button>
 
             {productsOpen && (
@@ -327,12 +345,12 @@ export default function Navbar({ currentPage, onNavigate }) {
                         color: isDark ? '#FFFFFF' : '#0F172A',
                         textAlign: 'left',
                         cursor: 'pointer',
-                        transition: 'all 0.2s ease'
+                        transition: 'all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1)'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = 'rgba(255, 102, 0, 0.12)';
+                        e.currentTarget.style.backgroundColor = 'rgba(255, 102, 0, 0.14)';
                         e.currentTarget.style.borderColor = '#FF6600';
-                        e.currentTarget.style.transform = 'translateX(4px)';
+                        e.currentTarget.style.transform = 'translateX(6px)';
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.backgroundColor = isDark ? '#242424' : '#F8FAFC';
@@ -350,7 +368,8 @@ export default function Navbar({ currentPage, onNavigate }) {
                             objectFit: 'contain',
                             borderRadius: '4px',
                             backgroundColor: isDark ? '#181818' : '#FFFFFF',
-                            padding: '2px'
+                            padding: '2px',
+                            transition: 'transform 0.25s ease'
                           }}
                         />
                         <span style={{ fontSize: '0.85rem', fontWeight: 700 }}>
@@ -371,6 +390,7 @@ export default function Navbar({ currentPage, onNavigate }) {
 
           <button
             onClick={() => handleNavClick('service')}
+            className={`desktop-nav-item ${currentPage === 'service' ? 'active' : ''}`}
             style={{
               padding: '14px 14px',
               minHeight: '44px',
@@ -385,17 +405,17 @@ export default function Navbar({ currentPage, onNavigate }) {
               borderTop: 'none',
               borderLeft: 'none',
               cursor: 'pointer',
-              transition: 'all 0.2s ease',
               lineHeight: 1,
               whiteSpace: 'nowrap',
               flexShrink: 0
             }}
           >
-            {t.nav.partsService}
+            <span className="nav-text-inner">{t.nav.partsService}</span>
           </button>
 
           <button
             onClick={() => handleNavClick('docs')}
+            className={`desktop-nav-item ${currentPage === 'docs' ? 'active' : ''}`}
             style={{
               padding: '14px 14px',
               minHeight: '44px',
@@ -410,17 +430,17 @@ export default function Navbar({ currentPage, onNavigate }) {
               borderTop: 'none',
               borderLeft: 'none',
               cursor: 'pointer',
-              transition: 'all 0.2s ease',
               lineHeight: 1,
               whiteSpace: 'nowrap',
               flexShrink: 0
             }}
           >
-            {t.nav.docs}
+            <span className="nav-text-inner">{t.nav.docs}</span>
           </button>
 
           <button
             onClick={() => handleNavClick('used')}
+            className={`desktop-nav-item ${currentPage === 'used' ? 'active' : ''}`}
             style={{
               padding: '14px 14px',
               minHeight: '44px',
@@ -435,42 +455,17 @@ export default function Navbar({ currentPage, onNavigate }) {
               borderTop: 'none',
               borderLeft: 'none',
               cursor: 'pointer',
-              transition: 'all 0.2s ease',
               lineHeight: 1,
               whiteSpace: 'nowrap',
               flexShrink: 0
             }}
           >
-            {t.nav.used}
-          </button>
-
-          <button
-            onClick={() => handleNavClick('about')}
-            style={{
-              padding: '14px 14px',
-              minHeight: '44px',
-              color: currentPage === 'about' ? '#FF6600' : isDark ? '#FFFFFF' : '#1E293B',
-              fontWeight: 800,
-              fontSize: '0.82rem',
-              letterSpacing: '0.03em',
-              textTransform: 'uppercase',
-              borderRight: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
-              borderBottom: currentPage === 'about' ? '3px solid #FF6600' : '3px solid transparent',
-              background: 'none',
-              borderTop: 'none',
-              borderLeft: 'none',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-              lineHeight: 1,
-              whiteSpace: 'nowrap',
-              flexShrink: 0
-            }}
-          >
-            {t.nav.about}
+            <span className="nav-text-inner">{t.nav.used}</span>
           </button>
 
           <button
             onClick={() => handleNavClick('news')}
+            className={`desktop-nav-item ${currentPage === 'news' ? 'active' : ''}`}
             style={{
               padding: '14px 0 14px 14px',
               minHeight: '44px',
@@ -483,13 +478,12 @@ export default function Navbar({ currentPage, onNavigate }) {
               background: 'none',
               border: 'none',
               cursor: 'pointer',
-              transition: 'all 0.2s ease',
               lineHeight: 1,
               whiteSpace: 'nowrap',
               flexShrink: 0
             }}
           >
-            {t.nav.news}
+            <span className="nav-text-inner">{t.nav.news}</span>
           </button>
         </nav>
 
@@ -574,51 +568,41 @@ export default function Navbar({ currentPage, onNavigate }) {
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <img
-                  src={isDark ? '/Risorse/Immagini/DW_Logotype_Rev.png' : '/Risorse/Immagini/DW_Logotype.png'}
-                  alt="Ditch Witch"
-                  style={{ height: '26px', maxWidth: '140px', width: 'auto', objectFit: 'contain' }}
+                  src={isDark ? '/Risorse/Immagini/DW_Ukraine_White.png' : '/Risorse/Immagini/DW_Ukraine_Black.png'}
+                  alt="Ditch Witch Ukraine"
+                  style={{ height: '26px', maxWidth: '170px', width: 'auto', objectFit: 'contain' }}
                 />
-                <span style={{
-                  fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
-                  fontWeight: 900,
-                  fontSize: '1rem',
-                  color: isDark ? '#FFFFFF' : '#111111',
-                  letterSpacing: '-0.02em'
-                }}>
-                  Ukraine
-                </span>
                 <span style={{ color: '#FF6600', fontWeight: 800, fontSize: '0.9rem' }}>&lt; JLM &gt;</span>
               </div>
 
-              {/* Highly Visible Primary Close Button */}
+              {/* Clean Orange 'X' Close Button */}
               <button
                 onClick={() => setMobileMenuOpen(false)}
                 className="touch-target"
                 style={{
-                  backgroundColor: '#FF6600',
-                  color: '#FFFFFF',
+                  background: 'none',
+                  backgroundColor: 'transparent',
+                  color: '#FF6600',
                   border: 'none',
-                  borderRadius: '8px',
-                  padding: '8px 12px',
-                  minWidth: '44px',
-                  minHeight: '44px',
-                  display: 'inline-flex',
+                  padding: '6px',
+                  display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '6px',
                   cursor: 'pointer',
-                  fontWeight: 800,
-                  fontSize: '0.82rem',
-                  boxShadow: '0 2px 8px rgba(255, 102, 0, 0.35)',
-                  transition: 'all 0.2s ease',
+                  transition: 'transform 0.2s ease, opacity 0.2s ease',
                   flexShrink: 0
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.15)';
+                  e.currentTarget.style.opacity = '0.85';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.opacity = '1';
                 }}
                 aria-label="Close navigation menu"
               >
-                <X size={18} />
-                <span style={{ textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                  {language === 'uk' ? 'Закрити' : language === 'pl' ? 'Zamknij' : 'Close'}
-                </span>
+                <X size={28} strokeWidth={2.5} />
               </button>
             </div>
 
@@ -665,6 +649,29 @@ export default function Navbar({ currentPage, onNavigate }) {
 
               {/* Drawer Navigation Links */}
               <div style={{ padding: '16px 16px', display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>
+                <button
+                  onClick={() => handleNavClick('about')}
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    padding: '14px 16px',
+                    minHeight: '48px',
+                    borderRadius: '8px',
+                    backgroundColor: currentPage === 'about' ? 'rgba(255, 102, 0, 0.12)' : isDark ? '#1F1F1F' : '#F1F5F9',
+                    color: currentPage === 'about' ? '#FF6600' : isDark ? '#FFFFFF' : '#0F172A',
+                    border: 'none',
+                    fontWeight: 800,
+                    fontSize: '0.95rem',
+                    cursor: 'pointer',
+                    textAlign: 'left'
+                  }}
+                >
+                  <Building2 size={18} style={{ color: '#FF6600' }} />
+                  <span>{t.nav.about}</span>
+                </button>
+
                 <div>
                   <button
                     onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
@@ -826,29 +833,6 @@ export default function Navbar({ currentPage, onNavigate }) {
                 </button>
 
                 <button
-                  onClick={() => handleNavClick('about')}
-                  style={{
-                    width: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    padding: '14px 16px',
-                    minHeight: '48px',
-                    borderRadius: '8px',
-                    backgroundColor: currentPage === 'about' ? 'rgba(255, 102, 0, 0.12)' : isDark ? '#1F1F1F' : '#F1F5F9',
-                    color: currentPage === 'about' ? '#FF6600' : isDark ? '#FFFFFF' : '#0F172A',
-                    border: 'none',
-                    fontWeight: 800,
-                    fontSize: '0.95rem',
-                    cursor: 'pointer',
-                    textAlign: 'left'
-                  }}
-                >
-                  <Building2 size={18} style={{ color: '#FF6600' }} />
-                  <span>{t.nav.about}</span>
-                </button>
-
-                <button
                   onClick={() => handleNavClick('news')}
                   style={{
                     width: '100%',
@@ -915,6 +899,29 @@ export default function Navbar({ currentPage, onNavigate }) {
       )}
 
       <style>{`
+        .desktop-nav-item {
+          position: relative;
+          transition: background-color 0.22s ease, color 0.22s ease, border-bottom-color 0.22s ease !important;
+        }
+        .desktop-nav-item .nav-text-inner {
+          display: inline-block;
+          transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.22s ease, text-shadow 0.22s ease;
+          will-change: transform;
+        }
+        .desktop-nav-item:hover {
+          background-color: rgba(255, 102, 0, 0.1) !important;
+          color: #FF6600 !important;
+          border-bottom-color: #FF6600 !important;
+        }
+        .desktop-nav-item:hover .nav-text-inner {
+          transform: translateY(-2px) scale(1.05);
+          color: #FF6600 !important;
+          text-shadow: 0 2px 10px rgba(255, 102, 0, 0.45);
+        }
+        .desktop-nav-item:hover .nav-chevron {
+          transform: translateY(-2px);
+        }
+
         @media (max-width: 1360px) {
           .desktop-nav-btn {
             padding-left: 8px !important;

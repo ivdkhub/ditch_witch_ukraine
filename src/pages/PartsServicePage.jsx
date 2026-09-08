@@ -180,8 +180,10 @@ export default function PartsServicePage() {
             </h3>
             <p style={{ fontSize: '0.88rem', color: isDark ? '#AAA' : '#666', lineHeight: 1.5, margin: 0 }}>
               {language === 'uk'
-                ? 'Тестування, калібрування та сервіс електронних локаційних систем Subsite®, зондів TXU та приймачів серії TK.'
-                : 'Calibration, testing, and service of Subsite® locating systems, beacon sondes, and receivers.'}
+                ? 'Тестування, калібрування та сервіс електронних локаційних систем, зондів та приймачів.'
+                : language === 'pl'
+                ? 'Testowanie, kalibracja i serwis elektronicznych systemów lokalizacji, sond i odbiorników.'
+                : 'Testing, calibration, and service of electronic locating systems, sondes, and receivers.'}
             </p>
           </div>
 
@@ -194,12 +196,14 @@ export default function PartsServicePage() {
           }}>
             <BookOpen size={32} style={{ color: '#FF6600', marginBottom: '14px' }} />
             <h3 style={{ fontSize: '1.15rem', fontWeight: 800, marginBottom: '8px' }}>
-              {language === 'uk' ? 'Навчання Операторів' : 'Operator Certified Training'}
+              {language === 'uk' ? 'Навчання Операторів' : language === 'pl' ? 'Szkolenie Operatorów' : 'Operator Certified Training'}
             </h3>
             <p style={{ fontSize: '0.88rem', color: isDark ? '#AAA' : '#666', lineHeight: 1.5, margin: 0 }}>
               {language === 'uk'
-                ? 'Практичне навчання робочих бригад ефективній та безаварійній експлуатації бурових установок.'
-                : 'Hands-on operator safety and high-productivity directional drilling techniques.'}
+                ? 'Практичне навчання робочих бригад ефективній та безаварійній експлуатації бурових установок та електронних систем.'
+                : language === 'pl'
+                ? 'Praktyczne szkolenia załóg w zakresie efektywnej i bezawaryjnej eksploatacji wiertnic oraz systemów elektronicznych.'
+                : 'Hands-on training for crew teams on efficient, trouble-free operation of drilling rigs and electronic systems.'}
             </p>
           </div>
         </div>
@@ -306,7 +310,7 @@ export default function PartsServicePage() {
               OFFICIAL PARTS CATALOG & MAINTENANCE KITS
             </span>
             <h2 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)', fontWeight: 900, marginTop: '6px', textTransform: 'uppercase' }}>
-              {language === 'uk' ? 'Каталог Запчастин та Витратних Матеріалів' : 'Recommended Spare Parts & Service Kits'}
+              {language === 'uk' ? 'Каталог Запчастин та Бурового Інструменту' : 'Recommended Spare Parts & Drilling Tools'}
             </h2>
             <p style={{ color: isDark ? '#BBB' : '#666', maxWidth: '680px', margin: '8px auto 0 auto', fontSize: '0.95rem' }}>
               {language === 'uk'

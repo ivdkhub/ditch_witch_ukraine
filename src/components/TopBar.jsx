@@ -1,15 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Phone, Search, ShieldCheck, ArrowRight, X } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
-import SettingsMenu from './SettingsMenu';
+import SettingsMenu, { FlagUA, FlagGB, FlagPL } from './SettingsMenu';
 import { useTheme } from '../theme/ThemeContext';
 import { useProducts } from '../context/ProductContext';
 import ProductModal from './ProductModal';
 
 export default function TopBar({ onOpenAdmin, onSearch }) {
-  const { t, language } = useTranslation();
+  const { t, language, changeLanguage, setLanguage } = useTranslation();
   const { theme } = useTheme();
   const { visibleProducts } = useProducts();
+
+  const handleSelectLanguage = (code) => {
+    if (typeof changeLanguage === 'function') {
+      changeLanguage(code);
+    } else if (typeof setLanguage === 'function') {
+      setLanguage(code);
+    }
+  };
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -137,7 +145,7 @@ export default function TopBar({ onOpenAdmin, onSearch }) {
           </div>
         </div>
 
-        {/* Center / Brand Badge: < JLM > (Requested in Red Box area) */}
+        {/* Center / Brand Badge: < JLM > */}
         <div className="topbar-center" style={{
           display: 'flex',
           alignItems: 'center',
@@ -159,6 +167,61 @@ export default function TopBar({ onOpenAdmin, onSearch }) {
           >
             &lt; JLM &gt;
           </span>
+        </div>
+
+        {/* Desktop Only Language Flags: Perfectly Centered in available space between JLM & Search */}
+        <div className="topbar-desktop-flags" style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '14px',
+          flex: '1 1 auto',
+          margin: '0 16px'
+        }}>
+          {[
+            { code: 'uk', label: 'Українська', Flag: FlagUA },
+            { code: 'en', label: 'English', Flag: FlagGB },
+            { code: 'pl', label: 'Polski', Flag: FlagPL }
+          ].map(({ code, label, Flag }) => {
+            const isActive = language === code;
+            return (
+              <button
+                key={code}
+                type="button"
+                onClick={() => handleSelectLanguage(code)}
+                title={label}
+                aria-label={label}
+                style={{
+                  border: 'none',
+                  backgroundColor: 'transparent',
+                  padding: '2px',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  opacity: isActive ? 1 : 0.38,
+                  transform: isActive ? 'scale(1.18)' : 'scale(1)',
+                  filter: isActive ? 'drop-shadow(0 0 6px rgba(255, 102, 0, 0.75))' : 'none',
+                  transition: 'all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1)',
+                  outline: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.opacity = '0.9';
+                    e.currentTarget.style.transform = 'scale(1.12)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.opacity = '0.38';
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }
+                }}
+              >
+                <Flag width={25} height={17} />
+              </button>
+            );
+          })}
         </div>
 
         {/* Right Side: Fluid Live Dropdown Search Bar + Compact Animated Settings Gear Button */}

@@ -20,7 +20,7 @@ export default function SearchPage({ initialQuery = '', onNavigateToProducts }) 
     { id: 'all', label: { uk: 'Всі Категорії', en: 'All Categories', pl: 'Wszystkie Kategorie' } },
     { id: 'drilling', label: { uk: 'Установки ГНБ', en: 'Directional Drills', pl: 'Wiertnice HDB' } },
     { id: 'trenchers', label: { uk: 'Траншеєкопачі', en: 'Trenchers', pl: 'Koparki Łańcuchowe' } },
-    { id: 'skidsteers', label: { uk: 'Міні-навантажувачі', en: 'Skid Steers', pl: 'Ładowarki Kompaktowe' } },
+    { id: 'skidsteers', label: { uk: 'Модульна техніка', en: 'Modular Equipment', pl: 'Technika Modułowa' } },
     { id: 'vacuums', label: { uk: 'Вакуумні Екскаватори', en: 'Vacuum Excavators', pl: 'Koparki Próżniowe' } },
     { id: 'fluids', label: { uk: 'Приготування Розчину', en: 'Fluid Systems', pl: 'Systemy Płuczkowe' } }
   ];
@@ -289,7 +289,11 @@ export default function SearchPage({ initialQuery = '', onNavigateToProducts }) 
                         style={{
                           maxHeight: '180px',
                           maxWidth: '100%',
-                          objectFit: 'contain'
+                          width: 'auto',
+                          height: 'auto',
+                          objectFit: 'contain',
+                          display: 'block',
+                          margin: 'auto'
                         }}
                       />
                     </div>

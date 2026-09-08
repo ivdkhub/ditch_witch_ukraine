@@ -1234,7 +1234,7 @@ export default function AdminDashboardPage({ onLogout }) {
                   { id: 'ALL', uk: 'Всі Товари' },
                   { id: 'drilling', uk: 'ГНБ' },
                   { id: 'trenchers', uk: 'Траншеєкопачі' },
-                  { id: 'skidsteers', uk: 'SK Навантажувачі' },
+                  { id: 'skidsteers', uk: 'SK Модульна техніка' },
                   { id: 'vacuums', uk: 'Вакуумні' },
                   { id: 'fluids', uk: 'Змішувальні' },
                   { id: 'electronics', uk: 'Subsite®' },

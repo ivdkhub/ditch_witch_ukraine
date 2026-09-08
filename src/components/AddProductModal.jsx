@@ -7,7 +7,7 @@ import { useProducts } from '../context/ProductContext';
 export const PRODUCT_CATEGORIES = [
   { id: 'drilling', uk: 'Бурові Установки ГНБ', en: 'Directional Drills', pl: 'Wiertnice HDB' },
   { id: 'trenchers', uk: 'Траншеєкопачі', en: 'Trenchers', pl: 'Koparki Łańcuchowe' },
-  { id: 'skidsteers', uk: 'Міні-Навантажувачі SK', en: 'Stand-On Skid Steers', pl: 'Ładowarki SK' },
+  { id: 'skidsteers', uk: 'Модульна техніка SK', en: 'Stand-On Modular', pl: 'Technika Modułowa SK' },
   { id: 'vacuums', uk: 'Вакуумні Екскаватори', en: 'Vacuum Excavators', pl: 'Koparki Próżniowe' },
   { id: 'fluids', uk: 'Змішувальні Системи', en: 'Fluid Systems', pl: 'Systemy Płuczkowe' },
   { id: 'electronics', uk: 'Локаційні Системи Subsite', en: 'Subsite Electronics', pl: 'Systemy Subsite' },

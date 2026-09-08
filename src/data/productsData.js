@@ -595,7 +595,7 @@ export const productsData = [
     id: 'subsite_marksman',
     category: 'electronics',
     categoryKey: 'electronics',
-    image: '/Risorse/Immagini/dirdrills_jt10.png',
+    image: '/Risorse/Immagini/subsite_marksman.png',
     featured: false,
     title: {
       uk: 'Локаційна система Subsite® Marksman',
@@ -685,7 +685,7 @@ export const productsData = [
     id: 'baroid_ezmud',
     category: 'bentonite',
     categoryKey: 'bentonite',
-    image: '/Risorse/Immagini/category_fluidSystems.png',
+    image: '/Risorse/Immagini/bentonite_bag.png',
     featured: false,
     title: {
       uk: 'Полімер Baroid® EZ-MUD® GOLD',
@@ -710,7 +710,7 @@ export const productsData = [
     }
   },
 
-  // 7. Stand-on Skid Steers (Навантажувачі SK)
+  // 7. Modular Equipment (Модульна техніка SK)
   {
     id: 'sk3000',
     category: 'skidsteers',
@@ -718,14 +718,14 @@ export const productsData = [
     image: '/Risorse/Immagini/category_skidsteers.png',
     featured: false,
     title: {
-      uk: 'Гусеничний Міні-навантажувач SK3000',
-      en: 'Ditch Witch SK3000 Stand-On Skid Steer',
-      pl: 'Ładowarka Kompaktowa SK3000'
+      uk: 'Гусенична Модульна техніка SK3000',
+      en: 'Ditch Witch SK3000 Stand-On Modular Unit',
+      pl: 'Technika Modułowa SK3000'
     },
     tagline: {
-      uk: 'Найпотужніший у класі міні-навантажувач з стоячим місцем',
-      en: 'Full-size power in a stand-on skid steer platform',
-      pl: 'Najpotężniejsza ładowarka gąsienicowa w swej klasie'
+      uk: 'Найпотужніша у класі модульна техніка з стоячим місцем',
+      en: 'Full-size power in a stand-on modular platform',
+      pl: 'Najpotężniejsza maszyna modułowa w swej klasie'
     },
     specs: {
       operatingCapacity: '1,400 kg (3,100 lbs)',
@@ -734,51 +734,21 @@ export const productsData = [
       weight: '3,450 kg (7,600 lbs)'
     },
     desc: {
-      uk: 'SK3000 є флагманом лінійки навантажувачів з високою вантажопідйомністю 1400 кг для важких будівельних та ландшафтних робіт.',
-      en: 'The SK3000 brings full-size skid steer muscle to a stand-on machine, delivering 1,400 kg operating capacity without sacrificing visibility.',
-      pl: 'SK3000 to potężna ładowarka gąsienicowa z udźwigiem 1400 kg stworzona do najtrudniejszych zadań.'
+      uk: 'SK3000 є флагманом лінійки модульної техніки з високою вантажопідйомністю 1400 кг для важких будівельних та ландшафтних робіт.',
+      en: 'The SK3000 brings full-size muscle to a stand-on modular machine, delivering 1,400 kg operating capacity without sacrificing visibility.',
+      pl: 'SK3000 to potężna maszyna modułowa z udźwigiem 1400 kg stworzona do najtrudniejszych zadań.'
     }
   },
 
-  // 8. Mud Recycling Systems (Рециклінг розчину)
-  {
-    id: 'dupagro_recycler',
-    category: 'recycling',
-    categoryKey: 'recycling',
-    image: '/Risorse/Immagini/category_fluidSystems.png',
-    featured: false,
-    title: {
-      uk: 'Система очищення розчину Dupagro PU50',
-      en: 'Dupagro PU50 Mud Recycling System',
-      pl: 'System Recyklingu Płuczki Dupagro PU50'
-    },
-    tagline: {
-      uk: 'Замкнутий цикл очищення та повторного використання бентоніту',
-      en: 'Closed-loop high-efficiency bentonite mud recycling',
-      pl: 'System zamkniętego obiegu czyszczenia i odzysku płuczki'
-    },
-    specs: {
-      capacity: '500 L/min (132 gpm)',
-      shakerScreen: 'Multi-Deck Vibrating Screen',
-      hydrocyclones: 'Dual Desilting Cones',
-      generator: 'Integrated Silent Diesel Gen'
-    },
-    desc: {
-      uk: 'Установка рециклінгу Dupagro відокремлює вибурену породу від розчину, зменшуючи витрати бентоніту та воду до 70%.',
-      en: 'Dupagro mud recycling units separate drill cuttings from mud, reducing bentonite consumption and water costs by up to 70%.',
-      pl: 'Stacja recyklingu odseparowuje urobiony grunt od płuczki, zmniejszając zużycie bentonitu i wody do 70%.'
-    }
-  },
-
-  // 9. Consumable Materials (Витратні матеріали Baroid®)
+  // 8. Drill Tools & Consumables (Буровий інструмент Baroid®)
   {
     id: 'baroid_quikgel',
     category: 'consumables',
     categoryKey: 'consumables',
-    image: '/Risorse/Immagini/category_fluidSystems.png',
+    image: '/Risorse/Immagini/bentonite_bag.png',
     featured: false,
     title: {
-      uk: 'Витратні матеріали Baroid® QUIK-GEL®',
+      uk: 'Буровий інструмент та матеріали Baroid® QUIK-GEL®',
       en: 'Baroid® QUIK-GEL® High-Yield Bentonite',
       pl: 'Bentonit Baroid® QUIK-GEL®'
     },
@@ -805,7 +775,7 @@ export const productsData = [
     id: 'hammerhead_mole',
     category: 'other',
     categoryKey: 'other',
-    image: '/Risorse/Immagini/category_drilling.png',
+    image: '/Risorse/Immagini/hammerhead_mole.png',
     featured: false,
     title: {
       uk: 'Пневмопробійник HammerHead® Mole',
@@ -831,8 +801,8 @@ export const productsData = [
   },
   {
     id: 'umag_mag_x_cor',
-    category: 'other',
-    categoryKey: 'other',
+    category: 'electronics',
+    categoryKey: 'electronics',
     image: '/Risorse/Immagini/mag_x_cor.png',
     brochureUrl: '/documents/Underground_Magnetics_Mag_X_COR_Brochure_UA.pdf',
     featured: false,

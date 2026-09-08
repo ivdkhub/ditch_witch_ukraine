@@ -135,19 +135,31 @@ export default function ProductModal({ product, onClose }) {
           backgroundColor: isDark ? '#141414' : '#F4F5F7',
           padding: '36px',
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-          gap: '24px',
-          alignItems: 'center',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '28px',
+          alignItems: 'stretch',
           borderBottom: '4px solid #FF6600'
         }}>
-          <div style={{ textAlign: 'center' }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            height: '100%',
+            minHeight: '280px',
+            boxSizing: 'border-box'
+          }}>
             <img
               src={product.image}
               alt={title}
               style={{
-                maxHeight: '220px',
+                maxHeight: '300px',
                 maxWidth: '100%',
-                objectFit: 'contain'
+                width: 'auto',
+                height: 'auto',
+                objectFit: 'contain',
+                display: 'block',
+                margin: 'auto'
               }}
             />
           </div>

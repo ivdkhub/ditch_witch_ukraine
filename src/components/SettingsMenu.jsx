@@ -4,16 +4,16 @@ import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
 
 // Vector SVG Flags for crisp rendering on all platforms
-const FlagUA = () => (
-  <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: '2px', display: 'block', flexShrink: 0, pointerEvents: 'none' }}>
+export const FlagUA = ({ width = 22, height = 15 }) => (
+  <svg width={width} height={height} viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: '2px', display: 'block', flexShrink: 0, pointerEvents: 'none' }}>
     <rect width="22" height="7.5" fill="#0057B7" />
     <rect y="7.5" width="22" height="7.5" fill="#FFD700" />
     <rect width="22" height="15" rx="1.5" stroke="rgba(0,0,0,0.15)" strokeWidth="0.5" />
   </svg>
 );
 
-const FlagGB = () => (
-  <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: '2px', display: 'block', flexShrink: 0, pointerEvents: 'none' }}>
+export const FlagGB = ({ width = 22, height = 15 }) => (
+  <svg width={width} height={height} viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: '2px', display: 'block', flexShrink: 0, pointerEvents: 'none' }}>
     <rect width="22" height="15" fill="#012169" />
     <path d="M0 0L22 15M22 0L0 15" stroke="#FFFFFF" strokeWidth="2.5" />
     <path d="M0 0L22 15M22 0L0 15" stroke="#C8102E" strokeWidth="1.5" />
@@ -23,8 +23,8 @@ const FlagGB = () => (
   </svg>
 );
 
-const FlagPL = () => (
-  <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: '2px', display: 'block', flexShrink: 0, pointerEvents: 'none' }}>
+export const FlagPL = ({ width = 22, height = 15 }) => (
+  <svg width={width} height={height} viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ borderRadius: '2px', display: 'block', flexShrink: 0, pointerEvents: 'none' }}>
     <rect width="22" height="7.5" fill="#FFFFFF" />
     <rect y="7.5" width="22" height="7.5" fill="#DC143C" />
     <rect width="22" height="15" rx="1.5" stroke="rgba(0,0,0,0.15)" strokeWidth="0.5" />
