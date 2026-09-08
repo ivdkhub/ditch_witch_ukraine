@@ -1232,13 +1232,15 @@ export default function AdminDashboardPage({ onLogout }) {
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                 {[
                   { id: 'ALL', uk: 'Всі Товари' },
-                  { id: 'drilling', uk: 'ГНБ' },
+                  { id: 'hdd', uk: 'ГНБ (HDD)' },
+                  { id: 'mixers', uk: 'Міксери' },
+                  { id: 'electronics', uk: 'Електроніка & Локація' },
+                  { id: 'locators', uk: 'Локатори Subsite®' },
                   { id: 'trenchers', uk: 'Траншеєкопачі' },
-                  { id: 'skidsteers', uk: 'SK Модульна техніка' },
-                  { id: 'vacuums', uk: 'Вакуумні' },
-                  { id: 'fluids', uk: 'Змішувальні' },
-                  { id: 'electronics', uk: 'Subsite®' },
-                  { id: 'other', uk: 'Інше (Altro)' }
+                  { id: 'bentonite', uk: 'Бентоніт & Полімери' },
+                  { id: 'skidsteers', uk: 'Модульна техніка SK' },
+                  { id: 'consumables', uk: 'Буровий інструмент' },
+                  { id: 'other', uk: 'Інше' }
                 ].map((cat) => (
                   <button
                     key={cat.id}

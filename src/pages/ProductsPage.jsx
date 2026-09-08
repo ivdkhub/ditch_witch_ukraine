@@ -9,7 +9,7 @@ import SmoothProductCard from '../components/SmoothProductCard';
 export default function ProductsPage({ initialCategory = 'all' }) {
   const { language } = useTranslation();
   const { theme } = useTheme();
-  const { products } = useProducts();
+  const { products, visibleProducts } = useProducts();
 
   const [activeCategory, setActiveCategory] = useState(initialCategory || 'all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -42,7 +42,8 @@ export default function ProductsPage({ initialCategory = 'all' }) {
     setMobileFilterOpen(false);
   };
 
-  const filteredProducts = products.filter((prod) => {
+  const displayProducts = visibleProducts || products;
+  const filteredProducts = displayProducts.filter((prod) => {
     if (prod.category === 'american_augers') return false; // American Augers has no local products, redirects to official site
     const matchesCat = activeCategory === 'all' || prod.category === activeCategory;
     const titleText = (prod.title[language] || prod.title.uk || prod.title.en || '').toLowerCase();

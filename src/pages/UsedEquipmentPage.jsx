@@ -22,6 +22,45 @@ export default function UsedEquipmentPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
+
+    const todayFormatted = new Date().toLocaleDateString('uk-UA', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    const categoryLabels = {
+      hdd: 'ГНБ Бурові (Used HDD)',
+      trenchers: 'Траншеєкопачі (Used Trenchers)',
+      electronics: 'Локаційні системи (Subsite Used)',
+      mixers: 'Змішувальні системи (Used Mixers)',
+      other: 'Інше обладнання б/в'
+    };
+
+    const categoryName = categoryLabels[formData.equipmentType] || formData.equipmentType;
+
+    const newInquiry = {
+      id: `INQ-${new Date().getFullYear()}-${Math.floor(100 + Math.random() * 900)}`,
+      date: `${todayFormatted} ${new Date().toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' })}`,
+      customerName: formData.name,
+      company: formData.name,
+      phone: formData.phone,
+      email: formData.email || '',
+      city: 'Україна',
+      inquiryType: `Підбір б/в (${categoryName})`,
+      productModel: `Б/в техніка: ${categoryName}`,
+      budget: 'Підбір / Консультація',
+      status: 'Новий',
+      notes: formData.message || `Запит на підбір б/в техніки (${categoryName}) для консультанта ${consultantName}.`
+    };
+
+    try {
+      const existing = JSON.parse(localStorage.getItem('ditchwitch_inquiries') || '[]');
+      localStorage.setItem('ditchwitch_inquiries', JSON.stringify([newInquiry, ...existing]));
+    } catch (err) {
+      console.error(err);
+    }
+
     setSubmitted(true);
   };
 

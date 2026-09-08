@@ -67,6 +67,36 @@ export default function PartsServicePage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!formData.name || !formData.phone) return;
+
+    const todayFormatted = new Date().toLocaleDateString('uk-UA', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    const newInquiry = {
+      id: `INQ-${new Date().getFullYear()}-${Math.floor(100 + Math.random() * 900)}`,
+      date: `${todayFormatted} ${new Date().toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' })}`,
+      customerName: formData.name,
+      company: formData.name,
+      phone: formData.phone,
+      email: '',
+      city: 'Україна',
+      inquiryType: 'Запчастини та Сервіс',
+      productModel: formData.machineModel || formData.partName || 'Сервісне обслуговування',
+      budget: 'Підбір / Замовлення',
+      status: 'Новий',
+      notes: `Запит запчастин: ${formData.partName || '—'}. Модель: ${formData.machineModel || '—'}. ${formData.vinCode ? `VIN: ${formData.vinCode}.` : ''} ${formData.message || ''}`.trim()
+    };
+
+    try {
+      const existing = JSON.parse(localStorage.getItem('ditchwitch_inquiries') || '[]');
+      localStorage.setItem('ditchwitch_inquiries', JSON.stringify([newInquiry, ...existing]));
+    } catch (err) {
+      console.error(err);
+    }
+
     setSubmitted(true);
   };
 

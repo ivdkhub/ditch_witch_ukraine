@@ -5,19 +5,25 @@ import { useTheme } from '../theme/ThemeContext';
 import { useProducts } from '../context/ProductContext';
 
 export const PRODUCT_CATEGORIES = [
-  { id: 'drilling', uk: 'Бурові Установки ГНБ', en: 'Directional Drills', pl: 'Wiertnice HDB' },
-  { id: 'trenchers', uk: 'Траншеєкопачі', en: 'Trenchers', pl: 'Koparki Łańcuchowe' },
-  { id: 'skidsteers', uk: 'Модульна техніка SK', en: 'Stand-On Modular', pl: 'Technika Modułowa SK' },
-  { id: 'vacuums', uk: 'Вакуумні Екскаватори', en: 'Vacuum Excavators', pl: 'Koparki Próżniowe' },
-  { id: 'fluids', uk: 'Змішувальні Системи', en: 'Fluid Systems', pl: 'Systemy Płuczkowe' },
-  { id: 'electronics', uk: 'Локаційні Системи Subsite', en: 'Subsite Electronics', pl: 'Systemy Subsite' },
-  { id: 'other', uk: 'Інше / Інші товари (Altro)', en: 'Other Products', pl: 'Inny Sprzęt' }
+  { id: 'hdd', uk: 'Бурові Установки ГНБ (HDD)', en: 'Directional Drills (HDD)', pl: 'Wiertnice HDB' },
+  { id: 'mixers', uk: 'Міксери / Змішувальні Системи', en: 'Fluid / Mud Mixers', pl: 'Mieszalniki Płuczkowe' },
+  { id: 'electronics', uk: 'Електронні Системи Локацій (Subsite / Magnetics)', en: 'Locating Systems (Subsite / Magnetics)', pl: 'Systemy Lokalizacji' },
+  { id: 'locators', uk: 'Локатори Subsite®', en: 'Subsite® Locators', pl: 'Lokalizatory Subsite®' },
+  { id: 'trenchers', uk: 'Траншеєкопачі та Плуги', en: 'Trenchers & Plows', pl: 'Koparki Łańcuchowe' },
+  { id: 'bentonite', uk: 'Бентоніт та Полімери', en: 'Bentonite & Polymers', pl: 'Bentonit i Polimery' },
+  { id: 'skidsteers', uk: 'Модульна техніка SK', en: 'Stand-On Modular SK', pl: 'Technika Modułowa SK' },
+  { id: 'consumables', uk: 'Буровий Інструмент', en: 'Drill Tools & Consumables', pl: 'Narzędzia Wiertnicze' },
+  { id: 'other', uk: 'Інше / Інші товари', en: 'Other Products', pl: 'Inny Sprzęt' }
 ];
 
 export const STOCK_PRODUCT_IMAGES = [
   { label: '🚜 Stock ГНБ JT10', url: '/Risorse/Immagini/dirdrills_jt10.png' },
   { label: '🚜 Stock ГНБ JT5', url: '/Risorse/Immagini/dirdrills_jt5.png' },
   { label: '⚙️ Stock C16X Trencher', url: '/Risorse/Immagini/c16x.png' },
+  { label: '📡 Stock Subsite Marksman', url: '/Risorse/Immagini/subsite_marksman.png' },
+  { label: '📡 Stock Underground Magnetics', url: '/Risorse/Immagini/mag_x_cor.png' },
+  { label: '🔨 Stock HammerHead Mole', url: '/Risorse/Immagini/hammerhead_mole.png' },
+  { label: '🪨 Stock Bentonite Bag', url: '/Risorse/Immagini/bentonite_bag.png' },
   { label: '📂 Stock Категорія Спецтехніки', url: '/Risorse/Immagini/category_drilling.png' },
   { label: '📦 Stock Запчастини & Спецтехніка', url: '/Risorse/Immagini/category_trenchers.png' }
 ];
@@ -51,7 +57,7 @@ export default function AddProductModal({ isOpen, onClose, editingProduct = null
 
   const isDark = theme === 'dark';
 
-  const [category, setCategory] = useState('drilling');
+  const [category, setCategory] = useState('hdd');
   const [titleUk, setTitleUk] = useState('');
   const [titleEn, setTitleEn] = useState('');
   const [titlePl, setTitlePl] = useState('');
@@ -68,7 +74,7 @@ export default function AddProductModal({ isOpen, onClose, editingProduct = null
 
   useEffect(() => {
     if (editingProduct) {
-      setCategory(editingProduct.category || 'drilling');
+      setCategory(editingProduct.category || 'hdd');
       setTitleUk(editingProduct.title?.uk || editingProduct.title || '');
       setTitleEn(editingProduct.title?.en || editingProduct.title || '');
       setTitlePl(editingProduct.title?.pl || editingProduct.title || '');
