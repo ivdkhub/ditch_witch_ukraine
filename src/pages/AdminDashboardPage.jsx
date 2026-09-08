@@ -41,6 +41,7 @@ import AddPartModal from '../components/AddPartModal';
 import AddNewsModal from '../components/AddNewsModal';
 import AddInquiryModal from '../components/AddInquiryModal';
 import AddCustomerDossierModal from '../components/AddCustomerDossierModal';
+import FileFormatIcon from '../components/FileFormatIcon';
 
 export default function AdminDashboardPage({ onLogout }) {
   const { language } = useTranslation();
@@ -1722,8 +1723,11 @@ export default function AdminDashboardPage({ onLogout }) {
                       <td style={{ padding: '12px 16px', fontWeight: 800, color: isDark ? '#FFF' : '#111' }}>
                         {doc.title?.uk || doc.title}
                       </td>
-                      <td style={{ padding: '12px 16px', fontWeight: 900, color: '#FF6600' }}>
-                        {doc.format}
+                      <td style={{ padding: '12px 16px' }}>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                          <FileFormatIcon format={doc.format} size={18} />
+                          <span style={{ fontWeight: 800, fontSize: '0.85rem', color: isDark ? '#E2E8F0' : '#1E293B' }}>{doc.format}</span>
+                        </div>
                       </td>
                       <td style={{ padding: '12px 16px', color: '#888' }}>
                         {doc.size}
@@ -1770,9 +1774,9 @@ export default function AdminDashboardPage({ onLogout }) {
                     <div style={{ fontWeight: 900, color: isDark ? '#FFF' : '#111', fontSize: '0.92rem' }}>
                       {doc.title?.uk || doc.title}
                     </div>
-                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '4px' }}>
-                      <span style={{ color: '#FF6600', fontWeight: 900, fontSize: '0.75rem' }}>{doc.format}</span>
-                      <span style={{ color: '#888', fontSize: '0.75rem' }}>• {doc.size}</span>
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '6px' }}>
+                      <FileFormatIcon format={doc.format} size={16} />
+                      <span style={{ color: isDark ? '#CCC' : '#555', fontSize: '0.8rem', fontWeight: 600 }}>{doc.size}</span>
                     </div>
                   </div>
                   <button

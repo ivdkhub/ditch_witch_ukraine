@@ -4,6 +4,7 @@ import { useTranslation } from '../i18n/LanguageContext';
 import { useTheme } from '../theme/ThemeContext';
 import { useDocuments } from '../context/DocumentContext';
 import ParallaxCard from '../components/ParallaxCard';
+import FileFormatIcon from '../components/FileFormatIcon';
 
 export default function DocumentsPage() {
   const { language } = useTranslation();
@@ -480,18 +481,14 @@ export default function DocumentsPage() {
                         {catName}
                       </span>
 
-                      <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexShrink: 0 }}>
+                      <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexShrink: 0 }}>
+                        <FileFormatIcon format={doc.format} size={22} />
                         <span style={{
-                          backgroundColor: doc.format === 'PDF' ? '#E53935' : doc.format === 'XLSX' || doc.format === 'XLS' ? '#2E7D32' : '#2563EB',
-                          color: '#FFFFFF',
-                          fontWeight: 900,
-                          fontSize: '0.7rem',
-                          padding: '2px 6px',
-                          borderRadius: '3px'
+                          fontSize: '0.8rem',
+                          color: isDark ? '#A1A1AA' : '#64748B',
+                          fontWeight: 700,
+                          letterSpacing: '0.02em'
                         }}>
-                          {doc.format}
-                        </span>
-                        <span style={{ fontSize: '0.75rem', color: '#888', fontWeight: 600 }}>
                           {doc.size}
                         </span>
                       </div>
