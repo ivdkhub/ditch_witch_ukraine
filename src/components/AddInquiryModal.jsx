@@ -192,7 +192,7 @@ export default function AddInquiryModal({ isOpen, onClose, onSave, editingInquir
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {/* Row 1: ID & Date */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
             <div>
               <label style={labelStyle}>Номер Запиту (ID)</label>
               <div style={{ position: 'relative' }}>
@@ -251,7 +251,7 @@ export default function AddInquiryModal({ isOpen, onClose, onSave, editingInquir
           )}
 
           {/* Row 2: Customer Name & Company */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
             <div>
               <label style={labelStyle}>ПІБ Клієнта / Представника</label>
               <div style={{ position: 'relative' }}>
@@ -283,7 +283,7 @@ export default function AddInquiryModal({ isOpen, onClose, onSave, editingInquir
           </div>
 
           {/* Row 3: Phone & Email */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
             <div>
               <label style={labelStyle}>Номер Телефону</label>
               <div style={{ position: 'relative' }}>
@@ -315,7 +315,7 @@ export default function AddInquiryModal({ isOpen, onClose, onSave, editingInquir
           </div>
 
           {/* Row 4: City & Inquiry Type */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
             <div>
               <label style={labelStyle}>Місто / Регіон</label>
               <div style={{ position: 'relative' }}>
@@ -349,7 +349,7 @@ export default function AddInquiryModal({ isOpen, onClose, onSave, editingInquir
           </div>
 
           {/* Row 5: Product Model & Budget */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
             <div>
               <label style={labelStyle}>Модель / Артикул / Обладнання</label>
               <input

@@ -203,18 +203,30 @@ export default function Navbar({ currentPage, onNavigate }) {
           }}
           title="Ditch Witch Ukraine"
         >
-          <img
-            src={isDark ? '/Risorse/Immagini/DW_Ukraine_White.png' : '/Risorse/Immagini/DW_Ukraine_Black.png'}
-            alt="Ditch Witch Ukraine"
-            className="nav-brand-logo"
-            style={{
-              height: '40px',
-              maxWidth: '100%',
-              width: 'auto',
-              objectFit: 'contain',
-              display: 'block'
-            }}
-          />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <img
+              src={isDark ? '/Risorse/Immagini/DW_Logotype_Rev.png' : '/Risorse/Immagini/DW_Logotype.png'}
+              alt="Ditch Witch"
+              className="nav-brand-logo"
+              style={{
+                height: '40px',
+                maxWidth: '100%',
+                width: 'auto',
+                objectFit: 'contain',
+                display: 'block'
+              }}
+            />
+            <span style={{
+              fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
+              fontWeight: 900,
+              fontSize: '1.4rem',
+              color: isDark ? '#FFFFFF' : '#111111',
+              letterSpacing: '-0.02em',
+              textTransform: 'none'
+            }}>
+              Ukraine
+            </span>
+          </div>
         </button>
 
         <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '0', marginLeft: 'auto', flexShrink: 0, whiteSpace: 'nowrap' }}>
@@ -562,10 +574,19 @@ export default function Navbar({ currentPage, onNavigate }) {
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <img
-                  src={isDark ? '/Risorse/Immagini/DW_Ukraine_White.png' : '/Risorse/Immagini/DW_Ukraine_Black.png'}
+                  src={isDark ? '/Risorse/Immagini/DW_Logotype_Rev.png' : '/Risorse/Immagini/DW_Logotype.png'}
                   alt="Ditch Witch"
                   style={{ height: '26px', maxWidth: '140px', width: 'auto', objectFit: 'contain' }}
                 />
+                <span style={{
+                  fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
+                  fontWeight: 900,
+                  fontSize: '1rem',
+                  color: isDark ? '#FFFFFF' : '#111111',
+                  letterSpacing: '-0.02em'
+                }}>
+                  Ukraine
+                </span>
                 <span style={{ color: '#FF6600', fontWeight: 800, fontSize: '0.9rem' }}>&lt; JLM &gt;</span>
               </div>
 

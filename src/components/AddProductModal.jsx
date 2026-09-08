@@ -323,7 +323,7 @@ export default function AddProductModal({ isOpen, onClose, editingProduct = null
           </div>
 
           {/* Title UK, EN, PL */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px' }}>
             <div>
               <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 800, marginBottom: '6px', textTransform: 'uppercase', color: '#FF9944' }}>
                 Назва (Українська) *

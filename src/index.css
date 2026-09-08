@@ -255,3 +255,41 @@ img {
     justify-content: center;
   }
 }
+
+/* Admin Responsive View Controls */
+.admin-table-view {
+  display: block;
+  width: 100%;
+}
+.admin-cards-view {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .admin-table-view {
+    display: none !important;
+  }
+  .admin-cards-view {
+    display: flex !important;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+  }
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: #FF6600;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E55C00;
+}
+

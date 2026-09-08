@@ -255,22 +255,23 @@ export default function AdminDashboardPage({ onLogout }) {
   const isDark = theme === 'dark';
 
   const themeColors = {
-    bg: isDark ? '#0B0F19' : '#F8FAFC',
-    cardBg: isDark ? '#1E293B' : '#FFFFFF',
-    cardBorder: isDark ? '#334155' : '#E2E8F0',
-    headerBg: isDark ? '#0F172A' : '#1E293B',
-    textPrimary: isDark ? '#F8FAFC' : '#0F172A',
-    textSecondary: isDark ? '#CBD5E1' : '#334155',
-    textMuted: isDark ? '#94A3B8' : '#64748B',
-    accent: isDark ? '#F59E0B' : '#D97706',
-    accentBg: isDark ? 'rgba(245, 158, 11, 0.18)' : '#FEF3C7',
-    accentBorder: isDark ? 'rgba(245, 158, 11, 0.35)' : '#FDE68A',
-    accentText: isDark ? '#FCD34D' : '#92400E',
-    tableHeaderBg: isDark ? '#0F172A' : '#F1F5F9',
+    bg: isDark ? '#0D0D0D' : '#F4F5F7',
+    cardBg: isDark ? '#141414' : '#FFFFFF',
+    cardBorder: isDark ? '#2A2A2A' : '#E2E8F0',
+    headerBg: isDark ? '#0A0A0A' : '#141414',
+    textPrimary: isDark ? '#FFFFFF' : '#111111',
+    textSecondary: isDark ? '#D4D4D8' : '#333333',
+    textMuted: isDark ? '#8E8E93' : '#666666',
+    accent: '#FF6600',
+    accentHover: '#E55C00',
+    accentBg: isDark ? 'rgba(255, 102, 0, 0.15)' : '#FFF3EB',
+    accentBorder: isDark ? 'rgba(255, 102, 0, 0.35)' : '#FFD2B2',
+    accentText: isDark ? '#FFA04D' : '#D95300',
+    tableHeaderBg: isDark ? '#0A0A0A' : '#F1F5F9',
     tableRowAlt: isDark ? 'rgba(255, 255, 255, 0.02)' : '#F9FAFB',
-    tableBorder: isDark ? '#334155' : '#F1F5F9',
-    inputBg: isDark ? '#0F172A' : '#FFFFFF',
-    inputBorder: isDark ? '#334155' : '#CBD5E1'
+    tableBorder: isDark ? '#222222' : '#EEEEEE',
+    inputBg: isDark ? '#0A0A0A' : '#FFFFFF',
+    inputBorder: isDark ? '#333333' : '#CCCCCC'
   };
 
   const categoryNames = {
@@ -718,19 +719,19 @@ export default function AdminDashboardPage({ onLogout }) {
               </div>
             </div>
 
-            {/* Spare Parts Table */}
-            <div style={{
-              backgroundColor: isDark ? '#1C1C1C' : '#FFFFFF',
+            {/* Spare Parts Table (Desktop / Tablet) */}
+            <div className="admin-table-view" style={{
+              backgroundColor: isDark ? '#141414' : '#FFFFFF',
               borderRadius: '12px',
-              border: `1px solid ${isDark ? '#333333' : '#E2E8F0'}`,
-              overflow: 'hidden',
+              border: `1px solid ${isDark ? '#2A2A2A' : '#E2E8F0'}`,
+              overflowX: 'auto',
               boxShadow: isDark ? '0 10px 30px rgba(0,0,0,0.5)' : '0 10px 30px rgba(0,0,0,0.06)'
             }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
+              <table style={{ width: '100%', minWidth: '760px', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
                 <thead>
                   <tr style={{
-                    backgroundColor: isDark ? '#141414' : '#F1F5F9',
-                    borderBottom: `2px solid ${isDark ? '#333' : '#CBD5E1'}`,
+                    backgroundColor: isDark ? '#0A0A0A' : '#F1F5F9',
+                    borderBottom: `2px solid ${isDark ? '#2E2E2E' : '#CBD5E1'}`,
                     color: isDark ? '#FFF' : '#333',
                     fontSize: '0.8rem',
                     textTransform: 'uppercase'
@@ -749,7 +750,7 @@ export default function AdminDashboardPage({ onLogout }) {
                       <tr
                         key={item.id}
                         style={{
-                          borderBottom: `1px solid ${isDark ? '#282828' : '#F1F5F9'}`,
+                          borderBottom: `1px solid ${isDark ? '#222222' : '#F1F5F9'}`,
                           backgroundColor: idx % 2 === 0 ? 'transparent' : isDark ? 'rgba(255,255,255,0.02)' : '#FAFBFD'
                         }}
                       >
@@ -775,7 +776,7 @@ export default function AdminDashboardPage({ onLogout }) {
                             </div>
                           )}
                         </td>
-                        <td style={{ padding: '14px 18px', fontFamily: 'monospace', fontSize: '0.85rem', color: '#FF9944' }}>
+                        <td style={{ padding: '14px 18px', fontFamily: 'monospace', fontSize: '0.85rem', color: '#FF6600' }}>
                           {item.code || '-'}
                         </td>
                         <td style={{ padding: '14px 18px', color: isDark ? '#CCC' : '#555' }}>
@@ -787,7 +788,7 @@ export default function AdminDashboardPage({ onLogout }) {
                               onClick={() => openEditPartModal(item)}
                               title="Редагувати"
                               style={{
-                                backgroundColor: isDark ? '#2A2A2A' : '#F1F5F9',
+                                backgroundColor: isDark ? '#222222' : '#F1F5F9',
                                 color: '#FF6600',
                                 border: 'none',
                                 borderRadius: '6px',
@@ -802,7 +803,7 @@ export default function AdminDashboardPage({ onLogout }) {
                               onClick={() => deletePartOrKit(item.id)}
                               title="Видалити"
                               style={{
-                                backgroundColor: isDark ? '#2A2A2A' : '#F1F5F9',
+                                backgroundColor: isDark ? '#222222' : '#F1F5F9',
                                 color: '#EF4444',
                                 border: 'none',
                                 borderRadius: '6px',
@@ -819,6 +820,97 @@ export default function AdminDashboardPage({ onLogout }) {
                   })}
                 </tbody>
               </table>
+            </div>
+
+            {/* Spare Parts Mobile Cards View (< 768px) */}
+            <div className="admin-cards-view">
+              {parts.map((item) => {
+                const titleText = item.title?.uk || item.title || '';
+                return (
+                  <div
+                    key={item.id}
+                    style={{
+                      backgroundColor: isDark ? '#141414' : '#FFFFFF',
+                      border: `1px solid ${isDark ? '#2A2A2A' : '#E2E8F0'}`,
+                      borderLeft: `4px solid ${item.type === 'kit' ? '#FF6600' : '#888'}`,
+                      borderRadius: '10px',
+                      padding: '14px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '10px',
+                      boxShadow: isDark ? '0 4px 12px rgba(0,0,0,0.3)' : '0 2px 6px rgba(0,0,0,0.05)'
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{
+                        backgroundColor: item.type === 'kit' ? 'rgba(255, 102, 0, 0.18)' : isDark ? 'rgba(255,255,255,0.08)' : '#EAEAEA',
+                        color: item.type === 'kit' ? '#FF9944' : isDark ? '#CCCCCC' : '#444444',
+                        border: item.type === 'kit' ? '1px solid rgba(255, 102, 0, 0.3)' : `1px solid ${isDark ? '#3D3D3D' : '#D0D0D0'}`,
+                        fontWeight: 900,
+                        fontSize: '0.72rem',
+                        padding: '2px 8px',
+                        borderRadius: '4px',
+                        textTransform: 'uppercase'
+                      }}>
+                        {item.type === 'kit' ? 'Комплект ТО' : 'Деталь'}
+                      </span>
+                      <span style={{ fontFamily: 'monospace', fontWeight: 800, color: '#FF6600', fontSize: '0.85rem' }}>
+                        {item.code || '-'}
+                      </span>
+                    </div>
+
+                    <div style={{ fontWeight: 900, color: isDark ? '#FFF' : '#111', fontSize: '0.95rem' }}>
+                      {titleText}
+                    </div>
+
+                    {item.models && (
+                      <div style={{ fontSize: '0.78rem', color: isDark ? '#AAA' : '#666' }}>
+                        🚜 Сумісність: <strong style={{ color: isDark ? '#EEE' : '#222' }}>{item.models}</strong>
+                      </div>
+                    )}
+
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', borderTop: `1px solid ${isDark ? '#222' : '#F1F5F9'}`, paddingTop: '8px' }}>
+                      <button
+                        onClick={() => openEditPartModal(item)}
+                        style={{
+                          flex: 1,
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '6px',
+                          backgroundColor: isDark ? '#2A1A0C' : '#FFF7ED',
+                          color: '#FF6600',
+                          border: '1px solid rgba(255, 102, 0, 0.3)',
+                          borderRadius: '6px',
+                          padding: '8px',
+                          fontSize: '0.8rem',
+                          fontWeight: 800,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <Edit3 size={15} />
+                        <span>Редагувати</span>
+                      </button>
+                      <button
+                        onClick={() => deletePartOrKit(item.id)}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          backgroundColor: isDark ? '#2A1515' : '#FEF2F2',
+                          color: '#EF4444',
+                          border: '1px solid rgba(239, 68, 68, 0.3)',
+                          borderRadius: '6px',
+                          padding: '8px 12px',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <Trash2 size={15} />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
@@ -886,19 +978,19 @@ export default function AdminDashboardPage({ onLogout }) {
               </div>
             </div>
 
-            {/* News Table */}
-            <div style={{
-              backgroundColor: isDark ? '#1C1C1C' : '#FFFFFF',
+            {/* News Table (Desktop / Tablet) */}
+            <div className="admin-table-view" style={{
+              backgroundColor: isDark ? '#141414' : '#FFFFFF',
               borderRadius: '12px',
-              border: `1px solid ${isDark ? '#333333' : '#E2E8F0'}`,
-              overflow: 'hidden',
+              border: `1px solid ${isDark ? '#2A2A2A' : '#E2E8F0'}`,
+              overflowX: 'auto',
               boxShadow: isDark ? '0 10px 30px rgba(0,0,0,0.5)' : '0 10px 30px rgba(0,0,0,0.06)'
             }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
+              <table style={{ width: '100%', minWidth: '760px', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
                 <thead>
                   <tr style={{
-                    backgroundColor: isDark ? '#141414' : '#F1F5F9',
-                    borderBottom: `2px solid ${isDark ? '#333' : '#CBD5E1'}`,
+                    backgroundColor: isDark ? '#0A0A0A' : '#F1F5F9',
+                    borderBottom: `2px solid ${isDark ? '#2E2E2E' : '#CBD5E1'}`,
                     color: isDark ? '#FFF' : '#333',
                     fontSize: '0.8rem',
                     textTransform: 'uppercase'
@@ -917,7 +1009,7 @@ export default function AdminDashboardPage({ onLogout }) {
                       <tr
                         key={item.id}
                         style={{
-                          borderBottom: `1px solid ${isDark ? '#282828' : '#F1F5F9'}`,
+                          borderBottom: `1px solid ${isDark ? '#222222' : '#F1F5F9'}`,
                           backgroundColor: idx % 2 === 0 ? 'transparent' : isDark ? 'rgba(255,255,255,0.02)' : '#FAFBFD'
                         }}
                       >
@@ -945,7 +1037,7 @@ export default function AdminDashboardPage({ onLogout }) {
                               onClick={() => openEditNewsModal(item)}
                               title="Редагувати"
                               style={{
-                                backgroundColor: isDark ? '#2A2A2A' : '#F1F5F9',
+                                backgroundColor: isDark ? '#222222' : '#F1F5F9',
                                 color: '#FF6600',
                                 border: 'none',
                                 borderRadius: '6px',
@@ -960,7 +1052,7 @@ export default function AdminDashboardPage({ onLogout }) {
                               onClick={() => deleteNewsArticle(item.id)}
                               title="Видалити"
                               style={{
-                                backgroundColor: isDark ? '#2A2A2A' : '#F1F5F9',
+                                backgroundColor: isDark ? '#222222' : '#F1F5F9',
                                 color: '#EF4444',
                                 border: 'none',
                                 borderRadius: '6px',
@@ -977,6 +1069,89 @@ export default function AdminDashboardPage({ onLogout }) {
                   })}
                 </tbody>
               </table>
+            </div>
+
+            {/* News Mobile Cards View (< 768px) */}
+            <div className="admin-cards-view">
+              {newsList.map((item) => {
+                const titleText = item.title?.uk || item.title || '';
+                return (
+                  <div
+                    key={item.id}
+                    style={{
+                      backgroundColor: isDark ? '#141414' : '#FFFFFF',
+                      border: `1px solid ${isDark ? '#2A2A2A' : '#E2E8F0'}`,
+                      borderRadius: '10px',
+                      padding: '14px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '10px',
+                      boxShadow: isDark ? '0 4px 12px rgba(0,0,0,0.3)' : '0 2px 6px rgba(0,0,0,0.05)'
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: '0.75rem', color: '#888888' }}>
+                        📅 {item.date}
+                      </span>
+                      {item.featured ? (
+                        <span style={{ backgroundColor: '#FF6600', color: '#FFF', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 900 }}>
+                          FEATURED
+                        </span>
+                      ) : (
+                        <span style={{ color: '#888', fontSize: '0.74rem' }}>Стандартна</span>
+                      )}
+                    </div>
+
+                    <div style={{ fontWeight: 900, color: isDark ? '#FFF' : '#111', fontSize: '0.95rem' }}>
+                      {titleText}
+                    </div>
+
+                    <div style={{ fontSize: '0.78rem', color: '#FF6600', fontWeight: 700, textTransform: 'uppercase' }}>
+                      🏷️ {item.categoryKey || item.category}
+                    </div>
+
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', borderTop: `1px solid ${isDark ? '#222' : '#F1F5F9'}`, paddingTop: '8px' }}>
+                      <button
+                        onClick={() => openEditNewsModal(item)}
+                        style={{
+                          flex: 1,
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '6px',
+                          backgroundColor: isDark ? '#2A1A0C' : '#FFF7ED',
+                          color: '#FF6600',
+                          border: '1px solid rgba(255, 102, 0, 0.3)',
+                          borderRadius: '6px',
+                          padding: '8px',
+                          fontSize: '0.8rem',
+                          fontWeight: 800,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <Edit3 size={15} />
+                        <span>Редагувати</span>
+                      </button>
+                      <button
+                        onClick={() => deleteNewsArticle(item.id)}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          backgroundColor: isDark ? '#2A1515' : '#FEF2F2',
+                          color: '#EF4444',
+                          border: '1px solid rgba(239, 68, 68, 0.3)',
+                          borderRadius: '6px',
+                          padding: '8px 12px',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <Trash2 size={15} />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
@@ -1103,19 +1278,19 @@ export default function AdminDashboardPage({ onLogout }) {
               />
             </div>
 
-            {/* Products Table */}
-            <div style={{
-              backgroundColor: isDark ? '#1C1C1C' : '#FFFFFF',
+            {/* Products Table (Desktop / Tablet) */}
+            <div className="admin-table-view" style={{
+              backgroundColor: isDark ? '#141414' : '#FFFFFF',
               borderRadius: '12px',
-              border: `1px solid ${isDark ? '#333333' : '#E2E8F0'}`,
-              overflow: 'hidden',
+              border: `1px solid ${isDark ? '#2A2A2A' : '#E2E8F0'}`,
+              overflowX: 'auto',
               boxShadow: isDark ? '0 10px 30px rgba(0,0,0,0.5)' : '0 10px 30px rgba(0,0,0,0.06)'
             }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
+              <table style={{ width: '100%', minWidth: '850px', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
                 <thead>
                   <tr style={{
-                    backgroundColor: isDark ? '#141414' : '#F1F5F9',
-                    borderBottom: `2px solid ${isDark ? '#333' : '#CBD5E1'}`,
+                    backgroundColor: isDark ? '#0A0A0A' : '#F1F5F9',
+                    borderBottom: `2px solid ${isDark ? '#2E2E2E' : '#CBD5E1'}`,
                     color: isDark ? '#FFF' : '#333',
                     fontSize: '0.78rem',
                     textTransform: 'uppercase'
@@ -1143,7 +1318,7 @@ export default function AdminDashboardPage({ onLogout }) {
                         <tr
                           key={prod.id}
                           style={{
-                            borderBottom: `1px solid ${isDark ? '#282828' : '#F1F5F9'}`,
+                            borderBottom: `1px solid ${isDark ? '#222222' : '#F1F5F9'}`,
                             backgroundColor: idx % 2 === 0 ? 'transparent' : isDark ? 'rgba(255,255,255,0.02)' : '#FAFBFD'
                           }}
                         >
@@ -1153,8 +1328,7 @@ export default function AdminDashboardPage({ onLogout }) {
                                 width: '70px',
                                 height: '50px',
                                 borderRadius: '6px',
-                                overflow: 'hidden',
-                                backgroundColor: isDark ? '#111' : '#F4F4F4',
+                                backgroundColor: isDark ? '#0A0A0A' : '#F4F4F4',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center'
@@ -1170,8 +1344,7 @@ export default function AdminDashboardPage({ onLogout }) {
                                 width: '70px',
                                 height: '50px',
                                 borderRadius: '6px',
-                                border: `1px dashed ${isDark ? '#444' : '#CCC'}`,
-                                backgroundColor: isDark ? '#141414' : '#F9F9FB',
+                                backgroundColor: isDark ? '#0A0A0A' : '#F4F4F4',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
@@ -1233,7 +1406,7 @@ export default function AdminDashboardPage({ onLogout }) {
                                       updateProductTargeting(prod.id, next);
                                     }}
                                     style={{
-                                      backgroundColor: isAllowed ? 'rgba(59, 130, 246, 0.18)' : isDark ? '#2A2A2A' : '#E2E8F0',
+                                      backgroundColor: isAllowed ? 'rgba(59, 130, 246, 0.18)' : isDark ? '#222222' : '#E2E8F0',
                                       color: isAllowed ? '#60A5FA' : isDark ? '#888' : '#666',
                                       border: isAllowed ? '1px solid rgba(59, 130, 246, 0.35)' : 'none',
                                       borderRadius: '4px',
@@ -1256,8 +1429,8 @@ export default function AdminDashboardPage({ onLogout }) {
                                 onClick={() => openEditProductModal(prod)}
                                 title="Редагувати"
                                 style={{
-                                  backgroundColor: isDark ? '#2A2A2A' : '#F1F5F9',
-                                  color: '#FF9944',
+                                  backgroundColor: isDark ? '#222222' : '#F1F5F9',
+                                  color: '#FF6600',
                                   border: 'none',
                                   borderRadius: '6px',
                                   padding: '6px 10px',
@@ -1271,7 +1444,7 @@ export default function AdminDashboardPage({ onLogout }) {
                                 onClick={() => confirmDeleteProduct(prod.id)}
                                 title="Видалити"
                                 style={{
-                                  backgroundColor: isDark ? '#2A2A2A' : '#F1F5F9',
+                                  backgroundColor: isDark ? '#222222' : '#F1F5F9',
                                   color: '#EF4444',
                                   border: 'none',
                                   borderRadius: '6px',
@@ -1288,6 +1461,177 @@ export default function AdminDashboardPage({ onLogout }) {
                     })}
                 </tbody>
               </table>
+            </div>
+
+            {/* Products Mobile Cards View (< 768px) */}
+            <div className="admin-cards-view">
+              {products
+                .filter((p) => {
+                  const matchesCategory = productCategoryFilter === 'ALL' || p.category === productCategoryFilter;
+                  const titleText = (p.title?.uk || p.title?.en || p.title || '').toLowerCase();
+                  const matchesSearch = !productSearch || titleText.includes(productSearch.toLowerCase());
+                  return matchesCategory && matchesSearch;
+                })
+                .map((prod) => {
+                  const titleText = prod.title?.uk || prod.title?.en || prod.title;
+                  const taglineText = prod.tagline?.uk || prod.tagline?.en || prod.tagline;
+
+                  return (
+                    <div
+                      key={prod.id}
+                      style={{
+                        backgroundColor: isDark ? '#141414' : '#FFFFFF',
+                        border: `1px solid ${isDark ? '#2A2A2A' : '#E2E8F0'}`,
+                        borderRadius: '10px',
+                        padding: '14px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '12px',
+                        boxShadow: isDark ? '0 4px 12px rgba(0,0,0,0.3)' : '0 2px 6px rgba(0,0,0,0.05)'
+                      }}
+                    >
+                      <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                        {prod.image ? (
+                          <div style={{
+                            width: '80px',
+                            height: '60px',
+                            borderRadius: '6px',
+                            backgroundColor: isDark ? '#0A0A0A' : '#F4F4F4',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexShrink: 0
+                          }}>
+                            <img src={prod.image} alt={titleText} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }} />
+                          </div>
+                        ) : (
+                          <div style={{
+                            width: '80px',
+                            height: '60px',
+                            borderRadius: '6px',
+                            backgroundColor: isDark ? '#0A0A0A' : '#F4F4F4',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: '#888',
+                            fontSize: '0.7rem',
+                            flexShrink: 0
+                          }}>
+                            Без фото
+                          </div>
+                        )}
+
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ fontWeight: 900, color: isDark ? '#FFF' : '#111', fontSize: '0.95rem' }}>
+                            {titleText}
+                          </div>
+                          {taglineText && (
+                            <div style={{ fontSize: '0.76rem', color: '#888', marginTop: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                              {taglineText}
+                            </div>
+                          )}
+                          <div style={{ marginTop: '4px' }}>
+                            <span style={{
+                              backgroundColor: prod.category === 'other' ? 'rgba(168, 85, 247, 0.15)' : 'rgba(255, 102, 0, 0.15)',
+                              color: prod.category === 'other' ? '#C084FC' : '#FF9944',
+                              border: prod.category === 'other' ? '1px solid rgba(168, 85, 247, 0.3)' : '1px solid rgba(255, 102, 0, 0.3)',
+                              borderRadius: '4px',
+                              padding: '2px 6px',
+                              fontSize: '0.7rem',
+                              fontWeight: 800,
+                              textTransform: 'uppercase'
+                            }}>
+                              {prod.category === 'other' ? 'Інше' : prod.category}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Geo targeting pills */}
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6px', borderTop: `1px solid ${isDark ? '#222' : '#F1F5F9'}`, paddingTop: '8px' }}>
+                        <span style={{ fontSize: '0.74rem', color: '#888' }}>Країни:</span>
+                        <div style={{ display: 'flex', gap: '4px' }}>
+                          {['ALL', 'UA', 'PL'].map((country) => {
+                            const isAllowed = prod.allowedCountries?.includes(country);
+                            return (
+                              <button
+                                key={country}
+                                onClick={() => {
+                                  let next = [...(prod.allowedCountries || ['ALL'])];
+                                  if (country === 'ALL') {
+                                    next = ['ALL'];
+                                  } else {
+                                    next = next.filter((c) => c !== 'ALL');
+                                    if (next.includes(country)) {
+                                      next = next.filter((c) => c !== country);
+                                    } else {
+                                      next.push(country);
+                                    }
+                                    if (next.length === 0) next = ['ALL'];
+                                  }
+                                  updateProductTargeting(prod.id, next);
+                                }}
+                                style={{
+                                  backgroundColor: isAllowed ? 'rgba(59, 130, 246, 0.18)' : isDark ? '#222222' : '#E2E8F0',
+                                  color: isAllowed ? '#60A5FA' : isDark ? '#888' : '#666',
+                                  border: isAllowed ? '1px solid rgba(59, 130, 246, 0.35)' : 'none',
+                                  borderRadius: '4px',
+                                  padding: '4px 8px',
+                                  fontSize: '0.72rem',
+                                  fontWeight: 800,
+                                  cursor: 'pointer'
+                                }}
+                              >
+                                {country}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Actions */}
+                      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', borderTop: `1px solid ${isDark ? '#222' : '#F1F5F9'}`, paddingTop: '8px' }}>
+                        <button
+                          onClick={() => openEditProductModal(prod)}
+                          style={{
+                            flex: 1,
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '6px',
+                            backgroundColor: isDark ? '#2A1A0C' : '#FFF7ED',
+                            color: '#FF6600',
+                            border: '1px solid rgba(255, 102, 0, 0.3)',
+                            borderRadius: '6px',
+                            padding: '8px',
+                            fontSize: '0.8rem',
+                            fontWeight: 800,
+                            cursor: 'pointer'
+                          }}
+                        >
+                          <Edit3 size={15} />
+                          <span>Редагувати</span>
+                        </button>
+                        <button
+                          onClick={() => confirmDeleteProduct(prod.id)}
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backgroundColor: isDark ? '#2A1515' : '#FEF2F2',
+                            color: '#EF4444',
+                            border: '1px solid rgba(239, 68, 68, 0.3)',
+                            borderRadius: '6px',
+                            padding: '8px 12px',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          <Trash2 size={15} />
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         )}
@@ -1353,10 +1697,17 @@ export default function AdminDashboardPage({ onLogout }) {
             </div>
 
             {/* Documents List */}
-            <div style={{ backgroundColor: isDark ? '#1C1C1C' : '#FFFFFF', borderRadius: '12px', border: `1px solid ${isDark ? '#333' : '#E2E8F0'}`, overflow: 'hidden' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.88rem' }}>
+            {/* Documents List (Desktop / Tablet) */}
+            <div className="admin-table-view" style={{
+              backgroundColor: isDark ? '#141414' : '#FFFFFF',
+              borderRadius: '12px',
+              border: `1px solid ${isDark ? '#2A2A2A' : '#E2E8F0'}`,
+              overflowX: 'auto',
+              boxShadow: isDark ? '0 10px 30px rgba(0,0,0,0.5)' : '0 10px 30px rgba(0,0,0,0.06)'
+            }}>
+              <table style={{ width: '100%', minWidth: '650px', borderCollapse: 'collapse', fontSize: '0.88rem' }}>
                 <thead>
-                  <tr style={{ backgroundColor: isDark ? '#141414' : '#F1F5F9', borderBottom: `2px solid ${isDark ? '#333' : '#CBD5E1'}`, textTransform: 'uppercase', fontSize: '0.78rem' }}>
+                  <tr style={{ backgroundColor: isDark ? '#0A0A0A' : '#F1F5F9', borderBottom: `2px solid ${isDark ? '#2E2E2E' : '#CBD5E1'}`, textTransform: 'uppercase', fontSize: '0.78rem' }}>
                     <th style={{ padding: '12px 16px' }}>Назва Документа</th>
                     <th style={{ padding: '12px 16px' }}>Формат</th>
                     <th style={{ padding: '12px 16px' }}>Розмір</th>
@@ -1365,11 +1716,11 @@ export default function AdminDashboardPage({ onLogout }) {
                 </thead>
                 <tbody>
                   {documents.map((doc) => (
-                    <tr key={doc.id} style={{ borderBottom: `1px solid ${isDark ? '#282828' : '#F1F5F9'}` }}>
-                      <td style={{ padding: '12px 16px', fontWeight: 800 }}>
+                    <tr key={doc.id} style={{ borderBottom: `1px solid ${isDark ? '#222222' : '#F1F5F9'}` }}>
+                      <td style={{ padding: '12px 16px', fontWeight: 800, color: isDark ? '#FFF' : '#111' }}>
                         {doc.title?.uk || doc.title}
                       </td>
-                      <td style={{ padding: '12px 16px', fontWeight: 800, color: '#FF6600' }}>
+                      <td style={{ padding: '12px 16px', fontWeight: 900, color: '#FF6600' }}>
                         {doc.format}
                       </td>
                       <td style={{ padding: '12px 16px', color: '#888' }}>
@@ -1378,7 +1729,14 @@ export default function AdminDashboardPage({ onLogout }) {
                       <td style={{ padding: '12px 16px', textAlign: 'right' }}>
                         <button
                           onClick={() => deleteDocument(doc.id)}
-                          style={{ background: 'none', border: 'none', color: '#EF4444', cursor: 'pointer' }}
+                          style={{
+                            backgroundColor: isDark ? '#222222' : '#F1F5F9',
+                            color: '#EF4444',
+                            border: 'none',
+                            borderRadius: '6px',
+                            padding: '6px 10px',
+                            cursor: 'pointer'
+                          }}
                         >
                           <Trash2 size={16} />
                         </button>
@@ -1387,6 +1745,50 @@ export default function AdminDashboardPage({ onLogout }) {
                   ))}
                 </tbody>
               </table>
+            </div>
+
+            {/* Documents Mobile Cards View (< 768px) */}
+            <div className="admin-cards-view">
+              {documents.map((doc) => (
+                <div
+                  key={doc.id}
+                  style={{
+                    backgroundColor: isDark ? '#141414' : '#FFFFFF',
+                    border: `1px solid ${isDark ? '#2A2A2A' : '#E2E8F0'}`,
+                    borderRadius: '10px',
+                    padding: '14px',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    gap: '12px',
+                    boxShadow: isDark ? '0 4px 12px rgba(0,0,0,0.3)' : '0 2px 6px rgba(0,0,0,0.05)'
+                  }}
+                >
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div style={{ fontWeight: 900, color: isDark ? '#FFF' : '#111', fontSize: '0.92rem' }}>
+                      {doc.title?.uk || doc.title}
+                    </div>
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '4px' }}>
+                      <span style={{ color: '#FF6600', fontWeight: 900, fontSize: '0.75rem' }}>{doc.format}</span>
+                      <span style={{ color: '#888', fontSize: '0.75rem' }}>• {doc.size}</span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => deleteDocument(doc.id)}
+                    style={{
+                      backgroundColor: isDark ? '#2A1515' : '#FEF2F2',
+                      color: '#EF4444',
+                      border: '1px solid rgba(239, 68, 68, 0.3)',
+                      borderRadius: '6px',
+                      padding: '8px 12px',
+                      cursor: 'pointer',
+                      flexShrink: 0
+                    }}
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                </div>
+              ))}
             </div>
           </div>
         )}
@@ -1553,9 +1955,9 @@ export default function AdminDashboardPage({ onLogout }) {
                     key={st}
                     onClick={() => setInquiryStatusFilter(st)}
                     style={{
-                      backgroundColor: inquiryStatusFilter === st ? (isDark ? 'rgba(217, 119, 6, 0.22)' : '#FEF3C7') : isDark ? '#222225' : '#F4F4F5',
-                      color: inquiryStatusFilter === st ? (isDark ? '#FBBF24' : '#B45309') : isDark ? '#A1A1AA' : '#52525B',
-                      border: inquiryStatusFilter === st ? '1px solid rgba(217, 119, 6, 0.35)' : `1px solid ${isDark ? '#37373A' : '#E4E4E7'}`,
+                      backgroundColor: inquiryStatusFilter === st ? (isDark ? 'rgba(255, 102, 0, 0.25)' : '#FFF3EB') : isDark ? '#1C1C1C' : '#F4F4F5',
+                      color: inquiryStatusFilter === st ? '#FF6600' : isDark ? '#A1A1AA' : '#52525B',
+                      border: inquiryStatusFilter === st ? '1px solid #FF6600' : `1px solid ${isDark ? '#2E2E2E' : '#E4E4E7'}`,
                       borderRadius: '8px',
                       padding: '7px 15px',
                       fontSize: '0.82rem',
@@ -1575,31 +1977,33 @@ export default function AdminDashboardPage({ onLogout }) {
                 value={inquirySearch}
                 onChange={(e) => setInquirySearch(e.target.value)}
                 style={{
-                  backgroundColor: isDark ? '#1C1C1C' : '#FFFFFF',
-                  border: `1px solid ${isDark ? '#333' : '#E0E0E0'}`,
+                  backgroundColor: isDark ? '#141414' : '#FFFFFF',
+                  border: `1px solid ${isDark ? '#2E2E2E' : '#E0E0E0'}`,
                   borderRadius: '6px',
                   padding: '9px 16px',
                   fontSize: '0.85rem',
                   color: isDark ? '#FFF' : '#111',
-                  minWidth: '280px',
-                  outline: 'none'
+                  flex: '1 1 240px',
+                  maxWidth: '100%',
+                  outline: 'none',
+                  boxSizing: 'border-box'
                 }}
               />
             </div>
 
-            {/* Inquiries Data Table */}
-            <div style={{
-              backgroundColor: isDark ? '#1C1C1C' : '#FFFFFF',
+            {/* Desktop / Tablet Inquiries Data Table */}
+            <div className="admin-table-view" style={{
+              backgroundColor: isDark ? '#141414' : '#FFFFFF',
               borderRadius: '12px',
-              border: `1px solid ${isDark ? '#333333' : '#E2E8F0'}`,
-              overflow: 'hidden',
+              border: `1px solid ${isDark ? '#2A2A2A' : '#E2E8F0'}`,
+              overflowX: 'auto',
               boxShadow: isDark ? '0 10px 30px rgba(0,0,0,0.5)' : '0 10px 30px rgba(0,0,0,0.06)'
             }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
+              <table style={{ width: '100%', minWidth: '920px', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
                 <thead>
                   <tr style={{
-                    backgroundColor: isDark ? '#141414' : '#F1F5F9',
-                    borderBottom: `2px solid ${isDark ? '#333' : '#CBD5E1'}`,
+                    backgroundColor: isDark ? '#0A0A0A' : '#F1F5F9',
+                    borderBottom: `2px solid ${isDark ? '#2E2E2E' : '#CBD5E1'}`,
                     color: isDark ? '#FFF' : '#333',
                     fontSize: '0.78rem',
                     textTransform: 'uppercase'
@@ -1627,7 +2031,7 @@ export default function AdminDashboardPage({ onLogout }) {
                           case 'Новий':
                             return { bg: 'rgba(239, 68, 68, 0.15)', color: '#F87171', border: 'rgba(239, 68, 68, 0.3)' };
                           case 'В обробці':
-                            return { bg: 'rgba(245, 158, 11, 0.15)', color: '#FBBF24', border: 'rgba(245, 158, 11, 0.3)' };
+                            return { bg: 'rgba(255, 102, 0, 0.15)', color: '#FF9944', border: 'rgba(255, 102, 0, 0.3)' };
                           case 'Узгоджено':
                             return { bg: 'rgba(59, 130, 246, 0.15)', color: '#60A5FA', border: 'rgba(59, 130, 246, 0.3)' };
                           case 'Завершено':
@@ -1642,13 +2046,13 @@ export default function AdminDashboardPage({ onLogout }) {
                         <tr
                           key={inq.id}
                           style={{
-                            borderBottom: `1px solid ${isDark ? '#282828' : '#F1F5F9'}`,
+                            borderBottom: `1px solid ${isDark ? '#222222' : '#F1F5F9'}`,
                             backgroundColor: idx % 2 === 0 ? 'transparent' : isDark ? 'rgba(255,255,255,0.02)' : '#FAFBFD',
                             transition: 'background-color 0.2s ease'
                           }}
                         >
                           <td style={{ padding: '14px 16px' }}>
-                            <div style={{ fontFamily: 'monospace', fontWeight: 900, color: '#FF9944', fontSize: '0.85rem' }}>
+                            <div style={{ fontFamily: 'monospace', fontWeight: 900, color: '#FF6600', fontSize: '0.85rem' }}>
                               {inq.id}
                             </div>
                             <div style={{ fontSize: '0.75rem', color: '#888', marginTop: '2px' }}>
@@ -1701,7 +2105,7 @@ export default function AdminDashboardPage({ onLogout }) {
                               href={`tel:${inq.phone}`}
                               style={{
                                 display: 'block',
-                                color: '#FF9944',
+                                color: '#FF6600',
                                 fontWeight: 800,
                                 fontSize: '0.85rem',
                                 textDecoration: 'none'
@@ -1729,7 +2133,7 @@ export default function AdminDashboardPage({ onLogout }) {
                             <div style={{ fontWeight: 800, color: isDark ? '#EEE' : '#222', fontSize: '0.88rem' }}>
                               {inq.inquiryType || 'Придбання спецтехніки'}
                             </div>
-                            <div style={{ fontSize: '0.8rem', color: '#FF9944', fontWeight: 700, marginTop: '2px' }}>
+                            <div style={{ fontSize: '0.8rem', color: '#FF6600', fontWeight: 700, marginTop: '2px' }}>
                               🚜 {inq.productModel || inq.machine || '-'}
                             </div>
                           </td>
@@ -1774,7 +2178,7 @@ export default function AdminDashboardPage({ onLogout }) {
                                 onClick={() => setViewInquiry(inq)}
                                 title="Переглянути повне досьє"
                                 style={{
-                                  backgroundColor: isDark ? '#2A2A2A' : '#F1F5F9',
+                                  backgroundColor: isDark ? '#222222' : '#F1F5F9',
                                   color: '#3B82F6',
                                   border: 'none',
                                   borderRadius: '6px',
@@ -1789,8 +2193,8 @@ export default function AdminDashboardPage({ onLogout }) {
                                 onClick={() => openEditInquiryModal(inq)}
                                 title="Редагувати"
                                 style={{
-                                  backgroundColor: isDark ? '#2A2A2A' : '#F1F5F9',
-                                  color: '#FF9944',
+                                  backgroundColor: isDark ? '#222222' : '#F1F5F9',
+                                  color: '#FF6600',
                                   border: 'none',
                                   borderRadius: '6px',
                                   padding: '6px 10px',
@@ -1804,7 +2208,7 @@ export default function AdminDashboardPage({ onLogout }) {
                                 onClick={() => deleteInquiry(inq.id)}
                                 title="Видалити"
                                 style={{
-                                  backgroundColor: isDark ? '#2A2A2A' : '#F1F5F9',
+                                  backgroundColor: isDark ? '#222222' : '#F1F5F9',
                                   color: '#EF4444',
                                   border: 'none',
                                   borderRadius: '6px',
@@ -1821,6 +2225,267 @@ export default function AdminDashboardPage({ onLogout }) {
                     })}
                 </tbody>
               </table>
+            </div>
+
+            {/* Mobile Inquiries Cards View (< 768px) */}
+            <div className="admin-cards-view">
+              {inquiries
+                .filter((inq) => {
+                  const matchesStatus = inquiryStatusFilter === 'ALL' || inq.status === inquiryStatusFilter;
+                  const searchText = `${inq.customerName} ${inq.company} ${inq.id} ${inq.productModel || inq.machine} ${inq.city}`.toLowerCase();
+                  const matchesSearch = searchText.includes(inquirySearch.toLowerCase());
+                  return matchesStatus && matchesSearch;
+                })
+                .map((inq) => {
+                  const getStatusBadgeStyle = (status) => {
+                    switch (status) {
+                      case 'Новий':
+                        return { bg: 'rgba(239, 68, 68, 0.15)', color: '#F87171', border: 'rgba(239, 68, 68, 0.4)' };
+                      case 'В обробці':
+                        return { bg: 'rgba(255, 102, 0, 0.15)', color: '#FF9944', border: 'rgba(255, 102, 0, 0.4)' };
+                      case 'Узгоджено':
+                        return { bg: 'rgba(59, 130, 246, 0.15)', color: '#60A5FA', border: 'rgba(59, 130, 246, 0.4)' };
+                      case 'Завершено':
+                        return { bg: 'rgba(34, 197, 94, 0.15)', color: '#4ADE80', border: 'rgba(34, 197, 94, 0.4)' };
+                      default:
+                        return { bg: 'rgba(156, 163, 175, 0.15)', color: '#9CA3AF', border: 'rgba(156, 163, 175, 0.4)' };
+                    }
+                  };
+                  const stBadge = getStatusBadgeStyle(inq.status);
+
+                  return (
+                    <div
+                      key={inq.id}
+                      style={{
+                        backgroundColor: isDark ? '#141414' : '#FFFFFF',
+                        border: `1px solid ${isDark ? '#2A2A2A' : '#E2E8F0'}`,
+                        borderLeft: `4px solid ${stBadge.color}`,
+                        borderRadius: '10px',
+                        padding: '16px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '12px',
+                        boxShadow: isDark ? '0 4px 14px rgba(0,0,0,0.4)' : '0 2px 8px rgba(0,0,0,0.05)',
+                        boxSizing: 'border-box',
+                        width: '100%'
+                      }}
+                    >
+                      {/* Top Row: Code & Date + Status Badge */}
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div>
+                          <span style={{ fontFamily: 'monospace', fontWeight: 900, color: '#FF6600', fontSize: '0.88rem' }}>
+                            {inq.id}
+                          </span>
+                          <span style={{ fontSize: '0.75rem', color: '#888888', marginLeft: '8px' }}>
+                            {inq.date}
+                          </span>
+                        </div>
+                        <button
+                          onClick={() => cycleInquiryStatus(inq.id)}
+                          title="Натисніть для зміни статусу"
+                          style={{
+                            backgroundColor: stBadge.bg,
+                            color: stBadge.color,
+                            border: `1px solid ${stBadge.border}`,
+                            borderRadius: '6px',
+                            padding: '4px 10px',
+                            fontSize: '0.74rem',
+                            fontWeight: 800,
+                            cursor: 'pointer'
+                          }}
+                        >
+                          {inq.status}
+                        </button>
+                      </div>
+
+                      {/* Customer Info */}
+                      <div>
+                        <div style={{ fontWeight: 900, color: isDark ? '#FFFFFF' : '#111111', fontSize: '1rem' }}>
+                          {inq.customerName}
+                        </div>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '4px', fontSize: '0.8rem', color: isDark ? '#AAAAAA' : '#555555' }}>
+                          {inq.company && <span>🏢 {inq.company}</span>}
+                          {inq.city && <span>📍 {inq.city}</span>}
+                        </div>
+                        {inq.customerId && (
+                          <button
+                            onClick={() => {
+                              const found = customerDossiers.find(c => c.id === inq.customerId);
+                              if (found) setViewDossierModal(found);
+                            }}
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '4px',
+                              backgroundColor: 'rgba(255, 102, 0, 0.15)',
+                              color: '#FF9944',
+                              border: '1px solid rgba(255, 102, 0, 0.3)',
+                              borderRadius: '4px',
+                              padding: '2px 8px',
+                              fontSize: '0.72rem',
+                              fontWeight: 800,
+                              cursor: 'pointer',
+                              marginTop: '6px'
+                            }}
+                          >
+                            👤 Досьє {inq.customerId}
+                          </button>
+                        )}
+                      </div>
+
+                      {/* Machine & Budget Details Box */}
+                      <div style={{
+                        backgroundColor: isDark ? '#0A0A0A' : '#F8FAFC',
+                        border: `1px solid ${isDark ? '#222222' : '#E2E8F0'}`,
+                        borderRadius: '8px',
+                        padding: '10px 12px',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        flexWrap: 'wrap',
+                        gap: '8px'
+                      }}>
+                        <div>
+                          <div style={{ fontSize: '0.7rem', color: '#888888', textTransform: 'uppercase', fontWeight: 700 }}>Обладнання</div>
+                          <div style={{ fontSize: '0.85rem', fontWeight: 900, color: isDark ? '#FFFFFF' : '#111111' }}>
+                            🚜 {inq.productModel || inq.machine || '-'}
+                          </div>
+                          <div style={{ fontSize: '0.74rem', color: '#888888' }}>{inq.inquiryType || 'Придбання спецтехніки'}</div>
+                        </div>
+                        <div style={{ textAlign: 'right' }}>
+                          <div style={{ fontSize: '0.7rem', color: '#888888', textTransform: 'uppercase', fontWeight: 700 }}>Бюджет</div>
+                          <span style={{
+                            backgroundColor: isDark ? 'rgba(34, 197, 94, 0.15)' : '#E8F5E9',
+                            color: '#22C55E',
+                            fontWeight: 800,
+                            fontSize: '0.78rem',
+                            padding: '3px 8px',
+                            borderRadius: '4px',
+                            display: 'inline-block'
+                          }}>
+                            {inq.budget || 'За прайсом'}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Quick Contact Buttons */}
+                      <div style={{ display: 'grid', gridTemplateColumns: inq.email ? '1fr 1fr' : '1fr', gap: '8px' }}>
+                        <a
+                          href={`tel:${inq.phone}`}
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '6px',
+                            backgroundColor: isDark ? '#1F150C' : '#FFF3EB',
+                            border: '1px solid rgba(255, 102, 0, 0.4)',
+                            color: '#FF6600',
+                            fontWeight: 800,
+                            fontSize: '0.82rem',
+                            padding: '10px 8px',
+                            borderRadius: '6px',
+                            textDecoration: 'none'
+                          }}
+                        >
+                          <Phone size={14} />
+                          <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{inq.phone}</span>
+                        </a>
+                        {inq.email && (
+                          <a
+                            href={`mailto:${inq.email}`}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              gap: '6px',
+                              backgroundColor: isDark ? '#1C1C1C' : '#F1F5F9',
+                              border: `1px solid ${isDark ? '#2E2E2E' : '#E2E8F0'}`,
+                              color: isDark ? '#CCCCCC' : '#444444',
+                              fontWeight: 700,
+                              fontSize: '0.82rem',
+                              padding: '10px 8px',
+                              borderRadius: '6px',
+                              textDecoration: 'none'
+                            }}
+                          >
+                            <Mail size={14} />
+                            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>Email</span>
+                          </a>
+                        )}
+                      </div>
+
+                      {/* Card Action Buttons */}
+                      <div style={{
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        gap: '8px',
+                        borderTop: `1px solid ${isDark ? '#222222' : '#F1F5F9'}`,
+                        paddingTop: '10px'
+                      }}>
+                        <button
+                          onClick={() => setViewInquiry(inq)}
+                          style={{
+                            flex: 1,
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '6px',
+                            backgroundColor: isDark ? '#1A2333' : '#EFF6FF',
+                            color: '#3B82F6',
+                            border: '1px solid rgba(59, 130, 246, 0.3)',
+                            borderRadius: '6px',
+                            padding: '8px',
+                            fontSize: '0.8rem',
+                            fontWeight: 800,
+                            cursor: 'pointer'
+                          }}
+                        >
+                          <Eye size={15} />
+                          <span>Досьє</span>
+                        </button>
+                        <button
+                          onClick={() => openEditInquiryModal(inq)}
+                          style={{
+                            flex: 1,
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '6px',
+                            backgroundColor: isDark ? '#2A1A0C' : '#FFF7ED',
+                            color: '#FF6600',
+                            border: '1px solid rgba(255, 102, 0, 0.3)',
+                            borderRadius: '6px',
+                            padding: '8px',
+                            fontSize: '0.8rem',
+                            fontWeight: 800,
+                            cursor: 'pointer'
+                          }}
+                        >
+                          <Edit3 size={15} />
+                          <span>Змінити</span>
+                        </button>
+                        <button
+                          onClick={() => deleteInquiry(inq.id)}
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backgroundColor: isDark ? '#2A1515' : '#FEF2F2',
+                            color: '#EF4444',
+                            border: '1px solid rgba(239, 68, 68, 0.3)',
+                            borderRadius: '6px',
+                            padding: '8px 12px',
+                            fontSize: '0.8rem',
+                            fontWeight: 700,
+                            cursor: 'pointer'
+                          }}
+                        >
+                          <Trash2 size={15} />
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
 
             {/* Inquiry Full Dossier Modal */}

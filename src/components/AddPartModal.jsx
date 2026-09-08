@@ -132,7 +132,7 @@ export default function AddPartModal({ isOpen, onClose, editingPart = null }) {
             <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 800, marginBottom: '8px', textTransform: 'uppercase', color: '#FF6600' }}>
               Тип Запису *
             </label>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px' }}>
               <button
                 type="button"
                 onClick={() => setType('kit')}
@@ -202,7 +202,7 @@ export default function AddPartModal({ isOpen, onClose, editingPart = null }) {
             />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
             {/* Category */}
             <div>
               <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 800, marginBottom: '6px', textTransform: 'uppercase' }}>
