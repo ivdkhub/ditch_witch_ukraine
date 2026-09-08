@@ -178,30 +178,12 @@ export default function HeroCarousel({ onNavigate, onRequestQuote }) {
           </div>
 
           {/* Slide Image */}
-          <div style={{
-            display: 'flex',
-            justify: 'center',
-            alignItems: 'center',
-            position: 'relative'
-          }}>
-            <div style={{
-              position: 'relative',
-              width: '100%',
-              maxHeight: '360px',
-              display: 'flex',
-              justify: 'center',
-              alignItems: 'center'
-            }}>
+          <div className="hero-image-wrapper">
+            <div className="hero-image-container">
               <img
                 src={slide.image}
                 alt={slide.title}
-                style={{
-                  maxWidth: '100%',
-                  maxHeight: '340px',
-                  objectFit: 'contain',
-                  filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.8))',
-                  transition: 'transform 0.5s ease'
-                }}
+                className="hero-slide-img"
               />
             </div>
           </div>
@@ -294,9 +276,43 @@ export default function HeroCarousel({ onNavigate, onRequestQuote }) {
       </div>
 
       <style>{`
+        .hero-image-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          width: 100%;
+        }
+        .hero-image-container {
+          position: relative;
+          width: 100%;
+          height: 320px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .hero-slide-img {
+          max-width: 100%;
+          max-height: 100%;
+          width: auto;
+          height: auto;
+          object-fit: contain;
+          display: block;
+          margin: auto;
+          filter: drop-shadow(0 20px 30px rgba(0,0,0,0.8));
+          transition: transform 0.5s ease;
+        }
         @media (max-width: 768px) {
           .hero-carousel-arrow {
             display: none !important;
+          }
+          .hero-image-container {
+            height: 220px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .hero-image-container {
+            height: 190px !important;
           }
         }
       `}</style>
