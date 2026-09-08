@@ -185,42 +185,29 @@ export default function Navbar({ currentPage, onNavigate }) {
             border: 'none',
             outline: 'none',
             cursor: 'pointer',
-            flexShrink: 1,
+            flexShrink: 0,
             flexWrap: 'nowrap',
             whiteSpace: 'nowrap',
             minHeight: '44px',
             textDecoration: 'none',
             boxShadow: 'none',
             marginRight: 'auto',
-            minWidth: 0,
-            maxWidth: 'calc(100% - 90px)'
+            minWidth: 0
           }}
           title="Ditch Witch Ukraine"
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <img
-              src={isDark ? '/Risorse/Immagini/DW_Logotype_Rev.png' : '/Risorse/Immagini/DW_Logotype.png'}
-              alt="Ditch Witch"
-              className="nav-brand-logo"
-              style={{
-                height: '40px',
-                maxWidth: '100%',
-                width: 'auto',
-                objectFit: 'contain',
-                display: 'block'
-              }}
-            />
-            <span style={{
-              fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
-              fontWeight: 900,
-              fontSize: '1.4rem',
-              color: isDark ? '#FFFFFF' : '#111111',
-              letterSpacing: '-0.02em',
-              textTransform: 'none'
-            }}>
-              Ukraine
-            </span>
-          </div>
+          <img
+            src={isDark ? '/Risorse/Immagini/DW_Ukraine_White.png' : '/Risorse/Immagini/DW_Ukraine_Black.png'}
+            alt="Ditch Witch Ukraine"
+            className="nav-brand-logo"
+            style={{
+              height: '38px',
+              maxWidth: '220px',
+              width: 'auto',
+              objectFit: 'contain',
+              display: 'block'
+            }}
+          />
         </button>
 
         <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '0', marginLeft: 'auto', flexShrink: 0, whiteSpace: 'nowrap' }}>
@@ -923,10 +910,26 @@ export default function Navbar({ currentPage, onNavigate }) {
         }
 
         @media (max-width: 1360px) {
+          .desktop-nav-item {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            font-size: 0.78rem !important;
+          }
           .desktop-nav-btn {
             padding-left: 8px !important;
             padding-right: 8px !important;
-            font-size: 0.76rem !important;
+            font-size: 0.78rem !important;
+          }
+        }
+        @media (max-width: 1280px) {
+          .nav-brand-logo {
+            height: 32px !important;
+            max-width: 180px !important;
+          }
+          .desktop-nav-item {
+            padding-left: 7px !important;
+            padding-right: 7px !important;
+            font-size: 0.74rem !important;
           }
         }
         @media (max-width: 1140px) {
