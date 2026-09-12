@@ -100,7 +100,7 @@ export const translations = {
     },
     welcome: {
       title: 'ЛАСКАВО ПРОСИМО ДО ДІТЧ ВІТЧ УКРАЇНА (JLM GROUP)',
-      desc1: 'Дітч Вітч Україна входить до групи JLM — офіційного дистриб’ютора Дітч Вітч® у Швеції, Норвегії, Фінляндії, Данії, Польщі та Україні з понад 20-річним досвідом.',
+      desc1: 'Дітч Вітч Україна входить до групи JLM — офіційного дистриб’ютора Дітч Вітч® у Швеції, Норвегії, Данії, Польщі та Україні з понад 20-річним досвідом.',
       desc2: 'Ми є єдиним представником торгових марок Дітч Вітч®, Zahn®, Subsite® Electronics, HammerHead®, American Augers® та дистриб’ютором Baroid®.',
       btnCatalog: 'ПЕРЕГЛЯНУТИ КАТАЛОГ JLM',
       btnContact: 'ЗВ’ЯЗАТИСЯ З НАМИ'
@@ -212,7 +212,7 @@ export const translations = {
     },
     welcome: {
       title: 'WELCOME TO DITCH WITCH UKRAINE (JLM GROUP)',
-      desc1: 'Ditch Witch Ukraine is part of the JLM Group, the official representative of Ditch Witch® in Sweden, Norway, Finland, Denmark, Poland, and Ukraine.',
+      desc1: 'Ditch Witch Ukraine is part of the JLM Group, the official representative of Ditch Witch® in Sweden, Norway, Denmark, Poland, and Ukraine.',
       desc2: 'We are the exclusive distributor of Ditch Witch®, Zahn®, Subsite® Electronics, HammerHead®, American Augers®, and Baroid®.',
       btnCatalog: 'VIEW JLM CATALOG',
       btnContact: 'CONTACT US'
@@ -324,7 +324,7 @@ export const translations = {
     },
     welcome: {
       title: 'WITAMY W DITCH WITCH UKRAINA (GRUPA JLM)',
-      desc1: 'Ditch Witch Ukraina wchodzi w skład grupy JLM, oficjalnego przedstawiciela Ditch Witch® w Szwecji, Norwegii, Finlandii, Danii, Polsce i Ukrainie.',
+      desc1: 'Ditch Witch Ukraina wchodzi w skład grupy JLM, oficjalnego przedstawiciela Ditch Witch® w Szwecji, Norwegii, Danii, Polsce i Ukrainie.',
       desc2: 'Jesteśmy wyłącznym przedstawicielem marek Ditch Witch®, Zahn®, Subsite® Electronics, HammerHead®, American Augers® oraz dystrybutorem Baroid®.',
       btnCatalog: 'ZOBACZ KATALOG JLM',
       btnContact: 'SKONTAKTUJ SIĘ Z NAMI'

@@ -181,6 +181,7 @@ export default function ProductCategories({ onNavigateToProducts }) {
                         marginBottom: '6px',
                         lineHeight: 1.3,
                         minHeight: '2.6em',
+                        textAlign: 'center',
                         transition: 'color 0.25s ease'
                       }}
                       title={cat.name}

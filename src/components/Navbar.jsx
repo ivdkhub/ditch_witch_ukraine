@@ -27,8 +27,18 @@ export default function Navbar({ currentPage, onNavigate }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const isDark = theme === 'dark';
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Prevent background scrolling when mobile drawer is open
   useEffect(() => {
@@ -150,17 +160,24 @@ export default function Navbar({ currentPage, onNavigate }) {
   };
 
   return (
-    <header style={{
-      backgroundColor: isDark ? '#181818' : '#FFFFFF',
-      color: isDark ? '#FFFFFF' : '#0F172A',
-      boxShadow: isDark ? '0 4px 20px rgba(0,0,0,0.5)' : '0 4px 20px rgba(0,0,0,0.06)',
-      borderBottom: `2px solid ${isDark ? '#282828' : '#F1F5F9'}`,
-      position: 'sticky',
-      top: 0,
-      zIndex: 1000,
-      paddingTop: 'var(--sat)',
-      transition: 'background-color 0.3s ease, color 0.3s ease'
-    }}>
+    <>
+      <header style={{
+        backgroundColor: isDark
+          ? (isScrolled ? 'rgba(24, 24, 24, 0.85)' : '#000000')
+          : (isScrolled ? 'rgba(255, 255, 255, 0.85)' : '#FFFFFF'),
+        backdropFilter: isScrolled ? 'blur(12px)' : 'none',
+        WebkitBackdropFilter: isScrolled ? 'blur(12px)' : 'none',
+        color: isDark ? '#FFFFFF' : '#0F172A',
+        boxShadow: isScrolled
+          ? (isDark ? '0 4px 20px rgba(0,0,0,0.5)' : '0 4px 20px rgba(0,0,0,0.06)')
+          : 'none',
+        borderBottom: `2px solid ${isDark ? '#282828' : '#F1F5F9'}`,
+        position: 'sticky',
+        top: 0,
+        zIndex: 1000,
+        paddingTop: 'var(--sat)',
+        transition: 'background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease, color 0.3s ease'
+      }}>
       <div className="container nav-header-container" style={{
         display: 'flex',
         alignItems: 'center',
@@ -178,7 +195,7 @@ export default function Navbar({ currentPage, onNavigate }) {
           style={{
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '8px',
+            gap: '10px',
             background: 'none',
             backgroundColor: 'transparent',
             padding: '4px 0',
@@ -196,6 +213,18 @@ export default function Navbar({ currentPage, onNavigate }) {
           }}
           title="Ditch Witch Ukraine"
         >
+          <img
+            src="/witch_orange.png"
+            alt="Ditch Witch Logo"
+            className="nav-brand-icon"
+            style={{
+              height: '36px',
+              width: 'auto',
+              objectFit: 'contain',
+              display: 'block',
+              flexShrink: 0
+            }}
+          />
           <img
             src={isDark ? '/Risorse/Immagini/DW_Ukraine_White.png' : '/Risorse/Immagini/DW_Ukraine_Black.png'}
             alt="Ditch Witch Ukraine"
@@ -502,8 +531,9 @@ export default function Navbar({ currentPage, onNavigate }) {
           <span style={{ textTransform: 'uppercase', fontSize: '0.82rem', letterSpacing: '0.04em' }}>{t.nav.menu}</span>
         </button>
       </div>
+    </header>
 
-      {mobileMenuOpen && (
+    {mobileMenuOpen && (
         <div
           className="mobile-drawer-overlay animate-fade-in"
           onClick={() => setMobileMenuOpen(false)}
@@ -554,6 +584,11 @@ export default function Navbar({ currentPage, onNavigate }) {
               boxShadow: isDark ? '0 2px 10px rgba(0,0,0,0.4)' : '0 2px 8px rgba(0,0,0,0.04)'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <img
+                  src="/witch_orange.png"
+                  alt="Ditch Witch Logo"
+                  style={{ height: '26px', width: 'auto', objectFit: 'contain' }}
+                />
                 <img
                   src={isDark ? '/Risorse/Immagini/DW_Ukraine_White.png' : '/Risorse/Immagini/DW_Ukraine_Black.png'}
                   alt="Ditch Witch Ukraine"
@@ -922,6 +957,9 @@ export default function Navbar({ currentPage, onNavigate }) {
           }
         }
         @media (max-width: 1280px) {
+          .nav-brand-icon {
+            height: 30px !important;
+          }
           .nav-brand-logo {
             height: 32px !important;
             max-width: 180px !important;
@@ -939,18 +977,39 @@ export default function Navbar({ currentPage, onNavigate }) {
           .mobile-menu-btn {
             display: inline-flex !important;
           }
+          .nav-brand-icon {
+            height: 46px !important;
+          }
+          .nav-brand-logo {
+            height: 44px !important;
+            max-width: 230px !important;
+          }
+          .nav-brand-button {
+            min-height: 48px !important;
+          }
+          .nav-header-container {
+            min-height: 62px !important;
+          }
         }
         @media (max-width: 768px) {
+          .nav-brand-icon {
+            height: 48px !important;
+          }
           .nav-brand-logo {
-            height: 34px !important;
-            max-width: 180px !important;
+            height: 46px !important;
+            max-width: 240px !important;
           }
           .nav-brand-badge {
             font-size: 1.05rem !important;
           }
+          .nav-brand-button {
+            min-height: 50px !important;
+            gap: 10px !important;
+          }
           .nav-header-container {
             padding-left: 12px !important;
             padding-right: 12px !important;
+            min-height: 64px !important;
           }
           .mobile-menu-btn {
             padding: 8px 12px !important;
@@ -959,20 +1018,25 @@ export default function Navbar({ currentPage, onNavigate }) {
           }
         }
         @media (max-width: 480px) {
+          .nav-brand-icon {
+            height: 42px !important;
+          }
           .nav-brand-logo {
-            height: 28px !important;
-            max-width: 140px !important;
+            height: 40px !important;
+            max-width: 200px !important;
           }
           .nav-brand-badge {
             font-size: 0.92rem !important;
           }
           .nav-brand-button {
-            gap: 6px !important;
+            gap: 8px !important;
+            min-height: 44px !important;
           }
           .nav-header-container {
             padding-left: 10px !important;
             padding-right: 10px !important;
             gap: 6px !important;
+            min-height: 56px !important;
           }
           .mobile-menu-btn {
             padding: 8px 10px !important;
@@ -980,12 +1044,18 @@ export default function Navbar({ currentPage, onNavigate }) {
           }
         }
         @media (max-width: 360px) {
+          .nav-brand-icon {
+            height: 35px !important;
+          }
           .nav-brand-logo {
-            height: 24px !important;
-            max-width: 115px !important;
+            height: 34px !important;
+            max-width: 165px !important;
           }
           .nav-brand-badge {
             font-size: 0.82rem !important;
+          }
+          .nav-brand-button {
+            gap: 6px !important;
           }
           .mobile-menu-btn {
             padding: 6px 8px !important;
@@ -993,6 +1063,6 @@ export default function Navbar({ currentPage, onNavigate }) {
           }
         }
       `}</style>
-    </header>
+    </>
   );
 }
